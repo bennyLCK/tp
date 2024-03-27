@@ -231,5 +231,6 @@ public class EditArticleCommand extends ArticleCommand {
                     .add("title", title) // Add more attributes of article here.
                     .toString();
         }
+
     }
 }
