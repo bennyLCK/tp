@@ -32,7 +32,7 @@ public class ArticleCommandTestUtil {
     public static final String FIRST_VALID_AUTHOR_NVIDIA = "Alice Wang";
     public static final String SECOND_VALID_AUTHOR_NVIDIA = "Amy Wong";
     public static final String FIRST_VALID_AUTHOR_INTEL = "Bob Ross";
-    public static final String SECOND_VALID_AUTHOR_INTEL = "Bob Ross";
+    public static final String SECOND_VALID_AUTHOR_INTEL = "Bobby Fisher";
     public static final String VALID_PUBLICATION_DATE_NVIDIA = "20-03-2024 12:00";
     public static final String VALID_PUBLICATION_DATE_INTEL = "22-04-2022 20:00";
     public static final String FIRST_VALID_SOURCE_NVIDIA = "Jensen Huang";
