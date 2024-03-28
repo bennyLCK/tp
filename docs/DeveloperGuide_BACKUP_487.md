@@ -277,6 +277,8 @@ The following activity diagram summarizes what happens when a user executes a ne
 
 _{more aspects and alternatives to be added}_
 
+<<<<<<< HEAD
+=======
 ### \[Proposed\] Lookup Article
 
 #### Proposed Implementation
@@ -288,6 +290,7 @@ The proposed lookup feature is enabled by altering `Article` such that whenever 
 * Make sure Edits and Deletes of Persons and Articles are handled correctly.
 * Consider including a UI alternative to access the list: Pressing a button in the Article's display will show the list of Persons involved.
 
+>>>>>>> master
 
 ### \[Proposed\] Data archiving
 
