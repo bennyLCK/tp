@@ -15,8 +15,8 @@ public class SetArticleCommandParser implements Parser<SetArticleCommand> {
     @Override
     public SetArticleCommand parse(String userInput) throws ParseException {
         ArgumentMultimap argMultimap = ArgumentTokenizer.tokenize(userInput, PREFIX_STATUS);
-        if (!arePrefixesPresent(argMultimap, PREFIX_STATUS) || !argMultimap.getPreamble().isEmpty()) {
-            throw new ParseException("The set argument does not follow the correct format");
+        if (!arePrefixesPresent(argMultimap, PREFIX_STATUS)) {
+            throw new ParseException("The set command does not follow the correct format");
         }
         String status = argMultimap.getValue(PREFIX_STATUS).get();
         return new SetArticleCommand(status);
