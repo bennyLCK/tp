@@ -73,7 +73,7 @@ public class ArticleBookParser {
             return new SortArticleCommandParser().parse(arguments);
 
         case SetArticleCommand.COMMAND_WORD:
-            return new SetArticleCommand();
+            return new SetArticleCommandParser().parse(arguments);
 
         default:
             logger.finer("This user input caused a ParseException: " + userInput);
