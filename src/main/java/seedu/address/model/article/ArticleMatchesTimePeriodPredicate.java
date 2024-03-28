@@ -20,7 +20,7 @@ public class ArticleMatchesTimePeriodPredicate implements Predicate<Article> {
     public ArticleMatchesTimePeriodPredicate(LocalDateTime start, LocalDateTime end) throws InvalidDatesException {
         this.start = start;
         this.end = end;
-        if (start.isAfter(end)) {
+        if (end.isBefore(start)) {
             throw new InvalidDatesException();
         }
     }
