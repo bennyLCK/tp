@@ -19,7 +19,7 @@ public class SetArticleCommandParser implements Parser<SetArticleCommand> {
             throw new ParseException("The set argument does not follow the correct format");
         }
         String status = argMultimap.getValue(PREFIX_STATUS).get();
-        return new SetArticleCommand();
+        return new SetArticleCommand(status);
     }
 
     private static boolean arePrefixesPresent(ArgumentMultimap argumentMultimap, Prefix... prefixes) {
