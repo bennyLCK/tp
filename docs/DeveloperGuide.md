@@ -160,7 +160,7 @@ This section describes some noteworthy details on how certain features are imple
 
 ### \[Implementing\] Filter feature
 
-<puml src="diagrams/ModelFilterRelationship.puml" width="250" />
+<puml src="diagrams/ModelFilterClassDiagram.puml" width="250" />
 
 The filter mechanism is facilitated by `filter` interface. The ArticleFilter and PersonFilter classes will inherit from it.
 The filters will store `Predicate<>` objects that will determine which Persons or articles will be shown to the user.
