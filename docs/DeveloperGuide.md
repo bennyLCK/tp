@@ -158,6 +158,42 @@ Classes used by multiple components are in the `seedu.addressbook.commons` packa
 
 This section describes some noteworthy details on how certain features are implemented.
 
+### \[Implemented\] Sort persons feature
+
+#### Implementation
+
+The sort persons command is implemented in the `SortCommand` class. The `SortCommand` class is a subclass of the `PersonCommand` class, which is in turn a subclass of the `Command` class. The `SortCommand` class is responsible for sorting the persons in the address book according to a field present in the `Person` class by overriding the following method in the `Command` class:
+
+* `execute(Model model)` — Sorts the persons in the address book according to a field present in the `Person` class which is mapped to the `prefix` field in the `SortCommand` object.
+
+Given below is an example usage scenario and how the sort persons feature behaves at each step.
+
+Step 1. The user launches the application for the first time. The `AddressBook` will be initialized with the initial address book state.
+
+Step 2. The user executes `sort n/` command. The `sort` command calls `Model#sortAddressBook("n/")` which sorts the persons in the address book by name in increasing lexicographical order.
+
+The following sequence diagram shows how a sort persons operation goes through the `Logic` component:
+
+<puml src="diagrams/SortPersonsSequenceDiagram-Logic.puml" alt="SortPersonsSequenceDiagram-Logic" />
+
+Similarly, how a sort persons operation goes through the `Model` component is shown below:
+
+<puml src="diagrams/SortPersonsSequenceDiagram-Model.puml" alt="SortPersonsSequenceDiagram-Model" />
+
+#### Design considerations:
+
+**Aspect: How sort persons executes:**
+
+* **Alternative 1 (current choice):** Directly sort the `internalList` field present in the `UniquePersonList` object.
+    * Pros: Easy to implement.
+    * Cons: Permanently orders all persons in the `AddressBook` by the `Person` field specified by the related `prefix`.
+
+
+* **Alternative 2:** Clone the current `internalList` field
+  present in the `UniquePersonList` object, sort the clone, then replace the `internalUnmodifiableList` field in the `UniquePersonList` object with the sorted clone.
+    * Pros: Will not permanently order all persons in the `AddressBook` by the `Person` field specified by the related `prefix`, but only the current view displayed to the user which is refreshed for every opening of the application or commands that changes the view (e.g. `List`, `Find` commands).
+    * Cons: Takes up much more memory space directly proportional to the size of the `AddressBook` since a clone of all `Persons` has to be made.
+
 ### \[Proposed\] Undo/redo feature
 
 #### Proposed Implementation
