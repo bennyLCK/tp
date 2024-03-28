@@ -116,6 +116,11 @@ public class ModelManager implements Model {
         addressBook.setPerson(target, editedPerson);
     }
 
+    @Override
+    public void sortAddressBook(String prefix) {
+        addressBook.sortAddressBook(prefix);
+    }
+
     //=========== Filtered Person List Accessors =============================================================
 
     /**
@@ -136,7 +141,7 @@ public class ModelManager implements Model {
     //=========== ArticleBook ================================================================================
 
     @Override
-    public void setArticleBook(ReadOnlyArticleBook addressBook) {
+    public void setArticleBook(ReadOnlyArticleBook articleBook) {
         this.articleBook.resetData(articleBook);
     }
 
@@ -146,9 +151,9 @@ public class ModelManager implements Model {
     }
 
     @Override
-    public boolean hasArticle(Article person) {
-        requireNonNull(person);
-        return articleBook.hasArticle(person);
+    public boolean hasArticle(Article article) {
+        requireNonNull(article);
+        return articleBook.hasArticle(article);
     }
 
     @Override
@@ -157,8 +162,8 @@ public class ModelManager implements Model {
     }
 
     @Override
-    public void addArticle(Article person) {
-        articleBook.addArticle(person);
+    public void addArticle(Article article) {
+        articleBook.addArticle(article);
         updateFilteredArticleList(PREDICATE_SHOW_ALL_ARTICLES);
     }
 
@@ -169,7 +174,12 @@ public class ModelManager implements Model {
         articleBook.setArticle(target, editedArticle);
     }
 
-    //=========== Filtered Person List Accessors =============================================================
+    @Override
+    public void sortArticleBook(String prefix) {
+        articleBook.sortArticleBook(prefix);
+    }
+
+    //=========== Filtered Article List Accessors =============================================================
 
     /**
      * Returns an unmodifiable view of the list of {@code Article} backed by the internal list of
