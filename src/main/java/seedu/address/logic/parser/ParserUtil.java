@@ -236,4 +236,14 @@ public class ParserUtil {
             throw new ParseException("Invalid status");
         }
     }
+
+    /**
+     * Parses a {@code String link} into a {@code Link}.
+     */
+    public static String parseLink(String link) throws ParseException {
+        requireNonNull(link);
+        String trimmedLink = link.trim();
+        //removed the check for title validity
+        return trimmedLink;
+    }
 }

@@ -21,6 +21,7 @@ public class Article {
     private final LocalDateTime publicationDate;
     private final Set<Source> sources = new HashSet<>();
     private final Set<Tag> tags = new HashSet<>();
+    private String link = "";
 
     /**
      * Enumeration of Status of an article.
@@ -42,7 +43,7 @@ public class Article {
      * @param status the current status of the article.
      */
     public Article(String title, Set<Author> authors, LocalDateTime publicationDate,
-                   Set<Source> sources, Set<Tag> tags, Status status) {
+                   Set<Source> sources, Set<Tag> tags, Status status, String link) {
         requireAllNonNull(title, authors, publicationDate, sources, tags, status);
         this.title = title;
         this.authors.addAll(authors);
@@ -50,6 +51,7 @@ public class Article {
         this.sources.addAll(sources);
         this.tags.addAll(tags);
         this.status = status;
+        this.link = link;
     }
 
     public String getTitle() {
@@ -79,6 +81,10 @@ public class Article {
 
     public Status getStatus() {
         return this.status;
+    }
+
+    public String getLink() {
+        return this.link;
     }
 
     /**
@@ -120,12 +126,13 @@ public class Article {
                 && sources.equals(otherArticle.sources)
                 && publicationDate.equals(otherArticle.publicationDate)
                 && tags.equals(otherArticle.tags)
-                && status.equals(otherArticle.status);
+                && status.equals(otherArticle.status)
+                && link.equals(otherArticle.link);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(title, authors, publicationDate, sources, tags, status);
+        return Objects.hash(title, authors, publicationDate, sources, tags, status, link);
     }
 
     @Override
@@ -137,6 +144,7 @@ public class Article {
                 .add("sources", sources)
                 .add("tags", tags)
                 .add("status", status)
+                .add("link", link)
                 .toString();
     }
 }

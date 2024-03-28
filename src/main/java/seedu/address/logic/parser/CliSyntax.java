@@ -18,5 +18,6 @@ public class CliSyntax {
     public static final Prefix PREFIX_SOURCE = new Prefix("SRC/");
     public static final Prefix PREFIX_ARTICLETAG = new Prefix("TAG/");
     public static final Prefix PREFIX_STATUS = new Prefix("S/");
+    public static final Prefix PREFIX_LINK = new Prefix("L/");
 
 }

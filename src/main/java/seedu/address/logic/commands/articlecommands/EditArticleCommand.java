@@ -97,9 +97,10 @@ public class EditArticleCommand extends ArticleCommand {
         Set<Source> sources = editArticleDescriptor.getSources().orElse(articleToEdit.getSources());
         Set<Tag> tags = editArticleDescriptor.getTags().orElse(articleToEdit.getTags());
         Status status = editArticleDescriptor.getStatus().orElse(articleToEdit.getStatus());
+        String link = editArticleDescriptor.getLink().orElse(articleToEdit.getLink());
 
         return new Article(title, authors, publicationDate,
-                sources, tags, status); // Include all article attributes here.
+                sources, tags, status, link); // Include all article attributes here.
     }
 
     @Override
@@ -138,6 +139,7 @@ public class EditArticleCommand extends ArticleCommand {
         private Set<Source> sources;
         private Set<Tag> tags;
         private Status status;
+        private String link;
 
         public EditArticleDescriptor() {}
 
@@ -151,13 +153,14 @@ public class EditArticleCommand extends ArticleCommand {
             setSources(toCopy.sources);
             setTags(toCopy.tags);
             setStatus(toCopy.status);
+            setLink(toCopy.link);
         }
 
         /**
          * Returns true if at least one field is edited.
          */
         public boolean isAnyFieldEdited() {
-            return CollectionUtil.isAnyNonNull(title, authors, publicationDate, sources, tags, status);
+            return CollectionUtil.isAnyNonNull(title, authors, publicationDate, sources, tags, status, link);
         }
 
         public void setTitle(String title) {
@@ -208,6 +211,14 @@ public class EditArticleCommand extends ArticleCommand {
             return Optional.ofNullable(status);
         }
 
+        public void setLink(String link) {
+            this.link = link;
+        }
+
+        public Optional<String> getLink() {
+            return Optional.ofNullable(link);
+        }
+
         @Override
         public boolean equals(Object other) {
             if (other == this) {
@@ -227,7 +238,8 @@ public class EditArticleCommand extends ArticleCommand {
                     && Objects.equals(publicationDate, otherEditArticleDescriptor.publicationDate)
                     && Objects.equals(sources, otherEditArticleDescriptor.sources)
                     && Objects.equals(tags, otherEditArticleDescriptor.tags)
-                    && Objects.equals(status, otherEditArticleDescriptor.status);
+                    && Objects.equals(status, otherEditArticleDescriptor.status)
+                    && Objects.equals(link, otherEditArticleDescriptor.link);
         }
 
         @Override

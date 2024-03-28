@@ -3,6 +3,7 @@ package seedu.address.logic.parser;
 import static seedu.address.logic.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_ARTICLETAG;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_AUTHOR;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_LINK;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PUBLICATION_DATE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_SOURCE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_STATUS;
@@ -32,9 +33,9 @@ public class AddArticleCommandParser implements Parser<AddArticleCommand> {
     public AddArticleCommand parse(String args) throws ParseException {
         ArgumentMultimap argMultimap =
                 ArgumentTokenizer.tokenize(args, PREFIX_TITLE, PREFIX_AUTHOR, PREFIX_PUBLICATION_DATE, PREFIX_SOURCE,
-                        PREFIX_ARTICLETAG, PREFIX_STATUS);
+                        PREFIX_ARTICLETAG, PREFIX_STATUS, PREFIX_LINK);
         //Temporarily reinstate source requirement
-        if (!arePrefixesPresent(argMultimap, PREFIX_TITLE, PREFIX_PUBLICATION_DATE, PREFIX_STATUS)
+        if (!arePrefixesPresent(argMultimap, PREFIX_TITLE, PREFIX_PUBLICATION_DATE, PREFIX_STATUS, PREFIX_LINK)
                 || !argMultimap.getPreamble().isEmpty()) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddArticleCommand.MESSAGE_USAGE));
         }
@@ -46,8 +47,9 @@ public class AddArticleCommandParser implements Parser<AddArticleCommand> {
         Set<Source> sourceList = ParserUtil.parseSources(argMultimap.getAllValues(PREFIX_SOURCE));
         Set<Tag> tagList = ParserUtil.parseTags(argMultimap.getAllValues(PREFIX_ARTICLETAG));
         Article.Status status = (Article.Status) ParserUtil.parseStatus(argMultimap.getValue(PREFIX_STATUS).get());
+        String link = ParserUtil.parseLink(argMultimap.getValue(PREFIX_LINK).get());
 
-        Article article = new Article(title, authorList, publicationDate, sourceList, tagList, status);
+        Article article = new Article(title, authorList, publicationDate, sourceList, tagList, status, link);
 
         return new AddArticleCommand(article);
     }

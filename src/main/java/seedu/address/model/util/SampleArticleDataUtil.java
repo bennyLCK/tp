@@ -22,7 +22,7 @@ public class SampleArticleDataUtil {
         return new Article[]{
             new Article("The epitome of pain and suffering by NUS CS students.", getAuthorSet("Alice", "Bob"),
                     LocalDateTime.now(), getSourceSet("NUS Computing Club"), getTagSet("Student Life"),
-                    Status.PUBLISHED)
+                    Status.PUBLISHED, "https://www.google.com/")
         };
     }
 

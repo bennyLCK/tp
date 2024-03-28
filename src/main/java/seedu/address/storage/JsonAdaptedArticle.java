@@ -27,16 +27,10 @@ public class JsonAdaptedArticle {
     private final List<JsonAdaptedSource> sources = new ArrayList<>();
     private final List<JsonAdaptedTag> tags = new ArrayList<>();
     private final Article.Status status;
+    private final String link;
 
     /**
      * Construct a {@code JsonAdaptedArticle} with the given article details.
-     *
-     * @param title
-     * @param authors
-     * @param publicationDate
-     * @param sources
-     * @param tags
-     * @param status
      */
     @JsonCreator
     public JsonAdaptedArticle(@JsonProperty("title") String title,
@@ -44,7 +38,8 @@ public class JsonAdaptedArticle {
                               @JsonProperty("publicationDate") LocalDateTime publicationDate,
                               @JsonProperty("sources") List<JsonAdaptedSource> sources,
                               @JsonProperty("tags") List<JsonAdaptedTag> tags,
-                              @JsonProperty("status") Article.Status status) {
+                              @JsonProperty("status") Article.Status status,
+                              @JsonProperty("link") String link) {
         this.title = title;
         if (authors != null) {
             this.authors.addAll(authors);
@@ -57,6 +52,7 @@ public class JsonAdaptedArticle {
             this.tags.addAll(tags);
         }
         this.status = status;
+        this.link = link;
     }
     /**
      * Construct a {@code JsonAdaptedArticle} with neccessary details
@@ -75,6 +71,7 @@ public class JsonAdaptedArticle {
                 .map(JsonAdaptedTag::new)
                 .collect(Collectors.toList()));
         status = sourceArticle.getStatus();
+        link = sourceArticle.getLink();
     }
 
     /**
@@ -109,6 +106,6 @@ public class JsonAdaptedArticle {
 
         final Set<Tag> modelTags = new HashSet<>(articleTags);
 
-        return new Article(title, modelAuthors, publicationDate, modelSources, modelTags, status);
+        return new Article(title, modelAuthors, publicationDate, modelSources, modelTags, status, link);
     }
 }
