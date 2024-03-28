@@ -18,5 +18,7 @@ public class CliSyntax {
     public static final Prefix PREFIX_SOURCE = new Prefix("SRC/");
     public static final Prefix PREFIX_CATEGORY = new Prefix("C/");
     public static final Prefix PREFIX_STATUS = new Prefix("S/");
+    public static final Prefix PREFIX_START = new Prefix("ST/");
+    public static final Prefix PREFIX_END = new Prefix("EN/");
 
 }
