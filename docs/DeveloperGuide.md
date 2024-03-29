@@ -270,6 +270,22 @@ The proposed lookup feature is enabled by altering `Article` such that whenever 
 _{Explain here how the data archiving feature will be implemented}_
 
 
+### \[Proposed\] Link Webpage to Articles
+
+#### Proposed Implementation
+
+The proposed link feature is enabled by filling up `link` attribute of `Article` class when adding an article. This feature creates a link button on the UI of each `Article` that opens up a web browser and directs the user to the webpage of where the actual article is uploaded.
+Since the `Articlebook` does not store the whole content of the articles, users will be able to read the articles using this feature.
+
+#### Design Considerables
+
+* Make sure the link button on UI correctly directs the user the exact webpage of the `Article`.
+* Make sure the `link` saved on `Article` objects are saved without parsing errors.
+
+The class diagram below shows how the `Article` will look and interact after implementation of the link feature.
+<puml src="diagrams/LinkClassDiagram.puml" />
+
+
 --------------------------------------------------------------------------------------------------------------------
 
 ## **Documentation, logging, testing, configuration, dev-ops**
