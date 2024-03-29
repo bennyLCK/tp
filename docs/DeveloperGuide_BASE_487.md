@@ -1,5 +1,3 @@
-
-
 ---
   layout: default.md
   title: "Developer Guide"
@@ -114,7 +112,7 @@ Here are the other classes in `Logic` (omitted from the class diagram above) tha
 <puml src="diagrams/ParserClasses.puml" width="600"/>
 
 How the parsing works:
-* When called upon to parse a user command, the `AddressBookParser` class creates an `XYZCommandParser` (`XYZ` is a placeholder for the specific command name e.g., `AddCommandParser`) which uses the other classes shown above to parse the user command and create a `XYZCommand` object (e.g., `AddCommand`) which the `AddressBookParser` returns back as a `Command` object. If the command deals with Articles then the `AddressBookParser` will pass it to the `ArticleBookParser` which will then handle to command similarly to the `AddressBookParser`.
+* When called upon to parse a user command, the `AddressBookParser` class creates an `XYZCommandParser` (`XYZ` is a placeholder for the specific command name e.g., `AddCommandParser`) which uses the other classes shown above to parse the user command and create a `XYZCommand` object (e.g., `AddCommand`) which the `AddressBookParser` returns back as a `Command` object.
 * All `XYZCommandParser` classes (e.g., `AddCommandParser`, `DeleteCommandParser`, ...) inherit from the `Parser` interface so that they can be treated similarly where possible e.g, during testing.
 
 ### Model component
@@ -146,8 +144,8 @@ The `Model` component,
 <puml src="diagrams/StorageClassDiagram.puml" width="550" />
 
 The `Storage` component,
-* can save address book data, article book data and user preference data in JSON format, and read them back into corresponding objects.
-* inherits from `AddressBookStorage`, `ArticleBookStorage` and `UserPrefStorage`, which means it can be treated as any one of these (if only the functionality of only one is needed).
+* can save both address book data and user preference data in JSON format, and read them back into corresponding objects.
+* inherits from both `AddressBookStorage` and `UserPrefStorage`, which means it can be treated as either one (if only the functionality of only one is needed).
 * depends on some classes in the `Model` component (because the `Storage` component's job is to save/retrieve objects that belong to the `Model`)
 
 ### Common classes
@@ -159,30 +157,6 @@ Classes used by multiple components are in the `seedu.addressbook.commons` packa
 ## **Implementation**
 
 This section describes some noteworthy details on how certain features are implemented.
-
-### \[Implementing\] Filter feature
-
-<puml src="diagrams/ModelFilterClassDiagram.puml" width="250" />
-
-The filter mechanism is facilitated by `filter` interface. The ArticleFilter and PersonFilter classes will inherit from it.
-The filters will store `Predicate<>` objects that will determine which Persons or articles will be shown to the user.
-`ModelManager` will contain a filter, which it will use to generate `FilteredLists`
-
-Given below is an example usage scenario:
-
-Step 1. The user launches the application. The `ModelManager` will be initialized, along with the Filter objects it contains. `finalPredicate` will be set to display all articles for now.  
-
-Step 2. The user executes `set -a S/DRAFT ST/ EN/` to look for articles he is currently working on.  The set command gets the `ArticleFilter` object using `getFilter()`. Than it updates the filter object by calling the `updateFilter()` method, changing the `finalPredicate`.
-
-<puml src="diagrams/FilterSequenceDiagram.puml" width="250" />
-
-Step 3. Now that the filter has been updated. The user now looks through Press Planner to search for the article. He decides to search by title to make it faster. He executes `find -a AI`. Beyond matches with the name, Press Planner is still filtering to show only DRAFTs, allowing the user to search a smaller set.  
-
-Step 4. The user has found his article and wishes to remove the filter. He does this by executing `set -a S/ ST/ EN/`. With no instructions, the predicate allows all articles to pass through the filter.  
-
-Note: If start date is later than the end date, Press Planner will refuse to execute the command, double check the dates to avoid this scenario.  
-
-Note: Filters are **NOT** stored by the program. If you close the app, your filters will be reset. 
 
 ### \[Proposed\] Undo/redo feature
 
@@ -276,22 +250,6 @@ The following activity diagram summarizes what happens when a user executes a ne
   * Cons: We must ensure that the implementation of each individual command are correct.
 
 _{more aspects and alternatives to be added}_
-
-### \[Proposed\] Lookup Article
-
-#### Proposed Implementation
-
-The proposed lookup feature is enabled by altering `Article` such that whenever one is created, it stores a list of `Person` objects that are the Authors or Sources involved in the article. The `LookUpCommand` feature will then retrieve this list and display it to the user, enabling the user to see Persons involved in the article.
-
-#### Design considerations:
-
-* Make sure Edits and Deletes of Persons and Articles are handled correctly.
-* Consider including a UI alternative to access the list: Pressing a button in the Article's display will show the list of Persons involved.
-
-<<<<<<< .merge_file_tI1S3t
-=======
-
->>>>>>> .merge_file_T1nW7W
 
 ### \[Proposed\] Data archiving
 
