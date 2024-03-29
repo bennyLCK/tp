@@ -4,7 +4,7 @@ skinparam ArrowFontStyle plain
 
 box Logic LOGIC_COLOR_T1
 participant ":LogicManager" as LogicManager LOGIC_COLOR
-participant ":AddressBookParser" as AddressBookParser LOGIC_COLOR
+participant ":ArticleBookParser" as ArticleBookParser LOGIC_COLOR
 participant ":MakeTemplateCommandParser" as MakeTemplateCommandParser LOGIC_COLOR
 participant "d:MakeTemplateCommand" as MakeTemplateCommand LOGIC_COLOR
 participant "r:CommandResult" as CommandResult LOGIC_COLOR
@@ -17,17 +17,17 @@ end box
 [-> LogicManager : execute("makeTemplate 1 TAG/")
 activate LogicManager
 
-LogicManager -> AddressBookParser : parseCommand("makeTemplate 1 TAG/")
-activate AddressBookParser
+LogicManager -> ArticleBookParser : parseCommand("makeTemplate 1 TAG/")
+activate ArticleBookParser
 
 create MakeTemplateCommandParser
-AddressBookParser -> MakeTemplateCommandParser
+ArticleBookParser -> MakeTemplateCommandParser
 activate MakeTemplateCommandParser
 
-MakeTemplateCommandParser --> AddressBookParser
+MakeTemplateCommandParser --> ArticleBookParser
 deactivate MakeTemplateCommandParser
 
-AddressBookParser -> MakeTemplateCommandParser : parse("1 TAG/")
+ArticleBookParser -> MakeTemplateCommandParser : parse("1 TAG/")
 activate MakeTemplateCommandParser
 
 create MakeTemplateCommand
@@ -37,14 +37,14 @@ activate MakeTemplateCommand
 MakeTemplateCommand --> MakeTemplateCommandParser :
 deactivate MakeTemplateCommand
 
-MakeTemplateCommandParser --> AddressBookParser : d
+MakeTemplateCommandParser --> ArticleBookParser : d
 deactivate MakeTemplateCommandParser
 'Hidden arrow to position the destroy marker below the end of the activation bar.
-MakeTemplateCommandParser -[hidden]-> AddressBookParser
+MakeTemplateCommandParser -[hidden]-> ArticleBookParser
 destroy MakeTemplateCommandParser
 
-AddressBookParser --> LogicManager : d
-deactivate AddressBookParser
+ArticleBookParser --> LogicManager : d
+deactivate ArticleBookParser
 
 LogicManager -> MakeTemplateCommand : execute(m)
 activate MakeTemplateCommand
