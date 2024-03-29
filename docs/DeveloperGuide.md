@@ -284,7 +284,7 @@ Since the `Articlebook` does not store the whole content of the articles, users 
 
 The class diagram below shows how the `Article` will look and interact after implementation of the link feature.
 
-<puml src="diagrams/LinkClassDiagram.puml" />
+<puml src="diagrams/LinkClassDiagram.puml" alt="LinkClassDiagram"/>
 
 
 --------------------------------------------------------------------------------------------------------------------
