@@ -2,7 +2,9 @@ package seedu.address.logic.commands.articlecommands;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_ARTICLETAG;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_AUTHOR;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_OUTLET;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PUBLICATION_DATE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_SOURCE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_STATUS;
@@ -39,6 +41,10 @@ public class ArticleCommandTestUtil {
     public static final String SECOND_VALID_SOURCE_NVIDIA = "Morris Chang";
     public static final String FIRST_VALID_SOURCE_INTEL = "Patrick Gelsinger";
     public static final String SECOND_VALID_SOURCE_INTEL = "Greg Lavender";
+    public static final String FIRST_VALID_OUTLET_NVIDIA = "BBC News";
+    public static final String SECOND_VALID_OUTLET_NVIDIA = "The Economic Times";
+    public static final String FIRST_VALID_OUTLET_INTEL = "CNBC News";
+    public static final String SECOND_VALID_OUTLET_INTEL = "The New York Times";
     public static final String FIRST_VALID_TAG_NVIDIA = "R&D";
     public static final String SECOND_VALID_TAG_NVIDIA = "Tech";
     public static final String FIRST_VALID_TAG_INTEL = "Gaming";
@@ -60,6 +66,10 @@ public class ArticleCommandTestUtil {
             + " " + PREFIX_SOURCE + SECOND_VALID_SOURCE_NVIDIA;
     public static final String SOURCE_DESC_INTEL = " " + PREFIX_SOURCE + FIRST_VALID_SOURCE_INTEL
             + " " + PREFIX_SOURCE + SECOND_VALID_SOURCE_INTEL;
+    public static final String OUTLET_DESC_NVIDIA = " " + PREFIX_OUTLET + FIRST_VALID_OUTLET_NVIDIA
+            + " " + PREFIX_OUTLET + SECOND_VALID_OUTLET_NVIDIA;
+    public static final String OUTLET_DESC_INTEL = " " + PREFIX_OUTLET + FIRST_VALID_OUTLET_INTEL
+            + " " + PREFIX_OUTLET + SECOND_VALID_OUTLET_INTEL;
     public static final String TAG_DESC_NVIDIA = " " + PREFIX_ARTICLETAG + FIRST_VALID_TAG_NVIDIA
             + " " + PREFIX_ARTICLETAG + SECOND_VALID_TAG_NVIDIA;
     public static final String TAG_DESC_INTEL = " " + PREFIX_ARTICLETAG + FIRST_VALID_TAG_INTEL
@@ -74,6 +84,7 @@ public class ArticleCommandTestUtil {
     public static final String INVALID_PUBLICATION_TIME_DESC = " " + PREFIX_PUBLICATION_DATE
             + "20-03-2024 25:00"; // Invalid time format
     public static final String INVALID_SOURCE_DESC = " " + PREFIX_SOURCE + "Ryan&"; // '&' not allowed in sources
+    public static final String INVALID_OUTLET_DESC = " " + PREFIX_OUTLET + "BBC News*"; // '*' not allowed in outlets
     public static final String INVALID_TAG_DESC = " " + PREFIX_ARTICLETAG + "Tech*"; // '*' not allowed in tags
     public static final String INVALID_STATUS_DESC = " " + PREFIX_STATUS + "PUBLISHEDD"; // Invalid status
 
@@ -88,12 +99,14 @@ public class ArticleCommandTestUtil {
                 .withAuthors(FIRST_VALID_AUTHOR_NVIDIA, SECOND_VALID_AUTHOR_NVIDIA)
                 .withPublicationDate(VALID_PUBLICATION_DATE_NVIDIA)
                 .withSources(FIRST_VALID_SOURCE_NVIDIA, SECOND_VALID_SOURCE_NVIDIA)
+                .withOutlets(FIRST_VALID_OUTLET_NVIDIA, SECOND_VALID_OUTLET_NVIDIA)
                 .withTags(FIRST_VALID_TAG_NVIDIA, SECOND_VALID_TAG_NVIDIA)
                 .withStatus(VALID_STATUS_NVIDIA).build();
         DESC_INTEL = new EditArticleDescriptorBuilder().withTitle(VALID_TITLE_INTEL)
                 .withAuthors(FIRST_VALID_AUTHOR_INTEL, SECOND_VALID_AUTHOR_INTEL)
                 .withPublicationDate(VALID_PUBLICATION_DATE_INTEL)
                 .withSources(FIRST_VALID_SOURCE_INTEL, SECOND_VALID_SOURCE_INTEL)
+                .withOutlets(FIRST_VALID_OUTLET_INTEL, SECOND_VALID_OUTLET_INTEL)
                 .withTags(FIRST_VALID_TAG_INTEL, SECOND_VALID_TAG_INTEL)
                 .withStatus(VALID_STATUS_INTEL).build();
     }

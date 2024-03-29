@@ -36,36 +36,42 @@ public class TypicalArticles {
             .withAuthors("Barney Loo", "Booney Loo")
             .withPublicationDate("03-01-2021")
             .withSources("Domo Dragto")
+            .withOutlets("Okto News Outlet")
             .withTags("Fantasy")
             .withStatus("DRAFT").build();
     public static final Article TWICE = new ArticleBuilder().withTitle("Twice upon a time")
             .withAuthors("Carney Loo", "Dooney Loo")
             .withPublicationDate("04-02-2021")
             .withSources("Barny Dragto", "Domo Dragto")
+            .withOutlets("Okto News Outlet")
             .withTags("Autobiography")
             .withStatus("DRAFT").build();
     public static final Article THRICE = new ArticleBuilder().withTitle("Thrice upon a time")
             .withAuthors("Earney Loo", "Fooney Loo")
             .withPublicationDate("05-03-2021")
             .withSources("Carny Dragto", "Midi Dragto")
+            .withOutlets("Okto News Outlet")
             .withTags("Relatable", "Meme")
             .withStatus("PUBLISHED").build();
     public static final Article FOUR = new ArticleBuilder().withTitle("Four upon a time")
             .withAuthors("Garny Loo", "Hooney Loo")
             .withPublicationDate("06-04-2021")
             .withSources("Darny Dragto", "Domo Dragto")
+            .withOutlets("Okto News Outlet")
             .withTags("Fiction")
             .withStatus("ARCHIVED").build();
     public static final Article FIVE = new ArticleBuilder().withTitle("Five upon a time")
             .withAuthors("Iarny Loo", "Jooney Loo")
             .withPublicationDate("07-05-2021")
             .withSources("Earny Dragto", "Midi Dragto")
+            .withOutlets("Okto News Outlet")
             .withTags("Non-Fiction")
             .withStatus("DRAFT").build();
     public static final Article SIX = new ArticleBuilder().withTitle("Six upon a time")
             .withAuthors("Karny Loo", "Looney Loo")
             .withPublicationDate("08-06-2021")
             .withSources("Farny Dragto", "Foof Dragto")
+            .withOutlets("Okto News Outlet")
             .withTags("Science")
             .withStatus("PUBLISHED").build();
 
@@ -74,6 +80,7 @@ public class TypicalArticles {
             .withAuthors(FIRST_VALID_AUTHOR_NVIDIA, SECOND_VALID_AUTHOR_NVIDIA)
             .withPublicationDate(VALID_PUBLICATION_DATE_NVIDIA)
             .withSources(FIRST_VALID_SOURCE_NVIDIA, SECOND_VALID_SOURCE_NVIDIA)
+            .withOutlets("Okto News Outlet")
             .withTags(FIRST_VALID_TAG_NVIDIA, SECOND_VALID_TAG_NVIDIA)
             .withStatus(VALID_STATUS_NVIDIA).build();
 
@@ -81,6 +88,7 @@ public class TypicalArticles {
             .withAuthors(FIRST_VALID_AUTHOR_INTEL, SECOND_VALID_AUTHOR_INTEL)
             .withPublicationDate(VALID_PUBLICATION_DATE_INTEL)
             .withSources(FIRST_VALID_SOURCE_INTEL, SECOND_VALID_SOURCE_INTEL)
+            .withOutlets("Okto News Outlet")
             .withTags(FIRST_VALID_TAG_INTEL, SECOND_VALID_TAG_INTEL)
             .withStatus(VALID_STATUS_INTEL).build();
 

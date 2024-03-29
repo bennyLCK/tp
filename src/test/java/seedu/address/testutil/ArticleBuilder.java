@@ -1,9 +1,14 @@
 package seedu.address.testutil;
 
 import java.util.HashSet;
+import java.util.Set;
 
 import seedu.address.model.article.Article;
 import seedu.address.model.article.Article.Status;
+import seedu.address.model.article.Author;
+import seedu.address.model.article.Outlet;
+import seedu.address.model.article.Source;
+import seedu.address.model.tag.Tag;
 import seedu.address.model.util.SampleArticleDataUtil;
 
 /**
@@ -15,6 +20,7 @@ public class ArticleBuilder {
     public static final String DEFAULT_AUTHOR = "Barney Loo";
     public static final String DEFAULT_PUBLICATION_DATE = "03-01-2021"; // In dd-MM-yyyy format.
     public static final String DEFAULT_SOURCE = "Domo Dragto";
+    public static final String DEFAULT_OUTLET = "The Straits Times";
     public static final String DEFAULT_TAG = "Fantasy";
     public static final String DEFAULT_STATUS = "DRAFT";
 
@@ -22,6 +28,7 @@ public class ArticleBuilder {
     private Set<Author> authors;
     private PublicationDate publicationDate;
     private Set<Source> sources;
+    private Set<Outlet> outlets;
     private Set<Tag> tags;
     private Status status;
 
@@ -36,6 +43,8 @@ public class ArticleBuilder {
         publicationDate = new PublicationDate(DEFAULT_PUBLICATION_DATE);
         sources = new HashSet<>();
         sources.add(new Source(DEFAULT_SOURCE));
+        outlets = new HashSet<>();
+        outlets.add(new Outlet(DEFAULT_OUTLET));
         tags = new HashSet<>();
         tags.add(new Tag(DEFAULT_TAG));
         status = Status.valueOf(DEFAULT_STATUS);
@@ -49,6 +58,7 @@ public class ArticleBuilder {
         authors = articleToCopy.getAuthors();
         publicationDate = articleToCopy.getPublicationDate();
         sources = articleToCopy.getSources();
+        outlets = articleToCopy.getOutlets();
         tags = articleToCopy.getTags();
         status = articleToCopy.getStatus();
     }
@@ -86,6 +96,14 @@ public class ArticleBuilder {
     }
 
     /**
+     * Parses the {@code outlets} into a {@code Set<Outlet>} and set it to the {@code Article} that we are building.
+     */
+    public ArticleBuilder withOutlets(String ... outlets) {
+        this.outlets = SampleArticleDataUtil.getOutletSet(outlets);
+        return this;
+    }
+
+    /**
      * Parses the {@code tags} into a {@code Set<Tag>} and set it to the {@code Article} that we are building.
      */
     public ArticleBuilder withTags(String ... tags) {
@@ -102,6 +120,6 @@ public class ArticleBuilder {
     }
 
     public Article build() {
-        return new Article(title, authors, publicationDate, sources, tags, status);
+        return new Article(title, authors, sources, tags, outlets, publicationDate, status);
     }
 }

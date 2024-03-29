@@ -8,6 +8,9 @@ import seedu.address.logic.commands.articlecommands.EditArticleCommand.EditArtic
 import seedu.address.logic.parser.ParserUtil;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.article.Article;
+import seedu.address.model.article.Author;
+import seedu.address.model.article.Outlet;
+import seedu.address.model.article.Source;
 import seedu.address.model.tag.Tag;
 
 /**
@@ -34,6 +37,7 @@ public class EditArticleDescriptorBuilder {
         descriptor.setAuthors(article.getAuthors());
         descriptor.setPublicationDate(article.getPublicationDate());
         descriptor.setSources(article.getSources());
+        descriptor.setOutlets(article.getOutlets());
         descriptor.setTags(article.getTags());
         descriptor.setStatus(article.getStatus());
     }
@@ -73,6 +77,15 @@ public class EditArticleDescriptorBuilder {
     public EditArticleDescriptorBuilder withSources(String... sources) {
         Set<Source> sourceSet = Stream.of(sources).map(Source::new).collect(Collectors.toSet());
         descriptor.setSources(sourceSet);
+        return this;
+    }
+
+    /**
+     * Sets the {@code Outlets} of the {@code EditArticleDescriptor} that we are building.
+     */
+    public EditArticleDescriptorBuilder withOutlets(String... outlets) {
+        Set<Outlet> outletSet = Stream.of(outlets).map(Outlet::new).collect(Collectors.toSet());
+        descriptor.setOutlets(outletSet);
         return this;
     }
 
