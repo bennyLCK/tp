@@ -283,6 +283,7 @@ Since the `Articlebook` does not store the whole content of the articles, users 
 * Make sure the `link` saved on `Article` objects are saved without parsing errors.
 
 The class diagram below shows how the `Article` will look and interact after implementation of the link feature.
+
 <puml src="diagrams/LinkClassDiagram.puml" />
 
 
