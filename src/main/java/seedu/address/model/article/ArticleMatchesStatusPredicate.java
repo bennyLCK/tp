@@ -1,5 +1,6 @@
 package seedu.address.model.article;
 
+
 import java.util.function.Predicate;
 
 import seedu.address.model.article.exceptions.InvalidStatusException;
@@ -29,6 +30,8 @@ public class ArticleMatchesStatusPredicate implements Predicate<Article> {
 
     @Override
     public boolean test(Article article) {
+        //Check that article is not null.
+        assert (article instanceof Article);
         return this.status.equals(article.getStatus());
     }
 
