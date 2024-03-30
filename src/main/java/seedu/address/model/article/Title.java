@@ -4,7 +4,7 @@ import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.AppUtil.checkArgument;
 
 /**
- * Represents a Article's title in the address book.
+ * Represents an Article's title in the address book.
  * Guarantees: immutable; is valid as declared in {@link #isValidTitle(String)}
  */
 public class Title implements Comparable<Title> {
