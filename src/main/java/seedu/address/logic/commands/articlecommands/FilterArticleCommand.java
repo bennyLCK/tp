@@ -3,6 +3,7 @@ package seedu.address.logic.commands.articlecommands;
 import static java.util.Objects.requireNonNull;
 import static seedu.address.model.Model.PREDICATE_SHOW_ALL_ARTICLES;
 
+import java.time.LocalDateTime;
 import java.util.function.Predicate;
 
 import seedu.address.logic.commands.CommandResult;
@@ -39,14 +40,22 @@ public class FilterArticleCommand extends ArticleCommand {
             finalPredicate = PREDICATE_SHOW_ALL_ARTICLES;
         }
         try {
-            PublicationDate startDate = ParserUtil.parsePublicationDate(start);
-            PublicationDate endDate = ParserUtil.parsePublicationDate(end);
+            PublicationDate startDate;
+            PublicationDate endDate;
+            if (start.trim().equals("")) {
+                startDate = new PublicationDate(LocalDateTime.MIN);
+            } else {
+                startDate = ParserUtil.parsePublicationDate(start.trim());
+            }
+            if (end.trim().equals("")) {
+                endDate = new PublicationDate(LocalDateTime.MAX);
+            } else {
+                endDate = ParserUtil.parsePublicationDate(end.trim());
+            }
             Predicate<Article> timePredicate = new ArticleMatchesTimePeriodPredicate(startDate, endDate);
             finalPredicate = finalPredicate.and(timePredicate);
         } catch (ParseException e) {
-            if (!start.equals("") && end.equals("")) {
-                throw e;
-            }
+            throw e;
         }
         if (!tagName.trim().equals("")) {
             Tag tag = new Tag(tagName);
