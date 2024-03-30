@@ -179,7 +179,7 @@ public class ParserUtil {
         requireNonNull(publicationDate);
 
         DateTimeFormatter formatter = new DateTimeFormatterBuilder()
-                .appendPattern("dd-MM-yyyy [HH:mm]")
+                .appendPattern("dd-MM-yyyy[ HH:mm]")
                 .parseDefaulting(ChronoField.HOUR_OF_DAY, 0)
                 .parseDefaulting(ChronoField.MINUTE_OF_HOUR, 0)
                 .toFormatter();
