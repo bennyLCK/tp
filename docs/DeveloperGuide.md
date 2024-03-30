@@ -326,14 +326,65 @@ The proposed lookup feature is enabled by altering `Article` such that whenever 
 * Make sure Edits and Deletes of Persons and Articles are handled correctly.
 * Consider including a UI alternative to access the list: Pressing a button in the Article's display will show the list of Persons involved.
 
-<<<<<<< .merge_file_tI1S3t
-=======
+### \[Proposed\] Templating of Articles
 
->>>>>>> .merge_file_T1nW7W
+The proposed templating feature is enabled by creating a `Template` superclass that `Article` inherits from.
+
+The `Template` class will have the following attributes:
+- `Name` - The name of the template.
+- `Authors` - A list of `Person` objects that are the authors of the article.
+- `Sources` - A list of `Person` objects that are the sources of the article.
+- `Tags` - A list of tags that are associated with the article.
+
+The `Template` class will also have getter methods for accessing each of the attributes.
+
+The `Article` class will be augmented to have the `applyTemplate` method, which will take a `Template` object as an argument and apply the template to the article. This will involve setting the `Authors`, `Sources`, `Tags`, and `Status` attributes of the article to the corresponding attributes of the template if the values are not `null`.
+
+The `Model` component will be augmented with a `UniqueTemplateList` to store the templates. The `Model` will also have methods to add, delete, and list templates.
+
+#### Proposed Implementation
+
+Step 1. The user creates a new `Template` object by entering the correct CLI input and providing the index of an article and the attributes to be used in the template.
+
+Step 2. `MakeTemplateCommandParser` parses the attribute prefixes and corresponding values from the user input.
+
+Step 3. `MakeTemplateCommand` is created with the parsed attributes.
+
+Step 4. The newly made `Template` object is added to the `UniqueTemplateList` in the `Model` component and throws an error if there is a duplicate.
+
+Step 5. The user can apply the template to an article by entering the correct CLI input and providing the index of the article and the index of the template.
+
+Step 6. `ApplyTemplateCommandParser` parses the indexes from the user input.
+
+Step 7. `ApplyTemplateCommand` is created with the parsed indexes.
+
+Step 8. The `ApplyTemplateCommand` is executed, and the template is applied to the article.
+
+The following sequence diagram shows how the `MakeTemplateCommand` is executed:
+
+<puml src="diagrams/ProposedTemplateSequenceDiagram.puml" alt="Proposed Sequence Diagram for MakeTemplateCommand" />
+
 
 ### \[Proposed\] Data archiving
 
 _{Explain here how the data archiving feature will be implemented}_
+
+
+### \[Proposed\] Link Webpage to Articles
+
+#### Proposed Implementation
+
+The proposed link feature is enabled by filling up `link` attribute of `Article` class when adding an article. This feature creates a link button on the UI of each `Article` that opens up a web browser and directs the user to the webpage of where the actual article is uploaded.
+Since the `Articlebook` does not store the whole content of the articles, users will be able to read the articles using this feature.
+
+#### Design Considerables
+
+* Make sure the link button on UI correctly directs the user the exact webpage of the `Article`.
+* Make sure the `link` saved on `Article` objects are saved without parsing errors.
+
+The class diagram below shows how the `Article` will look and interact after implementation of the link feature.
+
+<puml src="diagrams/LinkClassDiagram.puml" alt="LinkClassDiagram"/>
 
 
 --------------------------------------------------------------------------------------------------------------------

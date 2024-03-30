@@ -142,4 +142,5 @@ public interface Model {
      * @throws NullPointerException if {@code predicate} is null.
      */
     void updateFilteredArticleList(Predicate<Article> predicate);
+    ArticleFilter getFilter();
 }
