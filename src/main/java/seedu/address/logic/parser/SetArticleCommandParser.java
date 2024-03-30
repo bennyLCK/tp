@@ -9,7 +9,6 @@ import java.util.stream.Stream;
 
 import seedu.address.logic.commands.articlecommands.SetArticleCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
-import seedu.address.model.tag.Tag;
 
 /**
  * Parses input arguments and creates a SetArticleCommand object
@@ -27,7 +26,7 @@ public class SetArticleCommandParser implements Parser<SetArticleCommand> {
         String tagName = argMultimap.getValue(PREFIX_TAG).get();
         String start = argMultimap.getValue(PREFIX_START).get();
         String end = argMultimap.getValue(PREFIX_END).get();
-        return new SetArticleCommand(status,tagName, start, end);
+        return new SetArticleCommand(status, tagName, start, end);
     }
 
     private static boolean arePrefixesPresent(ArgumentMultimap argumentMultimap, Prefix... prefixes) {
