@@ -1,6 +1,7 @@
 package seedu.address.storage;
 
-import java.time.LocalDateTime;
+import static seedu.address.logic.parser.ParserUtil.parsePublicationDate;
+
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
@@ -14,6 +15,7 @@ import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.model.article.Article;
 import seedu.address.model.article.Author;
 import seedu.address.model.article.Outlet;
+import seedu.address.model.article.PublicationDate;
 import seedu.address.model.article.Source;
 import seedu.address.model.article.Title;
 import seedu.address.model.tag.Tag;
@@ -25,7 +27,7 @@ public class JsonAdaptedArticle {
     private final String title;
     private final List<JsonAdaptedAuthor> authors = new ArrayList<>();
     //Should be able to be null
-    private final LocalDateTime publicationDate;
+    private final String publicationDate;
     private final List<JsonAdaptedSource> sources = new ArrayList<>();
     private final List<JsonAdaptedTag> tags = new ArrayList<>();
     private final List<JsonAdaptedOutlet> outlets = new ArrayList<>();
@@ -48,7 +50,7 @@ public class JsonAdaptedArticle {
                               @JsonProperty("sources") List<JsonAdaptedSource> sources,
                               @JsonProperty("tags") List<JsonAdaptedTag> tags,
                               @JsonProperty("outlets") List<JsonAdaptedOutlet> outlets,
-                              @JsonProperty("publicationDate") LocalDateTime publicationDate,
+                              @JsonProperty("publicationDate") String publicationDate,
                               @JsonProperty("status") Article.Status status) {
         this.title = title;
         if (authors != null) {
@@ -84,7 +86,7 @@ public class JsonAdaptedArticle {
         outlets.addAll(sourceArticle.getOutlets().stream()
                 .map(JsonAdaptedOutlet::new)
                 .collect(Collectors.toList()));
-        publicationDate = sourceArticle.getPublicationDate();
+        publicationDate = sourceArticle.getPublicationDate().toString();
         status = sourceArticle.getStatus();
     }
 
@@ -119,6 +121,8 @@ public class JsonAdaptedArticle {
             articleOutlets.add(outlet.toModelType());
         }
 
+        final PublicationDate modelPublicationDate = parsePublicationDate(this.publicationDate);
+
         final Set<Author> modelAuthors = new HashSet<>(articleAuthors);
 
         final Set<Source> modelSources = new HashSet<>(articleSources);
@@ -127,6 +131,7 @@ public class JsonAdaptedArticle {
 
         final Set<Outlet> modelOutlets = new HashSet<>(articleOutlets);
 
-        return new Article(modelTitle, modelAuthors, modelSources, modelTags, modelOutlets, publicationDate, status);
+        return new Article(modelTitle, modelAuthors, modelSources, modelTags,
+                modelOutlets, modelPublicationDate, status);
     }
 }

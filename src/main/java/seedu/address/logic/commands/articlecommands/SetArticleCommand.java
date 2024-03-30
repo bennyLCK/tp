@@ -3,7 +3,6 @@ package seedu.address.logic.commands.articlecommands;
 import static java.util.Objects.requireNonNull;
 import static seedu.address.model.Model.PREDICATE_SHOW_ALL_ARTICLES;
 
-import java.time.LocalDateTime;
 import java.util.function.Predicate;
 
 import seedu.address.logic.commands.CommandResult;
@@ -13,6 +12,7 @@ import seedu.address.model.Model;
 import seedu.address.model.article.Article;
 import seedu.address.model.article.ArticleMatchesStatusPredicate;
 import seedu.address.model.article.ArticleMatchesTimePeriodPredicate;
+import seedu.address.model.article.PublicationDate;
 import seedu.address.model.article.exceptions.InvalidStatusException;
 
 /**
@@ -37,8 +37,8 @@ public class SetArticleCommand extends ArticleCommand {
             finalPredicate = PREDICATE_SHOW_ALL_ARTICLES;
         }
         try {
-            LocalDateTime startDate = ParserUtil.parsePublicationDate(start);
-            LocalDateTime endDate = ParserUtil.parsePublicationDate(end);
+            PublicationDate startDate = ParserUtil.parsePublicationDate(start);
+            PublicationDate endDate = ParserUtil.parsePublicationDate(end);
             Predicate<Article> timePredicate = new ArticleMatchesTimePeriodPredicate(startDate, endDate);
             finalPredicate = finalPredicate.and(timePredicate);
         } catch (ParseException e) {
