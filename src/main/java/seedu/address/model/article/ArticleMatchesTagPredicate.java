@@ -20,14 +20,14 @@ public class ArticleMatchesTagPredicate implements Predicate<Article> {
     public boolean test(Article article) {
         requireNonNull(article);
         Set<Tag> others = article.getTags();
-        boolean predicate = false;
+        boolean isMatch = false;
         requireNonNull(tag);
         for (Tag other : others) {
             requireNonNull(other);
             if (other.equals(tag)) {
-                predicate = true;
+                isMatch = true;
             }
         }
-        return predicate;
+        return isMatch;
     }
 }
