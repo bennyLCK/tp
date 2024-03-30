@@ -13,9 +13,9 @@ import seedu.address.logic.commands.HelpCommand;
 import seedu.address.logic.commands.articlecommands.AddArticleCommand;
 import seedu.address.logic.commands.articlecommands.DeleteArticleCommand;
 import seedu.address.logic.commands.articlecommands.EditArticleCommand;
+import seedu.address.logic.commands.articlecommands.FilterArticleCommand;
 import seedu.address.logic.commands.articlecommands.FindArticleCommand;
 import seedu.address.logic.commands.articlecommands.ListArticleCommand;
-import seedu.address.logic.commands.articlecommands.SetArticleCommand;
 import seedu.address.logic.commands.articlecommands.SortArticleCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 
@@ -72,8 +72,8 @@ public class ArticleBookParser {
         case SortArticleCommand.COMMAND_WORD:
             return new SortArticleCommandParser().parse(arguments);
 
-        case SetArticleCommand.COMMAND_WORD:
-            return new SetArticleCommandParser().parse(arguments);
+        case FilterArticleCommand.COMMAND_WORD:
+            return new FilterArticleCommandParser().parse(arguments);
 
         default:
             logger.finer("This user input caused a ParseException: " + userInput);
