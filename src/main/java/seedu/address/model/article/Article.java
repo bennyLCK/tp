@@ -17,12 +17,13 @@ import seedu.address.model.tag.Tag;
  */
 public class Article {
     private final String title;
+    private final Set<Outlet> outlets = new HashSet<>();
     private final Set<Author> authors = new HashSet<>();
-    private final LocalDateTime publicationDate;
     private final Set<Source> sources = new HashSet<>();
     private final Set<Tag> tags = new HashSet<>();
-    private String link = "";
+    private final LocalDateTime publicationDate;
 
+    private String link;
     /**
      * Enumeration of Status of an article.
      */
@@ -41,15 +42,17 @@ public class Article {
      * @param sources the people interviewed.
      * @param tags the subject of the article.
      * @param status the current status of the article.
+     * @param link the link to the webpage of the article.
      */
-    public Article(String title, Set<Author> authors, LocalDateTime publicationDate,
-                   Set<Source> sources, Set<Tag> tags, Status status, String link) {
-        requireAllNonNull(title, authors, publicationDate, sources, tags, status);
+    public Article(String title, Set<Author> authors, Set<Source> sources, Set<Tag> tags,
+                   Set<Outlet> outlets, LocalDateTime publicationDate, Status status, String link) {
+        requireAllNonNull(title, authors, sources, tags, outlets, publicationDate, status);
         this.title = title;
         this.authors.addAll(authors);
-        this.publicationDate = publicationDate;
         this.sources.addAll(sources);
         this.tags.addAll(tags);
+        this.outlets.addAll(outlets);
+        this.publicationDate = publicationDate;
         this.status = status;
         this.link = link;
     }
@@ -71,6 +74,10 @@ public class Article {
         return this.publicationDate.format(formatter);
     }
 
+    public Set<Outlet> getOutlets() {
+        return Collections.unmodifiableSet(outlets);
+    }
+
     public Set<Source> getSources() {
         return Collections.unmodifiableSet(sources);
     }
@@ -82,7 +89,6 @@ public class Article {
     public Status getStatus() {
         return this.status;
     }
-
     public String getLink() {
         return this.link;
     }

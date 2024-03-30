@@ -7,8 +7,8 @@ import java.net.URISyntaxException;
 import java.util.Comparator;
 
 import javafx.fxml.FXML;
-import javafx.scene.control.Hyperlink;
 import javafx.scene.control.Label;
+import javafx.scene.control.Hyperlink;
 import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Region;
@@ -44,6 +44,8 @@ public class ArticleCard extends UiPart<Region> {
     @FXML
     private FlowPane tags;
     @FXML
+    private FlowPane outlets;
+    @FXML
     private Label publicationDate;
     @FXML
     private Label status;
@@ -69,8 +71,9 @@ public class ArticleCard extends UiPart<Region> {
         article.getTags().stream()
                 .sorted(Comparator.comparing(tag -> tag.tagName))
                 .forEach(tag -> tags.getChildren().add(new Label(tag.tagName)));
-
-
+        article.getOutlets().stream()
+                .sorted(Comparator.comparing(outlet -> outlet.outletName))
+                .forEach(outlet -> outlets.getChildren().add(new Label(outlet.outletName)));
         publicationDate.setText(article.getPublicationDateAsString());
         status.setText(article.getStatus().toString());
 
@@ -82,10 +85,10 @@ public class ArticleCard extends UiPart<Region> {
         });
     }
 
-    private void openBrowser(String url) {
+    private void openBrowser(String link) {
         if (Desktop.isDesktopSupported() && Desktop.getDesktop().isSupported(Desktop.Action.BROWSE)) {
             try {
-                Desktop.getDesktop().browse(new URI(url));
+                Desktop.getDesktop().browse(new URI(link));
             } catch (IOException | URISyntaxException e) {
                 e.printStackTrace();
             }
