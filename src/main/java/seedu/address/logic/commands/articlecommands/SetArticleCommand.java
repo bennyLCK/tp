@@ -12,8 +12,10 @@ import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.Model;
 import seedu.address.model.article.Article;
 import seedu.address.model.article.ArticleMatchesStatusPredicate;
+import seedu.address.model.article.ArticleMatchesTagPredicate;
 import seedu.address.model.article.ArticleMatchesTimePeriodPredicate;
 import seedu.address.model.article.exceptions.InvalidStatusException;
+import seedu.address.model.tag.Tag;
 
 /**
  * Use to set filter for Articles
@@ -23,14 +25,14 @@ public class SetArticleCommand extends ArticleCommand {
 
     public static final String COMMAND_PREFIX = "-a";
 
-    public static final String MESSAGE_SUCCESS = "Filter Updated";
+    public static final String MESSAGE_SUCCESS = "filter online";
     private Predicate<Article> finalPredicate;
 
     /**
      * Constructs a SetArticleCommand object.
      * @param status The status to be filtered by.
      */
-    public SetArticleCommand(String status, String start, String end) {
+    public SetArticleCommand(String status, String tagName, String start, String end) throws ParseException {
         try {
             finalPredicate = new ArticleMatchesStatusPredicate(status);
         } catch (InvalidStatusException e) {
@@ -42,7 +44,14 @@ public class SetArticleCommand extends ArticleCommand {
             Predicate<Article> timePredicate = new ArticleMatchesTimePeriodPredicate(startDate, endDate);
             finalPredicate = finalPredicate.and(timePredicate);
         } catch (ParseException e) {
-            finalPredicate = finalPredicate;
+            if (!start.equals("") && end.equals("")) {
+                throw e;
+            }
+        }
+        if (!tagName.trim().equals("")) {
+            Tag tag = new Tag(tagName);
+            Predicate<Article> tagPredicate = new ArticleMatchesTagPredicate(tag);
+            finalPredicate = finalPredicate.and(tagPredicate);
         }
     }
 
