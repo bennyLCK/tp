@@ -20,6 +20,7 @@ import seedu.address.model.article.Article;
 import seedu.address.model.article.Author;
 import seedu.address.model.article.Outlet;
 import seedu.address.model.article.Source;
+import seedu.address.model.article.Title;
 import seedu.address.model.person.Address;
 import seedu.address.model.person.Email;
 import seedu.address.model.person.Name;
@@ -136,11 +137,13 @@ public class ParserUtil {
     /**
      * Parses a {@code String title} into a {@code Title}.
      */
-    public static String parseTitle(String title) throws ParseException {
+    public static Title parseTitle(String title) throws ParseException {
         requireNonNull(title);
         String trimmedTitle = title.trim();
-        //removed the check for title validity
-        return trimmedTitle;
+        if (!Title.isValidTitle(trimmedTitle)) {
+            throw new ParseException(Title.MESSAGE_CONSTRAINTS);
+        }
+        return new Title(trimmedTitle);
     }
 
     /**

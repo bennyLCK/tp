@@ -15,6 +15,7 @@ import seedu.address.model.article.Article;
 import seedu.address.model.article.Author;
 import seedu.address.model.article.Outlet;
 import seedu.address.model.article.Source;
+import seedu.address.model.article.Title;
 import seedu.address.model.tag.Tag;
 
 /**
@@ -70,7 +71,7 @@ public class JsonAdaptedArticle {
      * @param sourceArticle
      */
     public JsonAdaptedArticle(Article sourceArticle) {
-        title = sourceArticle.getTitle();
+        title = sourceArticle.getTitle().fullTitle;
         authors.addAll(sourceArticle.getAuthors().stream()
                 .map(JsonAdaptedAuthor::new)
                 .collect(Collectors.toList()));
@@ -96,6 +97,7 @@ public class JsonAdaptedArticle {
         if (title == null) {
             throw new IllegalValueException("The title is missing");
         }
+        final Title modelTitle = new Title(title);
         if (status == null) {
             throw new IllegalValueException("The status is missing");
         }
@@ -125,6 +127,6 @@ public class JsonAdaptedArticle {
 
         final Set<Outlet> modelOutlets = new HashSet<>(articleOutlets);
 
-        return new Article(title, modelAuthors, modelSources, modelTags, modelOutlets, publicationDate, status);
+        return new Article(modelTitle, modelAuthors, modelSources, modelTags, modelOutlets, publicationDate, status);
     }
 }

@@ -23,6 +23,7 @@ import seedu.address.model.article.Article.Status;
 import seedu.address.model.article.Author;
 import seedu.address.model.article.Outlet;
 import seedu.address.model.article.Source;
+import seedu.address.model.article.Title;
 import seedu.address.model.tag.Tag;
 
 /**
@@ -91,7 +92,7 @@ public class EditArticleCommand extends ArticleCommand {
     private static Article createEditedArticle(Article articleToEdit, EditArticleDescriptor editArticleDescriptor) {
         assert articleToEdit != null;
 
-        String title = editArticleDescriptor.getTitle().orElse(articleToEdit.getTitle());
+        Title title = editArticleDescriptor.getTitle().orElse(articleToEdit.getTitle());
         Set<Author> authors = editArticleDescriptor.getAuthors().orElse(articleToEdit.getAuthors());
         Set<Source> sources = editArticleDescriptor.getSources().orElse(articleToEdit.getSources());
         Set<Tag> tags = editArticleDescriptor.getTags().orElse(articleToEdit.getTags());
@@ -134,7 +135,7 @@ public class EditArticleCommand extends ArticleCommand {
      */
     public static class EditArticleDescriptor {
 
-        private String title;
+        private Title title;
         private Set<Author> authors;
         private Set<Source> sources;
         private Set<Tag> tags;
@@ -164,11 +165,11 @@ public class EditArticleCommand extends ArticleCommand {
             return CollectionUtil.isAnyNonNull(title, authors, sources, outlets, publicationDate, tags, status);
         }
 
-        public void setTitle(String title) {
+        public void setTitle(Title title) {
             this.title = title;
         }
 
-        public Optional<String> getTitle() {
+        public Optional<Title> getTitle() {
             return Optional.ofNullable(title);
         }
 
