@@ -20,8 +20,8 @@ import seedu.address.model.tag.Tag;
 /**
  * Use to set filter for Articles
  */
-public class SetArticleCommand extends ArticleCommand {
-    public static final String COMMAND_WORD = "set";
+public class FilterArticleCommand extends ArticleCommand {
+    public static final String COMMAND_WORD = "filter";
 
     public static final String COMMAND_PREFIX = "-a";
 
@@ -29,10 +29,10 @@ public class SetArticleCommand extends ArticleCommand {
     private Predicate<Article> finalPredicate;
 
     /**
-     * Constructs a SetArticleCommand object.
+     * Constructs a FilterArticleCommand object.
      * @param status The status to be filtered by.
      */
-    public SetArticleCommand(String status, String tagName, String start, String end) throws ParseException {
+    public FilterArticleCommand(String status, String tagName, String start, String end) throws ParseException {
         try {
             finalPredicate = new ArticleMatchesStatusPredicate(status);
         } catch (InvalidStatusException e) {

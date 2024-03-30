@@ -18,6 +18,7 @@ public class ArticleMatchesTagPredicate implements Predicate<Article> {
 
     @Override
     public boolean test(Article article) {
+        requireNonNull(article);
         Set<Tag> others = article.getTags();
         boolean predicate = false;
         requireNonNull(tag);

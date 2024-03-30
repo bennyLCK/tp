@@ -7,26 +7,26 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 
 import java.util.stream.Stream;
 
-import seedu.address.logic.commands.articlecommands.SetArticleCommand;
+import seedu.address.logic.commands.articlecommands.FilterArticleCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 
 /**
- * Parses input arguments and creates a SetArticleCommand object
+ * Parses input arguments and creates a FilterArticleCommand object
  */
-public class SetArticleCommandParser implements Parser<SetArticleCommand> {
+public class FilterArticleCommandParser implements Parser<FilterArticleCommand> {
 
     @Override
-    public SetArticleCommand parse(String userInput) throws ParseException {
+    public FilterArticleCommand parse(String userInput) throws ParseException {
         ArgumentMultimap argMultimap = ArgumentTokenizer.tokenize(userInput, PREFIX_STATUS,
                 PREFIX_TAG, PREFIX_START, PREFIX_END);
         if (!arePrefixesPresent(argMultimap, PREFIX_STATUS, PREFIX_TAG, PREFIX_START, PREFIX_END)) {
-            throw new ParseException("The set command does not follow the correct format");
+            throw new ParseException("The filter command does not follow the correct format");
         }
         String status = argMultimap.getValue(PREFIX_STATUS).get();
         String tagName = argMultimap.getValue(PREFIX_TAG).get();
         String start = argMultimap.getValue(PREFIX_START).get();
         String end = argMultimap.getValue(PREFIX_END).get();
-        return new SetArticleCommand(status, tagName, start, end);
+        return new FilterArticleCommand(status, tagName, start, end);
     }
 
     private static boolean arePrefixesPresent(ArgumentMultimap argumentMultimap, Prefix... prefixes) {
