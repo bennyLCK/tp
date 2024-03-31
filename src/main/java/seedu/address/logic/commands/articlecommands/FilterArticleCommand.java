@@ -14,6 +14,7 @@ import seedu.address.model.article.Article;
 import seedu.address.model.article.ArticleMatchesStatusPredicate;
 import seedu.address.model.article.ArticleMatchesTagPredicate;
 import seedu.address.model.article.ArticleMatchesTimePeriodPredicate;
+import seedu.address.model.article.PublicationDate;
 import seedu.address.model.article.exceptions.InvalidStatusException;
 import seedu.address.model.tag.Tag;
 
@@ -39,14 +40,22 @@ public class FilterArticleCommand extends ArticleCommand {
             finalPredicate = PREDICATE_SHOW_ALL_ARTICLES;
         }
         try {
-            LocalDateTime startDate = ParserUtil.parsePublicationDate(start);
-            LocalDateTime endDate = ParserUtil.parsePublicationDate(end);
+            PublicationDate startDate;
+            PublicationDate endDate;
+            if (start.trim().equals("")) {
+                startDate = new PublicationDate(LocalDateTime.MIN);
+            } else {
+                startDate = ParserUtil.parsePublicationDate(start.trim());
+            }
+            if (end.trim().equals("")) {
+                endDate = new PublicationDate(LocalDateTime.MAX);
+            } else {
+                endDate = ParserUtil.parsePublicationDate(end.trim());
+            }
             Predicate<Article> timePredicate = new ArticleMatchesTimePeriodPredicate(startDate, endDate);
             finalPredicate = finalPredicate.and(timePredicate);
         } catch (ParseException e) {
-            if (!start.equals("") && end.equals("")) {
-                throw e;
-            }
+            throw e;
         }
         if (!tagName.trim().equals("")) {
             Tag tag = new Tag(tagName);

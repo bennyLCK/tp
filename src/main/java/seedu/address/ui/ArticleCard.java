@@ -60,7 +60,7 @@ public class ArticleCard extends UiPart<Region> {
         super(FXML);
         this.article = article;
         id.setText(displayedIndex + ". ");
-        title.setText(article.getTitle());
+        title.setText(article.getTitle().fullTitle);
 
         article.getAuthors().stream()
                 .sorted(Comparator.comparing(author -> author.authorName))

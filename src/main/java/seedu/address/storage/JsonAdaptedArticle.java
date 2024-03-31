@@ -1,6 +1,7 @@
 package seedu.address.storage;
 
-import java.time.LocalDateTime;
+import static seedu.address.logic.parser.ParserUtil.parsePublicationDate;
+
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
@@ -13,8 +14,11 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.model.article.Article;
 import seedu.address.model.article.Author;
+import seedu.address.model.article.Link;
 import seedu.address.model.article.Outlet;
+import seedu.address.model.article.PublicationDate;
 import seedu.address.model.article.Source;
+import seedu.address.model.article.Title;
 import seedu.address.model.tag.Tag;
 
 /**
@@ -24,7 +28,7 @@ public class JsonAdaptedArticle {
     private final String title;
     private final List<JsonAdaptedAuthor> authors = new ArrayList<>();
     //Should be able to be null
-    private final LocalDateTime publicationDate;
+    private final String publicationDate;
     private final List<JsonAdaptedSource> sources = new ArrayList<>();
     private final List<JsonAdaptedTag> tags = new ArrayList<>();
     private final List<JsonAdaptedOutlet> outlets = new ArrayList<>();
@@ -49,7 +53,7 @@ public class JsonAdaptedArticle {
                               @JsonProperty("sources") List<JsonAdaptedSource> sources,
                               @JsonProperty("tags") List<JsonAdaptedTag> tags,
                               @JsonProperty("outlets") List<JsonAdaptedOutlet> outlets,
-                              @JsonProperty("publicationDate") LocalDateTime publicationDate,
+                              @JsonProperty("publicationDate") String publicationDate,
                               @JsonProperty("status") Article.Status status,
                               @JsonProperty("link") String link) {
         this.title = title;
@@ -74,7 +78,7 @@ public class JsonAdaptedArticle {
      * @param sourceArticle
      */
     public JsonAdaptedArticle(Article sourceArticle) {
-        title = sourceArticle.getTitle();
+        title = sourceArticle.getTitle().fullTitle;
         authors.addAll(sourceArticle.getAuthors().stream()
                 .map(JsonAdaptedAuthor::new)
                 .collect(Collectors.toList()));
@@ -87,9 +91,9 @@ public class JsonAdaptedArticle {
         outlets.addAll(sourceArticle.getOutlets().stream()
                 .map(JsonAdaptedOutlet::new)
                 .collect(Collectors.toList()));
-        publicationDate = sourceArticle.getPublicationDate();
+        publicationDate = sourceArticle.getPublicationDate().toString();
         status = sourceArticle.getStatus();
-        link = sourceArticle.getLink();
+        link = sourceArticle.getLink().link;
     }
 
     /**
@@ -101,6 +105,7 @@ public class JsonAdaptedArticle {
         if (title == null) {
             throw new IllegalValueException("The title is missing");
         }
+        final Title modelTitle = new Title(title);
         if (status == null) {
             throw new IllegalValueException("The status is missing");
         }
@@ -122,6 +127,8 @@ public class JsonAdaptedArticle {
             articleOutlets.add(outlet.toModelType());
         }
 
+        final PublicationDate modelPublicationDate = parsePublicationDate(this.publicationDate);
+
         final Set<Author> modelAuthors = new HashSet<>(articleAuthors);
 
         final Set<Source> modelSources = new HashSet<>(articleSources);
@@ -129,7 +136,9 @@ public class JsonAdaptedArticle {
         final Set<Tag> modelTags = new HashSet<>(articleTags);
 
         final Set<Outlet> modelOutlets = new HashSet<>(articleOutlets);
+        final Link modelLink = new Link(link);
 
-        return new Article(title, modelAuthors, modelSources, modelTags, modelOutlets, publicationDate, status, link);
+        return new Article(modelTitle, modelAuthors, modelSources, modelTags,
+                modelOutlets, modelPublicationDate, status, modelLink);
     }
 }
