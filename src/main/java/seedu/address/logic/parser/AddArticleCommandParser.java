@@ -9,7 +9,6 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_SOURCE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_STATUS;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TITLE;
 
-import java.time.LocalDateTime;
 import java.util.Set;
 import java.util.stream.Stream;
 
@@ -18,6 +17,7 @@ import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.article.Article;
 import seedu.address.model.article.Author;
 import seedu.address.model.article.Outlet;
+import seedu.address.model.article.PublicationDate;
 import seedu.address.model.article.Source;
 import seedu.address.model.article.Title;
 import seedu.address.model.tag.Tag;
@@ -47,7 +47,7 @@ public class AddArticleCommandParser implements Parser<AddArticleCommand> {
         Set<Source> sourceList = ParserUtil.parseSources(argMultimap.getAllValues(PREFIX_SOURCE));
         Set<Tag> tagList = ParserUtil.parseTags(argMultimap.getAllValues(PREFIX_ARTICLETAG));
         Set<Outlet> outletList = ParserUtil.parseOutlets(argMultimap.getAllValues(PREFIX_OUTLET));
-        LocalDateTime publicationDate = ParserUtil.parsePublicationDate(argMultimap.getValue(PREFIX_PUBLICATION_DATE)
+        PublicationDate publicationDate = ParserUtil.parsePublicationDate(argMultimap.getValue(PREFIX_PUBLICATION_DATE)
                 .get());
         Article.Status status = (Article.Status) ParserUtil.parseStatus(argMultimap.getValue(PREFIX_STATUS).get());
 

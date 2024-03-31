@@ -5,11 +5,12 @@ import static seedu.address.model.article.Article.Status.ARCHIVED;
 import static seedu.address.model.article.Article.Status.DRAFT;
 import static seedu.address.model.article.Article.Status.PUBLISHED;
 
-import java.text.SimpleDateFormat;
 import java.time.LocalDateTime;
-import java.time.ZoneId;
+import java.time.format.DateTimeFormatter;
+import java.time.format.DateTimeFormatterBuilder;
+import java.time.format.DateTimeParseException;
+import java.time.temporal.ChronoField;
 import java.util.Collection;
-import java.util.Date;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -19,6 +20,7 @@ import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.article.Article;
 import seedu.address.model.article.Author;
 import seedu.address.model.article.Outlet;
+import seedu.address.model.article.PublicationDate;
 import seedu.address.model.article.Source;
 import seedu.address.model.article.Title;
 import seedu.address.model.person.Address;
@@ -171,22 +173,34 @@ public class ParserUtil {
     }
 
     /**
-     * Parses a {@code String publicationDate} into a {@code LocalDateTime}.
+     * Parses a {@code String publicationDate} into a {@code PublicationDate}.
      */
-    public static LocalDateTime parsePublicationDate(String publicationDate) throws ParseException {
+    public static PublicationDate parsePublicationDate(String publicationDate) throws ParseException {
         requireNonNull(publicationDate);
+
+        DateTimeFormatter formatter = new DateTimeFormatterBuilder()
+                .appendPattern("dd-MM-yyyy[ HH:mm]")
+                .parseDefaulting(ChronoField.HOUR_OF_DAY, 0)
+                .parseDefaulting(ChronoField.MINUTE_OF_HOUR, 0)
+                .toFormatter();
+
+        String trimmedPublicationDate = publicationDate.trim();
         try {
-            SimpleDateFormat dateFormat = new SimpleDateFormat("dd-MM-yyyy HH:mm");
-            String trimmedPublicationDate = publicationDate.trim();
-            Date tempDate = dateFormat.parse(trimmedPublicationDate);
-            LocalDateTime parsedDate = tempDate.toInstant().atZone(ZoneId.systemDefault()).toLocalDateTime();
-            parsedDate.withSecond(0);
-            //removed the check for publication date validity
-            return parsedDate;
-        } catch (java.text.ParseException e) {
+            LocalDateTime tempDate = LocalDateTime.parse(trimmedPublicationDate, formatter);
+            return new PublicationDate(tempDate);
+        } catch (DateTimeParseException e) {
             throw new ParseException("Invalid publication date");
         }
+    }
 
+    /**
+     * Parses a {@code LocalDateTime date} into a {@code String}.
+     * @param date The date to be parsed.
+     * @return The date in the format of [dd-MM-yyyy HH:mm].
+     */
+    public static String parseDateToString(LocalDateTime date) {
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy HH:mm");
+        return date.format(formatter);
     }
 
     /**

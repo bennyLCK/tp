@@ -3,7 +3,6 @@ package seedu.address.logic.commands.articlecommands;
 import static java.util.Objects.requireNonNull;
 import static seedu.address.model.Model.PREDICATE_SHOW_ALL_ARTICLES;
 
-import java.time.LocalDateTime;
 import java.util.Collections;
 import java.util.HashSet;
 import java.util.List;
@@ -22,6 +21,7 @@ import seedu.address.model.article.Article;
 import seedu.address.model.article.Article.Status;
 import seedu.address.model.article.Author;
 import seedu.address.model.article.Outlet;
+import seedu.address.model.article.PublicationDate;
 import seedu.address.model.article.Source;
 import seedu.address.model.article.Title;
 import seedu.address.model.tag.Tag;
@@ -97,7 +97,7 @@ public class EditArticleCommand extends ArticleCommand {
         Set<Source> sources = editArticleDescriptor.getSources().orElse(articleToEdit.getSources());
         Set<Tag> tags = editArticleDescriptor.getTags().orElse(articleToEdit.getTags());
         Set<Outlet> outlets = editArticleDescriptor.getOutlets().orElse(articleToEdit.getOutlets());
-        LocalDateTime publicationDate = editArticleDescriptor.getPublicationDate()
+        PublicationDate publicationDate = editArticleDescriptor.getPublicationDate()
                 .orElse(articleToEdit.getPublicationDate());
         Status status = editArticleDescriptor.getStatus().orElse(articleToEdit.getStatus());
 
@@ -140,7 +140,7 @@ public class EditArticleCommand extends ArticleCommand {
         private Set<Source> sources;
         private Set<Tag> tags;
         private Set<Outlet> outlets;
-        private LocalDateTime publicationDate;
+        private PublicationDate publicationDate;
         private Status status;
 
         public EditArticleDescriptor() {}
@@ -181,11 +181,11 @@ public class EditArticleCommand extends ArticleCommand {
             return (authors != null) ? Optional.of(Collections.unmodifiableSet(authors)) : Optional.empty();
         }
 
-        public void setPublicationDate(LocalDateTime publicationDate) {
+        public void setPublicationDate(PublicationDate publicationDate) {
             this.publicationDate = publicationDate;
         }
 
-        public Optional<LocalDateTime> getPublicationDate() {
+        public Optional<PublicationDate> getPublicationDate() {
             return Optional.ofNullable(publicationDate);
         }
 
