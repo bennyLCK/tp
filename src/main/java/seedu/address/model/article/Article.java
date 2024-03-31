@@ -1,9 +1,8 @@
 package seedu.address.model.article;
 
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
+import static seedu.address.logic.parser.ParserUtil.parseDateToString;
 
-import java.time.LocalDateTime;
-import java.time.format.DateTimeFormatter;
 import java.util.Collections;
 import java.util.HashSet;
 import java.util.Objects;
@@ -16,12 +15,12 @@ import seedu.address.model.tag.Tag;
  * Represents an article in the address book.
  */
 public class Article {
-    private final String title;
+    private final Title title;
     private final Set<Outlet> outlets = new HashSet<>();
     private final Set<Author> authors = new HashSet<>();
     private final Set<Source> sources = new HashSet<>();
     private final Set<Tag> tags = new HashSet<>();
-    private final LocalDateTime publicationDate;
+    private final PublicationDate publicationDate;
 
     /**
      * Enumeration of Status of an article.
@@ -42,8 +41,8 @@ public class Article {
      * @param tags the subject of the article.
      * @param status the current status of the article.
      */
-    public Article(String title, Set<Author> authors, Set<Source> sources, Set<Tag> tags,
-                   Set<Outlet> outlets, LocalDateTime publicationDate, Status status) {
+    public Article(Title title, Set<Author> authors, Set<Source> sources, Set<Tag> tags,
+                   Set<Outlet> outlets, PublicationDate publicationDate, Status status) {
         requireAllNonNull(title, authors, sources, tags, outlets, publicationDate, status);
         this.title = title;
         this.authors.addAll(authors);
@@ -54,21 +53,20 @@ public class Article {
         this.status = status;
     }
 
-    public String getTitle() {
-        return this.title;
+    public Title getTitle() {
+        return title;
     }
 
     public Set<Author> getAuthors() {
         return Collections.unmodifiableSet(authors);
     }
 
-    public LocalDateTime getPublicationDate() {
+    public PublicationDate getPublicationDate() {
         return this.publicationDate;
     }
 
     public String getPublicationDateAsString() {
-        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm");
-        return this.publicationDate.format(formatter);
+        return parseDateToString(this.publicationDate.date);
     }
 
     public Set<Outlet> getOutlets() {
