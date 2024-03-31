@@ -16,7 +16,7 @@ import seedu.address.model.tag.Tag;
  * Represents an article in the address book.
  */
 public class Article {
-    private final String title;
+    private final Title title;
     private final Set<Outlet> outlets = new HashSet<>();
     private final Set<Author> authors = new HashSet<>();
     private final Set<Source> sources = new HashSet<>();
@@ -42,7 +42,7 @@ public class Article {
      * @param tags the subject of the article.
      * @param status the current status of the article.
      */
-    public Article(String title, Set<Author> authors, Set<Source> sources, Set<Tag> tags,
+    public Article(Title title, Set<Author> authors, Set<Source> sources, Set<Tag> tags,
                    Set<Outlet> outlets, LocalDateTime publicationDate, Status status) {
         requireAllNonNull(title, authors, sources, tags, outlets, publicationDate, status);
         this.title = title;
@@ -54,8 +54,8 @@ public class Article {
         this.status = status;
     }
 
-    public String getTitle() {
-        return this.title;
+    public Title getTitle() {
+        return title;
     }
 
     public Set<Author> getAuthors() {

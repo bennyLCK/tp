@@ -19,6 +19,7 @@ import seedu.address.model.article.Article;
 import seedu.address.model.article.Author;
 import seedu.address.model.article.Outlet;
 import seedu.address.model.article.Source;
+import seedu.address.model.article.Title;
 import seedu.address.model.tag.Tag;
 
 /**
@@ -41,7 +42,7 @@ public class AddArticleCommandParser implements Parser<AddArticleCommand> {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddArticleCommand.MESSAGE_USAGE));
         }
 
-        String title = ParserUtil.parseTitle(argMultimap.getValue(PREFIX_TITLE).get());
+        Title title = ParserUtil.parseTitle(argMultimap.getValue(PREFIX_TITLE).get());
         Set<Author> authorList = ParserUtil.parseAuthors(argMultimap.getAllValues(PREFIX_AUTHOR));
         Set<Source> sourceList = ParserUtil.parseSources(argMultimap.getAllValues(PREFIX_SOURCE));
         Set<Tag> tagList = ParserUtil.parseTags(argMultimap.getAllValues(PREFIX_ARTICLETAG));
