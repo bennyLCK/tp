@@ -162,7 +162,7 @@ public class ArticleCommandTestUtil {
         assertTrue(targetIndex.getZeroBased() < model.getFilteredArticleList().size());
 
         Article article = model.getFilteredArticleList().get(targetIndex.getZeroBased());
-        final String[] splitTitle = article.getTitle().split("\\s+");
+        final String[] splitTitle = article.getTitle().fullTitle.split("\\s+");
         model.updateFilteredArticleList(new TitleContainsKeywordsPredicate(Arrays.asList(splitTitle[0])));
 
         assertEquals(1, model.getFilteredArticleList().size());
@@ -182,7 +182,7 @@ public class ArticleCommandTestUtil {
 
         for (int i = startIndex.getZeroBased(); i <= endIndex.getZeroBased(); i++) {
             Article article = model.getFilteredArticleList().get(i);
-            final String[] splitTitle = article.getTitle().split("\\s+");
+            final String[] splitTitle = article.getTitle().fullTitle.split("\\s+");
             articleFirstTitleWords.add(splitTitle[0]);
         }
 

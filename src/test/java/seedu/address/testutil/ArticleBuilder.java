@@ -3,11 +3,15 @@ package seedu.address.testutil;
 import java.util.HashSet;
 import java.util.Set;
 
+import seedu.address.logic.parser.ParserUtil;
+import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.article.Article;
 import seedu.address.model.article.Article.Status;
 import seedu.address.model.article.Author;
 import seedu.address.model.article.Outlet;
+import seedu.address.model.article.PublicationDate;
 import seedu.address.model.article.Source;
+import seedu.address.model.article.Title;
 import seedu.address.model.tag.Tag;
 import seedu.address.model.util.SampleArticleDataUtil;
 
@@ -40,7 +44,11 @@ public class ArticleBuilder {
         title = new Title(DEFAULT_TITLE);
         authors = new HashSet<>();
         authors.add(new Author(DEFAULT_AUTHOR));
-        publicationDate = new PublicationDate(DEFAULT_PUBLICATION_DATE);
+        try {
+            publicationDate = ParserUtil.parsePublicationDate(DEFAULT_PUBLICATION_DATE);
+        } catch (ParseException e) {
+            assert false : "Default publication date should be valid.";
+        }
         sources = new HashSet<>();
         sources.add(new Source(DEFAULT_SOURCE));
         outlets = new HashSet<>();
@@ -83,7 +91,11 @@ public class ArticleBuilder {
      * Sets the {@code PublicationDate} of the {@code Article} that we are building.
      */
     public ArticleBuilder withPublicationDate(String publicationDate) {
-        this.publicationDate = new PublicationDate(publicationDate);
+        try {
+            this.publicationDate = ParserUtil.parsePublicationDate(publicationDate);
+        } catch (ParseException e) {
+            assert false : "Publication date should be valid.";
+        }
         return this;
     }
 

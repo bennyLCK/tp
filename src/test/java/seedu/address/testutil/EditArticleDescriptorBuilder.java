@@ -11,6 +11,7 @@ import seedu.address.model.article.Article;
 import seedu.address.model.article.Author;
 import seedu.address.model.article.Outlet;
 import seedu.address.model.article.Source;
+import seedu.address.model.article.Title;
 import seedu.address.model.tag.Tag;
 
 /**
