@@ -12,6 +12,7 @@ import javafx.collections.transformation.FilteredList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.LogsCenter;
 import seedu.address.model.article.Article;
+import seedu.address.model.person.NameWithinArticlePredicate;
 import seedu.address.model.person.Person;
 
 /**
@@ -219,5 +220,10 @@ public class ModelManager implements Model {
 
     public ArticleFilter getFilter() {
         return filter;
+    }
+
+    public void lookupArticle(Article article) {
+        NameWithinArticlePredicate predicate = new NameWithinArticlePredicate(article);
+        updateFilteredPersonList(predicate);
     }
 }
