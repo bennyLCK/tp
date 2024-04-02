@@ -169,6 +169,7 @@ public class ModelManager implements Model {
     @Override
     public void addArticle(Article article) {
         articleBook.addArticle(article);
+        article.makeLinks(addressBook.getPersonList());
         updateFilteredArticleList(PREDICATE_SHOW_ALL_ARTICLES);
     }
 

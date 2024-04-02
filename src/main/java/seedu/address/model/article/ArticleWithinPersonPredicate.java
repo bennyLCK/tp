@@ -3,11 +3,10 @@ package seedu.address.model.article;
 import java.util.function.Predicate;
 
 import seedu.address.commons.util.ToStringBuilder;
-import seedu.address.model.person.NameWithinArticlePredicate;
 import seedu.address.model.person.Person;
 
 /**
- * Tests that an {@code Article}'s {@code Person} is within the {@code Person}.
+ * Tests that an {@code Article} is within a {@code Person}'s list of articles.
  */
 public class ArticleWithinPersonPredicate implements Predicate<Article> {
 
