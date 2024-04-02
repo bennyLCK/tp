@@ -12,6 +12,7 @@ import javafx.collections.transformation.FilteredList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.LogsCenter;
 import seedu.address.model.article.Article;
+import seedu.address.model.article.ArticleWithinPersonPredicate;
 import seedu.address.model.person.NameWithinArticlePredicate;
 import seedu.address.model.person.Person;
 
@@ -222,8 +223,15 @@ public class ModelManager implements Model {
         return filter;
     }
 
+    @Override
     public void lookupArticle(Article article) {
         NameWithinArticlePredicate predicate = new NameWithinArticlePredicate(article);
         updateFilteredPersonList(predicate);
+    }
+
+    @Override
+    public void lookupPerson(Person personToLookup) {
+        ArticleWithinPersonPredicate predicate = new ArticleWithinPersonPredicate(personToLookup);
+        updateFilteredArticleList(predicate);
     }
 }
