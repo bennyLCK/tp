@@ -10,6 +10,7 @@ import java.util.List;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import seedu.address.model.person.Person;
 
 /**
  * A list of articles that are unique
@@ -164,5 +165,14 @@ public class UniqueArticleList implements Iterable<Article> {
             }
         }
         return true;
+    }
+
+    /**
+     * Makes links between articles and persons in the address book.
+     */
+    public void makeLinks(List<Person> uniquePersonList) {
+        for (Article article : internalList) {
+            article.makeLinks(uniquePersonList);
+        }
     }
 }

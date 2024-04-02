@@ -2,12 +2,15 @@ package seedu.address.model.person;
 
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
+import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Objects;
 import java.util.Set;
 
 import seedu.address.commons.util.ToStringBuilder;
+import seedu.address.model.article.Article;
 import seedu.address.model.tag.Tag;
 
 /**
@@ -24,6 +27,8 @@ public class Person {
     // Data fields
     private final Address address;
     private final Set<Tag> tags = new HashSet<>();
+
+    public List<Article> articles = new ArrayList<>();
 
     /**
      * Every field must be present and not null.
@@ -114,4 +119,7 @@ public class Person {
                 .toString();
     }
 
+    public void addArticle(Article article) {
+        articles.add(article);
+    }
 }

@@ -109,6 +109,13 @@ public class ArticleBook implements ReadOnlyArticleBook {
         return articles.asUnmodifiableObservableList();
     }
 
+    /**
+     * Makes links between articles and persons in the address book.
+     */
+    public void makeLinks(AddressBook addressBook) {
+        articles.makeLinks(addressBook.getPersonList());
+    }
+
     @Override
     public boolean equals(Object other) {
         if (other == this) {

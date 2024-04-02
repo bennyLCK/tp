@@ -3,12 +3,15 @@ package seedu.address.model.article;
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 import static seedu.address.logic.parser.ParserUtil.parseDateToString;
 
+import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Objects;
 import java.util.Set;
 
 import seedu.address.commons.util.ToStringBuilder;
+import seedu.address.model.person.Person;
 import seedu.address.model.tag.Tag;
 
 /**
@@ -21,6 +24,8 @@ public class Article {
     private final Set<Source> sources = new HashSet<>();
     private final Set<Tag> tags = new HashSet<>();
     private final PublicationDate publicationDate;
+
+    public List<Person> persons = new ArrayList<>();
 
     /**
      * Enumeration of Status of an article.
@@ -104,6 +109,27 @@ public class Article {
             return true;
         } else {
             return false;
+        }
+    }
+
+    public void makeLinks(List<Person> persons) {
+        for (Person person : persons) {
+            makeLink(person);
+        }
+    }
+
+    public void makeLink(Person person) {
+        for (Author author : authors) {
+            if (author.authorName.equals(person.getName().fullName)) {
+                persons.add(person);
+                person.addArticle(this);
+            }
+        }
+        for (Source source : sources) {
+            if (source.sourceName.equals(person.getName().fullName)) {
+                persons.add(person);
+                person.addArticle(this);
+            }
         }
     }
 

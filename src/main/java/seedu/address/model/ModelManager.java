@@ -43,6 +43,8 @@ public class ModelManager implements Model {
         filteredPersons = new FilteredList<>(this.addressBook.getPersonList());
         filteredArticles = new FilteredList<>(this.articleBook.getArticleList());
         filter = new ArticleFilter();
+
+        this.articleBook.makeLinks(this.addressBook);
     }
 
     public ModelManager() {
