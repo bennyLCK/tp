@@ -75,8 +75,7 @@ public class CommandTestUtil {
      * - the {@code actualModel} matches {@code expectedModel}
      */
     public static void assertCommandSuccess(PersonCommand command, Model actualModel,
-                                            CommandResult expectedCommandResult,
-            Model expectedModel) {
+                                            CommandResult expectedCommandResult, Model expectedModel) {
         try {
             CommandResult result = command.execute(actualModel);
             assertEquals(expectedCommandResult, result);

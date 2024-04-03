@@ -35,8 +35,7 @@ public class ArticleBuilder {
     private Set<Outlet> outlets;
     private Set<Tag> tags;
     private Status status;
-
-
+    
     /**
      * Creates a {@code ArticleBuilder} with the default details.
      */
