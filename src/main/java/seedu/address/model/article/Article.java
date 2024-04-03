@@ -25,7 +25,7 @@ public class Article {
     private final Set<Tag> tags = new HashSet<>();
     private final PublicationDate publicationDate;
 
-    public List<Person> persons = new ArrayList<>();
+    private List<Person> persons = new ArrayList<>();
 
     /**
      * Enumeration of Status of an article.
@@ -88,6 +88,10 @@ public class Article {
 
     public Status getStatus() {
         return this.status;
+    }
+
+    public List<Person> getPersons() {
+        return persons;
     }
 
     /**

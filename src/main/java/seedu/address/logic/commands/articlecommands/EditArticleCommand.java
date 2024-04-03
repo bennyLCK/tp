@@ -103,7 +103,7 @@ public class EditArticleCommand extends ArticleCommand {
 
         Article editedArticle = new Article(title, authors, sources, tags,
                 outlets, publicationDate, status); // Include all article attributes here.
-        editedArticle.setPersons(articleToEdit.persons);
+        editedArticle.setPersons(articleToEdit.getPersons());
         return editedArticle;
     }
 

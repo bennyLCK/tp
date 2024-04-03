@@ -26,7 +26,7 @@ public class NameWithinArticlePredicate implements Predicate<Person> {
                 .anyMatch(author -> person.getName().fullName.equals(author.authorName)) ||
                 article.getSources().stream()
                 .anyMatch(source -> person.getName().fullName.equals(source.sourceName));*/
-        return article.persons.contains(person);
+        return article.getPersons().contains(person);
     }
 
     @Override

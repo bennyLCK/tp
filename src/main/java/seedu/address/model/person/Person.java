@@ -28,7 +28,7 @@ public class Person {
     private final Address address;
     private final Set<Tag> tags = new HashSet<>();
 
-    public List<Article> articles = new ArrayList<>();
+    private List<Article> articles = new ArrayList<>();
 
     /**
      * Every field must be present and not null.
@@ -64,6 +64,10 @@ public class Person {
      */
     public Set<Tag> getTags() {
         return Collections.unmodifiableSet(tags);
+    }
+
+    public List<Article> getArticles() {
+        return articles;
     }
 
     /**

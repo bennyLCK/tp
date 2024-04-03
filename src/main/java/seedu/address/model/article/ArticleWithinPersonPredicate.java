@@ -23,7 +23,7 @@ public class ArticleWithinPersonPredicate implements Predicate<Article> {
 
     @Override
     public boolean test(Article article) {
-        return person.articles.contains(article);
+        return person.getArticles().contains(article);
     }
 
     @Override
