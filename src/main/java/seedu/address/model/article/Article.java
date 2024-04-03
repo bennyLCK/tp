@@ -112,23 +112,68 @@ public class Article {
         }
     }
 
+    /**
+     * Sets the persons list of a edited article.
+     *
+     * @param persons
+     */
+    public void setPersons(List<Person> persons) {
+        makeLinks(persons);
+        this.persons = persons;
+    }
+
+    /**
+     * Makes links between the article and the persons in the list.
+     *
+     * @param persons
+     */
     public void makeLinks(List<Person> persons) {
         for (Person person : persons) {
             makeLink(person);
         }
     }
 
+    /**
+     * Makes links between the article and the person.
+     *
+     * @param person
+     */
     public void makeLink(Person person) {
         for (Author author : authors) {
-            if (author.authorName.equals(person.getName().fullName)) {
+            if (author.authorName.equals(person.getNameString())) {
                 persons.add(person);
                 person.addArticle(this);
             }
         }
         for (Source source : sources) {
-            if (source.sourceName.equals(person.getName().fullName)) {
+            if (source.sourceName.equals(person.getNameString())) {
                 persons.add(person);
                 person.addArticle(this);
+            }
+        }
+    }
+
+    /**
+     * Updates the names in the article when a person is edited.
+     *
+     * @param from
+     * @param to
+     */
+    public void updateNamesInArticle(Person from, Person to) {
+        for (Author author : authors) {
+            if (author.authorName.equals(from.getNameString())) {
+                authors.remove(author);
+                persons.remove(from);
+                authors.add(new Author(to.getNameString()));
+                persons.add(to);
+            }
+        }
+        for (Source source : sources) {
+            if (source.sourceName.equals(from.getNameString())) {
+                sources.remove(source);
+                persons.remove(from);
+                sources.add(new Source(to.getNameString()));
+                persons.add(to);
             }
         }
     }

@@ -122,4 +122,12 @@ public class Person {
     public void addArticle(Article article) {
         articles.add(article);
     }
+
+    public void setArticles(Person person) {
+        this.articles = person.articles;
+    }
+
+    public String getNameString() {
+        return name.fullName;
+    }
 }

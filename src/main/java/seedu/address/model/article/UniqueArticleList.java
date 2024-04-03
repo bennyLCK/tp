@@ -175,4 +175,22 @@ public class UniqueArticleList implements Iterable<Article> {
             article.makeLinks(uniquePersonList);
         }
     }
+
+    /**
+     * Makes links between articles and the given person.
+     */
+    public void makeLinkPerson(Person person) {
+        for (Article article : internalList) {
+            article.makeLink(person);
+        }
+    }
+
+    /**
+     * Reestablishes links between articles and the edited person.
+     */
+    public void setEditedPerson(Person target, Person editedPerson) {
+        for (Article article : internalList) {
+            article.updateNamesInArticle(target, editedPerson);
+        }
+    }
 }
