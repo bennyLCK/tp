@@ -2,12 +2,12 @@ package seedu.address.logic.commands.articlecommands;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_ARTICLETAG;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_AUTHOR;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_OUTLET;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PUBLICATION_DATE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_SOURCE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_STATUS;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TITLE;
 import static seedu.address.testutil.Assert.assertThrows;
 
@@ -70,10 +70,10 @@ public class ArticleCommandTestUtil {
             + " " + PREFIX_OUTLET + SECOND_VALID_OUTLET_NVIDIA;
     public static final String OUTLET_DESC_INTEL = " " + PREFIX_OUTLET + FIRST_VALID_OUTLET_INTEL
             + " " + PREFIX_OUTLET + SECOND_VALID_OUTLET_INTEL;
-    public static final String TAG_DESC_NVIDIA = " " + PREFIX_ARTICLETAG + FIRST_VALID_TAG_NVIDIA
-            + " " + PREFIX_ARTICLETAG + SECOND_VALID_TAG_NVIDIA;
-    public static final String TAG_DESC_INTEL = " " + PREFIX_ARTICLETAG + FIRST_VALID_TAG_INTEL
-            + " " + PREFIX_ARTICLETAG + SECOND_VALID_TAG_INTEL;
+    public static final String TAG_DESC_NVIDIA = " " + PREFIX_TAG + FIRST_VALID_TAG_NVIDIA
+            + " " + PREFIX_TAG + SECOND_VALID_TAG_NVIDIA;
+    public static final String TAG_DESC_INTEL = " " + PREFIX_TAG + FIRST_VALID_TAG_INTEL
+            + " " + PREFIX_TAG + SECOND_VALID_TAG_INTEL;
     public static final String STATUS_DESC_NVIDIA = " " + PREFIX_STATUS + VALID_STATUS_NVIDIA;
     public static final String STATUS_DESC_INTEL = " " + PREFIX_STATUS + VALID_STATUS_INTEL;
 
@@ -85,7 +85,7 @@ public class ArticleCommandTestUtil {
             + "20-03-2024 25:00"; // Invalid time format
     public static final String INVALID_SOURCE_DESC = " " + PREFIX_SOURCE + "Ryan&"; // '&' not allowed in sources
     public static final String INVALID_OUTLET_DESC = " " + PREFIX_OUTLET + "BBC News*"; // '*' not allowed in outlets
-    public static final String INVALID_TAG_DESC = " " + PREFIX_ARTICLETAG + "Tech*"; // '*' not allowed in tags
+    public static final String INVALID_TAG_DESC = " " + PREFIX_TAG + "Tech*"; // '*' not allowed in tags
     public static final String INVALID_STATUS_DESC = " " + PREFIX_STATUS + "PUBLISHEDD"; // Invalid status
 
     public static final String PREAMBLE_WHITESPACE = "\t  \r  \n";
