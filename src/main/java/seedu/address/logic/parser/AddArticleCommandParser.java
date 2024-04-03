@@ -3,12 +3,12 @@ package seedu.address.logic.parser;
 import static seedu.address.logic.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_ARTICLETAG;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_AUTHOR;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_LINK;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_OUTLET;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PUBLICATION_DATE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_SOURCE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_STATUS;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TITLE;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_LINK;
 
 import java.util.Set;
 import java.util.stream.Stream;
@@ -58,7 +58,8 @@ public class AddArticleCommandParser implements Parser<AddArticleCommand> {
         } else {
             link = ParserUtil.parseLink(argMultimap.getValue(PREFIX_LINK).get());
         }
-        Article article = new Article(title, authorList, sourceList, tagList, outletList, publicationDate, status, link);
+        Article article = new Article(title, authorList, sourceList, tagList,
+                outletList, publicationDate, status, link);
 
         return new AddArticleCommand(article);
     }

@@ -276,7 +276,7 @@ public class ParserUtil {
     public static Link parseLink(String link) throws ParseException {
         requireNonNull(link);
         String trimmedLink = link.trim();
-        if (!Link.isValidLink(trimmedLink)){
+        if (!Link.isValidLink(trimmedLink)) {
             throw new ParseException(Link.MESSAGE_CONSTRAINTS);
         }
         return new Link(trimmedLink);
