@@ -20,6 +20,7 @@ import seedu.address.model.Model;
 import seedu.address.model.article.Article;
 import seedu.address.model.article.Article.Status;
 import seedu.address.model.article.Author;
+import seedu.address.model.article.Link;
 import seedu.address.model.article.Outlet;
 import seedu.address.model.article.PublicationDate;
 import seedu.address.model.article.Source;
@@ -100,7 +101,7 @@ public class EditArticleCommand extends ArticleCommand {
         PublicationDate publicationDate = editArticleDescriptor.getPublicationDate()
                 .orElse(articleToEdit.getPublicationDate());
         Status status = editArticleDescriptor.getStatus().orElse(articleToEdit.getStatus());
-        String link = editArticleDescriptor.getLink().orElse(articleToEdit.getLink());
+        Link link = editArticleDescriptor.getLink().orElse(articleToEdit.getLink());
 
         return new Article(title, authors, sources, tags,
                 outlets, publicationDate, status, link); // Include all article attributes here.
@@ -143,7 +144,7 @@ public class EditArticleCommand extends ArticleCommand {
         private Set<Outlet> outlets;
         private PublicationDate publicationDate;
         private Status status;
-        private String link;
+        private Link link;
 
         public EditArticleDescriptor() {}
 
@@ -165,7 +166,7 @@ public class EditArticleCommand extends ArticleCommand {
          * Returns true if at least one field is edited.
          */
         public boolean isAnyFieldEdited() {
-            return CollectionUtil.isAnyNonNull(title, authors, sources, outlets, publicationDate, tags, status);
+            return CollectionUtil.isAnyNonNull(title, authors, sources, outlets, publicationDate, tags, status, link);
         }
 
         public void setTitle(Title title) {
@@ -223,11 +224,11 @@ public class EditArticleCommand extends ArticleCommand {
             return Optional.ofNullable(status);
         }
 
-        public void setLink(String link) {
+        public void setLink(Link link) {
             this.link = link;
         }
 
-        public Optional<String> getLink() {
+        public Optional<Link> getLink() {
             return Optional.ofNullable(link);
         }
 

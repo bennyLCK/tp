@@ -19,6 +19,7 @@ import seedu.address.commons.util.StringUtil;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.article.Article;
 import seedu.address.model.article.Author;
+import seedu.address.model.article.Link;
 import seedu.address.model.article.Outlet;
 import seedu.address.model.article.PublicationDate;
 import seedu.address.model.article.Source;
@@ -272,10 +273,12 @@ public class ParserUtil {
     /**
      * Parses a {@code String link} into a {@code Link}.
      */
-    public static String parseLink(String link) throws ParseException {
+    public static Link parseLink(String link) throws ParseException {
         requireNonNull(link);
         String trimmedLink = link.trim();
-        //removed the check for title validity
-        return trimmedLink;
+        if (!Link.isValidLink(trimmedLink)){
+            throw new ParseException(Link.MESSAGE_CONSTRAINTS);
+        }
+        return new Link(trimmedLink);
     }
 }

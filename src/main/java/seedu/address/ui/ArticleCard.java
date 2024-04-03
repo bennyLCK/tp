@@ -77,12 +77,15 @@ public class ArticleCard extends UiPart<Region> {
         publicationDate.setText(article.getPublicationDateAsString());
         status.setText(article.getStatus().toString());
 
-        String link = article.getLink();
-        System.out.println(link);
-        hyperlink.setText("Link");
-        hyperlink.setOnAction(event -> {
-            openBrowser(link);
-        });
+        String link = article.getLink().link;
+        if (!link.isEmpty()) {
+            hyperlink.setText("Link");
+            hyperlink.setOnAction(event -> {
+                openBrowser(link);
+            });
+        } else {
+            hyperlink.setVisible(false);
+        }
     }
 
     private void openBrowser(String link) {

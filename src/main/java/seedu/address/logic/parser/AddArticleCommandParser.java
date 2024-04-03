@@ -17,6 +17,7 @@ import seedu.address.logic.commands.articlecommands.AddArticleCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.article.Article;
 import seedu.address.model.article.Author;
+import seedu.address.model.article.Link;
 import seedu.address.model.article.Outlet;
 import seedu.address.model.article.PublicationDate;
 import seedu.address.model.article.Source;
@@ -51,8 +52,12 @@ public class AddArticleCommandParser implements Parser<AddArticleCommand> {
         PublicationDate publicationDate = ParserUtil.parsePublicationDate(argMultimap.getValue(PREFIX_PUBLICATION_DATE)
                 .get());
         Article.Status status = (Article.Status) ParserUtil.parseStatus(argMultimap.getValue(PREFIX_STATUS).get());
-        String link = ParserUtil.parseLink(argMultimap.getValue(PREFIX_LINK).get());
-
+        Link link;
+        if (argMultimap.getValue(PREFIX_LINK).isEmpty()) {
+            link = new Link("");
+        } else {
+            link = ParserUtil.parseLink(argMultimap.getValue(PREFIX_LINK).get());
+        }
         Article article = new Article(title, authorList, sourceList, tagList, outletList, publicationDate, status, link);
 
         return new AddArticleCommand(article);
