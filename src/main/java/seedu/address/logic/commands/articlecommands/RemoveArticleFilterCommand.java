@@ -11,7 +11,7 @@ import seedu.address.model.Model;
  * Removes filter so all articles are displayed
  */
 public class RemoveArticleFilterCommand extends ArticleCommand {
-    public static final String COMMAND_WORD = "remove_filter";
+    public static final String COMMAND_WORD = "rmfilter";
     public static final String COMMAND_PREFIX = "-a";
     private static final String MESSAGE_SUCCESS = "Filters have been removed. All articles will be displayed again.";
     @Override
