@@ -6,6 +6,7 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_CONTRIBUTOR;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_DATE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_HEADLINE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_INTERVIEWEE;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_LINK;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_OUTLET;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_STATUS;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
@@ -38,7 +39,7 @@ public class EditArticleCommandParser implements Parser<EditArticleCommand> {
         requireNonNull(args);
         ArgumentMultimap argMultimap =
                 ArgumentTokenizer.tokenize(args, PREFIX_HEADLINE, PREFIX_CONTRIBUTOR, PREFIX_INTERVIEWEE,
-                        PREFIX_TAG, PREFIX_OUTLET, PREFIX_DATE, PREFIX_STATUS);
+                        PREFIX_TAG, PREFIX_OUTLET, PREFIX_DATE, PREFIX_STATUS, PREFIX_LINK);
 
         Index index;
 
@@ -63,6 +64,9 @@ public class EditArticleCommandParser implements Parser<EditArticleCommand> {
         if (argMultimap.getValue(PREFIX_STATUS).isPresent()) {
             editArticleDescriptor.setStatus(ParserUtil.parseStatus(argMultimap.getValue(PREFIX_STATUS)
                     .get()));
+        }
+        if (argMultimap.getValue(PREFIX_LINK).isPresent()) {
+            editArticleDescriptor.setLink(ParserUtil.parseLink(argMultimap.getValue(PREFIX_LINK).get()));
         }
 
         parseAuthorsForEdit(argMultimap.getAllValues(PREFIX_CONTRIBUTOR)).ifPresent(editArticleDescriptor::setAuthors);
