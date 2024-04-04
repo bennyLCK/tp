@@ -7,7 +7,7 @@ import static seedu.address.commons.util.AppUtil.checkArgument;
  * Represents an Article's title in the address book.
  * Guarantees: immutable; is valid as declared in {@link #isValidTitle(String)}
  */
-public class Title implements Comparable<Title> {
+public class Title {
     public static final String MESSAGE_CONSTRAINTS =
             "Titles should should not be blank or start with a whitespace character.";
 
@@ -36,11 +36,6 @@ public class Title implements Comparable<Title> {
     @Override
     public String toString() {
         return fullTitle;
-    }
-
-    @Override
-    public int compareTo(Title other) {
-        return this.fullTitle.compareTo(other.fullTitle);
     }
 
     private boolean areSameTitles(String[] title, String[] otherTitle) {
