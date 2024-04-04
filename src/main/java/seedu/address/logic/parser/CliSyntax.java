@@ -21,5 +21,6 @@ public class CliSyntax {
     public static final Prefix PREFIX_STATUS = new Prefix("S/");
     public static final Prefix PREFIX_START = new Prefix("ST/");
     public static final Prefix PREFIX_END = new Prefix("EN/");
+    public static final Prefix PREFIX_LINK = new Prefix("L/");
 
 }

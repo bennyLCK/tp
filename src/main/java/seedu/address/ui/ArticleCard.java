@@ -1,8 +1,14 @@
 package seedu.address.ui;
 
+
+import java.awt.Desktop;
+import java.io.IOException;
+import java.net.URI;
+import java.net.URISyntaxException;
 import java.util.Comparator;
 
 import javafx.fxml.FXML;
+import javafx.scene.control.Hyperlink;
 import javafx.scene.control.Label;
 import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.HBox;
@@ -44,6 +50,8 @@ public class ArticleCard extends UiPart<Region> {
     private Label publicationDate;
     @FXML
     private Label status;
+    @FXML
+    private Hyperlink hyperlink;
 
 
     /**
@@ -74,6 +82,28 @@ public class ArticleCard extends UiPart<Region> {
         setPadding(outlets);
         publicationDate.setText(article.getPublicationDateAsString());
         status.setText(article.getStatus().toString());
+
+        String link = article.getLink().link;
+        if (!link.isEmpty()) {
+            hyperlink.setText("Link");
+            hyperlink.setOnAction(event -> {
+                openBrowser(link);
+            });
+        } else {
+            hyperlink.setVisible(false);
+        }
+    }
+
+    private void openBrowser(String link) {
+        if (Desktop.isDesktopSupported() && Desktop.getDesktop().isSupported(Desktop.Action.BROWSE)) {
+            try {
+                Desktop.getDesktop().browse(new URI(link));
+            } catch (IOException | URISyntaxException e) {
+                e.printStackTrace();
+            }
+        } else {
+            System.out.println("Desktop not supported, cannot open browser.");
+        }
     }
 
     private void setPadding(FlowPane flowPane) {

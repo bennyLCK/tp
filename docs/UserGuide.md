@@ -24,6 +24,10 @@
       * [3.2.3. Listing all articles](#323-listing-all-articles)
       * [3.2.4. Editing an article](#324-editing-an-article)
       * [3.2.5. Searching for an article](#325-searching-for-an-article)
+      * [3.2.6. Filtering Articles](#326-filtering-articles)
+      * [3.2.7. Removing filters](#327-removing-filters)
+      * [3.2.8. Lookup for associated persons](#328-lookup-for-associated-persons--lookup)
+      * [3.2.9. Opening webpage for an article](#329-opening-webpage-for-an-article)
   * [3.3. Other Commands](#33-other-commands)
       * [3.3.1. Help ](#331-viewing-help--help)
       * [3.3.2. Exit](#332-exiting-the-program--exit)
@@ -202,7 +206,21 @@ Format: `sort n/`
 Example:
 * `sort n/` sorts all persons in PressPlanner in ascending order by the lexicographical (alphabetical) ordering of their names so that both the current list of persons, as well as the full list of persons displayed subsequently (if not already) will be sorted in this manner. 
 
-### [3.1.6. Clearing all entries : `clear`](#31-managing-contacts)
+### [3.1.6. Lookup for associated articles : `lookup`](#31-managing-contacta)
+
+Display articles associated with the person where any of the contributor or interviewee name matches the name of the person
+
+Format: `lookup INDEX`
+
+* The index refers to the index number shown in the displayed article list.
+* The index **must be a positive integer** 1, 2, 3, ...
+* If INDEX exceeds the number of articles in the list, an error message is printed.
+* INDEX should be a positive integer, if not, an error message will be printed.
+
+Examples:
+* `lookup 1` returns all persons associated with the first article in the list of articles.
+
+### [3.1.7. Clearing all entries : `clear`](#31-managing-contacts)
 
 Clears all entries from the address book.
 
@@ -224,7 +242,7 @@ Examples:
 
 Deletes an existing article from the address book.
 
-Format : `delete -a [INDEX]`
+Format : `delete -a INDEX`
 
 * Deletes the article at the specified index.
 * The index refers to the index number shown in the displayed article list.
@@ -277,6 +295,25 @@ Format: `find -a KEYWORD [MORE_KEYWORDS]`
 
 Examples:
 * `find -a Monkey King` returns two articles: `Monkey breaking window of NTU student’s hall after being aggravated` and `King Charles’ health crisis: the future of Britain becomes uncertain`
+### [3.2.6. Filtering Articles](#32-managing-articles)
+Filter Press Planner by various factors to find what you are looking for more quickly!
+
+Format: `filter -a S/Status TAG/Tag ST/Start date EN/End date`
+
+* Filter command also lists out the articles passing through the filter, so it may override find command used before it.
+* All the prefixes need to be included, but the fields are not mandatory!
+* Filters are not stored, so make sure to finish your search before closing the app!
+* Filter will apply until you remove it or apply a new filter, so make sure you remove it after you are done!
+Examples:
+* `filter -a S/DRAFT TAG/ ST/ EN/` will return all articles with draft status.
+
+### [3.2.7. Removing filters](#32-managing-articles)
+Remove filters so all articles are displayed.
+
+Format: `rmfilter -a`
+
+* No additional parameters.
+* The -a is necessary, additional letters will cause command to fail.
 
 ### Sorting articles by publication date: `sort -a d/`
 
@@ -290,6 +327,28 @@ Format: `sort -a d/`
 
 Example:
 * `sort -a d/` sorts all articles in PressPlanner in descending order by their publication date and time so that both the current list of articles, as well as the full list of articles displayed subsequently (if not already) will be sorted in this manner.
+
+### [3.2.8. Lookup for associated persons : `lookup`](#32-managing-articles)
+
+Finds persons associated with the article whose name matches any of the names of authors or sources of the article.
+
+Format: `lookup INDEX`
+
+* The index refers to the index number shown in the displayed article list.
+* The index **must be a positive integer** 1, 2, 3, ...
+* If INDEX exceeds the number of articles in the list, an error message is printed.
+* INDEX should be a positive integer, if not, an error message will be printed.
+
+Examples:
+* `lookup 1` returns all persons associated with the first article in the list of articles.
+
+
+### [3.2.9. Opening webpage for an article](#32-managing-articles)
+
+* By clicking the `Link` button of your article that is highlighted in yellow box in the picture below, you can open up the webpage for your article that is added when you added the article.
+
+![opening link](images/LinkFeatureSample.png)
+
 
 ## [3.3. Other Commands](#3-features)
 
@@ -335,3 +394,7 @@ Format: `exit`
 ### [5.3. Why were all my previous data for contacts (and / or) articles from previous sessions deleted and replaced by the default template data?](#5-faqs)
 * This means that your save file was either corrupted or lost. To avoid this, refrain from editing files in the data folder (specifically **AddressBook.json** and **ArticleBook.json** files which contain the saved contacts and articles respectively, from previous sessions) unless you are sure about what you are doing.
 * To mitigate possible accidental data corruption which may result in the deletion of any of the save files, please make a copy of the data files after every session where major changes were made, so that in the event the most recent data is lost, you would still have a recent data file which can then be added back into the data folder located at the working directory of the PressPlanner.jar file and be loaded up into the application.
+
+### [5.4. Why does my link not open the browser?](#5-faqs)
+* This means that your URL added to the PressPlanner is an invalid link.
+* To let you know when the URL is invalid, we will soon be implementing the app to show you an error message when your link that is typed is invalid. Please wait for our future updates!

@@ -67,7 +67,9 @@ public class Messages {
                 .append("; Tags: ")
                 .append(article.getTags())
                 .append("; Status: ")
-                .append(article.getStatus());
+                .append(article.getStatus())
+                .append("; Link: ")
+                .append(article.getLink());
         return builder.toString();
     }
 
