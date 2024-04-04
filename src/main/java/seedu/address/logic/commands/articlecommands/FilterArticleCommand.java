@@ -27,7 +27,7 @@ public class FilterArticleCommand extends ArticleCommand {
     public static final String COMMAND_PREFIX = "-a";
 
     public static final String MESSAGE_SUCCESS = "Filter online\nUse " + RemoveArticleFilterCommand.COMMAND_WORD
-        + " to display all articles again";
+        + "-a to display all articles again";
     private Predicate<Article> finalPredicate;
 
     /**
