@@ -8,6 +8,7 @@ import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.article.Article;
 import seedu.address.model.article.Article.Status;
 import seedu.address.model.article.Author;
+import seedu.address.model.article.Link;
 import seedu.address.model.article.Outlet;
 import seedu.address.model.article.PublicationDate;
 import seedu.address.model.article.Source;
@@ -27,6 +28,7 @@ public class ArticleBuilder {
     public static final String DEFAULT_OUTLET = "The Straits Times";
     public static final String DEFAULT_TAG = "Fantasy";
     public static final String DEFAULT_STATUS = "DRAFT";
+    public static final String DEFAULT_LINK = "https://www.google.com/";
 
     private Title title;
     private Set<Author> authors;
@@ -35,7 +37,7 @@ public class ArticleBuilder {
     private Set<Outlet> outlets;
     private Set<Tag> tags;
     private Status status;
-
+    private Link link;
     /**
      * Creates a {@code ArticleBuilder} with the default details.
      */
@@ -55,6 +57,7 @@ public class ArticleBuilder {
         tags = new HashSet<>();
         tags.add(new Tag(DEFAULT_TAG));
         status = Status.valueOf(DEFAULT_STATUS);
+        link = new Link(DEFAULT_LINK);
     }
 
     /**
@@ -68,6 +71,7 @@ public class ArticleBuilder {
         outlets = articleToCopy.getOutlets();
         tags = articleToCopy.getTags();
         status = articleToCopy.getStatus();
+        link = articleToCopy.getLink();
     }
 
     /**
@@ -130,7 +134,14 @@ public class ArticleBuilder {
         return this;
     }
 
+    /**
+     * Sets the {@code Link} of the {@code Article} that we are building.
+     */
+    public ArticleBuilder withLink(String link) {
+        this.link = new Link(link);
+        return this;
+    }
     public Article build() {
-        return new Article(title, authors, sources, tags, outlets, publicationDate, status);
+        return new Article(title, authors, sources, tags, outlets, publicationDate, status, link);
     }
 }

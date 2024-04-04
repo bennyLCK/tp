@@ -35,6 +35,7 @@ public class Article {
     }
 
     private final Status status;
+    private final Link link;
 
     /**
      * Constructs an Article object.
@@ -47,7 +48,7 @@ public class Article {
      * @param status the current status of the article.
      */
     public Article(Title title, Set<Author> authors, Set<Source> sources, Set<Tag> tags,
-                   Set<Outlet> outlets, PublicationDate publicationDate, Status status) {
+                   Set<Outlet> outlets, PublicationDate publicationDate, Status status, Link link) {
         requireAllNonNull(title, authors, sources, tags, outlets, publicationDate, status);
         this.title = title;
         this.authors.addAll(authors);
@@ -56,6 +57,7 @@ public class Article {
         this.outlets.addAll(outlets);
         this.publicationDate = publicationDate;
         this.status = status;
+        this.link = link;
     }
 
     public Title getTitle() {
@@ -92,6 +94,9 @@ public class Article {
 
     public List<Person> getPersons() {
         return persons;
+    }
+    public Link getLink() {
+        return this.link;
     }
 
     /**
@@ -199,12 +204,13 @@ public class Article {
                 && sources.equals(otherArticle.sources)
                 && publicationDate.equals(otherArticle.publicationDate)
                 && tags.equals(otherArticle.tags)
-                && status.equals(otherArticle.status);
+                && status.equals(otherArticle.status)
+                && link.equals(otherArticle.link);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(title, authors, publicationDate, sources, tags, status);
+        return Objects.hash(title, authors, publicationDate, sources, tags, status, link);
     }
 
     @Override
@@ -216,6 +222,7 @@ public class Article {
                 .add("sources", sources)
                 .add("tags", tags)
                 .add("status", status)
+                .add("link", link)
                 .toString();
     }
 }
