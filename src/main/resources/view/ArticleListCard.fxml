@@ -27,12 +27,10 @@
         </Label>
         <Label fx:id="title" text="\$first" styleClass="cell_big_label" />
       </HBox>
-      <VBox spacing="3">
-        <FlowPane fx:id="authors"/>
-        <FlowPane fx:id="sources"/>
-        <FlowPane fx:id="tags"/>
-        <FlowPane fx:id="outlets"/>
-      </VBox>
+      <FlowPane fx:id="authors"/>
+      <FlowPane fx:id="sources"/>
+      <FlowPane fx:id="tags"/>
+      <FlowPane fx:id="outlets"/>
       <Label fx:id="publicationDate" styleClass="cell_small_label" text="\$publicationDate" />
       <Label fx:id="status" styleClass="cell_small_label" text="\$status" />
     </VBox>
