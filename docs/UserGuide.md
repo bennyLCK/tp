@@ -275,6 +275,15 @@ Format: `filter -a S/Status TAG/Tag ST/Start date EN/End date`
 * Filter will apply until you remove it or apply a new filter, so make sure you remove it after you are done!
 Examples:
 * `filter -a S/DRAFT TAG/ ST/ EN/` will return all articles with draft status.
+
+### [3.2.7 Removing filters]()
+Remove filters so all articles are displayed.
+
+Format: `rmfilter -a`
+
+* No additional parameters.
+* The -a is necessary, additional letters will cause command to fail.
+
 ## [3.3. Other Commands](#3-features)
 
 ### [3.3.1. Viewing help : `help`](#33-other-commands)
