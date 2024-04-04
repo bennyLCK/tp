@@ -21,10 +21,10 @@ public class FilterArticleCommandParser implements Parser<FilterArticleCommand> 
                 PREFIX_TAG, PREFIX_START, PREFIX_END);
         if (!arePrefixesPresent(argMultimap, PREFIX_STATUS, PREFIX_TAG, PREFIX_START, PREFIX_END)) {
             throw new ParseException("Invalid command format!\nfilter: Applies a filter. "
-                    + "Parameters:"+ PREFIX_STATUS + "Status "+ PREFIX_TAG + "tag "
+                    + "Parameters:" + PREFIX_STATUS + "Status " + PREFIX_TAG + "tag "
                     + PREFIX_START + "Start date " + PREFIX_END + "End date"
                     + "\nExample: filter -a " + PREFIX_STATUS
-                    + "DRAFT "+ PREFIX_TAG + "Product Releases "
+                    + "DRAFT " + PREFIX_TAG + "Product Releases "
                     + PREFIX_START + "01-01-2001 " + PREFIX_END + "03-03-2023"
             );
         }
