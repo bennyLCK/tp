@@ -189,7 +189,21 @@ Examples:
 * `find John` returns `john` and `John Doe`
 * `find alex david` returns `Alex Yeoh`, `David Li`
 
-### [3.1.6. Clearing all entries : `clear`](#31-managing-contacts)
+### [3.1.6. Lookup for associated articles : `lookup`](#31-managing-contacta)
+
+Display articles associated with the person where any of the contributor or interviewee name matches the name of the person
+
+Format: `lookup INDEX`
+
+* The index refers to the index number shown in the displayed article list.
+* The index **must be a positive integer** 1, 2, 3, ...
+* If INDEX exceeds the number of articles in the list, an error message is printed.
+* INDEX should be a positive integer, if not, an error message will be printed.
+
+Examples:
+* `lookup 1` returns all persons associated with the first article in the list of articles.
+
+### [3.1.7. Clearing all entries : `clear`](#31-managing-contacts)
 
 Clears all entries from the address book.
 
@@ -211,7 +225,7 @@ Examples:
 
 Deletes an existing article from the address book.
 
-Format : `delete -a [INDEX]`
+Format : `delete -a INDEX`
 
 * Deletes the article at the specified index.
 * The index refers to the index number shown in the displayed article list.
@@ -283,6 +297,20 @@ Format: `rmfilter -a`
 
 * No additional parameters.
 * The -a is necessary, additional letters will cause command to fail.
+
+### [3.2.6. Lookup for associated persons : `lookup`](#32-managing-articles)
+
+Finds persons associated with the article whose name matches any of the names of authors or sources of the article.
+
+Format: `lookup INDEX`
+
+* The index refers to the index number shown in the displayed article list.
+* The index **must be a positive integer** 1, 2, 3, ...
+* If INDEX exceeds the number of articles in the list, an error message is printed.
+* INDEX should be a positive integer, if not, an error message will be printed.
+
+Examples:
+* `lookup 1` returns all persons associated with the first article in the list of articles.
 
 ## [3.3. Other Commands](#3-features)
 

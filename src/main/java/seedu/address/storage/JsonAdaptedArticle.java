@@ -14,6 +14,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.model.article.Article;
 import seedu.address.model.article.Author;
+import seedu.address.model.article.Link;
 import seedu.address.model.article.Outlet;
 import seedu.address.model.article.PublicationDate;
 import seedu.address.model.article.Source;
@@ -32,6 +33,7 @@ public class JsonAdaptedArticle {
     private final List<JsonAdaptedTag> tags = new ArrayList<>();
     private final List<JsonAdaptedOutlet> outlets = new ArrayList<>();
     private final Article.Status status;
+    private final String link;
 
     /**
      * Construct a {@code JsonAdaptedArticle} with the given article details.
@@ -43,6 +45,7 @@ public class JsonAdaptedArticle {
      * @param outlets
      * @param publicationDate
      * @param status
+     * @param link
      */
     @JsonCreator
     public JsonAdaptedArticle(@JsonProperty("title") String title,
@@ -51,7 +54,8 @@ public class JsonAdaptedArticle {
                               @JsonProperty("tags") List<JsonAdaptedTag> tags,
                               @JsonProperty("outlets") List<JsonAdaptedOutlet> outlets,
                               @JsonProperty("publicationDate") String publicationDate,
-                              @JsonProperty("status") Article.Status status) {
+                              @JsonProperty("status") Article.Status status,
+                              @JsonProperty("link") String link) {
         this.title = title;
         if (authors != null) {
             this.authors.addAll(authors);
@@ -67,6 +71,7 @@ public class JsonAdaptedArticle {
         }
         this.publicationDate = publicationDate;
         this.status = status;
+        this.link = link;
     }
     /**
      * Construct a {@code JsonAdaptedArticle} with neccessary details
@@ -88,6 +93,7 @@ public class JsonAdaptedArticle {
                 .collect(Collectors.toList()));
         publicationDate = sourceArticle.getPublicationDate().toString();
         status = sourceArticle.getStatus();
+        link = sourceArticle.getLink().link;
     }
 
     /**
@@ -130,8 +136,9 @@ public class JsonAdaptedArticle {
         final Set<Tag> modelTags = new HashSet<>(articleTags);
 
         final Set<Outlet> modelOutlets = new HashSet<>(articleOutlets);
+        final Link modelLink = new Link(link);
 
         return new Article(modelTitle, modelAuthors, modelSources, modelTags,
-                modelOutlets, modelPublicationDate, status);
+                modelOutlets, modelPublicationDate, status, modelLink);
     }
 }

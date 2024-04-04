@@ -10,6 +10,7 @@ import seedu.address.model.ReadOnlyArticleBook;
 import seedu.address.model.article.Article;
 import seedu.address.model.article.Article.Status;
 import seedu.address.model.article.Author;
+import seedu.address.model.article.Link;
 import seedu.address.model.article.Outlet;
 import seedu.address.model.article.PublicationDate;
 import seedu.address.model.article.Source;
@@ -26,7 +27,7 @@ public class SampleArticleDataUtil {
             new Article(new Title("The epitome of pain and suffering by NUS CS students."),
                     getAuthorSet("Alice", "Bob"),
                     getSourceSet("NUS Computing Club"), getTagSet("Student Life"), getOutletSet("SOC News Bulletin"),
-                    new PublicationDate(LocalDateTime.now()), Status.PUBLISHED)
+                    new PublicationDate(LocalDateTime.now()), Status.PUBLISHED, new Link("https://www.google.com/"))
         };
     }
 

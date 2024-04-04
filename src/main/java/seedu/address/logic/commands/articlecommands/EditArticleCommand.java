@@ -1,6 +1,13 @@
 package seedu.address.logic.commands.articlecommands;
 
 import static java.util.Objects.requireNonNull;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_AUTHOR;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_OUTLET;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_PUBLICATION_DATE;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_SOURCE;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_STATUS;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_TITLE;
 import static seedu.address.model.Model.PREDICATE_SHOW_ALL_ARTICLES;
 
 import java.util.Collections;
@@ -20,6 +27,7 @@ import seedu.address.model.Model;
 import seedu.address.model.article.Article;
 import seedu.address.model.article.Article.Status;
 import seedu.address.model.article.Author;
+import seedu.address.model.article.Link;
 import seedu.address.model.article.Outlet;
 import seedu.address.model.article.PublicationDate;
 import seedu.address.model.article.Source;
@@ -41,9 +49,21 @@ public class EditArticleCommand extends ArticleCommand {
             + "by the index number used in the displayed article list. "
             + "Existing values will be overwritten by the input values.\n"
             + "Parameters: INDEX (must be a positive integer) "
-            + "MORE PARAMETERS" // Add all possible parameters here.
+            + "[" + PREFIX_TITLE + "HEADLINE] "
+            + "[" + PREFIX_AUTHOR + "CONTRIBUTOR]... "
+            + "[" + PREFIX_PUBLICATION_DATE + "DATE] "
+            + "[" + PREFIX_SOURCE + "INTERVIEWEE]... "
+            + "[" + PREFIX_TAG + "TAG]... "
+            + "[" + PREFIX_OUTLET + "OUTLET]... "
+            + "[" + PREFIX_STATUS + "STATUS]\n"
             + "Example: " + COMMAND_WORD + " " + COMMAND_PREFIX + " 1 "
-            + "PARAMETERS LISTED HERE"; // Parameters used in the example are added here.
+            + PREFIX_TITLE + "Headline "
+            + PREFIX_AUTHOR + "Contributor(s) "
+            + PREFIX_PUBLICATION_DATE + "2021-10-10 "
+            + PREFIX_SOURCE + "Interviewee(s) "
+            + PREFIX_TAG + "New Tag(s) "
+            + PREFIX_OUTLET + "New Outlet(s) "
+            + PREFIX_STATUS + "PUBLISHED";
 
     public static final String MESSAGE_EDIT_ARTICLE_SUCCESS = "Edited Article: %1$s";
     public static final String MESSAGE_NOT_EDITED = "At least one field to edit must be provided.";
@@ -100,9 +120,10 @@ public class EditArticleCommand extends ArticleCommand {
         PublicationDate publicationDate = editArticleDescriptor.getPublicationDate()
                 .orElse(articleToEdit.getPublicationDate());
         Status status = editArticleDescriptor.getStatus().orElse(articleToEdit.getStatus());
+        Link link = editArticleDescriptor.getLink().orElse(articleToEdit.getLink());
 
         Article editedArticle = new Article(title, authors, sources, tags,
-                outlets, publicationDate, status); // Include all article attributes here.
+                outlets, publicationDate, status, link); // Include all article attributes here.
         editedArticle.setPersons(articleToEdit.getPersons());
         return editedArticle;
     }
@@ -144,6 +165,7 @@ public class EditArticleCommand extends ArticleCommand {
         private Set<Outlet> outlets;
         private PublicationDate publicationDate;
         private Status status;
+        private Link link;
 
         public EditArticleDescriptor() {}
 
@@ -158,13 +180,14 @@ public class EditArticleCommand extends ArticleCommand {
             setOutlets(toCopy.outlets);
             setPublicationDate(toCopy.publicationDate);
             setStatus(toCopy.status);
+            setLink(toCopy.link);
         }
 
         /**
          * Returns true if at least one field is edited.
          */
         public boolean isAnyFieldEdited() {
-            return CollectionUtil.isAnyNonNull(title, authors, sources, outlets, publicationDate, tags, status);
+            return CollectionUtil.isAnyNonNull(title, authors, sources, outlets, publicationDate, tags, status, link);
         }
 
         public void setTitle(Title title) {
@@ -222,6 +245,14 @@ public class EditArticleCommand extends ArticleCommand {
             return Optional.ofNullable(status);
         }
 
+        public void setLink(Link link) {
+            this.link = link;
+        }
+
+        public Optional<Link> getLink() {
+            return Optional.ofNullable(link);
+        }
+
         @Override
         public boolean equals(Object other) {
             if (other == this) {
@@ -242,7 +273,8 @@ public class EditArticleCommand extends ArticleCommand {
                     && Objects.equals(outlets, otherEditArticleDescriptor.outlets)
                     && Objects.equals(publicationDate, otherEditArticleDescriptor.publicationDate)
                     && Objects.equals(tags, otherEditArticleDescriptor.tags)
-                    && Objects.equals(status, otherEditArticleDescriptor.status);
+                    && Objects.equals(status, otherEditArticleDescriptor.status)
+                    && Objects.equals(link, otherEditArticleDescriptor.link);
         }
 
         @Override
