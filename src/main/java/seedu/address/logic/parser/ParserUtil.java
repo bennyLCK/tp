@@ -258,7 +258,7 @@ public class ParserUtil {
     public static Status parseStatus(String status) throws ParseException {
         requireNonNull(status);
         String trimmedStatus = status.trim();
-        switch (trimmedStatus) {
+        switch (trimmedStatus.toUpperCase()) {
         case "DRAFT":
             return DRAFT;
         case "PUBLISHED":
@@ -266,7 +266,7 @@ public class ParserUtil {
         case "ARCHIVED":
             return ARCHIVED;
         default:
-            throw new ParseException("Invalid status");
+            throw new ParseException("Invalid status provided. Please provide either draft, published or archived.");
         }
     }
 
