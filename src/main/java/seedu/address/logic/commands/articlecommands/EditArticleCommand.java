@@ -5,7 +5,6 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_CONTRIBUTOR;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_DATE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_HEADLINE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_INTERVIEWEE;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_LINK;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_OUTLET;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_STATUS;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
@@ -52,14 +51,18 @@ public class EditArticleCommand extends ArticleCommand {
             + "Parameters: INDEX (must be a positive integer) "
             + "[" + PREFIX_HEADLINE + "HEADLINE] "
             + "[" + PREFIX_CONTRIBUTOR + "CONTRIBUTOR]... "
+            + "[" + PREFIX_DATE + "DATE] "
             + "[" + PREFIX_INTERVIEWEE + "INTERVIEWEE]... "
             + "[" + PREFIX_TAG + "TAG]... "
             + "[" + PREFIX_OUTLET + "OUTLET]... "
-            + "[" + PREFIX_DATE + "DATE] "
             + "[" + PREFIX_STATUS + "STATUS]\n"
-            + "[" + PREFIX_LINK + "LINK]\n"
             + "Example: " + COMMAND_WORD + " " + COMMAND_PREFIX + " 1 "
-            + PREFIX_DATE + "10-10-2021 "
+            + PREFIX_HEADLINE + "Headline "
+            + PREFIX_CONTRIBUTOR + "Contributor(s) "
+            + PREFIX_DATE + "2021-10-10 "
+            + PREFIX_INTERVIEWEE + "Interviewee(s) "
+            + PREFIX_TAG + "New Tag(s) "
+            + PREFIX_OUTLET + "New Outlet(s) "
             + PREFIX_STATUS + "PUBLISHED";
 
     public static final String MESSAGE_EDIT_ARTICLE_SUCCESS = "Edited Article: %1$s";

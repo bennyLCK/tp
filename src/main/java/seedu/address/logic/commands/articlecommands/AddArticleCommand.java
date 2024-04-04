@@ -5,7 +5,6 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_CONTRIBUTOR;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_DATE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_HEADLINE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_INTERVIEWEE;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_LINK;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_OUTLET;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_STATUS;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
@@ -32,12 +31,11 @@ public class AddArticleCommand extends ArticleCommand {
             + "Parameters: "
             + PREFIX_HEADLINE + "HEADLINE "
             + "[" + PREFIX_CONTRIBUTOR + "CONTRIBUTOR]... "
+            + PREFIX_DATE + "DATE] "
             + "[" + PREFIX_INTERVIEWEE + "INTERVIEWEE]... "
             + "[" + PREFIX_TAG + "TAG]... "
             + "[" + PREFIX_OUTLET + "OUTLET]... "
-            + PREFIX_DATE + "DATE "
-            + PREFIX_STATUS + "STATUS"
-            + "[" + PREFIX_LINK + "LINK]\n"
+            + PREFIX_STATUS + "STATUS\n"
             + "Example: " + COMMAND_WORD + " " + COMMAND_PREFIX + " "
             + PREFIX_HEADLINE + "The Great Article "
             + PREFIX_CONTRIBUTOR + "John Doe "
