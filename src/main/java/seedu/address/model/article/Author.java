@@ -25,7 +25,6 @@ public class Author {
 
     /**
      * Returns true if a given string is a valid author name.
-     * TODO: Map to a valid author name in the address book
      */
     public static boolean isValidAuthorName(String test) {
         return test.matches(VALIDATION_REGEX);
