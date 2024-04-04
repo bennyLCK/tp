@@ -24,7 +24,10 @@
       * [3.2.3. Listing all articles](#323-listing-all-articles)
       * [3.2.4. Editing an article](#324-editing-an-article)
       * [3.2.5. Searching for an article](#325-searching-for-an-article)
-      * [3.2.8. Opening webpage for an article](#328-opening-webpage-for-an-article)
+      * [3.2.6. Filtering Articles](#326-filtering-articles)
+      * [3.2.7. Removing filters](#327-removing-filters)
+      * [3.2.8. Lookup for associated persons](#328-lookup-for-associated-persons--lookup)
+      * [3.2.9. Opening webpage for an article](#329-opening-webpage-for-an-article)
   * [3.3. Other Commands](#33-other-commands)
       * [3.3.1. Help ](#331-viewing-help--help)
       * [3.3.2. Exit](#332-exiting-the-program--exit)
@@ -279,7 +282,7 @@ Format: `find -a KEYWORD [MORE_KEYWORDS]`
 
 Examples:
 * `find -a Monkey King` returns two articles: `Monkey breaking window of NTU student’s hall after being aggravated` and `King Charles’ health crisis: the future of Britain becomes uncertain`
-### [3.2.6 Filtering Articles]()
+### [3.2.6. Filtering Articles](#32-managing-articles)
 Filter Press Planner by various factors to find what you are looking for more quickly!
 
 Format: `filter -a S/Status TAG/Tag ST/Start date EN/End date`
@@ -291,7 +294,7 @@ Format: `filter -a S/Status TAG/Tag ST/Start date EN/End date`
 Examples:
 * `filter -a S/DRAFT TAG/ ST/ EN/` will return all articles with draft status.
 
-### [3.2.7 Removing filters]()
+### [3.2.7. Removing filters](#32-managing-articles)
 Remove filters so all articles are displayed.
 
 Format: `rmfilter -a`
@@ -300,7 +303,7 @@ Format: `rmfilter -a`
 * The -a is necessary, additional letters will cause command to fail.
 
 
-### [3.2.6. Lookup for associated persons : `lookup`](#32-managing-articles)
+### [3.2.8. Lookup for associated persons : `lookup`](#32-managing-articles)
 
 Finds persons associated with the article whose name matches any of the names of authors or sources of the article.
 
@@ -315,7 +318,7 @@ Examples:
 * `lookup 1` returns all persons associated with the first article in the list of articles.
 
 
-### [3.2.8. Opening webpage for an article](#32-managing-articles)
+### [3.2.9. Opening webpage for an article](#32-managing-articles)
 
 By clicking the `Link` button of your article that is highlighted in yellow box in the picture below, you can open up the webpage for your article that is added when you added the article.
 
