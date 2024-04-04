@@ -1,6 +1,13 @@
 package seedu.address.logic.commands.articlecommands;
 
 import static java.util.Objects.requireNonNull;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_AUTHOR;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_OUTLET;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_PUBLICATION_DATE;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_SOURCE;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_STATUS;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_TITLE;
 import static seedu.address.model.Model.PREDICATE_SHOW_ALL_ARTICLES;
 
 import java.util.Collections;
@@ -42,9 +49,21 @@ public class EditArticleCommand extends ArticleCommand {
             + "by the index number used in the displayed article list. "
             + "Existing values will be overwritten by the input values.\n"
             + "Parameters: INDEX (must be a positive integer) "
-            + "MORE PARAMETERS" // Add all possible parameters here.
+            + "[" + PREFIX_TITLE + "HEADLINE] "
+            + "[" + PREFIX_AUTHOR + "CONTRIBUTOR]... "
+            + "[" + PREFIX_PUBLICATION_DATE + "DATE] "
+            + "[" + PREFIX_SOURCE + "INTERVIEWEE]... "
+            + "[" + PREFIX_TAG + "TAG]... "
+            + "[" + PREFIX_OUTLET + "OUTLET]... "
+            + "[" + PREFIX_STATUS + "STATUS]\n"
             + "Example: " + COMMAND_WORD + " " + COMMAND_PREFIX + " 1 "
-            + "PARAMETERS LISTED HERE"; // Parameters used in the example are added here.
+            + PREFIX_TITLE + "Headline "
+            + PREFIX_AUTHOR + "Contributor(s) "
+            + PREFIX_PUBLICATION_DATE + "2021-10-10 "
+            + PREFIX_SOURCE + "Interviewee(s) "
+            + PREFIX_TAG + "New Tag(s) "
+            + PREFIX_OUTLET + "New Outlet(s) "
+            + PREFIX_STATUS + "PUBLISHED";
 
     public static final String MESSAGE_EDIT_ARTICLE_SUCCESS = "Edited Article: %1$s";
     public static final String MESSAGE_NOT_EDITED = "At least one field to edit must be provided.";
