@@ -108,7 +108,7 @@ public class UniqueArticleList implements Iterable<Article> {
      */
     public void sortArticles(String prefix) {
         requireNonNull(prefix);
-        if (PREFIX_DATE.getPrefix().equals(prefix)) {
+        if (PREFIX_DATE.getPrefix().equalsIgnoreCase(prefix)) {
             // Sort by publication date and display most recent articles first.
             internalList.sort(Comparator.comparing(Article::getPublicationDate, Comparator.reverseOrder()));
         } else {
