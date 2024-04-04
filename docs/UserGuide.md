@@ -279,6 +279,25 @@ Format: `find -a KEYWORD [MORE_KEYWORDS]`
 
 Examples:
 * `find -a Monkey King` returns two articles: `Monkey breaking window of NTU student’s hall after being aggravated` and `King Charles’ health crisis: the future of Britain becomes uncertain`
+### [3.2.6 Filtering Articles]()
+Filter Press Planner by various factors to find what you are looking for more quickly!
+
+Format: `filter -a S/Status TAG/Tag ST/Start date EN/End date`
+
+* Filter command also lists out the articles passing through the filter, so it may override find command used before it.
+* All the prefixes need to be included, but the fields are not mandatory!
+* Filters are not stored, so make sure to finish your search before closing the app!
+* Filter will apply until you remove it or apply a new filter, so make sure you remove it after you are done!
+Examples:
+* `filter -a S/DRAFT TAG/ ST/ EN/` will return all articles with draft status.
+
+### [3.2.7 Removing filters]()
+Remove filters so all articles are displayed.
+
+Format: `rmfilter -a`
+
+* No additional parameters.
+* The -a is necessary, additional letters will cause command to fail.
 
 
 ### [3.2.6. Lookup for associated persons : `lookup`](#32-managing-articles)
