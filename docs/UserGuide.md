@@ -5,7 +5,6 @@
 * [1. Introduction](#1-introduction)
   * [1.1. Using this Guide](#11-using-this-guide)
   * [1.2. Purpose](#12-purpose)
-  * [1.3. Scope](#13-scope)
 * [2. Getting Started](#2-getting-started)
     * [2.1. Installation](#21-installation)
     * [2.2. Launching the App](#22-launching-the-app)
@@ -37,33 +36,49 @@
 ## [1. Introduction](#table-of-contents)
 ### [1.1. Using this Guide](#1-introduction)
 This guide is intended to help you get started with PressPlanner. It will guide you through the installation process, provide a brief overview of the app's features, and give you a quick reference to the commands you can use. All sections headers will link you back to the start of their parent section, so you can easily navigate the guide.
-### [1.2. Purpose](#1-introduction)
-PressPlanner was built with **freelance journalists in mind**. It acts as your digital addressbook, helping you keep track of your contacts, articles and deadlines. Augment your workflow with lightning fast Command Line Interface (CLI) controls whilst leveraging the user-friendly Graphical User Interface (GUI).
-### [1.3. Scope](#1-introduction)
-The scope of the PressPlanner application is tailored to the specific needs of journalists and freelance writers in the tech sector. It facilitates the management of contacts within the industry, including sources, experts, and colleagues, ensuring seamless communication. Additionally, the app enables you to maintain valuable insights about your portfolio of articles. It assists in tracking which outlets are receptive to your work and swiftly identifying contacts with whom you've collaborated in the past, streamlining coordination for future articles and expediting the most demanding aspects of your workflow. By providing these organizational tools, the app empowers you to concentrate more on your writing, stress free.
+### [1.2. Why Use PressPlanner?](#1-introduction)
+PressPlanner was built with **freelance journalists in mind**. It acts as your digital addressbook, helping you keep track of your contacts, articles and deadlines.
+
+Unlike major firms, freelancers often lack the same wealth of contacts and resources. PressPlanner helps you maximise the value you can get from your contacts, by providing a platform to store and manage them and keeping track of which contacts you've worked with for different articles.
+
+PressPlanner main draws are its ability to help you:
+1. Develop deeper story angles and reconnect with past interviewees or collaborators
+   - [Filter](#326-filtering-articles) by tags to find past articles on a specific topic
+   - [Lookup](#328-lookup-for-associated-persons--lookup) persons of interest related to those past articles
+   - Contact these persons for interviews or collaboration
+
+
+2. Follow up on breaking stories
+   - [Filter](#326-filtering-articles) by status and tags to find published articles related to breaking news
+   - Make changes to your article as the story develops
+
+PressPlanner's tagging system for [persons](#31-managing-contacts) and [articles](#32-managing-articles) is flexible and powerful:
+- Customise your use of tags and still leverage the app's search and filter functions
 
 ## [2. Getting Started](#table-of-contents)
 
 ### [2.1. Installation](#2-getting-started)
 1. Ensure that you have Java `11` or above installed on your computer.
     - Download Java 11 from [the official Oracle website](https://www.oracle.com/java/technologies/downloads/#java11).
+    - If you are unsure what version of java you have, use [this guide](https://www.java.com/en/download/help/version_manual.html) to check.
 1. Download the jar file from [our latest release](https://github.com/AY2324S2-CS2103T-F12-2/tp/releases).
 1. Move it to an **Empty** folder.
     > :warning: App data will be stored in sub-folders from where it is launched. While you could run the app from any location, we recommend making a dedicated folder for our app to avoid confusion.
 
 ### [2.2.  Launching the App](#2-getting-started)
-1. Open a command terminal, `cd` into the folder you put the jar file in, and use the `java -jar addressbook.jar` command to run the application.
-1. A GUI similar to the below should appear in a few seconds. Note how the app contains some sample data.
+1. Open a command terminal, `cd` into the folder you put the jar file in, and use the `java -jar pressplanner.jar` command to run the application.
+1. A window similar to the one below should appear in a few seconds. Note how the app contains some sample data.
 
 <img src="images/Ui.png" alt="UI">
 
-### [2.3. Basic Commands](#2-getting-started)
+### [2.3. The Beginner's Guide to PressPlanner](#2-getting-started)
 
-> :bulb: This section covers commands first-time users might need. For the full commands list, refer to the [Features](#features) section.
+> [!NOTE]
+> This section covers commands first-time users might need. For the full commands list, refer to the [Features](#features) section.
 
 Let's go over the basic PressPlanner workflow. Say you've just finished interviewing a certain Gill Bates about his company's latest product. You want to save his contact for later and keep track of your article. Let's fire up PressPlanner and get this task out of the way.
 
-1. Selecting the command box at the top of the page, let's first add Gill Bates to our address book.
+1. Selecting the command box at the top of the page, let's first add Gill Bates to PressPlanner's address book list.
     - To `add` a contact we need to include the following information separated by their prefixes:
         - Name (`n/`)
         - Phone number (`p/`)
@@ -73,15 +88,18 @@ Let's go over the basic PressPlanner workflow. Say you've just finished intervie
 
 
 2. Next let's add that article you just wrote.
-    > :bulb: Adding an article uses the `add -a` command, the `-a` standing for article. The `-a` suffix is used for all commands pertaining to articles.
-   - To `add -a` an article we need the following information:
-           - Title (`T/`)
-           - Author (`A/`)
-           - Source (`SRC/`)
-           - Date (`D/`)
-           - Category (`C/`)
-           - Status (`S/`)
-       - For example: `add -a T/My Article A/Myself SRC/Gill Bates D/2024-03-02T20:00:00 C/New Releases S/DRAFT`
+    > [!INFO]
+    > Adding an article uses the `add -a` command, the `-a` standing for article. The `-a` suffix is used for all commands pertaining to articles.
+    
+    - To `add -a` an article we need the following information:
+        - Headline (`h/`)
+        - Date (`d/`)
+          - We use a single field for the date:
+            - For drafts, you can use the date you started writing the article
+            - For published articles, use the date of publication
+        - Status (`s/`)
+          - An article can be a `draft`, `published`, or `archived`
+      - For example: `add -a h/My Article d/20-10-2023 s/draft`
 
 3. Now that that's done, let's say you need to find Gill Bate's number to arrange another interview
     - Typing the command `find Gill Bates` will pull up his contact
@@ -97,11 +115,17 @@ Let's go over the basic PressPlanner workflow. Say you've just finished intervie
 
 Now that you know the basic workflow, go ahead and try it out for yourself. If you want to learn more commands, use the `help` command in-app or refer to the [features](#3-features) section of this guide.
 
+As you become more familiar with the app, use tags as you see fit to customise your workflow!
+- Here are some ideas to get you started:
+  - Using tags to rate interviewees' compliance and reliability
+  - Noting down how many clicks articles got in the first 24 hours
+  - Using tags to mark articles with potential for follow-up development
+
 ## [3. Features](#table-of-contents)
+<div class="callout-box">
+Notes about the command format:
 
-**Notes about the command format:**
-
-* Words in `UPPER_CASE` are the parameters to be supplied by the user.
+* Words in `UPPER_CASE` are the parameters to be supplied by you.
   e.g. in `add n/NAME`, `NAME` is a parameter which can be used as `add n/John Doe`.
 
 * Items in square brackets are optional.
@@ -116,32 +140,36 @@ Now that you know the basic workflow, go ahead and try it out for yourself. If y
 
 * Extraneous parameters for commands that do not take in parameters (such as `help`, `list`, `exit` and `clear`) will be ignored.
   e.g. if the command specifies `help 123`, it will be interpreted as `help`.
+</div>
 
-> :warning: If you are using a PDF version of this document, be careful when copying and pasting commands with line breaks as they may not paste correctly.
+> [!WARNING]
+> If you are using a PDF version of this document, be careful when copying and pasting commands with line breaks as they may not paste correctly.
 
 ## [3.1. Managing Contacts](#3-features)
 
-### [3.1.1. Adding a person: `add`](#31-managing-contacts)
+### [3.1.1. Listing all persons : `list`](#31-managing-contacts)
 
-Shows a message explaining how to access the help page.
+Shows a list of all persons in PressPlanner's address book.
+- Use this command to restore the full list of persons after using other commands
 
-Format: `help`
+Format: `list`
 
-### Adding a person: `add`
+### [3.1.2. Adding a person: `add`](#31-managing-contacts)
 
-Adds a person to the address book.
+Adds a person to PressPlanner's address book.
 
 Format: `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]...`
 
-> :bulb: A person can have any number of tags (including 0)
+> [!NOTE] 
+> A person can have any number of tags (including 0).
 
 Examples:
 * `add n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01`
-* `add n/Betsy Crowe t/friend e/betsycrowe@example.com a/Newgate Prison p/1234567 t/criminal`
+* `add n/Betsy Crowe e/betsycrowe@example.com a/Apple HQ p/1234567 t/Marketing Department t/Apple`
 
-### [3.1.2. Deleting a person : `delete`](#31-managing-contacts)
+### [3.1.3. Deleting a person : `delete`](#31-managing-contacts)
 
-Deletes the specified person from the address book.
+Deletes the specified person from PressPlanner's address book.
 
 Format: `delete INDEX`
 
@@ -153,15 +181,9 @@ Examples:
 * `list` followed by `delete 2` deletes the 2nd person in the address book.
 * `find Betsy` followed by `delete 1` deletes the 1st person in the results of the `find` command.
 
-### [3.1.3. Listing all persons : `list`](#31-managing-contacts)
-
-Shows a list of all persons in the address book.
-
-Format: `list`
-
 ### [3.1.4. Editing a person : `edit`](#31-managing-contacts)
 
-Edits an existing person in the address book.
+Edits an existing person in PressPlanner's address book.
 
 Format: `edit INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [t/TAG]...`
 
@@ -228,111 +250,126 @@ Format: `clear`
 
 ## [3.2. Managing Articles](#3-features)
 
-### [3.2.1. Adding an Article](#32-managing-articles)
-Adds a new article to the database.
+### [3.2.1. Listing all Articles](#32-managing-articles)
 
-Format: `add -a T/Title [A/Author1 ...] D/yyyy-mm-ddT00:00:00 [SRC/Source1 ...] C/Category S/Status`
-
-Examples:
-* `add -a T/iPhone 13 Review: The Latest Apple Flagship A/John Doe D/2024-03-19T12:30:45 SRC/Michael Lee C/New Releases S/DRAFT`
-* `add -a T/AI Inc. Acquired by Google  A/Alex Johnson 2 D/2024-04-12T16:00:00 SRC/Emily Brown SRC/Michael Lee C/AI 2 S/PUBLISHED`
-
-
-### [3.2.2. Deleting an Article](#32-managing-articles)
-
-Deletes an existing article from the address book.
-
-Format : `delete -a INDEX`
-
-* Deletes the article at the specified index.
-* The index refers to the index number shown in the displayed article list.
-* delete 1 after the find command deletes the first article found by the find command.
-* If INDEX exceeds the number of articles in the list, an error message is printed.
-* INDEX should be a positive integer, if not, an error message will be printed.
-
-Example : `delete -a 1` deletes the first article from the list of articles or the first article found by find command.
-
-
-### [3.2.3. Listing all Articles](#32-managing-articles)
-
-List out titles of all articles in database
+List out all articles in PressPlanner's database.
 
 Format: `list -a`
 
 * No parameters necessary
-* If you add any extra letters in the command, the command will be ignored.
+* Extra alphanumeric characters in the command (e.g. `list -ab`, `list -a1`) will be ignored and treated as `list` for persons instead.
+* Extra whitespace characters in the command (e.g. `list -a `, `list -a  `) are acceptable.
+
+### [3.2.2. Adding an Article](#32-managing-articles)
+Adds a new article to PressPlanner's database.
+
+Format: `add -a h/HEADLINE [c/CONTRIBUTOR... ] [i/INTERVIEWEE... ] [t/TAG... ] [o/OUTLET... ] d/DATE s/STATUS [l/LINK]`
+* Only `HEADLINE`, `DATE`, and `STATUS` are mandatory fields.
+  * An article's `DATE` is intended to represent:
+    * Time of creation for drafts
+    * Time of publication for published articles.
+  * `DATE` must be in the format `dd-mm-yyyy [HH:mm]`
+    * `HH:mm` is optional and defaults to `00:00` if not provided
+    * `HH:mm` must be in 24-hour format
+    * Examples of valid dates: `01-01-2023`, `01-01-2023 22:30`
+  * `STATUS` can be `draft`, `published`, or `archived`
+* Adding an article will return to displaying all articles if a [find](#325-searching-for-articles) command was executed before.
+  * This does not apply to [filters](#326-filtering-articles).
+
+
+Examples:
+* `add -a h/iPhone 13 Review c/John Doe i/Michael Lee t/New Releases d/20-03-2024 s/draft`
+* `add -a h/AI Inc. Acquired by Google c/Alex Johnson i/Emily Brown t/AI o/CNA d/30-08-2024 08:45 s/published l/www.example.com`
+
+### [3.2.3. Deleting an Article](#32-managing-articles)
+
+Deletes an existing article from PressPlanner's database.
+
+Format : `delete -a INDEX`
+
+* Deletes the article at the specified `INDEX`.
+  * The `INDEX` refers to the index number shown in the current article list view.
+    * If a `filter`, `sort` or `find` command was executed before, the index refers to the index number shown in the filtered/sorted list of articles.
+    * e.g. `delete 1` after the `find` command deletes the first article found by the `find` command.
+* If `INDEX` exceeds the number of articles in the list, an error message is printed.
+* `INDEX` should be a positive integer, if not, an error message will be printed.
+
+Example : `delete -a 1` deletes the article at the first index.
 
 ### [3.2.4. Editing an Article](#32-managing-articles)
 
-Edits an existing article in the article book.
+Edits an existing article in PressPlanner's database.
 
-Format: `edit INDEX [T/TITLE] [A/AUTHORS] [D/PUBLICATION_DATE] [src/SOURCES] [C/CATEGORY] [S/STATUS]...`
+Format: `edit -a [h/HEADLINE] [d/DATE] [s/STATUS] [c/CONTRIBUTOR... ] [i/INTERVIEWEE... ] [t/TAG... ] [o/OUTLET... ] [l/LINK]`
 
-* Edits the article at the specified `INDEX`. The index refers to the index number shown in the displayed person list. The index **must be a positive integer** 1, 2, 3, ...
+* Edits the article at the specified `INDEX`.
+  * The `INDEX` refers to the index number shown in the current article list view.
+  * If a `filter`, `sort` or `find` command was executed before, the index refers to the index number shown in the filtered/sorted list of articles.
 * At least one of the optional fields must be provided.
 * Existing values will be updated to the input values.
-* When editing authors/sources, the existing authors/sources of the person will be removed i.e adding of authors/sources is not cumulative.
-* You can remove all the person’s authors/sources by typing `A/`/`S/` without
-  specifying any authors/sources after it.
+  * When editing a field, the original values will be overwritten by the new values.
+    * `t/` without any value after it will clear all existing tags.
+    * `c/new contributor` will replace all existing contributors with `new contributor`.
+* Refer to the [add article](#321-adding-an-article) command for the format of each field.
+* Editing an article will return to displaying all articles if a [find](#325-searching-for-articles) command was executed before.
+  * This does not apply to [filters](#326-filtering-articles).
 
 Examples:
-*  `edit 1 T/Tech News 1` Edits the title of the 1st article to be `Tech News 1`.
-*  `edit 2 T/Betsy Crower dies S/` Edits the title of the 2nd article to be `Betsy Crower dies` and clears all existing sources.
+*  `edit 1 h/iPhone Review` Edits the headline of the 1st article to be `iPhone Review`.
+*  `edit 2 h/iPhone Review i/` Edits the headline of the 2nd article to be `iPhone Review` and clears all existing interviewees.
 
 
 ### [3.2.5. Searching for Articles](#32-managing-articles)
 
-Finds articles whose titles contain any of the given keywords.
+Finds articles with headlines containing any of the given keywords.
 
 Format: `find -a KEYWORD [MORE_KEYWORDS]`
 
-* Mnemonics or technical terms that are widely used in Singapore like `HDB`, `CPF`, `NSF` would be allowed and treated as normal words during the search
-* The search is case-insensitive. e.g `fire` will match `Fire`
-* The order of the keywords does not matter. e.g. `HDB Fire` will match `Fire HDB`
-* Only the title is searched
-* Only full words will be matched e.g. `Fire` will not match `Fires`
-* Articles matching at least one keyword will be returned e.g. `find -a HDB Fire` will return an article with title: `HDB BTO prices on the rise and Fire at Coffee Shop in Bukit Batok`
+* Only the headline is searched for matches
+* The search is case-insensitive.
+  * e.g `iphone` will match `iPhone`
+* The order of the keywords does not matter.
+    * e.g. `Pro Vision` will match `Vision Pro`
+* Only full words will be matched
+  * e.g. `iPhone` will not match `iPhones`
+* Articles matching at least one keyword will be returned
+  * e.g. `find -a Vision Pro` will return an article with the headline: `Pro tips for Windows 10 Users`
 
 Examples:
-* `find -a Monkey King` returns two articles: `Monkey breaking window of NTU student’s hall after being aggravated` and `King Charles’ health crisis: the future of Britain becomes uncertain`
+* `find -a Vision Pro` returns articles with headlines containing `Vision` or `Pro`
+
 ### [3.2.6. Filtering Articles](#32-managing-articles)
-Filter Press Planner by various factors to find what you are looking for more quickly!
+Filter PressPlanner's database by a combination of attributes to find articles you are looking for quickly.
 
-Format: `filter -a S/Status TAG/Tag ST/Start date EN/End date`
+Format: `filter -a s/STATUS t/TAG ST/START_DATE EN/END_DATE`
+* All the prefixes need to be included, but can be left blank
+  * e.g. `filter -a s/ t/ st/ en/` is a valid command
+  * e.g. `filter -a s/ t/ st/` is not a valid command
+* Use the `filter` command **prior to a `find` command**
+  * `filter` will list all matching articles within the database when first applied
+  * `find` can be used to then search the filtered list
+    * Using `filter` after a `find` command will overwrite the previous `find` command
+* Filters are not stored between sessions, so make sure to finish your search before closing the app!
+* Filters will apply until you [remove](#327-removing-filters) it or apply a new filter, so make sure you [remove](#327-removing-filters) it after you are done!
+* Refer to the [add article](#321-adding-an-article) command for the format of each field.
+  * Note that `START_DATE` and `END_DATE` must be in the same format as `DATE` in the [add article](#321-adding-an-article) command.
 
-* Filter command also lists out the articles passing through the filter, so it may override find command used before it.
-* All the prefixes need to be included, but the fields are not mandatory!
-* Filters are not stored, so make sure to finish your search before closing the app!
-* Filter will apply until you remove it or apply a new filter, so make sure you remove it after you are done!
 Examples:
 * `filter -a S/DRAFT TAG/ ST/ EN/` will return all articles with draft status.
 
 ### [3.2.7. Removing filters](#32-managing-articles)
-Remove filters so all articles are displayed.
+Remove all filters so that all articles in PressPlanner's database are displayed.
 
 Format: `rmfilter -a`
 
 * No additional parameters.
-* The -a is necessary, additional letters will cause command to fail.
-
-### Sorting articles by publication date: `sort -a d/`
-
-Sorts articles in descending order by their publication date and time.
-
-Format: `sort -a d/`
-
-* Executing the `sort -a d/` command sorts all articles in PressPlanner permanently and not just the temporary filtered list of articles if a `find -a`, `lookup -a` or `filter -a` command was executed before the `sort -a d/` command.
-* If an `add -a` command is executed after the `sort -a d/` command, the new article will by default, be added to the end of the list.
-* If an `edit -a` command is executed after the `sort -a d/` command, which modifies the publication date of a article that changes the relative date or time ordering of that article, the article will still remain in the position it was in right after the `sort -a d/` command was executed.
-
-Example:
-* `sort -a d/` sorts all articles in PressPlanner in descending order by their publication date and time so that both the current list of articles, as well as the full list of articles displayed subsequently (if not already) will be sorted in this manner.
+* The `-a` is necessary, additional letters will cause the command to fail.
 
 ### [3.2.8. Lookup for associated persons : `lookup`](#32-managing-articles)
 
-Finds persons associated with the article whose name matches any of the names of authors or sources of the article.
+Finds persons associated with an article as interviewees or contributors.
 
-Format: `lookup INDEX`
+Format: `lookup -a INDEX`
 
 * The index refers to the index number shown in the displayed article list.
 * The index **must be a positive integer** 1, 2, 3, ...
@@ -340,10 +377,24 @@ Format: `lookup INDEX`
 * INDEX should be a positive integer, if not, an error message will be printed.
 
 Examples:
-* `lookup 1` returns all persons associated with the first article in the list of articles.
+* `lookup -a 1` returns all persons associated with the first article in the list of articles.
 
+### [3.2.9. Sorting articles by publication date](#32-managing-articles): `sort -a d/`
 
-### [3.2.9. Opening webpage for an article](#32-managing-articles)
+Sorts articles in PressPlanner's database in descending order by their publication date and time.
+
+Format: `sort -a d/`
+
+* Executing the `sort -a d/` command sorts all articles in PressPlanner permanently
+    * This works differently from commands which change the current view (e.g. [find](#325-searching-for-articles), [lookup](#328-lookup-for-associated-persons--lookup) or [filter](#326-filtering-articles))
+* Sorting is only done when the command is executed and not automatically maintained afterwards:
+  * An article added using `add -a` after a `sort -a d/` command will be added to the end of the list, regardless of its publication date.
+  * An article edited using `edit -a` to change the publication date after a `sort -a d/` command will not change its position in the list.
+
+Example:
+* `sort -a d/` sorts all articles in PressPlanner in descending order by their publication date and time.
+
+### [3.2.10. Opening webpage for an article](#32-managing-articles)
 
 * By clicking the `Link` button of your article that is highlighted in yellow box in the picture below, you can open up the webpage for your article that is added when you added the article.
 
