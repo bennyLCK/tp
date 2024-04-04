@@ -19,6 +19,7 @@ import seedu.address.commons.util.StringUtil;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.article.Article.Status;
 import seedu.address.model.article.Author;
+import seedu.address.model.article.Link;
 import seedu.address.model.article.Outlet;
 import seedu.address.model.article.PublicationDate;
 import seedu.address.model.article.Source;
@@ -267,5 +268,17 @@ public class ParserUtil {
         default:
             throw new ParseException("Invalid status provided. Please provide either draft, published or archived.");
         }
+    }
+
+    /**
+     * Parses a {@code String link} into a {@code Link}.
+     */
+    public static Link parseLink(String link) throws ParseException {
+        requireNonNull(link);
+        String trimmedLink = link.trim();
+        if (!Link.isValidLink(trimmedLink)) {
+            throw new ParseException(Link.MESSAGE_CONSTRAINTS);
+        }
+        return new Link(trimmedLink);
     }
 }

@@ -20,6 +20,7 @@ import seedu.address.model.Model;
 import seedu.address.model.article.Article;
 import seedu.address.model.article.Article.Status;
 import seedu.address.model.article.Author;
+import seedu.address.model.article.Link;
 import seedu.address.model.article.Outlet;
 import seedu.address.model.article.PublicationDate;
 import seedu.address.model.article.Source;
@@ -100,9 +101,10 @@ public class EditArticleCommand extends ArticleCommand {
         PublicationDate publicationDate = editArticleDescriptor.getPublicationDate()
                 .orElse(articleToEdit.getPublicationDate());
         Status status = editArticleDescriptor.getStatus().orElse(articleToEdit.getStatus());
+        Link link = editArticleDescriptor.getLink().orElse(articleToEdit.getLink());
 
         Article editedArticle = new Article(title, authors, sources, tags,
-                outlets, publicationDate, status); // Include all article attributes here.
+                outlets, publicationDate, status, link); // Include all article attributes here.
         editedArticle.setPersons(articleToEdit.getPersons());
         return editedArticle;
     }
@@ -144,6 +146,7 @@ public class EditArticleCommand extends ArticleCommand {
         private Set<Outlet> outlets;
         private PublicationDate publicationDate;
         private Status status;
+        private Link link;
 
         public EditArticleDescriptor() {}
 
@@ -158,13 +161,14 @@ public class EditArticleCommand extends ArticleCommand {
             setOutlets(toCopy.outlets);
             setPublicationDate(toCopy.publicationDate);
             setStatus(toCopy.status);
+            setLink(toCopy.link);
         }
 
         /**
          * Returns true if at least one field is edited.
          */
         public boolean isAnyFieldEdited() {
-            return CollectionUtil.isAnyNonNull(title, authors, sources, outlets, publicationDate, tags, status);
+            return CollectionUtil.isAnyNonNull(title, authors, sources, outlets, publicationDate, tags, status, link);
         }
 
         public void setTitle(Title title) {
@@ -222,6 +226,14 @@ public class EditArticleCommand extends ArticleCommand {
             return Optional.ofNullable(status);
         }
 
+        public void setLink(Link link) {
+            this.link = link;
+        }
+
+        public Optional<Link> getLink() {
+            return Optional.ofNullable(link);
+        }
+
         @Override
         public boolean equals(Object other) {
             if (other == this) {
@@ -242,7 +254,8 @@ public class EditArticleCommand extends ArticleCommand {
                     && Objects.equals(outlets, otherEditArticleDescriptor.outlets)
                     && Objects.equals(publicationDate, otherEditArticleDescriptor.publicationDate)
                     && Objects.equals(tags, otherEditArticleDescriptor.tags)
-                    && Objects.equals(status, otherEditArticleDescriptor.status);
+                    && Objects.equals(status, otherEditArticleDescriptor.status)
+                    && Objects.equals(link, otherEditArticleDescriptor.link);
         }
 
         @Override

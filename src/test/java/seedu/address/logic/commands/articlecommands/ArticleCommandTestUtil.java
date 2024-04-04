@@ -3,6 +3,7 @@ package seedu.address.logic.commands.articlecommands;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_AUTHOR;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_LINK;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_OUTLET;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PUBLICATION_DATE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_SOURCE;
@@ -51,6 +52,8 @@ public class ArticleCommandTestUtil {
     public static final String SECOND_VALID_TAG_INTEL = "Tech";
     public static final String VALID_STATUS_NVIDIA = "PUBLISHED";
     public static final String VALID_STATUS_INTEL = "ARCHIVED";
+    public static final String VALID_LINK_NVIDIA = "https://www.nvidia.com/en-sg/";
+    public static final String VALID_LINK_INTEL = "https://www.intel.com/content/www/us/en/homepage.html";
 
     public static final String TITLE_DESC_NVIDIA = " " + PREFIX_TITLE + VALID_TITLE_NVIDIA;
     public static final String TITLE_DESC_INTEL = " " + PREFIX_TITLE + VALID_TITLE_INTEL;
@@ -76,6 +79,8 @@ public class ArticleCommandTestUtil {
             + " " + PREFIX_TAG + SECOND_VALID_TAG_INTEL;
     public static final String STATUS_DESC_NVIDIA = " " + PREFIX_STATUS + VALID_STATUS_NVIDIA;
     public static final String STATUS_DESC_INTEL = " " + PREFIX_STATUS + VALID_STATUS_INTEL;
+    public static final String LINK_DESC_NVIDIA = " " + PREFIX_LINK + VALID_LINK_NVIDIA;
+    public static final String LINK_DESC_INTEL = " " + PREFIX_LINK + VALID_LINK_INTEL;
 
     public static final String INVALID_TITLE_DESC = " " + PREFIX_TITLE; // empty string not allowed for titles
     public static final String INVALID_AUTHOR_DESC = " " + PREFIX_AUTHOR + "Bob&"; // '&' not allowed in authors
@@ -101,14 +106,16 @@ public class ArticleCommandTestUtil {
                 .withSources(FIRST_VALID_SOURCE_NVIDIA, SECOND_VALID_SOURCE_NVIDIA)
                 .withOutlets(FIRST_VALID_OUTLET_NVIDIA, SECOND_VALID_OUTLET_NVIDIA)
                 .withTags(FIRST_VALID_TAG_NVIDIA, SECOND_VALID_TAG_NVIDIA)
-                .withStatus(VALID_STATUS_NVIDIA).build();
+                .withStatus(VALID_STATUS_NVIDIA)
+                .withLink(VALID_LINK_NVIDIA).build();
         DESC_INTEL = new EditArticleDescriptorBuilder().withTitle(VALID_TITLE_INTEL)
                 .withAuthors(FIRST_VALID_AUTHOR_INTEL, SECOND_VALID_AUTHOR_INTEL)
                 .withPublicationDate(VALID_PUBLICATION_DATE_INTEL)
                 .withSources(FIRST_VALID_SOURCE_INTEL, SECOND_VALID_SOURCE_INTEL)
                 .withOutlets(FIRST_VALID_OUTLET_INTEL, SECOND_VALID_OUTLET_INTEL)
                 .withTags(FIRST_VALID_TAG_INTEL, SECOND_VALID_TAG_INTEL)
-                .withStatus(VALID_STATUS_INTEL).build();
+                .withStatus(VALID_STATUS_INTEL)
+                .withLink(VALID_LINK_INTEL).build();
     }
 
     /**
