@@ -193,6 +193,19 @@ Examples:
 * `find John` returns `john` and `John Doe`
 * `find alex david` returns `Alex Yeoh`, `David Li`
 
+### Sorting person by name: `sort n/`
+
+Sorts persons in ascending order by the lexicographical (alphabetical) ordering of their names.
+
+Format: `sort n/`
+
+* Executing the `sort n/` command sorts all persons in PressPlanner permanently and not just the temporary filtered list of persons if a `find` or `lookup` command was executed before the `sort n/` command.
+* If an `add` command is executed after the `sort n/` command, the new person will by default, be added to the end of the list.
+* If an `edit` command is executed after the `sort n/` command, which modifies the name of a person that changes the relative lexicographical ordering of that person, the person will still remain in the position it was in right after the `sort n/` command was executed.
+
+Example:
+* `sort n/` sorts all persons in PressPlanner in ascending order by the lexicographical (alphabetical) ordering of their names so that both the current list of persons, as well as the full list of persons displayed subsequently (if not already) will be sorted in this manner. 
+
 ### [3.1.6. Lookup for associated articles : `lookup`](#31-managing-contacta)
 
 Display articles associated with the person where any of the contributor or interviewee name matches the name of the person
@@ -267,7 +280,7 @@ Examples:
 *  `edit 2 T/Betsy Crower dies S/` Edits the title of the 2nd article to be `Betsy Crower dies` and clears all existing sources.
 
 
-### [3.2.5. Searching for an Article](#32-managing-articles)
+### [3.2.5. Searching for Articles](#32-managing-articles)
 
 Finds articles whose titles contain any of the given keywords.
 
@@ -302,6 +315,18 @@ Format: `rmfilter -a`
 * No additional parameters.
 * The -a is necessary, additional letters will cause command to fail.
 
+### Sorting articles by publication date: `sort -a d/`
+
+Sorts articles in descending order by their publication date and time.
+
+Format: `sort -a d/`
+
+* Executing the `sort -a d/` command sorts all articles in PressPlanner permanently and not just the temporary filtered list of articles if a `find -a`, `lookup -a` or `filter -a` command was executed before the `sort -a d/` command.
+* If an `add -a` command is executed after the `sort -a d/` command, the new article will by default, be added to the end of the list.
+* If an `edit -a` command is executed after the `sort -a d/` command, which modifies the publication date of a article that changes the relative date or time ordering of that article, the article will still remain in the position it was in right after the `sort -a d/` command was executed.
+
+Example:
+* `sort -a d/` sorts all articles in PressPlanner in descending order by their publication date and time so that both the current list of articles, as well as the full list of articles displayed subsequently (if not already) will be sorted in this manner.
 
 ### [3.2.8. Lookup for associated persons : `lookup`](#32-managing-articles)
 
@@ -349,6 +374,7 @@ Format: `exit`
 | List Person    | `list`                                                                                           | `list`                                                                                                                         |
 | Edit Person    | `edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [t/TAG]...`                          | `edit 2 n/James Lee e/jameslee@example.com`                                                                                    |
 | Find Person    | `find KEYWORD [MORE_KEYWORDS]`                                                                   | `find James Jake`                                                                                                              |
+| Sort People    | `sort PERSON_PREFIX`                                                                             | `sort n/`                                                                                                                      |
 | Clear Person   | `clear`                                                                                          | `clear`                                                                                                                        |
 | Add Article    | `add -a T/Title [A/Author1 ...] D/yyyy-mm-ddT00:00:00 [SRC/Source1 ...] C/Category S/Status`     | `add -a T/iPhone 13 Review: The Latest Apple Flagship A/John Doe D/2024-03-19T12:30:45 SRC/Michael Lee C/New Releases S/DRAFT` |
 | Delete Article | `delete -a [INDEX]`                                                                              | `delete -a 1`                                                                                                                  |
@@ -357,6 +383,7 @@ Format: `exit`
 | Find Article   | `find -a KEYWORD [MORE_KEYWORDS]`                                                                | `find -a Monkey King`                                                                                                          |
 | Filter Article | `filter -a [S/Status] [TAG/Tag] [ST/Start date] [EN/End date]`                                   | `filter -a S/DRAFT TAG/Sample Tag ST/2024-03-19T12:30:45 EN/2024-03-20T12:30:45`                                               |
 | Remove Filter  | `rmfilter -a`                                                                                    | `rmfilter -a`                                                                                                                  |
+| Sort Articles  | `sort -a ARTICLE_PREFIX`                                                                         | `sort -a d/`                                                                                                                   |
 | LookUp People  | `lookup INDEX`                                                                                   | `lookup 1`                                                                                                                     |
 | Help           | `help`                                                                                           | `help`                                                                                                                         |
 | Exit           | `exit`                                                                                           | `exit`                                                                                                                         | 
