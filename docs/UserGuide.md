@@ -67,7 +67,7 @@ PressPlanner's tagging system for [persons](#31-managing-contacts) and [articles
 1. Download the jar file from [our latest release](https://github.com/AY2324S2-CS2103T-F12-2/tp/releases).
 1. Move it to an **Empty** folder.
 
-> [!WARNING]
+> :warning: 
 > App data will be stored in sub-folders from where it is launched. While you could run the app from any location, we recommend making a dedicated folder for our app to avoid confusion.
 
 ### [2.2. Launching the App](#2-getting-started)
@@ -78,7 +78,7 @@ PressPlanner's tagging system for [persons](#31-managing-contacts) and [articles
 
 ### [2.3. The Beginner's Guide to PressPlanner](#2-getting-started)
 
-> [!NOTE]
+> :bulb:
 > This section covers commands first-time users might need. For the full commands list, refer to the [Features](#3-features) section.
 
 Let's go over the basic PressPlanner workflow. Say you've just finished interviewing a certain Gill Bates about his company's latest product. You want to save his contact for later and keep track of your article. Let's fire up PressPlanner and get this task out of the way.
@@ -93,7 +93,7 @@ Let's go over the basic PressPlanner workflow. Say you've just finished intervie
 
 
 
-> [!NOTE]
+> :bulb:
 > Adding an article uses the `add -a` command, the `-a` standing for article. The `-a` suffix is used for all commands pertaining to articles.
 
 2. Next let's add that article you just wrote.
@@ -148,7 +148,7 @@ Notes about the command format:
   e.g. if the command specifies `help 123`, it will be interpreted as `help`.
 </div>
 
-> [!WARNING]
+> :warning:
 > If you are using a PDF version of this document, be careful when copying and pasting commands with line breaks as they may not paste correctly.
 
 ## [3.1. Managing Contacts](#3-features)
@@ -166,7 +166,7 @@ Adds a person to PressPlanner's address book.
 
 Format: `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]...`
 
-> [!NOTE] 
+> :bulb:
 > A person can have any number of tags (including 0).
 
 Examples:
