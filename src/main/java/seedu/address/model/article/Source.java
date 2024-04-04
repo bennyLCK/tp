@@ -25,7 +25,6 @@ public class Source {
 
     /**
      * Returns true if a given string is a valid source name.
-     * TODO: Map to a valid source name in the address book
      */
     public static boolean isValidSourceName(String test) {
         return test.matches(VALIDATION_REGEX);

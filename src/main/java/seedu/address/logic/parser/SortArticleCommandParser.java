@@ -1,7 +1,7 @@
 package seedu.address.logic.parser;
 
 import static seedu.address.logic.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_PUBLICATION_DATE;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_DATE;
 
 import java.util.ArrayList;
 
@@ -15,7 +15,7 @@ public class SortArticleCommandParser implements Parser<SortArticleCommand> {
 
     private static final ArrayList<String> AllowedPrefixes = new ArrayList<>() {
         {
-            add(PREFIX_PUBLICATION_DATE.getPrefix());
+            add(PREFIX_DATE.getPrefix());
         }
     };
 
@@ -33,7 +33,7 @@ public class SortArticleCommandParser implements Parser<SortArticleCommand> {
      */
     public SortArticleCommand parse(String args) throws ParseException {
         String prefix = args.trim();
-        if (prefix.isEmpty() || !PREFIX_PUBLICATION_DATE.getPrefix().equals(prefix)) {
+        if (prefix.isEmpty() || !PREFIX_DATE.getPrefix().equals(prefix)) {
             throw new ParseException(
                     String.format(MESSAGE_INVALID_COMMAND_FORMAT, SortArticleCommand.MESSAGE_USAGE));
         }

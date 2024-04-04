@@ -24,6 +24,10 @@
       * [3.2.3. Listing all articles](#323-listing-all-articles)
       * [3.2.4. Editing an article](#324-editing-an-article)
       * [3.2.5. Searching for an article](#325-searching-for-an-article)
+      * [3.2.6. Filtering Articles](#326-filtering-articles)
+      * [3.2.7. Removing filters](#327-removing-filters)
+      * [3.2.8. Lookup for associated persons](#328-lookup-for-associated-persons--lookup)
+      * [3.2.9. Opening webpage for an article](#329-opening-webpage-for-an-article)
   * [3.3. Other Commands](#33-other-commands)
       * [3.3.1. Help ](#331-viewing-help--help)
       * [3.3.2. Exit](#332-exiting-the-program--exit)
@@ -189,6 +193,19 @@ Examples:
 * `find John` returns `john` and `John Doe`
 * `find alex david` returns `Alex Yeoh`, `David Li`
 
+### Sorting person by name: `sort n/`
+
+Sorts persons in ascending order by the lexicographical (alphabetical) ordering of their names.
+
+Format: `sort n/`
+
+* Executing the `sort n/` command sorts all persons in PressPlanner permanently and not just the temporary filtered list of persons if a `find` or `lookup` command was executed before the `sort n/` command.
+* If an `add` command is executed after the `sort n/` command, the new person will by default, be added to the end of the list.
+* If an `edit` command is executed after the `sort n/` command, which modifies the name of a person that changes the relative lexicographical ordering of that person, the person will still remain in the position it was in right after the `sort n/` command was executed.
+
+Example:
+* `sort n/` sorts all persons in PressPlanner in ascending order by the lexicographical (alphabetical) ordering of their names so that both the current list of persons, as well as the full list of persons displayed subsequently (if not already) will be sorted in this manner. 
+
 ### [3.1.6. Lookup for associated articles : `lookup`](#31-managing-contacta)
 
 Display articles associated with the person where any of the contributor or interviewee name matches the name of the person
@@ -263,7 +280,7 @@ Examples:
 *  `edit 2 T/Betsy Crower dies S/` Edits the title of the 2nd article to be `Betsy Crower dies` and clears all existing sources.
 
 
-### [3.2.5. Searching for an Article](#32-managing-articles)
+### [3.2.5. Searching for Articles](#32-managing-articles)
 
 Finds articles whose titles contain any of the given keywords.
 
@@ -278,7 +295,7 @@ Format: `find -a KEYWORD [MORE_KEYWORDS]`
 
 Examples:
 * `find -a Monkey King` returns two articles: `Monkey breaking window of NTU student’s hall after being aggravated` and `King Charles’ health crisis: the future of Britain becomes uncertain`
-### [3.2.6 Filtering Articles]()
+### [3.2.6. Filtering Articles](#32-managing-articles)
 Filter Press Planner by various factors to find what you are looking for more quickly!
 
 Format: `filter -a S/Status TAG/Tag ST/Start date EN/End date`
@@ -290,7 +307,7 @@ Format: `filter -a S/Status TAG/Tag ST/Start date EN/End date`
 Examples:
 * `filter -a S/DRAFT TAG/ ST/ EN/` will return all articles with draft status.
 
-### [3.2.7 Removing filters]()
+### [3.2.7. Removing filters](#32-managing-articles)
 Remove filters so all articles are displayed.
 
 Format: `rmfilter -a`
@@ -298,7 +315,20 @@ Format: `rmfilter -a`
 * No additional parameters.
 * The -a is necessary, additional letters will cause command to fail.
 
-### [3.2.6. Lookup for associated persons : `lookup`](#32-managing-articles)
+### Sorting articles by publication date: `sort -a d/`
+
+Sorts articles in descending order by their publication date and time.
+
+Format: `sort -a d/`
+
+* Executing the `sort -a d/` command sorts all articles in PressPlanner permanently and not just the temporary filtered list of articles if a `find -a`, `lookup -a` or `filter -a` command was executed before the `sort -a d/` command.
+* If an `add -a` command is executed after the `sort -a d/` command, the new article will by default, be added to the end of the list.
+* If an `edit -a` command is executed after the `sort -a d/` command, which modifies the publication date of a article that changes the relative date or time ordering of that article, the article will still remain in the position it was in right after the `sort -a d/` command was executed.
+
+Example:
+* `sort -a d/` sorts all articles in PressPlanner in descending order by their publication date and time so that both the current list of articles, as well as the full list of articles displayed subsequently (if not already) will be sorted in this manner.
+
+### [3.2.8. Lookup for associated persons : `lookup`](#32-managing-articles)
 
 Finds persons associated with the article whose name matches any of the names of authors or sources of the article.
 
@@ -311,6 +341,14 @@ Format: `lookup INDEX`
 
 Examples:
 * `lookup 1` returns all persons associated with the first article in the list of articles.
+
+
+### [3.2.9. Opening webpage for an article](#32-managing-articles)
+
+* By clicking the `Link` button of your article that is highlighted in yellow box in the picture below, you can open up the webpage for your article that is added when you added the article.
+
+![opening link](images/LinkFeatureSample.png)
+
 
 ## [3.3. Other Commands](#3-features)
 
@@ -329,21 +367,26 @@ Exits the program.
 Format: `exit`
 
 ## [4. Commands Quick Reference](#table-of-contents)
-| Action | Command Format                                                                                   | Example |
-| --- |--------------------------------------------------------------------------------------------------| --- |
-| Add Person | `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]...`                                         | `add n/James Ho p/22224444 e/jamesho@example.com a/123, Clementi Rd, 1234665 t/friend t/colleague` |
-| Delete Person | `delete INDEX`                                                                                   | `delete 3` |
-| List Person | `list`                                                                                           | `list`|
-| Edit Person | `edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [t/TAG]...`                          | `edit 2 n/James Lee e/jameslee@example.com` |
-| Find Person | `find KEYWORD [MORE_KEYWORDS]`                                                                   | `find James Jake` |
-| Clear Person | `clear`                                                                                          | `clear` |
-| Add Article | `add -a T/Title [A/Author1 ...] D/yyyy-mm-ddT00:00:00 [SRC/Source1 ...] C/Category S/Status`     | `add -a T/iPhone 13 Review: The Latest Apple Flagship A/John Doe D/2024-03-19T12:30:45 SRC/Michael Lee C/New Releases S/DRAFT` |
-| Delete Article | `delete -a [INDEX]`                                                                              | `delete -a 1` |
-| List Article | `list -a`                                                                                        | `list -a` |
-| Edit Article | `edit INDEX [T/TITLE] [A/AUTHORS] [D/PUBLICATION_DATE] [src/SOURCES] [C/CATEGORY] [S/STATUS]...` | `edit 1 T/Tech News 1` |
-| Find Article | `find -a KEYWORD [MORE_KEYWORDS]`                                                                | `find -a Monkey King` |
-| Help | `help`                                                                                           | `help` |
-| Exit | `exit`                                                                                           | `exit` | 
+| Action         | Command Format                                                                                   | Example                                                                                                                        |
+|----------------|--------------------------------------------------------------------------------------------------|--------------------------------------------------------------------------------------------------------------------------------|
+| Add Person     | `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]...`                                         | `add n/James Ho p/22224444 e/jamesho@example.com a/123, Clementi Rd, 1234665 t/friend t/colleague`                             |
+| Delete Person  | `delete INDEX`                                                                                   | `delete 3`                                                                                                                     |
+| List Person    | `list`                                                                                           | `list`                                                                                                                         |
+| Edit Person    | `edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [t/TAG]...`                          | `edit 2 n/James Lee e/jameslee@example.com`                                                                                    |
+| Find Person    | `find KEYWORD [MORE_KEYWORDS]`                                                                   | `find James Jake`                                                                                                              |
+| Sort People    | `sort PERSON_PREFIX`                                                                             | `sort n/`                                                                                                                      |
+| Clear Person   | `clear`                                                                                          | `clear`                                                                                                                        |
+| Add Article    | `add -a T/Title [A/Author1 ...] D/yyyy-mm-ddT00:00:00 [SRC/Source1 ...] C/Category S/Status`     | `add -a T/iPhone 13 Review: The Latest Apple Flagship A/John Doe D/2024-03-19T12:30:45 SRC/Michael Lee C/New Releases S/DRAFT` |
+| Delete Article | `delete -a [INDEX]`                                                                              | `delete -a 1`                                                                                                                  |
+| List Article   | `list -a`                                                                                        | `list -a`                                                                                                                      |
+| Edit Article   | `edit INDEX [T/TITLE] [A/AUTHORS] [D/PUBLICATION_DATE] [src/SOURCES] [C/CATEGORY] [S/STATUS]...` | `edit 1 T/Tech News 1`                                                                                                         |
+| Find Article   | `find -a KEYWORD [MORE_KEYWORDS]`                                                                | `find -a Monkey King`                                                                                                          |
+| Filter Article | `filter -a [S/Status] [TAG/Tag] [ST/Start date] [EN/End date]`                                   | `filter -a S/DRAFT TAG/Sample Tag ST/2024-03-19T12:30:45 EN/2024-03-20T12:30:45`                                               |
+| Remove Filter  | `rmfilter -a`                                                                                    | `rmfilter -a`                                                                                                                  |
+| Sort Articles  | `sort -a ARTICLE_PREFIX`                                                                         | `sort -a d/`                                                                                                                   |
+| LookUp People  | `lookup INDEX`                                                                                   | `lookup 1`                                                                                                                     |
+| Help           | `help`                                                                                           | `help`                                                                                                                         |
+| Exit           | `exit`                                                                                           | `exit`                                                                                                                         | 
 
 ## [5. FAQs](#table-of-contents)
 ### [5.1. Why am I unable to run PressPlanner on my desktop?](#5-faqs)
@@ -356,3 +399,7 @@ Format: `exit`
 ### [5.3. Why were all my previous data for contacts (and / or) articles from previous sessions deleted and replaced by the default template data?](#5-faqs)
 * This means that your save file was either corrupted or lost. To avoid this, refrain from editing files in the data folder (specifically **AddressBook.json** and **ArticleBook.json** files which contain the saved contacts and articles respectively, from previous sessions) unless you are sure about what you are doing.
 * To mitigate possible accidental data corruption which may result in the deletion of any of the save files, please make a copy of the data files after every session where major changes were made, so that in the event the most recent data is lost, you would still have a recent data file which can then be added back into the data folder located at the working directory of the PressPlanner.jar file and be loaded up into the application.
+
+### [5.4. Why does my link not open the browser?](#5-faqs)
+* This means that your URL added to the PressPlanner is an invalid link.
+* To let you know when the URL is invalid, we will soon be implementing the app to show you an error message when your link that is typed is invalid. Please wait for our future updates!
