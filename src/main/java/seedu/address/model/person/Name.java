@@ -49,6 +49,18 @@ public class Name implements Comparable<Name> {
         return this.fullName.compareTo(other.fullName);
     }
 
+    private boolean areSameNames(String[] name, String[] otherName) {
+        if (name.length != otherName.length) {
+            return false;
+        }
+        for (int i = 0; i < name.length; i++) {
+            if (!name[i].equalsIgnoreCase(otherName[i])) {
+                return false;
+            }
+        }
+        return true;
+    }
+
     @Override
     public boolean equals(Object other) {
         if (other == this) {
@@ -61,9 +73,15 @@ public class Name implements Comparable<Name> {
         }
 
         Name otherName = (Name) other;
-        return fullName.equals(otherName.fullName);
+        String[] splitName = fullName.split("\\s+");
+        String[] splitOtherName = otherName.fullName.split("\\s+");
+
+        return areSameNames(splitName, splitOtherName);
     }
 
+    // It is safe to implement hashCode() this way because there are already precautions
+    // in place to ensure that no two Name instances can be kept in persons in the Address Book
+    // that are equal and yet have different hashcode values.
     @Override
     public int hashCode() {
         return fullName.hashCode();
