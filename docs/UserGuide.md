@@ -342,21 +342,24 @@ Exits the program.
 Format: `exit`
 
 ## [4. Commands Quick Reference](#table-of-contents)
-| Action | Command Format                                                                                   | Example |
-| --- |--------------------------------------------------------------------------------------------------| --- |
-| Add Person | `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]...`                                         | `add n/James Ho p/22224444 e/jamesho@example.com a/123, Clementi Rd, 1234665 t/friend t/colleague` |
-| Delete Person | `delete INDEX`                                                                                   | `delete 3` |
-| List Person | `list`                                                                                           | `list`|
-| Edit Person | `edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [t/TAG]...`                          | `edit 2 n/James Lee e/jameslee@example.com` |
-| Find Person | `find KEYWORD [MORE_KEYWORDS]`                                                                   | `find James Jake` |
-| Clear Person | `clear`                                                                                          | `clear` |
-| Add Article | `add -a T/Title [A/Author1 ...] D/yyyy-mm-ddT00:00:00 [SRC/Source1 ...] C/Category S/Status`     | `add -a T/iPhone 13 Review: The Latest Apple Flagship A/John Doe D/2024-03-19T12:30:45 SRC/Michael Lee C/New Releases S/DRAFT` |
-| Delete Article | `delete -a [INDEX]`                                                                              | `delete -a 1` |
-| List Article | `list -a`                                                                                        | `list -a` |
-| Edit Article | `edit INDEX [T/TITLE] [A/AUTHORS] [D/PUBLICATION_DATE] [src/SOURCES] [C/CATEGORY] [S/STATUS]...` | `edit 1 T/Tech News 1` |
-| Find Article | `find -a KEYWORD [MORE_KEYWORDS]`                                                                | `find -a Monkey King` |
-| Help | `help`                                                                                           | `help` |
-| Exit | `exit`                                                                                           | `exit` | 
+| Action         | Command Format                                                                                   | Example                                                                                                                        |
+|----------------|--------------------------------------------------------------------------------------------------|--------------------------------------------------------------------------------------------------------------------------------|
+| Add Person     | `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]...`                                         | `add n/James Ho p/22224444 e/jamesho@example.com a/123, Clementi Rd, 1234665 t/friend t/colleague`                             |
+| Delete Person  | `delete INDEX`                                                                                   | `delete 3`                                                                                                                     |
+| List Person    | `list`                                                                                           | `list`                                                                                                                         |
+| Edit Person    | `edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [t/TAG]...`                          | `edit 2 n/James Lee e/jameslee@example.com`                                                                                    |
+| Find Person    | `find KEYWORD [MORE_KEYWORDS]`                                                                   | `find James Jake`                                                                                                              |
+| Clear Person   | `clear`                                                                                          | `clear`                                                                                                                        |
+| Add Article    | `add -a T/Title [A/Author1 ...] D/yyyy-mm-ddT00:00:00 [SRC/Source1 ...] C/Category S/Status`     | `add -a T/iPhone 13 Review: The Latest Apple Flagship A/John Doe D/2024-03-19T12:30:45 SRC/Michael Lee C/New Releases S/DRAFT` |
+| Delete Article | `delete -a [INDEX]`                                                                              | `delete -a 1`                                                                                                                  |
+| List Article   | `list -a`                                                                                        | `list -a`                                                                                                                      |
+| Edit Article   | `edit INDEX [T/TITLE] [A/AUTHORS] [D/PUBLICATION_DATE] [src/SOURCES] [C/CATEGORY] [S/STATUS]...` | `edit 1 T/Tech News 1`                                                                                                         |
+| Find Article   | `find -a KEYWORD [MORE_KEYWORDS]`                                                                | `find -a Monkey King`                                                                                                          |
+| Filter Article | `filter -a [S/Status] [TAG/Tag] [ST/Start date] [EN/End date]`                                   | `filter -a S/DRAFT TAG/Sample Tag ST/2024-03-19T12:30:45 EN/2024-03-20T12:30:45`                                               |
+| Remove Filter  | `rmfilter -a`                                                                                    |                                                                                                                                |
+| LookUp People  | `lookup INDEX`                                                                                   | `lookup 1`                                                                                                                     |
+| Help           | `help`                                                                                           | `help`                                                                                                                         |
+| Exit           | `exit`                                                                                           | `exit`                                                                                                                         | 
 
 ## [5. FAQs](#table-of-contents)
 ### [5.1. Why am I unable to run PressPlanner on my desktop?](#5-faqs)
