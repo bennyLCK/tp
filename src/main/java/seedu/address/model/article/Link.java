@@ -6,7 +6,7 @@ import static seedu.address.commons.util.AppUtil.checkArgument;
  * Represents an Article's link in the address book.
  * Guarantees: immutable; is valid as declared in {@link #isValidLink(String)}
  */
-public class Link implements Comparable<Link> {
+public class Link {
     public static final String MESSAGE_CONSTRAINTS =
             "Link cannot start with a whitespace character.";
 
@@ -37,11 +37,6 @@ public class Link implements Comparable<Link> {
     @Override
     public String toString() {
         return link;
-    }
-
-    @Override
-    public int compareTo(Link other) {
-        return this.link.compareTo(other.link);
     }
 
     @Override
