@@ -189,6 +189,19 @@ Examples:
 * `find John` returns `john` and `John Doe`
 * `find alex david` returns `Alex Yeoh`, `David Li`
 
+### Sorting person by name: `sort n/`
+
+Sorts persons in ascending order by the lexicographical (alphabetical) ordering of their names.
+
+Format: `sort n/`
+
+* Executing the `sort n/` command sorts all persons in PressPlanner permanently and not just the temporary filtered list of persons if a `find` or `lookup` command was executed before the `sort n/` command.
+* If an `add` command is executed after the `sort n/` command, the new person will by default, be added to the end of the list.
+* If an `edit` command is executed after the `sort n/` command, which modifies the name of a person that changes the relative lexicographical ordering of that person, the person will still remain in the position it was in right after the `sort n/` command was executed.
+
+Example:
+* `sort n/` sorts all persons in PressPlanner in ascending order by the lexicographical (alphabetical) ordering of their names so that both the current list of persons, as well as the full list of persons displayed subsequently (if not already) will be sorted in this manner. 
+
 ### [3.1.6. Clearing all entries : `clear`](#31-managing-contacts)
 
 Clears all entries from the address book.
@@ -249,7 +262,7 @@ Examples:
 *  `edit 2 T/Betsy Crower dies S/` Edits the title of the 2nd article to be `Betsy Crower dies` and clears all existing sources.
 
 
-### [3.2.5. Searching for an Article](#32-managing-articles)
+### [3.2.5. Searching for Articles](#32-managing-articles)
 
 Finds articles whose titles contain any of the given keywords.
 
@@ -264,6 +277,19 @@ Format: `find -a KEYWORD [MORE_KEYWORDS]`
 
 Examples:
 * `find -a Monkey King` returns two articles: `Monkey breaking window of NTU student’s hall after being aggravated` and `King Charles’ health crisis: the future of Britain becomes uncertain`
+
+### Sorting articles by publication date: `sort -a d/`
+
+Sorts articles in descending order by their publication date and time.
+
+Format: `sort -a d/`
+
+* Executing the `sort -a d/` command sorts all articles in PressPlanner permanently and not just the temporary filtered list of articles if a `find -a`, `lookup -a` or `filter -a` command was executed before the `sort -a d/` command.
+* If an `add -a` command is executed after the `sort -a d/` command, the new article will by default, be added to the end of the list.
+* If an `edit -a` command is executed after the `sort -a d/` command, which modifies the publication date of a article that changes the relative date or time ordering of that article, the article will still remain in the position it was in right after the `sort -a d/` command was executed.
+
+Example:
+* `sort -a d/` sorts all articles in PressPlanner in descending order by their publication date and time so that both the current list of articles, as well as the full list of articles displayed subsequently (if not already) will be sorted in this manner.
 
 ## [3.3. Other Commands](#3-features)
 
