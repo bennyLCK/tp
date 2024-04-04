@@ -93,18 +93,19 @@ Let's go over the basic PressPlanner workflow. Say you've just finished intervie
 
 
 
-2. Next let's add that article you just wrote.
 > [!NOTE]
 > Adding an article uses the `add -a` command, the `-a` standing for article. The `-a` suffix is used for all commands pertaining to articles.
-    - To `add -a` an article we need the following information:
-        - Headline (`h/`)
-        - Date (`d/`)
-          - We use a single field for the date:
-            - For drafts, you can use the date you started writing the article.
-            - For published articles, use the date of publication.
-        - Status (`s/`)
-          - An article can be a `draft`, `published`, or `archived`.
-      - For example: `add -a h/My Article d/20-10-2023 s/draft`
+
+2. Next let's add that article you just wrote.
+   - To `add -a` an article we need the following information:
+       - Headline (`h/`)
+       - Date (`d/`)
+         - We use a single field for the date:
+           - For drafts, you can use the date you started writing the article.
+           - For published articles, use the date of publication.
+       - Status (`s/`)
+         - An article can be a `draft`, `published`, or `archived`.
+     - For example: `add -a h/My Article d/20-10-2023 s/draft`
 
 3. Now that that's done, let's say you need to find Gill Bate's number to arrange another interview.
     - Typing the command `find Gill Bates` will pull up his contact.
