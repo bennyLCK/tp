@@ -39,7 +39,6 @@ public class AddArticleCommandParser implements Parser<AddArticleCommand> {
         ArgumentMultimap argMultimap =
                 ArgumentTokenizer.tokenize(args, PREFIX_HEADLINE, PREFIX_CONTRIBUTOR, PREFIX_INTERVIEWEE, PREFIX_TAG,
                         PREFIX_OUTLET, PREFIX_DATE, PREFIX_STATUS, PREFIX_LINK);
-        //TODO: REMOVE PUBLICATION DATE REQUIREMENT
         if (!arePrefixesPresent(argMultimap, PREFIX_HEADLINE, PREFIX_DATE, PREFIX_STATUS)
                 || !argMultimap.getPreamble().isEmpty()) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddArticleCommand.MESSAGE_USAGE));
