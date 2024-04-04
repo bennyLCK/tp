@@ -320,7 +320,7 @@ Examples:
 
 ### [3.2.9. Opening webpage for an article](#32-managing-articles)
 
-By clicking the `Link` button of your article that is highlighted in yellow box in the picture below, you can open up the webpage for your article that is added when you added the article.
+* By clicking the `Link` button of your article that is highlighted in yellow box in the picture below, you can open up the webpage for your article that is added when you added the article.
 
 ![opening link](images/LinkFeatureSample.png)
 
