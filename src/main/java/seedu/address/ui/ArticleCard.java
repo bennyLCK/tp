@@ -67,7 +67,20 @@ public class ArticleCard extends UiPart<Region> {
         article.getOutlets().stream()
                 .sorted(Comparator.comparing(outlet -> outlet.outletName))
                 .forEach(outlet -> outlets.getChildren().add(new Label(outlet.outletName)));
+
+        setPadding(authors);
+        setPadding(sources);
+        setPadding(tags);
+        setPadding(outlets);
         publicationDate.setText(article.getPublicationDateAsString());
         status.setText(article.getStatus().toString());
+    }
+
+    private void setPadding(FlowPane flowPane) {
+        if (flowPane.getChildren().isEmpty()) {
+            flowPane.setPadding(new javafx.geometry.Insets(0, 0, 0, 0));
+        } else {
+            flowPane.setPadding(new javafx.geometry.Insets(0, 0, 3, 0));
+        }
     }
 }
