@@ -92,9 +92,10 @@ Let's go over the basic PressPlanner workflow. Say you've just finished intervie
     - For example: `add n/Gill Bates p/12345678 e/gillbates@sicromoft.com a/Sicromoft HQ`
 
 
+> [!INFO]
+> Adding an article uses the `add -a` command, the `-a` standing for article. The `-a` suffix is used for all commands pertaining to articles.
 2. Next let's add that article you just wrote.
-    > [!INFO] Adding an article uses the `add -a` command, the `-a` standing for article. The `-a` suffix is used for all commands pertaining to articles.
-    - To `add -a` an article we need the following information:
+     - To `add -a` an article we need the following information:
         - Headline (`h/`)
         - Date (`d/`)
           - We use a single field for the date:
