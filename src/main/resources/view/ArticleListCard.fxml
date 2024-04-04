@@ -2,6 +2,7 @@
 
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Hyperlink?>
 <?import javafx.scene.layout.ColumnConstraints?>
 <?import javafx.scene.layout.FlowPane?>
 <?import javafx.scene.layout.GridPane?>
@@ -27,14 +28,13 @@
         </Label>
         <Label fx:id="title" text="\$first" styleClass="cell_big_label" />
       </HBox>
-      <VBox spacing="3">
-        <FlowPane fx:id="authors"/>
-        <FlowPane fx:id="sources"/>
-        <FlowPane fx:id="tags"/>
-        <FlowPane fx:id="outlets"/>
-      </VBox>
+      <FlowPane fx:id="authors"/>
+      <FlowPane fx:id="sources"/>
+      <FlowPane fx:id="tags"/>
+      <FlowPane fx:id="outlets"/>
       <Label fx:id="publicationDate" styleClass="cell_small_label" text="\$publicationDate" />
       <Label fx:id="status" styleClass="cell_small_label" text="\$status" />
+      <Hyperlink fx:id="hyperlink" text="Link" />
     </VBox>
   </GridPane>
 </HBox>

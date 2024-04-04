@@ -19,7 +19,6 @@ import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.EditCommand;
 import seedu.address.logic.commands.articlecommands.EditArticleCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
-import seedu.address.model.article.Article;
 import seedu.address.model.article.Author;
 import seedu.address.model.article.Outlet;
 import seedu.address.model.article.Source;
@@ -62,7 +61,7 @@ public class EditArticleCommandParser implements Parser<EditArticleCommand> {
                     .getValue(PREFIX_PUBLICATION_DATE).get()));
         }
         if (argMultimap.getValue(PREFIX_STATUS).isPresent()) {
-            editArticleDescriptor.setStatus((Article.Status) ParserUtil.parseStatus(argMultimap.getValue(PREFIX_STATUS)
+            editArticleDescriptor.setStatus(ParserUtil.parseStatus(argMultimap.getValue(PREFIX_STATUS)
                     .get()));
         }
 

@@ -9,6 +9,7 @@ import seedu.address.logic.parser.ParserUtil;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.article.Article;
 import seedu.address.model.article.Author;
+import seedu.address.model.article.Link;
 import seedu.address.model.article.Outlet;
 import seedu.address.model.article.Source;
 import seedu.address.model.article.Title;
@@ -41,6 +42,7 @@ public class EditArticleDescriptorBuilder {
         descriptor.setOutlets(article.getOutlets());
         descriptor.setTags(article.getTags());
         descriptor.setStatus(article.getStatus());
+        descriptor.setLink(article.getLink());
     }
 
     /**
@@ -109,6 +111,14 @@ public class EditArticleDescriptorBuilder {
         } catch (ParseException pe) {
             assert false : "This should not happen.";
         }
+        return this;
+    }
+
+    /**
+     * Sets the {@code Link} of the {@code EditArticleDescriptor} that we are building.
+     */
+    public EditArticleDescriptorBuilder withLink(String link) {
+        descriptor.setLink(new Link(link));
         return this;
     }
 

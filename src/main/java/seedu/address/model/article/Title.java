@@ -7,7 +7,7 @@ import static seedu.address.commons.util.AppUtil.checkArgument;
  * Represents an Article's title in the address book.
  * Guarantees: immutable; is valid as declared in {@link #isValidTitle(String)}
  */
-public class Title implements Comparable<Title> {
+public class Title {
     public static final String MESSAGE_CONSTRAINTS =
             "Titles should should not be blank or start with a whitespace character.";
 
@@ -38,9 +38,16 @@ public class Title implements Comparable<Title> {
         return fullTitle;
     }
 
-    @Override
-    public int compareTo(Title other) {
-        return this.fullTitle.compareTo(other.fullTitle);
+    private boolean areSameTitles(String[] title, String[] otherTitle) {
+        if (title.length != otherTitle.length) {
+            return false;
+        }
+        for (int i = 0; i < title.length; i++) {
+            if (!title[i].equalsIgnoreCase(otherTitle[i])) {
+                return false;
+            }
+        }
+        return true;
     }
 
     @Override
@@ -54,9 +61,15 @@ public class Title implements Comparable<Title> {
         }
 
         Title otherTitle = (Title) other;
-        return otherTitle.fullTitle.equals(this.fullTitle);
+        String[] splitTitle = fullTitle.split("\\s+");
+        String[] splitOtherTitle = otherTitle.fullTitle.split("\\s+");
+
+        return areSameTitles(splitTitle, splitOtherTitle);
     }
 
+    // It is safe to implement hashCode() this way because there are already precautions
+    // in place to ensure that no two Title instances can be kept in articles in the Article Book
+    // that are equal and yet have different hashcode values.
     @Override
     public int hashCode() {
         return fullTitle.hashCode();
