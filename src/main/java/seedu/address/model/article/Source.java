@@ -7,7 +7,7 @@ import static seedu.address.commons.util.AppUtil.checkArgument;
  * Represents a Source (Contributor) to an Article
  */
 public class Source {
-    public static final String MESSAGE_CONSTRAINTS = "Source names should be alphanumeric";
+    public static final String MESSAGE_CONSTRAINTS = "Interviewee names should be alphanumeric";
     public static final String VALIDATION_REGEX = "[\\p{Alnum} ]+";
 
     public final String sourceName;

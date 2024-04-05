@@ -7,7 +7,7 @@ import static seedu.address.commons.util.AppUtil.checkArgument;
  * Represents an Author of an Article
  */
 public class Author {
-    public static final String MESSAGE_CONSTRAINTS = "Author names should be alphanumeric";
+    public static final String MESSAGE_CONSTRAINTS = "Contributor names should be alphanumeric";
     public static final String VALIDATION_REGEX = "[\\p{Alnum} ]+";
 
     public final String authorName;
