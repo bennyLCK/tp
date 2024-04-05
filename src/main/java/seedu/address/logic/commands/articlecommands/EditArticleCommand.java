@@ -283,7 +283,14 @@ public class EditArticleCommand extends ArticleCommand {
         @Override
         public String toString() {
             return new ToStringBuilder(this)
-                    .add("title", title) // Add more attributes of article here.
+                    .add("title", title)
+                    .add("authors", authors)
+                    .add("sources", sources)
+                    .add("tags", tags)
+                    .add("outlets", outlets)
+                    .add("publicationDate", publicationDate)
+                    .add("status", status)
+                    .add("link", link)
                     .toString();
         }
     }
