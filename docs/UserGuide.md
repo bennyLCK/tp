@@ -372,6 +372,8 @@ Format: `filter -a s/STATUS t/TAG ST/START_DATE EN/END_DATE`
 * Filters will apply until you [remove](#327-removing-a-filter--rmfilter--a) it or apply a new filter, so make sure you [remove](#327-removing-a-filter--rmfilter--a) it after you are done!
 * Refer to the [add article](#322-adding-an-article--add--a) command for the format of each field.
   * Note that `START_DATE` and `END_DATE` must be in the same format as `DATE` in the [add article](#322-adding-an-article--add--a) command.
+  * The `START_DATE` should come **before** the `END_DATE`. If not, you will receive an error!
+  * The date of the article you are looking for should not be equal to the `START_DATE` and `END_DATE`.
 
 Examples:
 * `filter -a s/draft t/ st/ en/` will restrict the display to showing only articles with draft status.
