@@ -44,6 +44,16 @@ public class AddArticleCommandParser implements Parser<AddArticleCommand> {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddArticleCommand.MESSAGE_USAGE));
         }
 
+        if (argMultimap.getValue(PREFIX_HEADLINE).orElse(null).equals("")) {
+            throw new ParseException("No headline provided.\n" + AddArticleCommand.MESSAGE_USAGE);
+        }
+        if (argMultimap.getValue(PREFIX_DATE).orElse(null).equals("")) {
+            throw new ParseException("No date provided.\n" + AddArticleCommand.MESSAGE_USAGE);
+        }
+        if (argMultimap.getValue(PREFIX_STATUS).orElse(null).equals("")) {
+            throw new ParseException("No status provided. Please provide either draft, published or archived.\n"
+                    + AddArticleCommand.MESSAGE_USAGE);
+        }
         Title title = ParserUtil.parseTitle(argMultimap.getValue(PREFIX_HEADLINE).get());
         Set<Author> authorList = ParserUtil.parseAuthors(argMultimap.getAllValues(PREFIX_CONTRIBUTOR));
         Set<Source> sourceList = ParserUtil.parseSources(argMultimap.getAllValues(PREFIX_INTERVIEWEE));
