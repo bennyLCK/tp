@@ -312,7 +312,7 @@ Example : `delete -a 1` deletes the article at the first index.
 
 Edits an existing article in PressPlanner's database.
 
-Format: `edit -a [h/HEADLINE] [d/DATE] [s/STATUS] [c/CONTRIBUTOR... ] [i/INTERVIEWEE... ] [t/TAG... ] [o/OUTLET... ] [l/LINK]`
+Format: `edit -a INDEX [h/HEADLINE] [d/DATE] [s/STATUS] [c/CONTRIBUTOR... ] [i/INTERVIEWEE... ] [t/TAG... ] [o/OUTLET... ] [l/LINK]`
 
 * Edits the article at the specified `INDEX`.
   * The `INDEX` refers to the index number shown in the current article list view.
