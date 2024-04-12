@@ -327,8 +327,8 @@ Format: `edit -a INDEX [h/HEADLINE] [d/DATE] [s/STATUS] [c/CONTRIBUTOR... ] [i/I
   * This does not apply to [filters](#326-filtering-articles--filter--a).
 
 Examples:
-*  `edit 1 h/iPhone Review` Edits the headline of the 1st article to be `iPhone Review`.
-*  `edit 2 h/iPhone Review i/` Edits the headline of the 2nd article to be `iPhone Review` and clears all existing interviewees.
+*  `edit -a 1 h/iPhone Review` Edits the headline of the 1st article to be `iPhone Review`.
+*  `edit -a 2 h/iPhone Review i/` Edits the headline of the 2nd article to be `iPhone Review` and clears all existing interviewees.
 
 
 ### [3.2.5. Searching for an Article by Headline : `find -a`](#32-managing-articles)
