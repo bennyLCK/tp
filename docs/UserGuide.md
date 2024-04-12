@@ -1,4 +1,4 @@
-# Press Planner User Guide
+# PressPlanner User Guide
 
 ## Table Of Contents
 
