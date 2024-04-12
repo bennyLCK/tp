@@ -236,7 +236,7 @@ Format: `lookup INDEX`
     * It is a full word match. (e.g. `John` in the address book will not match `Johnny` or `John Doe` as an interviewee or contributor in the article).
 
 Examples:
-* `lookup 1` returns all persons associated with the first article in the list of articles.
+* `lookup 1` returns all articles associated with the first person in the list of contacts.
 
 ### [3.1.7. Sorting Persons by Name : `sort n/`](#31-managing-contacts)
 
