@@ -35,7 +35,7 @@ public class AddArticleCommand extends ArticleCommand {
             + "[" + PREFIX_INTERVIEWEE + "INTERVIEWEE]... "
             + "[" + PREFIX_TAG + "TAG]... "
             + "[" + PREFIX_OUTLET + "OUTLET]... "
-            + "[" + PREFIX_DATE + "DATE] "
+            + PREFIX_DATE + "DATE "
             + PREFIX_STATUS + "STATUS "
             + "[" + PREFIX_LINK + "LINK]\n"
             + "Example: " + COMMAND_WORD + " " + COMMAND_PREFIX + " "
