@@ -15,6 +15,7 @@ import seedu.address.model.article.ArticleMatchesStatusPredicate;
 import seedu.address.model.article.ArticleMatchesTagPredicate;
 import seedu.address.model.article.ArticleMatchesTimePeriodPredicate;
 import seedu.address.model.article.PublicationDate;
+import seedu.address.model.article.exceptions.InvalidDatesException;
 import seedu.address.model.article.exceptions.InvalidStatusException;
 import seedu.address.model.tag.Tag;
 
@@ -27,7 +28,7 @@ public class FilterArticleCommand extends ArticleCommand {
     public static final String COMMAND_PREFIX = "-a";
 
     public static final String MESSAGE_SUCCESS = "Filter online\nUse " + RemoveArticleFilterCommand.COMMAND_WORD
-        + "-a to display all articles again";
+        + " -a to display all articles again";
     private Predicate<Article> finalPredicate;
 
     /**
@@ -55,6 +56,8 @@ public class FilterArticleCommand extends ArticleCommand {
             }
             Predicate<Article> timePredicate = new ArticleMatchesTimePeriodPredicate(startDate, endDate);
             finalPredicate = finalPredicate.and(timePredicate);
+        } catch (InvalidDatesException x) {
+            throw new ParseException(x.getMessage());
         } catch (ParseException e) {
             throw e;
         }
