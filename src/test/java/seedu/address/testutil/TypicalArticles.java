@@ -102,6 +102,14 @@ public class TypicalArticles {
             .withStatus(VALID_STATUS_INTEL)
             .withLink(VALID_LINK_INTEL).build();
 
+    public static final Article OLD = new ArticleBuilder().withTitle("Oldest Man")
+            .withAuthors("Author")
+            .withPublicationDate("01-01-1967")
+            .withSources("Source")
+            .withOutlets("New Yorker")
+            .withTags("Old")
+            .withStatus("ARCHIVED")
+            .withLink(VALID_LINK_INTEL).build();
     private TypicalArticles() {} // prevents instantiation
 
     /**
