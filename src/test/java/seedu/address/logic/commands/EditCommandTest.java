@@ -34,7 +34,8 @@ import seedu.address.testutil.PersonBuilder;
  */
 public class EditCommandTest {
 
-    private Model model = new ModelManager(getTypicalAddressBook(), new ArticleBook(), new UserPrefs());
+    private Model model;
+    private Model expectedModel;
 
     @Test
     public void execute_allFieldsSpecifiedUnfilteredList_success() {
