@@ -694,4 +694,5 @@ testers are expected to do more *exploratory* testing.
 ## **Planned Enhancements**
 
 1. **Make URL failure more explicit**: Currently when a URL cannot be opened the app shows that by not opening anything. This can be improved by showing an error message.
-2. **The filter command can work for individual prefixes**: Currently the filter command only works for all prefixes. It can be improved by allowing the user to filter by individual prefixes. 
+1. **The filter command can work for individual prefixes**: Currently the filter command only works for all prefixes. It can be improved by allowing the user to filter by individual prefixes.
+1. **Automatically sort persons by their names in ascending alphabetical ordering, articles by their publication dates in descending order**: Currently whenever the user makes an edit to a person's name, to an article's publication date, or adds new person or article entries which may result in a violation of the previous ordering, the user would have to execute the `sort n/` or `sort -a d/` commands to re-sort the persons or articles. It can be improved by automatically sorting people and articles whenever new entries, or certain edits to them are made to reduce such inconveniences to the user.
