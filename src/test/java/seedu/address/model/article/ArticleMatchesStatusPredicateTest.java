@@ -1,6 +1,10 @@
 package seedu.address.model.article;
 
 import static org.junit.jupiter.api.Assertions.assertThrows;
+import static seedu.address.testutil.TypicalArticles.FIVE;
+import static seedu.address.testutil.TypicalArticles.FOUR;
+import static seedu.address.testutil.TypicalPredicates.DRAFT;
+import static seedu.address.testutil.TypicalPredicates.PUBLISHED;
 
 import org.junit.jupiter.api.Test;
 
@@ -29,5 +33,18 @@ public class ArticleMatchesStatusPredicateTest {
     public void newPredicate_invalidStatusNonNull_error() {
         assertThrows(InvalidStatusException.class, () -> new ArticleMatchesStatusPredicate("Qwerty"));
     }
-
+    //EP test status match
+    @Test
+    public void test_statusMatch_returnTrue() {
+        ArticleMatchesStatusPredicate predicate = DRAFT;
+        Article article = FIVE;
+        assert(predicate.test(article));
+    }
+    //EP test status do not match
+    @Test
+    public void test_statusMismatch_returnFalse() {
+        ArticleMatchesStatusPredicate predicate = PUBLISHED;
+        Article article = FOUR;
+        assert(!(predicate.test(article)));
+    }
 }
