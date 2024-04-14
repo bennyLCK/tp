@@ -40,7 +40,7 @@
 ### [1.1. Using this Guide](#1-introduction)
 This guide is intended to help you get started with PressPlanner. It will guide you through the installation process, provide a brief overview of the app's features, and give you a quick reference to the commands you can use. All sections headers will link you back to the start of their parent section, so you can easily navigate the guide.
 ### [1.2. Why Use PressPlanner?](#1-introduction)
-PressPlanner was built with **freelance journalists in mind**. It acts as your digital address book and database, helping you keep track of your contacts and articles.
+PressPlanner was built with **freelance journalists in mind**. It acts as your contact list linked together with a collection of articles, helping you keep track of your contacts and articles.
 
 Unlike major firms, freelancers often lack the same wealth of contacts and resources. PressPlanner helps you maximise the value you can get from your contacts, by providing a platform to store and manage them and keeping track of which contacts you've worked with for different articles.
 
@@ -49,7 +49,6 @@ PressPlanner's main features are its ability to help you:
    - [Filter](#326-filtering-articles--filter--a) by tags to find past articles on a specific topic.
    - [Lookup](#328-lookup-associated-persons--lookup--a) persons of interest related to those past articles.
    - Contact these persons for interviews or collaboration.
-
 
 2. Follow up on breaking stories
    - [Filter](#326-filtering-articles--filter--a) by status and tags to find published articles related to breaking news.
@@ -64,15 +63,15 @@ PressPlanner's tagging system for [persons](#31-managing-contacts) and [articles
 1. Ensure that you have Java `11` or above installed on your computer.
     - Download Java 11 from [the official Oracle website](https://www.oracle.com/java/technologies/downloads/#java11).
     - If you are unsure what version of java you have, use [this guide](https://www.java.com/en/download/help/version_manual.html) to check.
-1. Download the jar file from [our latest release](https://github.com/AY2324S2-CS2103T-F12-2/tp/releases).
-1. Move it to an **Empty** folder.
+2. Download the jar file from [our latest release](https://github.com/AY2324S2-CS2103T-F12-2/tp/releases).
+3. Move it to an **Empty** folder.
 
 > :warning: 
 > App data will be stored in sub-folders from where it is launched. While you could run the app from any location, we recommend making a dedicated folder for our app to avoid confusion.
 
 ### [2.2. Launching the App](#2-getting-started)
 1. Open a command terminal, `cd` into the folder you put the jar file in, and use the `java -jar pressplanner.jar` command to run the application.
-1. A window similar to the one below should appear in a few seconds. Note how the app contains some sample data.
+2. A window similar to the one below should appear in a few seconds. Note how the app contains some sample data.
 
 <img src="images/PressPlanner.PNG" alt="UI">
 
@@ -81,7 +80,7 @@ PressPlanner's tagging system for [persons](#31-managing-contacts) and [articles
 > :bulb:
 > This section covers commands first-time users might need. For the full commands list, refer to the [Features](#3-features) section.
 
-Let's go over the basic PressPlanner workflow. Say you've just finished interviewing a certain Gill Bates about his company's latest product. You want to save his contact for later and keep track of your article. Let's fire up PressPlanner and get this task out of the way.
+Let's go over the basic PressPlanner workflow. Say you've just finished interviewing a certain Gill Bates. You want to save his contact for later and keep track of your article.
 
 1. Selecting the command box at the top of the page, let's first add Gill Bates to PressPlanner's address book list.
     - To `add` a contact we need to include the following information separated by their prefixes:
@@ -91,12 +90,10 @@ Let's go over the basic PressPlanner workflow. Say you've just finished intervie
         - Address (`a/`)
     - For example: `add n/Gill Bates p/12345678 e/gillbates@sicromoft.com a/Sicromoft HQ`
 
-
-
 > :bulb:
 > Adding an article uses the `add -a` command, the `-a` standing for article. The `-a` suffix is used for all commands pertaining to articles.
 
-2. Next let's add that article you just wrote.
+1. Next let's add that article you just wrote.
    - To `add -a` an article we need the following information:
        - Headline (`h/`)
        - Date (`d/`)
@@ -105,16 +102,16 @@ Let's go over the basic PressPlanner workflow. Say you've just finished intervie
          - An article can be a `draft`, `published`, or `archived`.
      - For example: `add -a h/Example Article d/20-10-2023 s/draft`
 
-3. Now that that's done, let's say you need to find Gill Bate's number to arrange another interview.
+2. Now that that's done, let's say you need to find Gill Bate's number to arrange another interview.
     - Typing the command `find Gill Bates` will pull up his contact.
 
-4. If you made a mistake or want to see all your contacts again:
+3. If you made a mistake or want to see all your contacts again:
     - Typing the command `list` will bring up all your contacts.
 
-5. If you want to look up your article:
+4. If you want to look up your article:
     - Typing the command `find -a Example Article` will pull up the article.
 
-6. If you want to see all your articles again:
+5. If you want to see all your articles again:
     - Typing the command `list -a` will bring them all up.
 
 Now that you know the basic workflow, go ahead and try it out for yourself. If you want to learn more commands, use the `help` command in-app or refer to the [features](#3-features) section of this guide.
@@ -178,8 +175,6 @@ Deletes the specified person from PressPlanner's address book.
 Format: `delete INDEX`
 
 * Deletes the person at the specified `INDEX`.
-* The index refers to the index number shown in the displayed address book.
-* The index **must be a positive integer** 1, 2, 3, ...
 
 Examples:
 * `list` followed by `delete 2` deletes the 2nd person in the address book.
@@ -226,12 +221,9 @@ Display articles associated with the person where they are contributors or inter
 
 Format: `lookup INDEX`
 
-* `INDEX` refers to the index number of the person shown in the displayed address book.
-* `INDEX` **must be a positive integer** 1, 2, 3, ...
-* If `INDEX` exceeds the number of persons in the displayed address book, an error message is printed.
-* `INDEX` should be a positive integer, if not, an error message will be printed.
+* Display articles related to the person at the specified `INDEX`
 * The matching of persons to articles is based on the person's name.
-    * It is case insensitive. (e.g. `John` in the address book will match `john` as an interviewee or contributor in the article).
+    * It is case-insensitive. (e.g. `John` in the address book will match `john` as an interviewee or contributor in the article).
     * It is a full word match. (e.g. `John` in the address book will not match `Johnny` or `John Doe` as an interviewee or contributor in the article).
 
 Examples:
@@ -302,8 +294,6 @@ Format : `delete -a INDEX`
   * The `INDEX` refers to the index number shown in the current article list view.
     * If a `filter`, `sort` or `find` command was executed before, the index refers to the index number shown in the filtered/sorted list of articles.
     * e.g. `delete 1` after the `find` command deletes the first article found by the `find` command.
-* If `INDEX` exceeds the number of articles in the list, an error message is printed.
-* `INDEX` should be a positive integer, if not, an error message will be printed.
 
 Example : `delete -a 1` deletes the article at the first index.
 
@@ -330,7 +320,7 @@ Examples:
 
 ### [3.2.5. Searching for an Article by Headline : `find -a`](#32-managing-articles)
 
-Finds articles with headlines containing any of the given keywords.
+Find articles with headlines containing any of the given keywords.
 
 Format: `find -a KEYWORD [MORE_KEYWORDS]`
 
@@ -386,7 +376,7 @@ Format: `lookup -a INDEX`
 * If `INDEX` exceeds the number of articles in the displayed database, an error message is printed.
 * `INDEX` should be a positive integer, if not, an error message will be printed.
 * The matching of articles to persons is based on the person's name.
-    * It is case insensitive. (e.g. `john` as an interviewee or contributor in the article will match `John` in the address book).
+    * It is case-insensitive. (e.g. `john` as an interviewee or contributor in the article will match `John` in the address book).
     * It is a full word match. (e.g. `John` as an interviewee or contributor in the article will not match `Johnny` or `John Doe` in the address book).
   
 Examples:
@@ -394,7 +384,7 @@ Examples:
 
 ### [3.2.9. Sorting Articles by Date : `sort -a d/`](#32-managing-articles)
 
-Sorts articles in PressPlanner's database in descending order by their date and time.
+Sort articles in PressPlanner's database in descending order by their date and time.
 
 Format: `sort -a d/`
 
@@ -463,7 +453,7 @@ Format: `exit`
 
 ### [5.3. Why were all my previous data for contacts (and / or) articles from previous sessions deleted and replaced by the default template data?](#5-faqs)
 * This means that your save file was either corrupted or lost. To avoid this, refrain from editing files in the data folder (specifically **AddressBook.json** and **ArticleBook.json** files which contain the saved contacts and articles respectively, from previous sessions) unless you are sure about what you are doing.
-* To mitigate possible accidental data corruption which may result in the deletion of any of the save files, please make a copy of the data files after every session where major changes were made, so that in the event the most recent data is lost, you would still have a recent data file which can then be added back into the data folder located at the working directory of the PressPlanner.jar file and be loaded up into the application.
+* To mitigate possible accidental data corruption which may result in the deletion of the save files, please make a copy of the data files after every session where major changes were made, so that in the event the most recent data is lost, you would still have a recent data file which can then be added back into the data folder located at the working directory of the PressPlanner.jar file and be loaded up into the application.
 
 ### [5.4. Why does my link not open the browser?](#5-faqs)
 * This means that your URL added to the PressPlanner is an invalid link.
