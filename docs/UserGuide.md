@@ -454,6 +454,21 @@ Success message shown:
 
 ![opening link](images/LinkFeatureSample.png)
 
+### [3.2.11 Clearing all Articles](#32-managing-articles)
+
+* Unfortunately, we have not implemented a clear command for articles yet. However, there is an easy workaround to this!
+* For example, your articlebook may look something like this:
+![before clearing](images/beforeDeletingJsonFile.png)
+* Simply go into the folder PressPlanner is in!
+![PressPlanner folder](images/fileDirectoryBefore.png)
+* Go inside the data folder, which will look something like this:
+![Data folder](images/insideDataBefore.png)
+* Delete the file named articlebook.
+![Deleting file](images/insideDataAfter.png)
+* Now, if you open PressPlanner again, you will see that your articles will have changed back to the sample data!
+![after clearing](images/afterDeletingJsonFile.png)
+* Now all you have to do is to delete the sample article and you are set!
+
 ## [3.3. Other Commands](#3-features)
 
 ### [3.3.1. Viewing Help](#33-other-commands) : `help`
