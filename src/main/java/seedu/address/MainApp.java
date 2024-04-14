@@ -67,7 +67,8 @@ public class MainApp extends Application {
         storage = new StorageManager(addressBookStorage, userPrefsStorage, articleBookStorage);
 
         model = initModelManager(storage, userPrefs);
-
+        storage.saveAddressBook(model.getAddressBook());
+        storage.saveArticleBook(model.getArticleBook());
         logic = new LogicManager(model, storage);
 
         ui = new UiManager(logic);
