@@ -782,6 +782,55 @@ testers are expected to do more *exploratory* testing.
 
 1. _{ more test cases …​ }_
 
+### Sorting people by their names
+
+1. Sorting people after inserting a person whose name is `"a"` x number of times
+
+   1. Prerequisites: There are 6 person entries in PressPlanner on first time launch, already in ascending alphabetical order, perform the following testcases in order.
+
+   1. Test case: `add n/a p/82927320 e/a@gmail.com a/ Blk 123 Jurong Ring Road, #01-123` followed by `sort n/`<br>
+      Expected: The person entries are sorted by their names in ascending alphabetical order. The person named `"a"` should be the first entry.
+
+   1. Test case: `add n/aa p/82927320 e/a@gmail.com a/ Blk 123 Jurong Ring Road, #01-123` followed by `sort N/`<br>
+      Expected: The person entries are sorted by their names in ascending alphabetical order. The person named `"aa"` should now be the second entry, after the person named `"a"`.
+
+   1. Test case: `add n/aaa p/82927320 e/a@gmail.com a/ Blk 123 Jurong Ring Road, #01-123` followed by `sort z/`<br>
+      Expected: No reordering of people is done. Error details shown in the status message. Status bar remains the same.
+
+### Finding articles
+
+1. Finding articles by their headlines using keywords 
+
+   1. Prerequisites: There is 1 article entry in PressPlanner on first time launch, perform the following testcases in order after adding the following articles provided as add article commands.
+      1. `add -a h/one d/01-01-2001 s/draft`
+      1. `add -a h/one two d/01-01-2001 s/draft`
+      1. `add -a h/one two three d/01-01-2001 s/draft`
+
+   1. Test case: `find -a one`<br>
+      Expected: The only article with the headline `one` is shown in the list of articles. The status message shows the number of articles found.
+
+   1. Test case: `find -a TWO`<br>
+      Expected: Two articles are shown with headlines `one two` and `one two three`. The status message shows the number of articles found.
+
+   1. Test case: `find -a thre`<br>
+      Expected: No articles are found. The status message shows the number of articles found is `0`.
+
+### Sorting articles by their dates
+
+1. Sorting articles after inserting an article with a date of `"0X-01-2100"` replacing `"X"` with a number starting from 1 up to 9
+
+   1. Prerequisites: There is 1 article entry in PressPlanner on first time launch, perform the following testcases in order.
+
+   1. Test case: `add h/Article1 d/01-01-2100 s/draft` followed by `sort -a d/`<br>
+      Expected: The article entries are sorted by their dates in descending chronological order. The article with the headline `Article1` and date `"01-01-2100"` should be the first entry.
+
+   1. Test case: `add h/Article2 d/02-01-2100 s/draft` followed by `sort -a D/`<br>
+      Expected: The article entries are sorted by their dates in descending chronological order. The article  the headline `Article2` and date `"02-01-2100"` should be the first entry, before `Article1` with the date `"01-01-2100"`.
+
+   1. Test case: `add h/Article3 d/03-01-2100 s/draft` followed by `sort -a z/`<br>
+      Expected: No reordering of articles is done. Error details shown in the status message. Status bar remains the same.
+   
+
 ### Saving data
 
 1. Dealing with missing/corrupted data files
