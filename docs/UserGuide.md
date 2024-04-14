@@ -131,6 +131,12 @@ As you become more familiar with the app, use tags as you see fit to customise y
 <div class="callout-box">
 Notes about the command format:
 
+
+* INDEX refers to the index number shown in the current list view.
+  * It must be a positive integer.
+  * INDEX not present in the list view is invalid.
+  * e.g. `delete 1` after the `find` command deletes the first article found by the `find` command.
+
 * Words in `UPPER_CASE` are the parameters to be supplied by you.
   e.g. in `add n/NAME`, `NAME` is a parameter which can be used as `add n/John Doe`.
 
@@ -285,7 +291,7 @@ Format: `clear`
 ### [3.2.1. Adding an Article](#3-2-managing-articles) : `add -a`
 Adds a new article to PressPlanner's database.
 
-Format: `add -a h/HEADLINE [c/CONTRIBUTOR]... [i/INTERVIEWEE]... [t/TAG]...[o/OUTLET]... d/DATE s/STATUS [l/LINK]`
+Format: `add -a h/HEADLINE  d/DATE s/STATUS [c/CONTRIBUTOR]... [i/INTERVIEWEE]... [t/TAG]...[o/OUTLET]... [l/LINK]`
 * Only `HEADLINE`, `DATE`, and `STATUS` are mandatory fields.
   * An article's `DATE` is intended to represent:
     * Time of creation for drafts.
@@ -299,10 +305,11 @@ Format: `add -a h/HEADLINE [c/CONTRIBUTOR]... [i/INTERVIEWEE]... [t/TAG]...[o/OU
   * If you do not have a valid webpage of the link, do not include `l/` in your add command for `LINK`. PressPlanner does not check for validity of links, so you might end up the link not opening upon clicking the `Link` button.
 * Adding an article will return to displaying all articles if a [find](#3-2-5-searching-for-an-article-by-headline-find-a) command was executed before.
   * This does not apply to [filters](#3-2-6-filtering-articles-filter-a).
+  * If the name of a contributor or interviewee matches a person in the address book, the person's name will be linked to the article which will be accessible via the `lookup` and `lookup -a` commands.
 
 Examples:
-* `add -a h/iPhone 13 Review c/John Doe i/Michael Lee t/New Releases d/20-03-2024 s/draft`
-* `add -a h/AI Inc. Acquired by Google c/Alex Johnson i/Emily Brown t/AI o/CNA d/30-08-2024 08:45 s/published l/www.example.com`
+* `add -a h/iPhone 13 Review d/20-03-2024 s/draft c/John Doe i/Michael Lee t/New Releases`
+* `add -a h/AI Inc. Acquired by Google d/30-08-2024 08:45 s/published c/Alex Johnson i/Emily Brown t/AI o/CNA l/www.example.com`
 
 > :warning:
 > You should only use each prefixes once, except the `t/` prefix for Tags. If you use multiple prefixes in one command, eg. `add -a h/My Article d/20-10-2023 s/draft h/My Second Article` only the value that comes after the last duplicate prefix to be added, which means that in this case, the header of the article will be "My Second Article".
@@ -395,6 +402,10 @@ Format: `filter -a s/STATUS t/TAG ST/START_DATE EN/END_DATE`
 * Only one filter command can be active at once, using another filter will override the last one.
 Examples:
 * `filter -a s/DRAFT t/ st/ en/` will restrict the display to showing only articles with draft status.
+* Using the command:
+![Before Filter](images/filterCommand.png)
+* After the command:
+![After Filter](images/filterAfter.png)
 
 ### [3.2.7. Removing a Filter](#3-2-managing-articles) : `rmfilter -a`
 Remove all filters so that all articles in PressPlanner's database are displayed.
@@ -403,6 +414,10 @@ Format: `rmfilter -a`
 
 * No additional parameters.
 * The `-a` is necessary, additional letters will cause the command to fail.
+Using the command:
+![Remove Command](images/removeFilterCommand.png)
+After the command:
+![After rm command](images/removeFilterAfter.png)
 
 ### [3.2.8. Lookup Associated Persons](#3-2-managing-articles) : `lookup -a`
 
@@ -410,10 +425,7 @@ Finds persons associated with an article as interviewees or contributors.
 
 Format: `lookup -a INDEX`
 
-* `INDEX` refers to the index number shown in the displayed article database.
-* `INDEX` **must be a positive integer** 1, 2, 3, ...
-* If `INDEX` exceeds the number of articles in the displayed database, an error message is printed.
-* `INDEX` should be a positive integer, if not, an error message will be printed.
+* Display list of persons related to the article at the specified `INDEX`.
 * The matching of articles to persons is based on the person's name.
     * It is case-insensitive. (e.g. `john` as an interviewee or contributor in the article will match `John` in the address book).
     * It is a full word match. (e.g. `John` as an interviewee or contributor in the article will not match `Johnny` or `John Doe` in the address book).
@@ -498,7 +510,7 @@ Format: `exit`
 | Sort Persons by Name       | `sort n/`                                                                                                                | `sort n/`                                                                                                                      |
 | Clear Persons              | `clear`                                                                                                                  | `clear`                                                                                                                        |
 | List Article               | `list -a`                                                                                                                | `list -a`                                                                                                                      |
-| Add Article                | `add -a h/HEADLINE [c/CONTRIBUTOR]... [i/INTERVIEWEE]... [t/TAG]... [o/OUTLET]... d/DATE s/STATUS [l/LINK]`              | `add -a h/AI Inc. Acquired by Google c/Alex Johnson i/Emily Brown t/AI o/CNA d/30-08-2024 08:45 s/published l/www.example.com` |
+| Add Article                | `add -a h/HEADLINE d/DATE s/STATUS [c/CONTRIBUTOR]... [i/INTERVIEWEE]... [t/TAG]... [o/OUTLET]... [l/LINK]`              | `add -a h/AI Inc. Acquired by Google d/30-08-2024 08:45 s/published c/Alex Johnson i/Emily Brown t/AI o/CNA l/www.example.com` |
 | Delete Article             | `delete -a INDEX`                                                                                                        | `delete -a 1`                                                                                                                  |
 | Edit Article               | `edit -a INDEX [h/HEADLINE] [d/DATE] [s/STATUS] [c/CONTRIBUTOR]... [i/INTERVIEWEE]... [t/TAG]... [o/OUTLET]... [l/LINK]` | `edit -a 2 h/iPhone Review`                                                                                                    |
 | Find Article               | `find -a KEYWORD [MORE_KEYWORDS]`                                                                                        | `find -a Vision Pro`                                                                                                           |
