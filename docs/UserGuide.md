@@ -299,12 +299,13 @@ Format: `add -a h/HEADLINE [c/CONTRIBUTOR]... [i/INTERVIEWEE]... [t/TAG]...[o/OU
 * Adding an article will return to displaying all articles if a [find](#325-searching-for-an-article-by-headline--find--a) command was executed before.
   * This does not apply to [filters](#326-filtering-articles--filter--a).
 
-> :warning:
-> You should only use each prefixes once, except the `t/` prefix for Tags. If you use multiple prefixes in one command, eg. `add -a h/My Article d/20-10-2023 s/draft h/My Second Article` only the value that comes after the last duplicate prefix to be added, which means that in this case, the header of the article will be "My Second Article".
-
 Examples:
 * `add -a h/iPhone 13 Review c/John Doe i/Michael Lee t/New Releases d/20-03-2024 s/draft`
 * `add -a h/AI Inc. Acquired by Google c/Alex Johnson i/Emily Brown t/AI o/CNA d/30-08-2024 08:45 s/published l/www.example.com`
+
+> :warning:
+> You should only use each prefixes once, except the `t/` prefix for Tags. If you use multiple prefixes in one command, eg. `add -a h/My Article d/20-10-2023 s/draft h/My Second Article` only the value that comes after the last duplicate prefix to be added, which means that in this case, the header of the article will be "My Second Article".
+
 
 ### [3.2.2. Deleting an Article](#32-managing-articles) : `delete -a`
 
