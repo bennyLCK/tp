@@ -31,6 +31,7 @@
     * [3.2.8. Lookup Associated Persons](#3-2-8-lookup-associated-persons-lookup-a)
     * [3.2.9. Sorting Articles by Date](#3-2-9-sorting-articles-by-date-sort-a-d)
     * [3.2.10. Opening a Webpage for an Article](#3-2-10-opening-a-webpage-for-an-article)
+    * [3.2.11. Clearing all articles](#3-2-11-clearing-articles)
   * [3.3. Other Commands](#3-3-other-commands)
     * [3.3.1. Viewing Help ](#3-3-1-viewing-help-help)
     * [3.3.2. Exiting PressPlanner](#3-3-2-exiting-pressplanner-exit)
@@ -454,7 +455,7 @@ Success message shown:
 
 ![opening link](images/LinkFeatureSample.png)
 
-### [3.2.11 Clearing all Articles](#32-managing-articles)
+### [3.2.11 Clearing all Articles](#3-2-clearing-articles)
 
 * Unfortunately, we have not implemented a clear command for articles yet. However, there is an easy workaround to this!
 * For example, your articlebook may look something like this:
