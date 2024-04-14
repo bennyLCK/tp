@@ -12,7 +12,14 @@ import seedu.address.model.tag.Tag;
  */
 public class ArticleMatchesTagPredicate implements Predicate<Article> {
     private Tag tag;
+
+    /**
+     * Constructs a predicate that returns true if tag matches.
+     * @param tag The tag to be checked against
+     */
     public ArticleMatchesTagPredicate(Tag tag) {
+        //Ensures that tag is not null
+        assert(tag instanceof Tag);
         this.tag = tag;
     }
 
