@@ -4,6 +4,8 @@ package seedu.address.logic.commands.articlecommands;
 import static seedu.address.logic.commands.articlecommands.ArticleCommandTestUtil.assertCommandSuccess;
 import static seedu.address.testutil.TypicalArticles.getTypicalArticleBook;
 
+import java.time.LocalDateTime;
+
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
@@ -20,6 +22,9 @@ import seedu.address.model.article.PublicationDate;
 import seedu.address.model.tag.Tag;
 
 public class FilterArticleCommandTest {
+    private static final Tag EMPTY_TAG = null;
+    private static final PublicationDate EMPTY_START = new PublicationDate(LocalDateTime.MIN);
+    private static final PublicationDate EMPTY_END = new PublicationDate(LocalDateTime.MAX);
     private Model model;
     private Model expectedModel;
     @BeforeEach
@@ -29,7 +34,7 @@ public class FilterArticleCommandTest {
     }
     @Test
     public void execute_zeroParameters_showUnfilteredList() throws ParseException {
-        assertCommandSuccess(new FilterArticleCommand("", "", "", ""),
+        assertCommandSuccess(new FilterArticleCommand("", EMPTY_TAG, EMPTY_START, EMPTY_END),
                 model, FilterArticleCommand.MESSAGE_SUCCESS, expectedModel);
     }
     //EP Only Status
@@ -37,7 +42,7 @@ public class FilterArticleCommandTest {
     public void execute_onlyStatus_showFilteredList() throws ParseException {
         ArticleMatchesStatusPredicate predicate = new ArticleMatchesStatusPredicate("DRAFT");
         expectedModel.updateFilteredArticleList(predicate);
-        assertCommandSuccess(new FilterArticleCommand("DRAFT", "", "", ""),
+        assertCommandSuccess(new FilterArticleCommand("DRAFT", EMPTY_TAG, EMPTY_START, EMPTY_END),
                 model, FilterArticleCommand.MESSAGE_SUCCESS, expectedModel);
     }
     //ep Only tag
@@ -46,7 +51,7 @@ public class FilterArticleCommandTest {
         Tag tag = new Tag("Science");
         ArticleMatchesTagPredicate predicate = new ArticleMatchesTagPredicate(tag);
         expectedModel.updateFilteredArticleList(predicate);
-        assertCommandSuccess(new FilterArticleCommand("", "Science", "", ""),
+        assertCommandSuccess(new FilterArticleCommand("", tag, EMPTY_START, EMPTY_END),
                 model, FilterArticleCommand.MESSAGE_SUCCESS, expectedModel);
     }
     //ep Only date
@@ -56,7 +61,7 @@ public class FilterArticleCommandTest {
         PublicationDate end = ParserUtil.parsePublicationDate("08-07-2021");
         ArticleMatchesTimePeriodPredicate predicate = new ArticleMatchesTimePeriodPredicate(start, end);
         expectedModel.updateFilteredArticleList(predicate);
-        assertCommandSuccess(new FilterArticleCommand("", "", "01-01-2021", "08-07-2021"),
+        assertCommandSuccess(new FilterArticleCommand("", EMPTY_TAG, start, end),
                 model, FilterArticleCommand.MESSAGE_SUCCESS, expectedModel);
     }
 }
