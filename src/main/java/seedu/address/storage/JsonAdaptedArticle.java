@@ -1,5 +1,6 @@
 package seedu.address.storage;
 
+import static java.util.Objects.requireNonNull;
 import static seedu.address.logic.parser.ParserUtil.parsePublicationDate;
 
 import java.util.ArrayList;
@@ -126,7 +127,7 @@ public class JsonAdaptedArticle {
         for (JsonAdaptedOutlet outlet : outlets) {
             articleOutlets.add(outlet.toModelType());
         }
-
+        requireNonNull(this.publicationDate);
         final PublicationDate modelPublicationDate = parsePublicationDate(this.publicationDate);
 
         final Set<Author> modelAuthors = new HashSet<>(articleAuthors);
@@ -137,7 +138,6 @@ public class JsonAdaptedArticle {
 
         final Set<Outlet> modelOutlets = new HashSet<>(articleOutlets);
         final Link modelLink = new Link(link);
-
         return new Article(modelTitle, modelAuthors, modelSources, modelTags,
                 modelOutlets, modelPublicationDate, status, modelLink);
     }
