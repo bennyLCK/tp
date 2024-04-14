@@ -810,8 +810,13 @@ testers are expected to do more *exploratory* testing.
 
 ### Filtering through articles
 1. Filtering through articles.
-    1. Prerequisites: Populate PressPlanner with sufficient articles.
+    1. Prerequisites: Populate PressPlanner with sufficient articles. You may use the following add commands:<br>
      
+    1. Use these commands to populate PressPlanner.<br>
+       `add -a h/Test-1 c/Author1 i/Interviewee1 t/Science d/01-01-2019 s/PUBLISHED`<br>
+       `add -a h/Test-2 c/Author2 i/Interviewee2 d/01-01-2021 s/PUBLISHED`<br>
+       `add -a h/Test-3 c/Author3  d/01-01-2019 s/DRAFT`<br>
+
     1. Test case: `filter -a s/ st/ en/ t/`<br>
         Expected:There will be no change in displayed articles.
      
