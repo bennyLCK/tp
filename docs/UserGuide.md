@@ -286,7 +286,7 @@ Adds a new article to PressPlanner's database.
 
 Format: `add -a h/HEADLINE [c/CONTRIBUTOR]... [i/INTERVIEWEE]... [t/TAG]...[o/OUTLET]... d/DATE s/STATUS [l/LINK]`
 * Only `HEADLINE`, `DATE`, and `STATUS` are mandatory fields.
-  * An article's `DATE` is intended to represent:
+  * An article's `DATE` can represent what you choose to be relevant to your workflow, we recommend using it to represent:
     * Time of creation for drafts.
     * Time of publication for published articles.
   * `DATE` must be in the format `dd-mm-yyyy [HH:mm]`.
@@ -298,6 +298,12 @@ Format: `add -a h/HEADLINE [c/CONTRIBUTOR]... [i/INTERVIEWEE]... [t/TAG]...[o/OU
   * If you do not have a valid webpage of the link, do not include `l/` in your add command for `LINK`. PressPlanner does not check for validity of links, so you might end up the link not opening upon clicking the `Link` button.
 * Adding an article will return to displaying all articles if a [find](#3-2-5-searching-for-an-article-by-headline-find-a) command was executed before.
   * This does not apply to [filters](#3-2-6-filtering-articles-filter-a).
+
+> :warning:
+> * `HEADLINE` accepts any characters, but must not start with a whitespace.
+> * `HEADLINE` can also be left blank. This is not recommended, but allowed for flexibility.
+    >   * e.g. `add -a h/ d/20-10-2023 s/draft` is a valid command and will add an article with a blank headline.
+>   * Some users may find this useful for adding drafts quickly and filling in the headline later.
 
 Examples:
 * `add -a h/iPhone 13 Review c/John Doe i/Michael Lee t/New Releases d/20-03-2024 s/draft`
