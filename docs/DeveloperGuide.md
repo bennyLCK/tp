@@ -6,7 +6,7 @@
   pageNav: 3
 ---
 
-# AB-3 Developer Guide
+# PressPlanner Developer Guide
 
 <!-- * Table of Contents -->
 <page-nav-print />
@@ -221,6 +221,41 @@ Note: If start date is later than the end date, Press Planner will refuse to exe
 
 Note: Filters are **NOT** stored by the program. If you close the app, your filters will be reset. 
 
+### \[Implemented\] Sort articles feature
+
+#### Implementation
+
+This feature closely follows the logic and model design of the sort persons feature mentioned above, by referencing the article classes that are implemented similar to their person counterparts as listed below.
+
+The differences include:
+
+1. `SortArticleCommand` class inherits from the `ArticleCommand` class which in turn inherits from the `Command` class instead of the `SortCommand` class.
+2. `SortArticleCommandParser` instead of `SortCommandParser` class.
+3. `AddressBookParser` passes command flow to the `ArticleBookParser` class.
+4. Sorting will be done on the `ArticleBook` object instead of the `AddressBook` object.
+5. The execution of the `sort -a d/` command will invoke the `Model#sortArticleBook("d/")` method instead of the `Model#sortAddressBook("d/")` method.
+
+The following sequence diagram shows how a sort articles operation goes through the Logic component:
+
+<puml src="diagrams/SortArticlesSequenceDiagram-Logic.puml" alt="SortArticlesSequenceDiagram-Logic" />
+
+Similarly, how a sort articles operation goes through the `Model` component is shown below:
+
+<puml src="diagrams/SortArticlesSequenceDiagram-Model.puml" alt="SortArticlesSequenceDiagram-Model" />
+
+#### Design considerations:
+
+**Aspect: How sort articles executes:**
+
+* **Alternative 1 (current choice):** Directly sort the `internalList` field present in the `UniqueArticleList` object.
+    * Pros: Easy to implement.
+    * Cons: Permanently orders all articles in the `ArticleBook` by the `Article` field specified by the related `prefix`.
+
+
+* **Alternative 2:** Clone the current `internalList` field
+  present in the `UniqueArticleList` object, sort the clone, then replace the `internalUnmodifiableList` field in the `UniqueArticleList` object with the sorted clone.
+    * Pros: Will not permanently order all articles in the `ArticleBook` by the `Article` field specified by the related `prefix`, but only the current view displayed to the user which is refreshed for every opening of the application or commands that changes the view (e.g. `List`, `Find` commands).
+    * Cons: Takes up much more memory space directly proportional to the size of the `ArticleBook` since a clone of all `Articles` has to be made.
 
 ### \[Proposed\] Undo/redo feature
 
@@ -419,14 +454,27 @@ The class diagram below shows how the `Article` will look and interact after imp
 
 Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unlikely to have) - `*`
 
-| Priority | As a …​                                    | I want to …​                 | So that I can…​                                                        |
-|----------|--------------------------------------------|------------------------------|------------------------------------------------------------------------|
-| `* * *`  | new user                                   | see usage instructions       | refer to instructions when I forget how to use the App                 |
-| `* * *`  | user                                       | add a new person             |                                                                        |
-| `* * *`  | user                                       | delete a person              | remove entries that I no longer need                                   |
-| `* * *`  | user                                       | find a person by name        | locate details of persons without having to go through the entire list |
-| `* *`    | user                                       | hide private contact details | minimize chance of someone else seeing them by accident                |
-| `*`      | user with many persons in the address book | sort persons by name         | locate a person easily                                                 |
+| Priority | As a …​                                     | I want to …​                           | So that I can…​                                                                                |
+|----------|---------------------------------------------|----------------------------------------|------------------------------------------------------------------------------------------------|
+| `* * *`  | new user                                    | see usage instructions                 | refer to instructions when I forget how to use the App                                         |
+| `* * *`  | user                                        | list all people                        | see all people I have added                                                                    |
+| `* * *`  | user                                        | add a new person                       |                                                                                                |
+| `* * *`  | user                                        | delete a person                        | remove person entries that I no longer need                                                    |
+| `* * *`  | user                                        | edit a person                          | modify the details of a person anytime                                                         |
+| `* * *`  | user                                        | find a person by name                  | locate details of persons without having to go through the entire list                         |
+| `* * *`  | user                                        | lookup associated articles to a person | find all articles related to that person                                                       |
+| `* * *`  | user with many persons in the address book  | sort persons by name                   | locate a person easily                                                                         |
+| `* * *`  | user                                        | clear all person entries               | remove all template or unwanted person data                                                    |
+| `* *`    | user                                        | hide private contact details           | minimize chance of someone else seeing them by accident                                        |
+| `* * *`  | user                                        | list all articles                      | see all articles I have added                                                                  |
+| `* * *`  | user                                        | add a new article                      |                                                                                                |
+| `* * *`  | user                                        | delete an article                      | remove article entries that I no longer need                                                   |
+| `* * *`  | user                                        | edit an article                        | modify the details of an article anytime                                                       |
+| `* * *`  | user                                        | find an article by headline            | locate details of articles without having to go through the entire list                        |
+| `* * *`  | user                                        | filter articles by common attributes   | locate details of articles with common attributes without having to go through the entire list |
+| `* * *`  | user                                        | remove filter for articles             | display the complete list of articles again after the filter is no longer needed               |
+| `* * *`  | user                                        | lookup associated people to an article | find all people related to that article                                                        |
+| `* * *`  | user with many articles in the address book | sort articles by date                  | locate the most recent articles easily                                                         |
 
 *{More to be added}*
 
@@ -434,11 +482,25 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 (For all use cases below, the **System** is the `PressPlanner` and the **Actor** is the `user`, unless specified otherwise)
 
-**Use case: Delete a person**
+**Use case: UC01 - List all people**
+
+**MSS**
+1. User requests to list all people.
+1. PressPlanner lists out all people.
+
+   Use case ends.
+
+
+
+**Use case: UC02 - Add a person**
+
+
+
+**Use case: UC03 - Delete a person**
 
 **MSS**
 
-1.  User requests to list persons.
+1. User requests to list persons.
 1. AddressBook shows a list of persons.
 1. User requests to delete a specific person in the list.
 1. AddressBook deletes the person.
@@ -460,7 +522,78 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 
 
-**Use case: UC01 - Add an article**
+**Use case: UC04 - Edit a person**
+
+
+
+**Use case: UC05 - Find people**
+
+**MSS**
+
+1. User requests to find people with names containing given keywords.
+1. PressPlanner displays a filtered list of people found,
+   each having a name containing at least one of the given keywords.
+
+   Use case ends.
+
+**Extensions**
+
+* 1a. No keywords are specified.
+
+    * 1a1. PressPlanner shows an error message.
+
+      Use case resumes at step 1.
+  
+
+
+**Use case: UC06 - Lookup associated articles for a person**
+
+
+
+**Use case: UC07 - Sort people by their names**
+
+**MSS**
+
+1. User requests to ***list all people (UC01)***.
+1. User requests to sort people by their names.
+1. PressPlanner sorts the people by their names in ascending alphabetical order and displays the sorted list of people.
+
+   Use case ends.
+
+**Extensions**
+
+* 1a. The list is empty.
+
+  Use case ends.
+
+
+* 1b. The list is already sorted before and no ***edits to a person (UC04)*** modifies a person's name and changes that person's relative alphabetical ordering in the list or ***adding of a person (UC02)*** which results in that person not being ordered with respect to the rest of the list were performed afterwards.
+
+  Use case ends.
+
+
+* 2a. Invalid sorting attribute is given.
+
+    * 2a1. PressPlanner shows an error message.
+
+      Use case resumes at step 2.
+
+
+**Use case: UC08 - Filter people**
+
+
+
+**Use case: UC09 - List all articles**
+
+**MSS**
+1. User requests to list articles.
+1. PressPlanner lists out all articles.
+
+   Use case ends.
+
+
+
+**Use case: UC10 - Add an article**
 
 **MSS**
 1. User requests to add article.
@@ -472,35 +605,39 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 **Extensions**
 
 * 1a. Command was invalid.
+  
   * 1a1. PressPlanner shows an error message.
 
-    Use case ends.
+    Use case resumes at step 1.
 
 
 
-**Use case: UC02 - List all articles**
+**Use case: UC11 - Delete an article**
 
 **MSS**
-1. User requests to list articles.
-1. PressPlanner lists out all articles.
+
+1. User requests to ***list all articles (UC09)***.
+1. User requests to delete a specific article in the list.
+1. PressPlanner deletes the article.
+1. PressPlanner shows delete success message to user.
 
    Use case ends.
 
 **Extensions**
 
-* 1a. The list is empty.
-  * 1a1. PressPlanner returns an error message.
+* 2a. The given index is invalid.
 
-    Use case ends.
+    * 2a1. PressPlanner shows an error message.
 
+      Use case resumes at step 2.
 
+    
 
-**Use case: UC03 - Edit an article**
+**Use case: UC12 - Edit an article**
 
 **MSS**
 
-1. User requests to list articles.
-1. PressPlanner lists out all articles.
+1. User requests to ***list all articles (UC09)***.
 1. User requests to edit a specific article in the list
    by providing at least one change to an attribute of the article.
 1. PressPlanner updates the article with the changes requested.
@@ -510,85 +647,76 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 **Extensions**
 
-* 3a. The given index is invalid.
+* 2a. The given index is invalid.
 
-    * 3a1. PressPlanner shows an error message.
-
-      Use case resumes at step 2.
-
-
-* 3b. No changes to an attribute of the article is specified.
-
-    * 3b1. PressPlanner shows an error message.
+    * 2a1. PressPlanner shows an error message.
 
       Use case resumes at step 2.
 
 
+* 2b. No changes to an attribute of the article is specified.
 
-**Use case: UC04 - Delete an article**
+    * 2b1. PressPlanner shows an error message.
+
+      Use case resumes at step 2.
+
+
+
+**Use case: UC13 - Find articles**
 
 **MSS**
 
-1. User requests to list articles.
-1. PressPlanner lists out all articles.
-1. User requests to delete a specific article in the list.
-1. PressPlanner deletes the article.
-1. PressPlanner shows delete success message to user.
-
-   Use case ends.
-
-**Extensions**
-
-* 2a. User requests to find articles with given keywords.
-
-    * 2a1. PressPlanner displays a filtered list of articles found.
-
-      Use case resumes at step 3.
-
-
-* 3a. The given index is invalid.
-
-    * 3a1. PressPlanner shows an error message.
-
-      Use case resumes at step 2.
-
-
-
-**Use case: UC05 - Find articles**
-
-**MSS**
-
-1. User requests to list articles.
-1. PressPlanner lists out all articles.
-1. User requests to find articles with given keywords.
+1. User requests to find articles with headlines containing given keywords.
 1. PressPlanner displays a filtered list of articles found,
- each containing at least one of the given keywords.
+ each having a headline containing at least one of the given keywords.
 
    Use case ends.
 
 **Extensions**
 
-* 3a. No keywords are specified.
+* 1a. No keywords are specified.
 
-    * 3a1. PressPlanner shows an error message.
+    * 1a1. PressPlanner shows an error message.
+
+      Use case resumes at step 1.
+
+
+
+**Use case: UC14 - Filter articles**
+
+
+
+**Use case: UC15 - Lookup associated people for an article**
+
+
+
+**Use case: UC16 - Sort articles by their date**
+
+**MSS**
+
+1. User requests to ***list all articles (UC09)***.
+1. User requests to sort articles by their dates.
+1. PressPlanner sorts the articles by their dates in descending chronological order and displays the sorted list of articles.
+
+   Use case ends.
+
+**Extensions**
+
+* 1a. The list is empty.
+
+  Use case ends.
+
+
+* 1b. The list is already sorted before and no ***edits to an article (UC12)*** modifies an article's date and changes that article's relative chronological ordering in the list or ***adding of an article (UC10)*** which results in that article not being ordered with respect to the rest of the list were performed afterwards.
+
+  Use case ends.
+
+
+* 2a. Invalid sorting attribute is given.
+
+    * 2a1. PressPlanner shows an error message.
 
       Use case resumes at step 2.
-
-
-* 3b. Only invalid keywords are specified.
-
-    * 3b1. PressPlanner shows an error message.
-
-      Use case resumes at step 2.
-
-
-* 3c. No articles are found with the given keywords.
-
-    * 3c1. PressPlanner shows an error message.
-
-      Use case resumes at step 2.
-
-
 
 ### Non-Functional Requirements
 
@@ -596,6 +724,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 1. Should be able to hold up to 1000 persons without a noticeable sluggishness in performance for typical usage.
 1. Should be able to hold up to 1000 articles without a noticeable sluggishness in performance for typical usage.
 1. A user with above average typing speed for regular English text (i.e. not code, not system admin commands) should be able to accomplish most of the tasks faster using commands than using the mouse.
+
 
 
 
@@ -666,4 +795,6 @@ testers are expected to do more *exploratory* testing.
 ## **Planned Enhancements**
 
 1. **Make URL failure more explicit**: Currently when a URL cannot be opened the app shows that by not opening anything. This can be improved by showing an error message.
-2. **The filter command can work for individual prefixes**: Currently the filter command only works for all prefixes. It can be improved by allowing the user to filter by individual prefixes. 
+1. **The filter command can work for individual prefixes**: Currently the filter command only works for all prefixes. It can be improved by allowing the user to filter by individual prefixes.
+1. **Automatically sort persons by their names in ascending alphabetical ordering**: Currently whenever the user makes an edit to a person's name or adds new person entries which may result in a violation of the previous ordering, the user would have to execute the `sort n/` command to re-sort the person entries. It can be improved by automatically sorting people whenever new entries, or certain edits to them are made to reduce such inconveniences to the user.
+1. **Automatically sort articles by their publication dates in descending order**: Currently whenever the user makes an edit to an article's publication date or adds new article entries which may result in a violation of the previous ordering, the user would have to execute the `sort -a d/` command to re-sort the articles. It can be improved by automatically sorting articles whenever new entries, or certain edits to them are made to reduce such inconveniences to the user.
