@@ -276,7 +276,7 @@ Format: `list -a`
 ### [3.2.2. Adding an Article : `add -a`](#32-managing-articles)
 Adds a new article to PressPlanner's database.
 
-Format: `add -a h/HEADLINE [c/CONTRIBUTOR... ] [i/INTERVIEWEE... ] [t/TAG... ] [o/OUTLET... ] d/DATE s/STATUS [l/LINK]`
+Format: `add -a h/HEADLINE [c/CONTRIBUTOR]... [i/INTERVIEWEE]... [t/TAG]...[o/OUTLET]... d/DATE s/STATUS [l/LINK]`
 * Only `HEADLINE`, `DATE`, and `STATUS` are mandatory fields.
   * An article's `DATE` is intended to represent:
     * Time of creation for drafts.
