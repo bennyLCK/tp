@@ -179,6 +179,7 @@ public class ModelManager implements Model {
     public void setArticle(Article target, Article editedArticle) {
         requireAllNonNull(target, editedArticle);
 
+        editedArticle.setPersons(editedArticle.getMatchingPersonsList(addressBook.getPersonList()));
         articleBook.setArticle(target, editedArticle);
     }
 
