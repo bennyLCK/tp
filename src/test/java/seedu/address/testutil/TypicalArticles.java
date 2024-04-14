@@ -71,7 +71,7 @@ public class TypicalArticles {
             .withPublicationDate("07-05-2021")
             .withSources("Earny Dragto", "Midi Dragto")
             .withOutlets("Okto News Outlet")
-            .withTags("Non-Fiction")
+            .withTags("Non Fiction")
             .withStatus("DRAFT")
             .withLink("https://www.google.com/").build();
     public static final Article SIX = new ArticleBuilder().withTitle("Six upon a time")
