@@ -581,7 +581,20 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 **Use case: UC08 - Filter people**
 
+**MSS**
+1. User requests to filter people by tag.
+1. PressPlanner returns a filtered list of people,
+ all of whom have the matching tag.
 
+    Use case ends.
+
+**Extensions**
+
+* 1a. User enters a non-alphanumeric tag.
+
+    * 1a1. PressPlanner shows an error message.
+
+      Use case resumes at step 1.
 
 **Use case: UC09 - List all articles**
 
@@ -684,6 +697,18 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 **Use case: UC14 - Filter articles**
 
+**MSS**
+
+1. User requests to filter articles by status, time of publication or tag.
+1. PressPlanner displays a filtered list of articles,
+ all of which fits the user's criteria.
+
+    Use case ends
+* 1a. User gives an invalid status, tag or date.
+
+    * 1a1. PressPlanner shows an error message
+        
+      Use case resumes at step 1.
 
 
 **Use case: UC15 - Lookup associated people for an article**
@@ -782,6 +807,33 @@ testers are expected to do more *exploratory* testing.
 
 1. _{ more test cases …​ }_
 
+
+### Filtering through articles
+1. Filtering through articles.
+    1. Prerequisites: Populate PressPlanner with sufficient articles.
+     
+    1. Test case: `filter -a s/ st/ en/ t/`<br>
+        Expected:There will be no change in displayed articles.
+     
+    1. Test case: `filter -a s/DRAFT st/ en/ t/`<br>
+        Expected: Only articles with draft status will be displayed.
+   
+    1. Test case: `filter -a s/ st/01-01-2020 en/12-12-2022 t/`<br>
+        Expected: Only articles published between 01-01-2020 and 12-12-2022 will be displayed.
+    
+    1. Test case: `filter -a s/ st/ en/ t/Science`<br>
+       Expected: Only articles with the tag `Science` will be displayed.
+   
+    1. Test case: `filter -a s/ st/`<br>
+        Expected: An error informing the user that the command format is incorrect will be shown.
+     
+    1. Test case: `filter -a s/ st/ en/ t/non-alphanumeric`<br>
+        Expected: An error informing the user that tags only consisting of alpha numeric characters will be shown.
+   
+    1. Test case: `filter -a s/ st/01-01-2020 en/01-01-2001 t/`<br>
+    Expected: An error informing the user that start dates must come before end dates will be shown.
+
+1. _{ more test cases …​ }_
 ### Saving data
 
 1. Dealing with missing/corrupted data files
