@@ -9,6 +9,7 @@ import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeFormatterBuilder;
 import java.time.format.DateTimeParseException;
+import java.time.format.ResolverStyle;
 import java.time.temporal.ChronoField;
 import java.util.Collection;
 import java.util.HashSet;
@@ -180,14 +181,15 @@ public class ParserUtil {
         requireNonNull(publicationDate);
 
         DateTimeFormatter formatter = new DateTimeFormatterBuilder()
-                .appendPattern("dd-MM-yyyy[ HH:mm]")
+                .appendPattern("dd-MM-uuuu[ HH:mm]")
                 .parseDefaulting(ChronoField.HOUR_OF_DAY, 0)
                 .parseDefaulting(ChronoField.MINUTE_OF_HOUR, 0)
                 .toFormatter();
+        DateTimeFormatter formatterStrict = formatter.withResolverStyle(ResolverStyle.STRICT);
 
         String trimmedPublicationDate = publicationDate.trim();
         try {
-            LocalDateTime tempDate = LocalDateTime.parse(trimmedPublicationDate, formatter);
+            LocalDateTime tempDate = LocalDateTime.parse(trimmedPublicationDate, formatterStrict);
             return new PublicationDate(tempDate);
         } catch (DateTimeParseException e) {
             throw new ParseException("Invalid date");
@@ -197,10 +199,10 @@ public class ParserUtil {
     /**
      * Parses a {@code LocalDateTime date} into a {@code String}.
      * @param date The date to be parsed.
-     * @return The date in the format of [dd-MM-yyyy HH:mm].
+     * @return The date in the format of [dd-MM-uuuu HH:mm].
      */
     public static String parseDateToString(LocalDateTime date) {
-        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy HH:mm");
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MM-uuuu HH:mm");
         return date.format(formatter);
     }
 
