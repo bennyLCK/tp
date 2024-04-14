@@ -255,11 +255,23 @@ Format: `sort n/`
 Example:
 * `sort n/` sorts all persons in PressPlanner in ascending order by the lexicographical (alphabetical) ordering of their names.
 
+Before sorting:
+(Aaron Tan and Barry Allen are recent additions to the template data and are currently at the end of the list)
+![before sorting people](images/beforeSortingPeople.png)
+
+After sorting:
+(Both Aaron Tan and Barry Allen moved up the list and are now in order with respect to ascending alphabetical ordering of their names)
+![after sorting people](images/afterSortingPeople.png)
+
+Success message shown:
+`sorted all persons by name`
+
 ### [3.1.8 Filtering People: `filter`](#31-filtering-persons)
 
 This is a planned command that will empower you to search for your contacts more swiftly.
 Unfortunately, we have not yet implemented it, so using this command will return a command not found error.
 We apologize for this inconvenience, and hope you look forward to this exciting new feature as much as we do!
+
 ### [3.1.9. Clearing All Persons : `clear`](#31-managing-contacts)
 
 Clears all entries from the address book.
@@ -418,6 +430,17 @@ Format: `sort -a d/`
 
 Example:
 * `sort -a d/` sorts all articles in PressPlanner in descending order by their date and time.
+
+Before sorting:
+(The first and second articles are in ascending order by date)
+![before sorting articles](images/beforeSortingArticles.png)
+
+After sorting:
+(The articles are now in descending order by date)
+![after sorting articles](images/afterSortingArticles.png)
+
+Success message shown:
+`sorted all articles by date`
 
 ### [3.2.10. Opening a Webpage for an Article](#32-managing-articles)
 
