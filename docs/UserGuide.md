@@ -401,6 +401,10 @@ Format: `filter -a s/STATUS t/TAG ST/START_DATE EN/END_DATE`
 * Only one filter command can be active at once, using another filter will override the last one.
 Examples:
 * `filter -a s/DRAFT t/ st/ en/` will restrict the display to showing only articles with draft status.
+* Using the command:
+![Before Filter](images/filterCommand.png)
+* After the command:
+![After Filter](images/filterAfter.png)
 
 ### [3.2.7. Removing a Filter](#3-2-managing-articles) : `rmfilter -a`
 Remove all filters so that all articles in PressPlanner's database are displayed.
@@ -409,6 +413,10 @@ Format: `rmfilter -a`
 
 * No additional parameters.
 * The `-a` is necessary, additional letters will cause the command to fail.
+Using the command:
+![Remove Command](images/removeFilterCommand.png)
+After the command:
+![After rm command](images/removeFilterAfter.png)
 
 ### [3.2.8. Lookup Associated Persons](#3-2-managing-articles) : `lookup -a`
 
