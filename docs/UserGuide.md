@@ -312,16 +312,14 @@ Example : `delete -a 1` deletes the article at the first index.
 
 Edits an existing article in PressPlanner's database.
 
-Format: `edit -a INDEX [h/HEADLINE] [d/DATE] [s/STATUS] [c/CONTRIBUTOR... ] [i/INTERVIEWEE... ] [t/TAG... ] [o/OUTLET... ] [l/LINK]`
+Format: `edit -a INDEX [h/HEADLINE] [d/DATE] [s/STATUS] [c/CONTRIBUTOR]... [i/INTERVIEWEE]... [t/TAG]... [o/OUTLET]... [l/LINK]`
 
 * Edits the article at the specified `INDEX`.
-  * The `INDEX` refers to the index number shown in the current article list view.
-  * If a `filter`, `sort` or `find` command was executed before, the index refers to the index number shown in the filtered/sorted list of articles.
 * At least one of the optional fields must be provided.
 * Existing values will be updated to the input values.
   * When editing a field, the original values will be overwritten by the new values.
-    * `t/` without any value after it will clear all existing tags.
-    * `c/new contributor` will replace all existing contributors with `new contributor`.
+    * `c/`, `i/`, `t/`, `o/` and `l/` without any value after it will clear all existing values.
+    * e.g. `c/new contributor` will replace all existing contributors with `new contributor`.
 * Refer to the [add article](#322-adding-an-article--add--a) command for the format of each field.
 * Editing an article will return to displaying all articles if a [find](#325-searching-for-an-article-by-headline--find--a) command was executed before.
   * This does not apply to [filters](#326-filtering-articles--filter--a).
