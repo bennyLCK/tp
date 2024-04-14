@@ -31,6 +31,7 @@
     * [3.2.8. Lookup Associated Persons](#3-2-8-lookup-associated-persons-lookup-a)
     * [3.2.9. Sorting Articles by Date](#3-2-9-sorting-articles-by-date-sort-a-d)
     * [3.2.10. Opening a Webpage for an Article](#3-2-10-opening-a-webpage-for-an-article)
+    * [3.2.11. Clearing all articles](#3-2-11-clearing-articles)
   * [3.3. Other Commands](#3-3-other-commands)
     * [3.3.1. Viewing Help ](#3-3-1-viewing-help-help)
     * [3.3.2. Exiting PressPlanner](#3-3-2-exiting-pressplanner-exit)
@@ -292,7 +293,7 @@ Adds a new article to PressPlanner's database.
 
 Format: `add -a h/HEADLINE  d/DATE s/STATUS [c/CONTRIBUTOR]... [i/INTERVIEWEE]... [t/TAG]...[o/OUTLET]... [l/LINK]`
 * Only `HEADLINE`, `DATE`, and `STATUS` are mandatory fields.
-  * An article's `DATE` is intended to represent:
+  * An article's `DATE` can represent what you choose to be relevant to your workflow, we recommend using it to represent:
     * Time of creation for drafts.
     * Time of publication for published articles.
   * `DATE` must be in the format `dd-mm-yyyy [HH:mm]`.
@@ -305,6 +306,12 @@ Format: `add -a h/HEADLINE  d/DATE s/STATUS [c/CONTRIBUTOR]... [i/INTERVIEWEE]..
 * Adding an article will return to displaying all articles if a [find](#3-2-5-searching-for-an-article-by-headline-find-a) command was executed before.
   * This does not apply to [filters](#3-2-6-filtering-articles-filter-a).
   * If the name of a contributor or interviewee matches a person in the address book, the person's name will be linked to the article which will be accessible via the `lookup` and `lookup -a` commands.
+
+> :warning:
+> * `HEADLINE` accepts any characters, but must not start with a whitespace.
+> * `HEADLINE` can also be left blank. This is not recommended, but allowed for flexibility.
+    >   * e.g. `add -a h/ d/20-10-2023 s/draft` is a valid command and will add an article with a blank headline.
+>   * Some users may find this useful for adding drafts quickly and filling in the headline later.
 
 Examples:
 * `add -a h/iPhone 13 Review d/20-03-2024 s/draft c/John Doe i/Michael Lee t/New Releases`
@@ -401,6 +408,10 @@ Format: `filter -a s/STATUS t/TAG ST/START_DATE EN/END_DATE`
 * Only one filter command can be active at once, using another filter will override the last one.
 Examples:
 * `filter -a s/DRAFT t/ st/ en/` will restrict the display to showing only articles with draft status.
+* Using the command:
+![Before Filter](images/filterCommand.png)
+* After the command:
+![After Filter](images/filterAfter.png)
 
 ### [3.2.7. Removing a Filter](#3-2-managing-articles) : `rmfilter -a`
 Remove all filters so that all articles in PressPlanner's database are displayed.
@@ -409,6 +420,10 @@ Format: `rmfilter -a`
 
 * No additional parameters.
 * The `-a` is necessary, additional letters will cause the command to fail.
+Using the command:
+![Remove Command](images/removeFilterCommand.png)
+After the command:
+![After rm command](images/removeFilterAfter.png)
 
 ### [3.2.8. Lookup Associated Persons](#3-2-managing-articles) : `lookup -a`
 
@@ -457,6 +472,21 @@ Success message shown:
 * If the webpage does not open when clicked, it means that the `link` of the article is invalid.
 
 ![opening link](images/LinkFeatureSample.png)
+
+### [3.2.11 Clearing all Articles](#3-2-clearing-articles)
+
+* Unfortunately, we have not implemented a clear command for articles yet. However, there is an easy workaround to this!
+* For example, your articlebook may look something like this:
+![before clearing](images/beforeDeletingJsonFile.png)
+* Simply go into the folder PressPlanner is in!
+![PressPlanner folder](images/fileDirectoryBefore.png)
+* Go inside the data folder, which will look something like this:
+![Data folder](images/insideDataBefore.png)
+* Delete the file named articlebook.
+![Deleting file](images/insideDataAfter.png)
+* Now, if you open PressPlanner again, you will see that your articles will have changed back to the sample data!
+![after clearing](images/afterDeletingJsonFile.png)
+* Now all you have to do is to delete the sample article and you are set!
 
 ## [3.3. Other Commands](#3-features)
 
