@@ -18,7 +18,8 @@
     * [3.1.5. Searching for a Person by Name](#315-searching-for-a-person-by-name--find)
     * [3.1.6. Lookup Associated Articles](#316-lookup-associated-articles--lookup)
     * [3.1.7. Sorting Persons by Name](#317-sorting-persons-by-name--sort-n)
-    * [3.1.8. Clearing All Persons](#318-clearing-all-persons--clear)
+    * [3.1.8. Filtering Persons](#318-filtering-people--filter)
+    * [3.1.9. Clearing All Persons](#319-clearing-all-persons--clear)
   * [3.2. Managing Articles](#32-managing-articles)
     * [3.2.1. Listing All Articles](#321-listing-all-articles--list--a)
     * [3.2.2. Adding an Article](#322-adding-an-article--add--a)
@@ -245,7 +246,24 @@ Format: `sort n/`
 Example:
 * `sort n/` sorts all persons in PressPlanner in ascending order by the lexicographical (alphabetical) ordering of their names.
 
-### [3.1.8. Clearing All Persons : `clear`](#31-managing-contacts)
+Before sorting:
+(Aaron Tan and Barry Allen are recent additions to the template data and are currently at the end of the list)
+![before sorting people](images/beforeSortingPeople.png)
+
+After sorting:
+(Both Aaron Tan and Barry Allen moved up the list and are now in order with respect to ascending alphabetical ordering of their names)
+![after sorting people](images/afterSortingPeople.png)
+
+Success message shown:
+`sorted all persons by name`
+
+### [3.1.8 Filtering People: `filter`](#31-filtering-persons)
+
+This is a planned command that will empower you to search for your contacts more swiftly.
+Unfortunately, we have not yet implemented it, so using this command will return a command not found error.
+We apologize for this inconvenience, and hope you look forward to this exciting new feature as much as we do!
+
+### [3.1.9. Clearing All Persons : `clear`](#31-managing-contacts)
 
 Clears all entries from the address book.
 
@@ -353,9 +371,11 @@ Format: `filter -a s/STATUS t/TAG ST/START_DATE EN/END_DATE`
 * Filters will apply until you [remove](#327-removing-a-filter--rmfilter--a) it or apply a new filter, so make sure you [remove](#327-removing-a-filter--rmfilter--a) it after you are done!
 * Refer to the [add article](#322-adding-an-article--add--a) command for the format of each field.
   * Note that `START_DATE` and `END_DATE` must be in the same format as `DATE` in the [add article](#322-adding-an-article--add--a) command.
-
+  * The `START_DATE` should come **before** the `END_DATE`. If not, you will receive an error!
+  * The date of the article you are looking for should not be equal to the `START_DATE` or `END_DATE`.
+* Only one filter command can be active at once, using another filter will override the last one.
 Examples:
-* `filter -a s/draft t/ st/ en/` will restrict the display to showing only articles with draft status.
+* `filter -a s/DRAFT t/ st/ en/` will restrict the display to showing only articles with draft status.
 
 ### [3.2.7. Removing a Filter : `rmfilter -a`](#32-managing-articles)
 Remove all filters so that all articles in PressPlanner's database are displayed.
@@ -397,6 +417,17 @@ Format: `sort -a d/`
 
 Example:
 * `sort -a d/` sorts all articles in PressPlanner in descending order by their date and time.
+
+Before sorting:
+(The first and second articles are in ascending order by date)
+![before sorting articles](images/beforeSortingArticles.png)
+
+After sorting:
+(The articles are now in descending order by date)
+![after sorting articles](images/afterSortingArticles.png)
+
+Success message shown:
+`sorted all articles by date`
 
 ### [3.2.10. Opening a Webpage for an Article](#32-managing-articles)
 
