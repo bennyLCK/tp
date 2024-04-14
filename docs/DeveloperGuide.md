@@ -482,6 +482,14 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 (For all use cases below, the **System** is the `PressPlanner` and the **Actor** is the `user`, unless specified otherwise)
 
+**Use case: List all people**
+
+
+
+**Use case: Add a person**
+
+
+
 **Use case: Delete a person**
 
 **MSS**
@@ -508,6 +516,26 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 
 
+**Use case: Edit a person**
+
+
+
+**Use case: Search for a person**
+
+
+
+**Use case: Lookup associated articles for a person**
+
+
+
+**Use case: Sort people by their names**
+
+
+
+**Use case: Filter people**
+
+
+
 **Use case: UC01 - List all articles**
 
 **MSS**
@@ -530,9 +558,10 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 **Extensions**
 
 * 1a. Command was invalid.
+  
   * 1a1. PressPlanner shows an error message.
 
-    Use case ends.
+    Use case resumes at step 1.
 
 
 
@@ -540,8 +569,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 **MSS**
 
-1. User requests to list articles.
-1. PressPlanner lists out all articles.
+1. User requests to ***list all articles (UC01)***.
 1. User requests to delete a specific article in the list.
 1. PressPlanner deletes the article.
 1. PressPlanner shows delete success message to user.
@@ -550,16 +578,9 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 **Extensions**
 
-* 2a. User requests to find articles with given keywords.
+* 2a. The given index is invalid.
 
-    * 2a1. PressPlanner displays a filtered list of articles found.
-
-      Use case resumes at step 3.
-
-
-* 3a. The given index is invalid.
-
-    * 3a1. PressPlanner shows an error message.
+    * 2a1. PressPlanner shows an error message.
 
       Use case resumes at step 2.
 
@@ -569,8 +590,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 **MSS**
 
-1. User requests to list articles.
-1. PressPlanner lists out all articles.
+1. User requests to ***list all articles (UC01)***.
 1. User requests to edit a specific article in the list
    by providing at least one change to an attribute of the article.
 1. PressPlanner updates the article with the changes requested.
@@ -580,16 +600,16 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 **Extensions**
 
-* 3a. The given index is invalid.
+* 2a. The given index is invalid.
 
-    * 3a1. PressPlanner shows an error message.
+    * 2a1. PressPlanner shows an error message.
 
       Use case resumes at step 2.
 
 
-* 3b. No changes to an attribute of the article is specified.
+* 2b. No changes to an attribute of the article is specified.
 
-    * 3b1. PressPlanner shows an error message.
+    * 2b1. PressPlanner shows an error message.
 
       Use case resumes at step 2.
 
@@ -599,8 +619,6 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 **MSS**
 
-1. User requests to list articles.
-1. PressPlanner lists out all articles.
 1. User requests to find articles with headlines containing given keywords.
 1. PressPlanner displays a filtered list of articles found,
  each having a headline containing at least one of the given keywords.
@@ -609,13 +627,24 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 **Extensions**
 
-* 3a. No keywords are specified.
+* 1a. No keywords are specified.
 
-    * 3a1. PressPlanner shows an error message.
+    * 1a1. PressPlanner shows an error message.
 
-      Use case resumes at step 2.
+      Use case resumes at step 1.
 
-    
+
+
+**Use case: UC06 - Filter articles**
+
+
+
+**Use case: UC07 - Lookup associated people for an article**
+
+
+
+**Use case: UC08 - Sort articles by their date**
+
 
 ### Non-Functional Requirements
 
@@ -695,4 +724,5 @@ testers are expected to do more *exploratory* testing.
 
 1. **Make URL failure more explicit**: Currently when a URL cannot be opened the app shows that by not opening anything. This can be improved by showing an error message.
 1. **The filter command can work for individual prefixes**: Currently the filter command only works for all prefixes. It can be improved by allowing the user to filter by individual prefixes.
-1. **Automatically sort persons by their names in ascending alphabetical ordering, articles by their publication dates in descending order**: Currently whenever the user makes an edit to a person's name, to an article's publication date, or adds new person or article entries which may result in a violation of the previous ordering, the user would have to execute the `sort n/` or `sort -a d/` commands to re-sort the persons or articles. It can be improved by automatically sorting people and articles whenever new entries, or certain edits to them are made to reduce such inconveniences to the user.
+1. **Automatically sort persons by their names in ascending alphabetical ordering**: Currently whenever the user makes an edit to a person's name or adds new person entries which may result in a violation of the previous ordering, the user would have to execute the `sort n/` command to re-sort the person entries. It can be improved by automatically sorting people whenever new entries, or certain edits to them are made to reduce such inconveniences to the user.
+1. **Automatically sort articles by their publication dates in descending order**: Currently whenever the user makes an edit to an article's publication date or adds new article entries which may result in a violation of the previous ordering, the user would have to execute the `sort -a d/` command to re-sort the articles. It can be improved by automatically sorting articles whenever new entries, or certain edits to them are made to reduce such inconveniences to the user.
