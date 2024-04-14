@@ -43,7 +43,6 @@ public class AddArticleCommandParser implements Parser<AddArticleCommand> {
                 || !argMultimap.getPreamble().isEmpty()) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddArticleCommand.MESSAGE_USAGE));
         }
-
         Title title = ParserUtil.parseTitle(argMultimap.getValue(PREFIX_HEADLINE).get());
         Set<Author> authorList = ParserUtil.parseAuthors(argMultimap.getAllValues(PREFIX_CONTRIBUTOR));
         Set<Source> sourceList = ParserUtil.parseSources(argMultimap.getAllValues(PREFIX_INTERVIEWEE));
