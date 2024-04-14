@@ -482,15 +482,21 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 (For all use cases below, the **System** is the `PressPlanner` and the **Actor** is the `user`, unless specified otherwise)
 
-**Use case: List all people**
+**Use case: UC01 - List all people**
+
+**MSS**
+1. User requests to list all people.
+1. PressPlanner lists out all people.
+
+   Use case ends.
 
 
 
-**Use case: Add a person**
+**Use case: UC02 - Add a person**
 
 
 
-**Use case: Delete a person**
+**Use case: UC03 - Delete a person**
 
 **MSS**
 
@@ -516,27 +522,68 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 
 
-**Use case: Edit a person**
+**Use case: UC04 - Edit a person**
 
 
 
-**Use case: Search for a person**
+**Use case: UC05 - Find people**
+
+**MSS**
+
+1. User requests to find people with names containing given keywords.
+1. PressPlanner displays a filtered list of people found,
+   each having a name containing at least one of the given keywords.
+
+   Use case ends.
+
+**Extensions**
+
+* 1a. No keywords are specified.
+
+    * 1a1. PressPlanner shows an error message.
+
+      Use case resumes at step 1.
+  
+
+
+**Use case: UC06 - Lookup associated articles for a person**
 
 
 
-**Use case: Lookup associated articles for a person**
+**Use case: UC07 - Sort people by their names**
+
+**MSS**
+
+1. User requests to ***list all people (UC01)***.
+1. User requests to sort people by their names.
+1. PressPlanner sorts the people by their names in ascending alphabetical order and displays the sorted list of people.
+
+   Use case ends.
+
+**Extensions**
+
+* 1a. The list is empty.
+
+  Use case ends.
+
+
+* 1b. The list is already sorted before and no ***edits to a person (UC04)*** modifies a person's name and changes that person's relative alphabetical ordering in the list or ***adding of a person (UC02)*** which results in that person not being ordered with respect to the rest of the list were performed afterwards.
+
+  Use case ends.
+
+
+* 2a. Invalid sorting attribute is given.
+
+    * 2a1. PressPlanner shows an error message.
+
+      Use case resumes at step 2.
+
+
+**Use case: UC08 - Filter people**
 
 
 
-**Use case: Sort people by their names**
-
-
-
-**Use case: Filter people**
-
-
-
-**Use case: UC01 - List all articles**
+**Use case: UC09 - List all articles**
 
 **MSS**
 1. User requests to list articles.
@@ -546,7 +593,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 
 
-**Use case: UC02 - Add an article**
+**Use case: UC10 - Add an article**
 
 **MSS**
 1. User requests to add article.
@@ -565,11 +612,11 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 
 
-**Use case: UC03 - Delete an article**
+**Use case: UC11 - Delete an article**
 
 **MSS**
 
-1. User requests to ***list all articles (UC01)***.
+1. User requests to ***list all articles (UC09)***.
 1. User requests to delete a specific article in the list.
 1. PressPlanner deletes the article.
 1. PressPlanner shows delete success message to user.
@@ -586,11 +633,11 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
     
 
-**Use case: UC04 - Edit an article**
+**Use case: UC12 - Edit an article**
 
 **MSS**
 
-1. User requests to ***list all articles (UC01)***.
+1. User requests to ***list all articles (UC09)***.
 1. User requests to edit a specific article in the list
    by providing at least one change to an attribute of the article.
 1. PressPlanner updates the article with the changes requested.
@@ -615,7 +662,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 
 
-**Use case: UC05 - Find articles**
+**Use case: UC13 - Find articles**
 
 **MSS**
 
@@ -635,16 +682,41 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 
 
-**Use case: UC06 - Filter articles**
+**Use case: UC14 - Filter articles**
 
 
 
-**Use case: UC07 - Lookup associated people for an article**
+**Use case: UC15 - Lookup associated people for an article**
 
 
 
-**Use case: UC08 - Sort articles by their date**
+**Use case: UC16 - Sort articles by their date**
 
+**MSS**
+
+1. User requests to ***list all articles (UC09)***.
+1. User requests to sort articles by their dates.
+1. PressPlanner sorts the articles by their dates in descending chronological order and displays the sorted list of articles.
+
+   Use case ends.
+
+**Extensions**
+
+* 1a. The list is empty.
+
+  Use case ends.
+
+
+* 1b. The list is already sorted before and no ***edits to an article (UC12)*** modifies an article's date and changes that article's relative chronological ordering in the list or ***adding of an article (UC10)*** which results in that article not being ordered with respect to the rest of the list were performed afterwards.
+
+  Use case ends.
+
+
+* 2a. Invalid sorting attribute is given.
+
+    * 2a1. PressPlanner shows an error message.
+
+      Use case resumes at step 2.
 
 ### Non-Functional Requirements
 
