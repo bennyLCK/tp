@@ -1,0 +1,11 @@
+@startuml
+'https://plantuml.com/sequence-diagram
+
+autonumber
+
+{User} -> ArticleCard : Click
+ArticleCard -> ArticleCard : openBrowser(link)
+ArticleCard -> Model : getLink()
+Model --> ArticleCard : return link
+[<-- ArticleCard : open webpage
+@enduml

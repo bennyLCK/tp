@@ -405,17 +405,38 @@ The following sequence diagram shows how the `MakeTemplateCommand` is executed:
 _{Explain here how the data archiving feature will be implemented}_
 
 
-### \[Proposed\] Link Webpage to Articles
+### \[Implemented\] Link Webpage to Articles
 
-#### Proposed Implementation
+#### Implementation
 
-The proposed link feature is enabled by filling up `link` attribute of `Article` class when adding an article. This feature creates a link button on the UI of each `Article` that opens up a web browser and directs the user to the webpage of where the actual article is uploaded.
+The link feature is implemented in the `ArticleCard` class, so that when the user clicks on the link button, the link of the article on the article card will be opened.
+The link feature is enabled by filling up `link` attribute of `Article` class when adding an article. This feature creates a link button on the UI of each `Article` that opens up a web browser and directs the user to the webpage of where the actual article is uploaded.
 Since the `Articlebook` does not store the whole content of the articles, users will be able to read the articles using this feature.
 
-#### Design Considerables
+Given below is an example usage scenario:
 
-* Make sure the link button on UI correctly directs the user the exact webpage of the `Article`.
-* Make sure the `link` saved on `Article` objects are saved without parsing errors.
+Step 1. The user launches the application for the first time. The `ArticleBook` will be initialized with the initial article book state.
+
+Step 2. The user executes `add -a h/Article1 d/20-03-2024 s/draft l/https://www.article1.com` command to add a new article. The `add` command calls `Logic#addArticleCommand("Article1", 20-03-2024, draft "https://www.article1.com")` which adds the article to the `ArticleBook`.
+
+Step 3. Notice that the `link` attribute of the `Article` object is filled with the link provided by the user.
+
+Step 4. The user clicks on the link button on the UI of the `Article` object. The link button will open up a web browser and direct the user to the webpage of where the actual article is uploaded.
+
+<puml src="diagrams/LinkSequenceDiagram.puml" alt="LinkSequenceDiagram" />
+
+
+#### Design Considerations
+
+**Aspect: How the link feature is implemented:**
+
+* **Alternative 1 (current choice):** The link feature is implemented in the `ArticleCard` class.
+    * Pros: Easy to implement.
+    * Cons: The link feature is not reusable for other classes.
+
+* **Alternative 2:** The link feature is implemented in a separate class.
+    * Pros: The link feature is reusable for other classes.
+    * Cons: More complex to implement.
 
 The class diagram below shows how the `Article` will look and interact after implementation of the link feature.
 
@@ -717,6 +738,16 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
     * 2a1. PressPlanner shows an error message.
 
       Use case resumes at step 2.
+
+
+
+**Use case: UC17 - Open Webpage of Articles**
+
+**MSS**
+
+1. User requests to ***list all articles (UC09)***.
+2. User requests to open webpage of a certain article.
+3. PressPlanner opens a browser with the URL of the article.
 
 ### Non-Functional Requirements
 
