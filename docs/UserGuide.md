@@ -100,12 +100,10 @@ Let's go over the basic PressPlanner workflow. Say you've just finished intervie
    - To `add -a` an article we need the following information:
        - Headline (`h/`)
        - Date (`d/`)
-         - We use a single field for the date:
-           - For drafts, you can use the date you started writing the article.
-           - For published articles, use the date of publication.
+         - We use a single field for the date.
        - Status (`s/`)
          - An article can be a `draft`, `published`, or `archived`.
-     - For example: `add -a h/My Article d/20-10-2023 s/draft`
+     - For example: `add -a h/Example Article d/20-10-2023 s/draft`
 
 3. Now that that's done, let's say you need to find Gill Bate's number to arrange another interview.
     - Typing the command `find Gill Bates` will pull up his contact.
@@ -114,7 +112,7 @@ Let's go over the basic PressPlanner workflow. Say you've just finished intervie
     - Typing the command `list` will bring up all your contacts.
 
 5. If you want to look up your article:
-    - Typing the command `find -a My First Article` will pull up the article.
+    - Typing the command `find -a Example Article` will pull up the article.
 
 6. If you want to see all your articles again:
     - Typing the command `list -a` will bring them all up.
