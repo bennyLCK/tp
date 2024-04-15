@@ -85,8 +85,6 @@ App data will be stored in sub-folders from where it is launched. While you coul
    * For macOS and Linux users, you can use the [`cd` command](https://help.ubuntu.com/community/UsingTheTerminal) to change directories and the `ls` command to list files in the current directory.
 1. A window similar to the one below should appear in a few seconds. Note how the app contains some sample data. The information on what each data field represents is shown in the picture below.
 
-<div style="page-break-after: always;"></div>
-
 <img src="images/UiDescription.png" alt="UI">
 
 ### [2.3. The Beginner's Guide to PressPlanner](#2-getting-started)
@@ -124,6 +122,8 @@ Let's go over the basic PressPlanner workflow. Say you've just finished intervie
        - Status (`s/`)
          - An article can be a `draft`, `published`, or `archived`.
      - For example: `add -a h/Example Article d/20-10-2023 s/draft`
+
+<div style="page-break-after: always;"></div>
 
    <div markdown="block" class="alert alert-warning">
    
@@ -285,6 +285,7 @@ Examples:
 * `add n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01`
 * `add n/Betsy Crowe e/betsycrowe@example.com a/Apple HQ p/1234567 t/Marketing Department t/Apple`
 
+<div style="page-break-after: always;"></div>
 
 ### [3.1.2. Deleting a Person](#3-1-managing-contacts) : `delete`
 
@@ -341,6 +342,8 @@ Editing the name of a person will automatically update their names in articles r
 Examples:
 *  `edit 1 p/91234567 e/johndoe@example.com` Edits the phone number and email address of the 1st person to be `91234567` and `johndoe@example.com` respectively.
 *  `edit 2 n/Betsy Crowe t/` Edits the name of the 2nd person to be `Betsy Crowe` and clears all existing tags.
+
+<div style="page-break-after: always;"></div>
 
 ### [3.1.5. Searching for a Person by Name](#3-1-managing-contacts) : `find`
 
@@ -659,6 +662,8 @@ Examples:
    
     ![After lookup](images/lookupArticle.png)
 
+<div style="page-break-after: always;"></div>
+
 ### [3.2.9. Sorting Articles by Date](#3-2-managing-articles) : `sort -a d/`
 
 Sort articles in PressPlanner's database in descending order by their date and time.
@@ -687,6 +692,8 @@ Example:
 
 * Success message shown:
   * `sorted all articles by date`
+
+<div style="page-break-after: always;"></div>
 
 ### [3.2.10. Opening a Webpage for an Article](#3-2-managing-articles)
 
