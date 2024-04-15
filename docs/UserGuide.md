@@ -141,20 +141,20 @@ As you become more familiar with the app, use tags as you see fit to customise y
 >      * `PARAMETER` is the parameter to be supplied by you.
 > 
 > 2. `INDEX` is a parameter you may come across frequently. It refers to the index number shown in the current list view.
->   * `INDEX` must be a positive integer.
->   * An `INDEX` not present in the current list view is invalid.
->   * For example using the sample data shown below, indexes 1 - 6 are valid for persons, and index 1 is valid for articles: 
+>    * `INDEX` must be a positive integer.
+>    * An `INDEX` not present in the current list view is invalid.
+>    * For example using the sample data shown below, indexes 1 - 6 are valid for persons, and index 1 is valid for articles: 
 >   
 >     ![sample data](images/sampleData.png)
 >
 > 3. Words in `UPPER_CASE` are the parameters to be supplied by you.
->   * Refer to point 1 for the breakdown of the command structure.
->   * For the example command `example p/PARAMETER`:
->     * `PARAMETER` is the parameter to be supplied by you.
->       * The correct use of this command would thus be: `example p/my input`, replacing `PARAMETER` with your own input.
->   * For the real command [`delete INDEX`](#312-deleting-a-person--delete):
->     * `INDEX` is the parameter to be supplied by you.
->       * The correct use of this command would thus be: `delete 1`, replacing `INDEX` with a valid index.
+>    * Refer to point 1 for the breakdown of the command structure.
+>    * For the example command `example p/PARAMETER`:
+>       * `PARAMETER` is the parameter to be supplied by you.
+>         * The correct use of this command would thus be: `example p/my input`, replacing `PARAMETER` with your own input.
+>    * For the real command [`delete INDEX`](#312-deleting-a-person--delete):
+>      * `INDEX` is the parameter to be supplied by you.
+>        * The correct use of this command would thus be: `delete 1`, replacing `INDEX` with a valid index.
 >
 > 4. Items in square brackets are optional.
 >    * For the example command `example p/PARAMETER [t/TAG]`:
