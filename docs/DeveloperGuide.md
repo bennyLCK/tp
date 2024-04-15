@@ -742,10 +742,10 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 **MSS**
 
 1. User requests to ***list all articles (UC09)***.
-1. User requests to edit a specific article in the list
+2. User requests to edit a specific article in the list
    by providing at least one change to an attribute of the article.
-1. PressPlanner updates the article with the changes requested.
-1. PressPlanner shows the updated article to user.
+3. PressPlanner updates the article with the changes requested.
+4. PressPlanner shows the updated article to user.
 
    Use case ends.
 
@@ -921,13 +921,28 @@ testers are expected to do more *exploratory* testing.
 
    1. Prerequisites: List all persons using the `list` command. Multiple persons in the list.
 
-   1. Test case: `delete 1`<br>
+   2. Test case: `delete 1`<br>
       Expected: First contact is deleted from the list. Details of the deleted contact shown in the status message. Timestamp in the status bar is updated.
 
-   1. Test case: `delete 0`<br>
+   3. Test case: `delete 0`<br>
       Expected: No person is deleted. Error details shown in the status message. Status bar remains the same.
 
-   1. Other incorrect delete commands to try: `delete`, `delete x`, `...` (where x is larger than the list size)<br>
+   4. Other incorrect delete commands to try: `delete`, `delete x`, `...` (where x is larger than the list size)<br>
+      Expected: Similar to previous.
+
+### Editing a article
+
+1. Edit an article while all articles are being shown
+
+   1. Prerequisites: List all articles using the `list` command. Multiple articles in the list.
+
+   2. Test case: `edit 1 h/Article1`<br>
+      Expected: First article is edited to Article1. Details of the edited article shown in the status message.
+
+   3. Test case: `edit 0 h/Article1`<br>
+      Expected: No article is edited. Error details shown in the status message.
+
+   4. Other incorrect edit commands to try: `edit`, `edit x`, `...` (where x is larger than the list size)<br>
       Expected: Similar to previous.
 
 ### Lookup a person & article
@@ -936,65 +951,65 @@ testers are expected to do more *exploratory* testing.
 
    1. Prerequisites: Assume non-empty list of persons and articles. Change index numbers as needed.
 
-   1. Test case: `add n/Alice1 p/12345678 e/alice@email.com a/Blk 424 #11-0536 Yishun Ring Road`<br> `lookup 1`<br>
+   2. Test case: `add n/Alice1 p/12345678 e/alice@email.com a/Blk 424 #11-0536 Yishun Ring Road`<br> `lookup 1`<br>
       Expected: Alice1 is added to the list. An empty list of articles associated with Alice1 is shown. 
 
-   1. Testcase: `add -a h/Article1 c/Alice1 d/11-09-2021 s/DRAFT`<br> `lookup -a 1`<br>
+   3. Testcase: `add -a h/Article1 c/Alice1 d/11-09-2021 s/DRAFT`<br> `lookup -a 1`<br>
       Expected: Article1 is added to the list. Alice1 is shown as a list of persons associated with Article1.
    
-   2. Lookup person: `lookup 1`<br>
+   4. Lookup person: `lookup 1`<br>
          Expected: Article1 is shown as a list of articles associated with Alice1.
 
-   1. Test case: `lookup 0`<br>
+   5. Test case: `lookup 0`<br>
       Expected: Error message is shown.
 
-   1. Test case: `lookup -a 0`<br>
+   6. Test case: `lookup -a 0`<br>
       Expected: Error message is shown.
 
-   1. Delete the person and article added in the prerequisites. Then repeat the above testcases by altering the orders such that the article is added first and then person. The commands should differ accordingly.
+   7. Delete the person and article added in the prerequisites. Then repeat the above testcases by altering the orders such that the article is added first and then person. The commands should differ accordingly.
 
-3. Lookup after editing person and article
+2. Lookup after editing person and article
 
     1. Test case: `edit 1 n/Alice2`<br>
        Expected: Alice is edited to Alice2. This is reflected in the article Article0 contributor tag as well.
     
-    1. Test case: `edit -a 1 h/Article1`<br>
+    2. Test case: `edit -a 1 h/Article1`<br>
        Expected: Article0 is edited to Article1.
     
-    1. Test case: `lookup 1`<br>
+    3. Test case: `lookup 1`<br>
        Expected: Article1 is shown as a list of articles associated with Alice2.
     
-    1. Test case: `lookup -a 1`<br>
+    4. Test case: `lookup -a 1`<br>
        Expected: Alice2 is shown as a list of persons associated with Article1.
 
 ### Filtering through articles
 1. Filtering through articles.
     1. Prerequisites: Populate PressPlanner with sufficient articles. You may use the following add commands:<br>
      
-    1. Use these commands to populate PressPlanner.<br>
+    2. Use these commands to populate PressPlanner.<br>
        `add -a h/Test-1 c/Author1 i/Interviewee1 t/Science d/01-01-2019 s/PUBLISHED`<br>
        `add -a h/Test-2 c/Author2 i/Interviewee2 d/01-01-2021 s/PUBLISHED`<br>
        `add -a h/Test-3 c/Author3  d/01-01-2019 s/DRAFT`<br>
 
-    1. Test case: `filter -a s/ st/ en/ t/`<br>
+    3. Test case: `filter -a s/ st/ en/ t/`<br>
         Expected:There will be no change in displayed articles.
      
-    1. Test case: `filter -a s/DRAFT st/ en/ t/`<br>
+    4. Test case: `filter -a s/DRAFT st/ en/ t/`<br>
         Expected: Only articles with draft status will be displayed.
    
-    1. Test case: `filter -a s/ st/01-01-2020 en/12-12-2022 t/`<br>
+    5. Test case: `filter -a s/ st/01-01-2020 en/12-12-2022 t/`<br>
         Expected: Only articles published between 01-01-2020 and 12-12-2022 will be displayed.
     
-    1. Test case: `filter -a s/ st/ en/ t/Science`<br>
+    6. Test case: `filter -a s/ st/ en/ t/Science`<br>
        Expected: Only articles with the tag `Science` will be displayed.
    
-    1. Test case: `filter -a s/ st/`<br>
+    7. Test case: `filter -a s/ st/`<br>
         Expected: An error informing the user that the command format is incorrect will be shown.
      
-    1. Test case: `filter -a s/ st/ en/ t/non-alphanumeric`<br>
+    8. Test case: `filter -a s/ st/ en/ t/non-alphanumeric`<br>
         Expected: An error informing the user that tags only consisting of alpha numeric characters will be shown.
    
-    1. Test case: `filter -a s/ st/01-01-2020 en/01-01-2001 t/`<br>
+    9. Test case: `filter -a s/ st/01-01-2020 en/01-01-2001 t/`<br>
     Expected: An error informing the user that start dates must come before end dates will be shown.
 
 ### Opening Links
@@ -1003,13 +1018,13 @@ testers are expected to do more *exploratory* testing.
 
     1. Create articles using `add -a h/Article1 d/20-03-2024 s/draft l/https://www.google.com`, `add -a h/Article2 d/20-03-2024 s/draft l/https://www.facebook.com/` and `add -a h/Article3 d/20-03-2024 s/draft l/` commands.
 
-    1. Test case: `add -a h/Article1 d/20-03-2024 s/draft l/https://www.google.com`, followed by click on the link button of the first article.<br>
+    2. Test case: `add -a h/Article1 d/20-03-2024 s/draft l/https://www.google.com`, followed by click on the link button of the first article.<br>
        Expected: The link to google is opened in the default web browser.
 
-    1. Test case: `add -a h/Article2 d/20-03-2024 s/draft l/https://www.facebook.com/`, followed by click on the link button of the last article.<br>
+    3. Test case: `add -a h/Article2 d/20-03-2024 s/draft l/https://www.facebook.com/`, followed by click on the link button of the last article.<br>
        Expected: The link to facebook is opened in the default web browser.
 
-    1. Test case: `add -a h/Article3 d/20-03-2024 s/draft l/`, followed by click on the link button of an article that does not have a link.<br>
+    4. Test case: `add -a h/Article3 d/20-03-2024 s/draft l/`, followed by click on the link button of an article that does not have a link.<br>
        Expected: Nothing happens.
 
 ### Sorting people by their names
@@ -1018,16 +1033,16 @@ testers are expected to do more *exploratory* testing.
 
    1. Prerequisites: There are 6 person entries in PressPlanner on first time launch, already in ascending alphabetical order, perform the following testcases in order.
 
-   1. Test case: `add n/a p/82927320 e/a@gmail.com a/ Blk 123 Jurong Ring Road, #01-123` followed by `sort n/`<br>
+   2. Test case: `add n/a p/82927320 e/a@gmail.com a/ Blk 123 Jurong Ring Road, #01-123` followed by `sort n/`<br>
       Expected: The person entries are sorted by their names in ascending alphabetical order. The person named `"a"` should be the first entry. Timestamp in the status bar is updated.
 
-   1. Test case: `add n/aa p/82927320 e/a@gmail.com a/ Blk 123 Jurong Ring Road, #01-123` followed by `sort N/`<br>
+   3. Test case: `add n/aa p/82927320 e/a@gmail.com a/ Blk 123 Jurong Ring Road, #01-123` followed by `sort N/`<br>
       Expected: The person entries are sorted by their names in ascending alphabetical order. The person named `"aa"` should now be the second entry, after the person named `"a"`. Timestamp in the status bar is updated.
 
-   1. Test case: `add n/aaa p/82927320 e/a@gmail.com a/ Blk 123 Jurong Ring Road, #01-123` followed by `sort z/`<br>
+   4. Test case: `add n/aaa p/82927320 e/a@gmail.com a/ Blk 123 Jurong Ring Road, #01-123` followed by `sort z/`<br>
       Expected: No reordering of people is done. Error details shown in the status message. Status bar remains the same.
    
-   1. Other incorrect sort person commands to try: `sort`, `sort x`, `...` (where x is anything that is not `n/` or `N/`)<br>
+   5. Other incorrect sort person commands to try: `sort`, `sort x`, `...` (where x is anything that is not `n/` or `N/`)<br>
       Expected: Similar to previous.
 
 ### Finding articles
@@ -1036,16 +1051,16 @@ testers are expected to do more *exploratory* testing.
 
    1. Prerequisites: There is 1 article entry in PressPlanner on first time launch, perform the following testcases in order after adding the following articles provided as add article commands.
       1. `add -a h/one d/01-01-2001 s/draft`
-      1. `add -a h/one two d/01-01-2001 s/draft`
-      1. `add -a h/one two three d/01-01-2001 s/draft`
+      2. `add -a h/one two d/01-01-2001 s/draft`
+      3. `add -a h/one two three d/01-01-2001 s/draft`
 
-   1. Test case: `find -a one`<br>
+   2. Test case: `find -a one`<br>
       Expected: The only article with the headline `one` is shown in the list of articles. The status message shows the number of articles found. Timestamp in the status bar is updated.
 
-   1. Test case: `find -a TWO`<br>
+   3. Test case: `find -a TWO`<br>
       Expected: Two articles are shown with headlines `one two` and `one two three`. The status message shows the number of articles found. Timestamp in the status bar is updated.
 
-   1. Test case: `find -a thre`<br>
+   4. Test case: `find -a thre`<br>
       Expected: No articles are found. The status message shows the number of articles found is `0`. Timestamp in the status bar is updated.
 
 ### Sorting articles by their dates
@@ -1054,16 +1069,16 @@ testers are expected to do more *exploratory* testing.
 
    1. Prerequisites: There is 1 article entry in PressPlanner on first time launch, perform the following testcases in order.
 
-   1. Test case: `add h/Article1 d/01-01-2100 s/draft` followed by `sort -a d/`<br>
+   2. Test case: `add h/Article1 d/01-01-2100 s/draft` followed by `sort -a d/`<br>
       Expected: The article entries are sorted by their dates in descending chronological order. The article with the headline `Article1` and date `"01-01-2100"` should be the first entry. Timestamp in the status bar is updated.
 
-   1. Test case: `add h/Article2 d/02-01-2100 s/draft` followed by `sort -a D/`<br>
+   3. Test case: `add h/Article2 d/02-01-2100 s/draft` followed by `sort -a D/`<br>
       Expected: The article entries are sorted by their dates in descending chronological order. The article  the headline `Article2` and date `"02-01-2100"` should be the first entry, before `Article1` with the date `"01-01-2100"`. Timestamp in the status bar is updated.
 
-   1. Test case: `add h/Article3 d/03-01-2100 s/draft` followed by `sort -a z/`<br>
+   4. Test case: `add h/Article3 d/03-01-2100 s/draft` followed by `sort -a z/`<br>
       Expected: No reordering of articles is done. Error details shown in the status message. Status bar remains the same.
 
-   1. Other incorrect sort article commands to try: `sort -a`, `sort -a x`, `...` (where x is anything that is not `d/` or `D/`)<br>
+   5. Other incorrect sort article commands to try: `sort -a`, `sort -a x`, `...` (where x is anything that is not `d/` or `D/`)<br>
       Expected: Similar to previous.
    
 
