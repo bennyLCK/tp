@@ -94,7 +94,9 @@ Let's go over the basic PressPlanner workflow. Say you've just finished intervie
   - For example: `add n/Gill Bates p/12345678 e/gillbates@sicromoft.com a/Sicromoft HQ`
 
 > [!NOTE]
-> Adding an article uses the `add -a` command, the `-a` standing for article. The `-a` suffix is used for all commands pertaining to articles.
+> * Adding an article uses the [`add -a` command](#321-adding-an-article--add--a), the `-a` standing for article.
+>   * Note that the `-a` suffix is used for all commands pertaining to articles.
+
 2. Next let's add that article you just wrote.
    - To `add -a` an article we need the following information:
        - Headline (`h/`)
@@ -130,37 +132,64 @@ As you become more familiar with the app, use tags as you see fit to customise y
   - Using tags to mark articles with potential for follow-up development.
 
 ## [3. Features](#table-of-contents)
-<div class="callout-box">
-Notes about the command format:
+> [!IMPORTANT]
+> Here are some important terms that will be used in this section:
+> 1. Commands are composed of a **command word** potentially followed by a few **prefixes** and their corresponding **parameters**.
+>    * For the example command `example p/PARAMETER`:
+>      * `example` is the command word.
+>      * `p/` is the prefix.
+>      * `PARAMETER` is the parameter to be supplied by you.
+> 
+> 2. `INDEX` is a parameter you may come across frequently. It refers to the index number shown in the current list view.
+>   * `INDEX` must be a positive integer.
+>   * An `INDEX` not present in the current list view is invalid.
+>   * For example using the sample data shown below, indexes 1 - 6 are valid for persons, and index 1 is valid for articles: 
+>   
+>     ![sample data](images/sampleData.png)
+>
+> 3. Words in `UPPER_CASE` are the parameters to be supplied by you.
+>   * Refer to point 1 for the breakdown of the command structure.
+>   * For the example command `example p/PARAMETER`:
+>     * `PARAMETER` is the parameter to be supplied by you.
+>       * The correct use of this command would thus be: `example p/my input`, replacing `PARAMETER` with your own input.
+>   * For the real command [`delete INDEX`](#312-deleting-a-person--delete):
+>     * `INDEX` is the parameter to be supplied by you.
+>       * The correct use of this command would thus be: `delete 1`, replacing `INDEX` with a valid index.
+>
+> 4. Items in square brackets are optional.
+>    * For the example command `example p/PARAMETER [t/TAG]`:
+>      * `example p/my input t/my tag` is a valid use of the command
+>      * `example p/my other input` is also a valid use of the command
+> 
+> 5. Items with `...` after them can be used multiple times. If the item is also in square brackets, it can even be used zero times.
+>    * For the example command `example p/PARAMETER [t/TAG]...`:
+>      * `example p/my input` is a valid use of the command
+>      * `example p/my input t/my tag` is also a valid use of the command
+>      * `example p/my input t/my tag t/my other tag` is also a valid use of the command
+>
+> 6. Parameters can be in any order.
+>    * For the example command `example p/PARAMETER [t/TAG]...`:
+>      * `example p/my input t/my tag` is a valid use of the command
+>      * `example t/my tag p/my input` is also a valid use of the command
+>      * `example t/my tag p/my input t/my other tag` is also a valid use of the command
+>
+> 7. Extraneous inputs for commands that do not take in parameters will be ignored.
+>    * This specifically refers to the [`help` command](#331-viewing-help--help), [`list` command](#313-listing-all-persons--list), [`list -a` command](#323-listing-all-articles--list--a), [`exit` command](#332-exiting-pressplanner--exit) and [`clear` command](#318-clearing-all-persons--clear).
+>    * e.g. `help 123` will be interpreted as `help`.
+>
+> 8. Parameter prefixes are case-insensitive.
+>    * Only **prefixes** are always case-insensitive, **command words** are case-sensitive.
+>      * Refer to point 1 if you are unsure of the terminology and command structure.
+>    * e.g. `n/John` and `N/John` both specify the contact name `John`.
+>
+> 9. Only correct prefixes will be recognised and accepted.
+>    * Taking the [`add -a` command](#321-adding-an-article--add--a) for example:
+>      * The command: `add -a h/My Headline invalid/ignore d/01-01-2024 s/draft` will not recognise `invalid/ignore` as a valid prefix and parameter pair.
+>        * As a result, the command will interpret `My Headline invalid/ignore` as the headline and add a new article with the headline `My Headline invalid/ignore`.
+>      * The command: `add -a h/My Headline d/01-01-2024 s/draft t/my tag invalid/ignore` will not recognise `invalid/ignore` as a valid prefix and parameter pair.
+>        * As a result, the command will interpret `my tag invalid/ignore` as the attempted tag.
+>        * This will display an error message prompting you to only use alphanumeric characters for tags.
 
-
-* INDEX refers to the index number shown in the current list view.
-  * It must be a positive integer.
-  * INDEX not present in the list view is invalid.
-  * e.g. `delete 1` after the `find` command deletes the first article found by the `find` command.
-
-* Words in `UPPER_CASE` are the parameters to be supplied by you.
-  e.g. in `add n/NAME`, `NAME` is a parameter which can be used as `add n/John Doe`.
-
-* Items in square brackets are optional.
-
-  e.g. `n/NAME [t/TAG]` can be used as `n/John Doe t/friend` or as `n/John Doe`.
-
-* Items with `...` after them can be used multiple times. If the item is also in square brackets, it can even be used zero times.
-  e.g. `[t/TAG]...` can be used as ` ` (i.e. 0 times), `t/friend`, `t/friend t/family` etc.
-
-* Parameters can be in any order.
-  e.g. if the command specifies `n/NAME p/PHONE_NUMBER`, `p/PHONE_NUMBER n/NAME` is also acceptable.
-
-* Extraneous parameters for commands that do not take in parameters (such as `help`, `list`, `exit` and `clear`) will be ignored.
-  e.g. if the command specifies `help 123`, it will be interpreted as `help`.
-
-* Parameter prefixes are case-insensitive.
-  e.g. `n/John` and `N/John` both specify the contact name `John`.
-
-* Only correct prefixes will be accepted.
-  e.g. `t/tag k/invalid` will treat the input as the invalid attempt to add the tag `tag k/invalid`
-</div>
 
 > [!WARNING]
 > If you are using a PDF version of this document, be careful when copying and pasting commands with line breaks as they may not paste correctly.
