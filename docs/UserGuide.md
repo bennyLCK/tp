@@ -440,9 +440,12 @@ Format: `filter -a s/STATUS t/TAG ST/START_DATE EN/END_DATE`
 Examples:
 * `filter -a s/DRAFT t/ st/ en/` will restrict the display to showing only articles with draft status.
 * Using the command:
-![Before Filter](images/filterCommand.png)
+
+  ![Before Filter](images/filterCommand.png)
+
 * After the command:
-![After Filter](images/filterAfter.png)
+
+  ![After Filter](images/filterAfter.png)
 
 ### [3.2.7. Removing a Filter](#32-managing-articles) : `rmfilter -a`
 Remove all filters so that all articles in PressPlanner's database are displayed.
@@ -451,10 +454,14 @@ Format: `rmfilter -a`
 
 * No additional parameters.
 * The `-a` is necessary, additional letters will cause the command to fail.
-Using the command:
-![Remove Command](images/removeFilterCommand.png)
-After the command:
-![After rm command](images/removeFilterAfter.png)
+  * Additional parameters after a whitespace will be ignored (e.g. `rmfilter -a 123` will be interpreted as `rmfilter -a`).
+* Using the command:
+
+  ![Remove Command](images/removeFilterCommand.png)
+
+* After the command:
+
+  ![After rm command](images/removeFilterAfter.png)
 
 ### [3.2.8. Lookup Associated Persons](#32-managing-articles) : `lookup -a`
 
@@ -486,23 +493,25 @@ Format: `sort -a d/`
 Example:
 * `sort -a d/` sorts all articles in PressPlanner in descending order by their date and time.
 
-Before sorting:
-(The first and second articles are in ascending order by date)
-![before sorting articles](images/beforeSortingArticles.png)
+* Before sorting:
+  * (The first and second articles are in ascending order by date)
+  
+    ![before sorting articles](images/beforeSortingArticles.png)
 
-After sorting:
-(The articles are now in descending order by date)
-![after sorting articles](images/afterSortingArticles.png)
+* After sorting:
+  * (The articles are now in descending order by date)
 
-Success message shown:
-`sorted all articles by date`
+    ![after sorting articles](images/afterSortingArticles.png)
+
+* Success message shown:
+  * `sorted all articles by date`
 
 ### [3.2.10. Opening a Webpage for an Article](#32-managing-articles)
 
 * By clicking the `Link` button of your article that is highlighted in yellow box in the picture below, you can open up the webpage for your article that is added when you added the article.
 * If the webpage does not open when clicked, it means that the `link` of the article is invalid.
 
-![opening link](images/LinkFeatureSample.png)
+  ![opening link](images/LinkFeatureSample.png)
 
 
 ## [3.3. Other Commands](#3-features)
@@ -511,7 +520,7 @@ Success message shown:
 
 Shows a message explaining how to access the help page.
 
-![help message](images/helpMessage.png)
+  ![help message](images/helpMessage.png)
 
 Format: `help`
  
