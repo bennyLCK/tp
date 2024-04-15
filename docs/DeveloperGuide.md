@@ -699,7 +699,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 **MSS**
 
-1. User requests to filter articles by status, time of publication or tag.
+1. User requests to filter articles by status, date of publication or tag.
 1. PressPlanner displays a filtered list of articles,
  all of which fits the user's criteria.
 
