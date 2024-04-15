@@ -158,29 +158,32 @@ As you become more familiar with the app, use tags as you see fit to customise y
 >
 > 4. Items in square brackets are optional.
 >    * For the example command `example p/PARAMETER [t/TAG]`:
->      * `example p/my input t/my tag` is a valid use of the command
->      * `example p/my input` is also a valid use of the command
+>      * `example p/my input` is a valid use of the command.
+>      * `example p/my input t/my tag` is also a valid use of the command.
 > 
 > 5. Items with `...` after them can be used multiple times. If the item is also in square brackets, it can even be used zero times.
 >    * For the example command `example p/PARAMETER [t/TAG]...`:
->      * `example p/my input` is a valid use of the command
->      * `example p/my input t/my tag` is also a valid use of the command
->      * `example p/my input t/my tag t/my other tag` is also a valid use of the command
+>      * `example p/my input` is a valid use of the command.
+>      * `example p/my input t/my tag` is also a valid use of the command.
+>      * `example p/my input t/my tag t/my other tag` is also a valid use of the command.
 >
 > 6. Parameters can be in any order.
 >    * For the example command `example p/PARAMETER [t/TAG]...`:
->      * `example p/my input t/my tag` is a valid use of the command
->      * `example t/my tag p/my input` is also a valid use of the command
->      * `example t/my tag p/my input t/my other tag` is also a valid use of the command
+>      * `example p/my input t/my tag` is a valid use of the command.
+>      * `example t/my tag p/my input` is also a valid use of the command.
+>      * `example t/my tag p/my input t/my other tag` is also a valid use of the command.
 >
 > 7. Extraneous inputs for commands that do not take in parameters will be ignored.
 >    * This specifically refers to the [`help`](#331-viewing-help--help), [`list`](#313-listing-all-persons--list), [`list -a`](#323-listing-all-articles--list--a), [`exit`](#332-exiting-pressplanner--exit) and [`clear`](#318-clearing-all-persons--clear) commands.
 >    * e.g. `help 123` will be interpreted as `help`.
 >
-> 8. Parameter prefixes are case-insensitive.
+> 8. Prefixes are case-insensitive.
 >    * Only **prefixes** are always case-insensitive, **command words** are case-sensitive.
 >      * Refer to point 1 if you are unsure of the terminology and command structure.
->    * e.g. `n/John` and `N/John` both specify the contact name `John`.
+>    * For the example command `example p/PARAMETER`:
+>      * `example p/my input` is a valid use of the command.
+>      * `example P/my input` is also a valid use of the command.
+>      * `EXAMPLE p/my input` is not a valid use of the command.
 >
 > 9. Only correct prefixes will be recognised and accepted.
 >    * Taking the [`add -a` command](#321-adding-an-article--add--a) for example:
