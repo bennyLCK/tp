@@ -39,6 +39,8 @@
   * [5.2. Filtering People](#5-2-filtering-people)
 * [6. FAQs](#6-faqs)
 
+<div style="page-break-after: always;"></div>
+
 ## [1. Introduction](#table-of-contents)
 ### [1.1. Using this Guide](#1-introduction)
 This guide is intended to help you get started with PressPlanner. It will guide you through the installation process, provide a brief overview of the app's features, and give you a quick reference to the commands you can use. All sections headers will link you back to the start of their parent section, so you can easily navigate the guide.
@@ -47,8 +49,6 @@ This guide is intended to help you get started with PressPlanner. It will guide 
 PressPlanner was built with **freelance journalists in mind**. It acts as your contact list linked together with a collection of articles, helping you keep track of your contacts and articles.
 
 Unlike major firms, freelancers often lack the same wealth of contacts and resources. PressPlanner helps you maximise the value you can get from your contacts, by providing a platform to store and manage them and keeping track of which contacts you've worked with for different articles.
-
-<div style="page-break-after: always;"></div>
 
 PressPlanner's main features are its ability to help you:
 1. Develop deeper story angles and reconnect with past interviewees or collaborators.
@@ -153,6 +153,8 @@ As you become more familiar with the app, use tags as you see fit to customise y
   - Using tags to rate interviewees' compliance and reliability.
   - Noting down how many clicks articles got in the first 24 hours.
   - Using tags to mark articles with potential for follow-up development.
+
+<div style="page-break-after: always;"></div>
 
 ## [3. Features](#table-of-contents)
 
@@ -292,10 +294,10 @@ Format: `delete INDEX`
 
 * Deletes the person at the specified `INDEX`.
 
+<div style="page-break-after: always;"></div>
+
 Examples:
 * `delete 2` deletes the 2nd person in the current address book view.
-
-<div style="page-break-after: always;"></div>
 
 <div markdown="block" class="alert alert-info">
 
@@ -773,8 +775,6 @@ Users have requested a similar command to clear all articles from the article bo
 In PressPlanner's current version, filtering is available for articles and intended to help you find articles that you may have forgotten the name of by other attributes such as date, status, tags, etc.
 
 Users have requested a similar feature for persons. We are working on implementing this feature in the near future.
-
-<div style="page-break-after: always;"></div>
 
 ## [6. FAQs](#table-of-contents)
 ### [6.1. Why am I unable to run PressPlanner on my desktop?](#6-faqs)
