@@ -106,7 +106,9 @@ Let's go over the basic PressPlanner workflow. Say you've just finished intervie
      - For example: `add -a h/Example Article d/20-10-2023 s/draft`
 
 > [!WARNING]
-> You should only use each prefix once, except the `t/` prefix for Tags. If you use multiple prefixes in one command, eg. `add -a h/My Article d/20-10-2023 s/draft h/My Second Article` only the value that comes after the last duplicate prefix will be added, which means that in this case, the header of the article will be `My Second Article`.
+> You should only use headline (`h/`), date (`d/`) and status (`s/`) prefixes once each. If you use multiple prefixes only the last prefix's value will be used:
+> * eg. `add -a h/My Article d/20-10-2023 s/draft h/My Second Article` will add an article titled `My Second Article`.
+> * eg. `add -a h/My Article d/01-01-2024 s/draft d/02-02-2024` will add an article with the date `02-02-2024`.
 
 2. Now that that's done, let's say you need to find Gill Bate's number to arrange another interview.
     - Typing the command `find Gill Bates` will pull up his contact.
