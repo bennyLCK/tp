@@ -21,6 +21,7 @@ Class Email
 Class Name
 Class Phone
 Class Tag
+Class I #FFFFFF
 
 Class UniqueArticleList
 Class Article
@@ -30,6 +31,7 @@ Class Outlet
 Class PublicationDate
 Class Source
 Class Title
+Class K #FFFFFF
 }
 
 Class HiddenOutside #FFFFFF
@@ -65,8 +67,9 @@ Article *--> Title
 Article *--> "*" Tag
 
 Person -[hidden]up--> I
-Article -[hidden]down--> I
+Article -[hidden]up--> K
 UniquePersonList -[hidden]right-> I
+UniqueArticleList -[hidden]right-> K
 
 Name -[hidden]right-> Phone
 Phone -[hidden]right-> Address
