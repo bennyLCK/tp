@@ -704,11 +704,20 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
  all of which fits the user's criteria.
 
     Use case ends
+
+**Extensions**
+
 * 1a. User gives an invalid status, tag or date.
 
     * 1a1. PressPlanner shows an error message
         
       Use case resumes at step 1.
+  * 1b. User omits a prefix.
+    
+    * 1b1.PressPlanner shows an error message
+    
+      Use case resumes at step 1.
+     
 
 
 **Use case: UC15 - Lookup associated people for an article**
