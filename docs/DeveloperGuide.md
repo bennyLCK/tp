@@ -867,7 +867,7 @@ testers are expected to do more *exploratory* testing.
 
 1. Lookup person/article after adding a person/article
 
-   1. Prerequisites: Assume empty list of persons and articles. Change index numbers as needed.
+   1. Prerequisites: Assume non-empty list of persons and articles. Change index numbers as needed.
 
    1. Test case: `add n/Alice1 p/12345678 e/alice@email.com a/Blk 424 #11-0536 Yishun Ring Road`<br> `lookup 1`<br>
       Expected: Alice1 is added to the list. An empty list of articles associated with Alice1 is shown. 
