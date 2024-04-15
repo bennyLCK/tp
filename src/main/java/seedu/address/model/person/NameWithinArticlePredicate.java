@@ -22,10 +22,6 @@ public class NameWithinArticlePredicate implements Predicate<Person> {
 
     @Override
     public boolean test(Person person) {
-        /*return article.getAuthors().stream()
-                .anyMatch(author -> person.getName().fullName.equals(author.authorName)) ||
-                article.getSources().stream()
-                .anyMatch(source -> person.getName().fullName.equals(source.sourceName));*/
         return article.getPersons().contains(person);
     }
 
