@@ -89,6 +89,7 @@ public class ModelManager implements Model {
 
     @Override
     public void setAddressBook(ReadOnlyAddressBook addressBook) {
+        requireNonNull(addressBook);
         this.addressBook.resetData(addressBook);
     }
 
@@ -105,11 +106,13 @@ public class ModelManager implements Model {
 
     @Override
     public void deletePerson(Person target) {
+        requireNonNull(target);
         addressBook.removePerson(target);
     }
 
     @Override
     public void addPerson(Person person) {
+        requireNonNull(person);
         addressBook.addPerson(person);
         articleBook.makeLinkPerson(person);
         updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
@@ -149,6 +152,7 @@ public class ModelManager implements Model {
 
     @Override
     public void setArticleBook(ReadOnlyArticleBook articleBook) {
+        requireNonNull(articleBook);
         this.articleBook.resetData(articleBook);
     }
 
@@ -165,11 +169,13 @@ public class ModelManager implements Model {
 
     @Override
     public void deleteArticle(Article target) {
+        requireNonNull(target);
         articleBook.removeArticle(target);
     }
 
     @Override
     public void addArticle(Article article) {
+        requireNonNull(article);
         articleBook.addArticle(article);
         article.makeLinks(addressBook.getPersonList());
         updateFilteredArticleList(PREDICATE_SHOW_ALL_ARTICLES);
@@ -231,12 +237,14 @@ public class ModelManager implements Model {
 
     @Override
     public void lookupArticle(Article article) {
+        requireNonNull(article);
         NameWithinArticlePredicate predicate = new NameWithinArticlePredicate(article);
         updateFilteredPersonList(predicate);
     }
 
     @Override
     public void lookupPerson(Person personToLookup) {
+        requireNonNull(personToLookup);
         ArticleWithinPersonPredicate predicate = new ArticleWithinPersonPredicate(personToLookup);
         updateFilteredArticleList(predicate);
     }
