@@ -197,9 +197,9 @@ Similarly, how a sort persons operation goes through the `Model` component is sh
     * Pros: Will not permanently order all persons in the `AddressBook` by the `Person` field specified by the related `prefix`, but only the current view displayed to the user which is refreshed for every opening of the application or commands that changes the view (e.g. `List`, `Find` commands).
     * Cons: Takes up much more memory space directly proportional to the size of the `AddressBook` since a clone of all `Persons` has to be made.
 
-### \[Implementing\] Filter feature
+### \[Implemented\] Filter feature
 
-<puml src="diagrams/ModelFilterClassDiagram.puml" width="250" />
+<puml src="diagrams/ModelFilterClassDiagram.puml" alt="ModelFilterClassDiagram" />
 
 The filter mechanism is facilitated by `filter` interface. The ArticleFilter and PersonFilter classes will inherit from it.
 The filters will store `Predicate<>` objects that will determine which Persons or articles will be shown to the user.
@@ -209,9 +209,9 @@ Given below is an example usage scenario:
 
 Step 1. The user launches the application. The `ModelManager` will be initialized, along with the Filter objects it contains. `finalPredicate` will be set to display all articles for now.  
 
-Step 2. The user executes `set -a S/DRAFT ST/ EN/` to look for articles he is currently working on.  The set command gets the `ArticleFilter` object using `getFilter()`. Than it updates the filter object by calling the `updateFilter()` method, changing the `finalPredicate`.
+Step 2. The user executes `filter -a s/ st/ en/ t/DRAFT` to look for articles he is currently working on.  The filter article command gets the `ArticleFilter` object using `getFilter()`. Than it updates the filter object by calling the `updateFilter()` method, changing the `finalPredicate`.
 
-<puml src="diagrams/FilterSequenceDiagram.puml" width="250" />
+<puml src="diagrams/FilterSequenceDiagram.puml" alt="FilterSequenceDiagram" />
 
 Step 3. Now that the filter has been updated. The user now looks through Press Planner to search for the article. He decides to search by title to make it faster. He executes `find -a AI`. Beyond matches with the name, Press Planner is still filtering to show only DRAFTs, allowing the user to search a smaller set.  
 
