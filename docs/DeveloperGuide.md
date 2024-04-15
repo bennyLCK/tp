@@ -714,7 +714,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
       Use case resumes at step 1.
 
 
-  * 1b. User omits a prefix.
+  * 1b. User omits any prefix.
     
   * 1b1.PressPlanner shows an error message
     
