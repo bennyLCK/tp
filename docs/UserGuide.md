@@ -274,6 +274,14 @@ Examples:
 * `find John` returns `john` and `John Doe`
 * `find alex david` returns `Alex Yeoh`, `David Li`
 
+* Before finding:
+
+  ![Before finding](images/beforeFindLookupPerson.png)
+
+* After finding using `find chester`:
+  
+  ![After finding](images/findPerson.png)
+
 ### [3.1.6. Lookup Associated Articles](#3-1-managing-contacts) : `lookup`
 
 Display articles associated with the person where they are contributors or interviewees.
@@ -287,6 +295,15 @@ Format: `lookup INDEX`
 
 Examples:
 * `lookup 1` returns all articles associated with the first person in the list of contacts.
+
+* Before lookup:
+
+  ![Before lookup](images/beforeFindLookup.png)
+
+* After lookup using `lookup 2`:
+  * (The articles associated with the second person in the list of contacts are shown)
+
+  ![After lookup](images/lookupPerson.png)
 
 ### [3.1.7. Sorting Persons by Name](#3-1-managing-contacts) : `sort n/`
 
@@ -449,7 +466,16 @@ Format: `find -a KEYWORD [MORE_KEYWORDS]`
 Examples:
 * `find -a Vision Pro` returns articles with headlines containing `Vision` or `Pro`.
 
+* Before finding:
+
+  ![Before finding](images/beforeFindLookupArticle.png)
+
+* After finding using `find -a iphone`:
+
+  ![After finding](images/findArticle.png)
+
 ### [3.2.6. Filtering Articles](#3-2-managing-articles) : `filter -a`
+
 Filter PressPlanner's database by a combination of attributes to find articles you are looking for quickly.
 
 Format: `filter -a s/STATUS t/TAG ST/START_DATE EN/END_DATE`
@@ -508,6 +534,15 @@ Format: `lookup -a INDEX`
   
 Examples:
 * `lookup -a 1` returns all persons associated with the first article in the list of articles.
+
+* Before lookup:
+  
+  ![Before lookup](images/beforeFindLookup.png)
+
+* After lookup using `lookup -a 2`:
+  * (Bob who was the contributor for the second article is shown in the list of persons associated with the article
+   
+  ![After lookup](images/lookupArticle.png)
 
 ### [3.2.9. Sorting Articles by Date](#3-2-managing-articles) : `sort -a d/`
 
