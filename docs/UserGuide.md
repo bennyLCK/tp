@@ -11,28 +11,28 @@
   * [2.3. The Beginner's Guide to PressPlanner](#23-the-beginners-guide-to-pressplanner)
 * [3. Features](#3-features)
   * [3.1. Managing Contacts](#31-managing-contacts)
-    * [3.1.1. Adding a Person](#311-adding-a-person--add)
-    * [3.1.2. Deleting a Person](#312-deleting-a-person--delete)
-    * [3.1.3. Listing All Persons](#313-listing-all-persons--list)
-    * [3.1.4. Editing a Person](#314-editing-a-person--edit)
-    * [3.1.5. Searching for a Person by Name](#315-searching-for-a-person-by-name--find)
-    * [3.1.6. Lookup Associated Articles](#316-lookup-associated-articles--lookup)
-    * [3.1.7. Sorting Persons by Name](#317-sorting-persons-by-name--sort-n)
-    * [3.1.8. Clearing All Persons](#318-clearing-all-persons--clear)
+    * [3.1.1. Adding a Person](#311-adding-a-person-add)
+    * [3.1.2. Deleting a Person](#312-deleting-a-person-delete)
+    * [3.1.3. Listing All Persons](#313-listing-all-persons-list)
+    * [3.1.4. Editing a Person](#314-editing-a-person-edit)
+    * [3.1.5. Searching for a Person by Name](#315-searching-for-a-person-by-name-find)
+    * [3.1.6. Lookup Associated Articles](#316-lookup-associated-articles-lookup)
+    * [3.1.7. Sorting Persons by Name](#317-sorting-persons-by-name-sort-n)
+    * [3.1.8. Clearing All Persons](#318-clearing-all-persons-clear)
   * [3.2. Managing Articles](#32-managing-articles)
-    * [3.2.1. Adding an Article](#321-adding-an-article--add--a)
-    * [3.2.2. Deleting an Article](#322-deleting-an-article--delete--a)
-    * [3.2.3. Listing All Articles](#323-listing-all-articles--list--a)
-    * [3.2.4. Editing an Article](#324-editing-an-article--edit--a)
-    * [3.2.5. Searching for an Article by Headline](#325-searching-for-an-article-by-headline--find--a)
-    * [3.2.6. Filtering Articles](#326-filtering-articles--filter--a)
-    * [3.2.7. Removing a Filter](#327-removing-a-filter--rmfilter--a)
-    * [3.2.8. Lookup Associated Persons](#328-lookup-associated-persons--lookup--a)
-    * [3.2.9. Sorting Articles by Date](#329-sorting-articles-by-date--sort--a-d)
+    * [3.2.1. Adding an Article](#321-adding-an-article-add-a)
+    * [3.2.2. Deleting an Article](#322-deleting-an-article-delete-a)
+    * [3.2.3. Listing All Articles](#323-listing-all-articles-list-a)
+    * [3.2.4. Editing an Article](#324-editing-an-article-edit-a)
+    * [3.2.5. Searching for an Article by Headline](#325-searching-for-an-article-by-headline-find-a)
+    * [3.2.6. Filtering Articles](#326-filtering-articles-filter-a)
+    * [3.2.7. Removing a Filter](#327-removing-a-filter-rmfilter-a)
+    * [3.2.8. Lookup Associated Persons](#328-lookup-associated-persons-lookup-a)
+    * [3.2.9. Sorting Articles by Date](#329-sorting-articles-by-date-sort-a-d)
     * [3.2.10. Opening a Webpage for an Article](#3210-opening-a-webpage-for-an-article)
   * [3.3. Other Commands](#33-other-commands)
-    * [3.3.1. Viewing Help ](#331-viewing-help--help)
-    * [3.3.2. Exiting PressPlanner](#332-exiting-pressplanner--exit)
+    * [3.3.1. Viewing Help ](#331-viewing-help-help)
+    * [3.3.2. Exiting PressPlanner](#332-exiting-pressplanner-exit)
 * [4. Commands Quick Reference](#4-commands-quick-reference)
 * [5. Upcoming Features](#5-upcoming-features)
   * [5.1. Clearing all Articles](#51-clearing-all-articles)
@@ -49,12 +49,12 @@ Unlike major firms, freelancers often lack the same wealth of contacts and resou
 
 PressPlanner's main features are its ability to help you:
 1. Develop deeper story angles and reconnect with past interviewees or collaborators.
-   - [Filter](#326-filtering-articles--filter--a) by tags to find past articles on a specific topic.
-   - [Lookup](#328-lookup-associated-persons--lookup--a) persons of interest related to those past articles.
+   - [Filter](#326-filtering-articles-filter-a) by tags to find past articles on a specific topic.
+   - [Lookup](#328-lookup-associated-persons-lookup-a) persons of interest related to those past articles.
    - Contact these persons for interviews or collaboration.
 
 2. Follow up on breaking stories
-   - [Filter](#326-filtering-articles--filter--a) by status and tags to find published articles related to breaking news.
+   - [Filter](#326-filtering-articles-filter-a) by status and tags to find published articles related to breaking news.
    - Make changes to your article as the story develops.
 
 PressPlanner's tagging system for [persons](#31-managing-contacts) and [articles](#32-managing-articles) is flexible and powerful:
@@ -96,7 +96,7 @@ Let's go over the basic PressPlanner workflow. Say you've just finished intervie
   - For example: `add n/Gill Bates p/12345678 e/gillbates@sicromoft.com a/Sicromoft HQ`
 
 > [!NOTE]
-> * Adding an article uses the [`add -a` command](#321-adding-an-article--add--a), the `-a` standing for article.
+> * Adding an article uses the [`add -a` command](#321-adding-an-article-add-a), the `-a` standing for article.
 >   * Note that the `-a` suffix is used for all commands pertaining to articles.
 
 2. Next let's add that article you just wrote.
@@ -154,7 +154,7 @@ As you become more familiar with the app, use tags as you see fit to customise y
 >    * For the example command `example p/PARAMETER`:
 >       * `PARAMETER` is the parameter to be supplied by you.
 >         * The correct use of this command would thus be: `example p/my input`, replacing `PARAMETER` with your own input.
->    * For the real command [`delete INDEX`](#312-deleting-a-person--delete):
+>    * For the real command [`delete INDEX`](#312-deleting-a-person-delete):
 >      * `INDEX` is the parameter to be supplied by you.
 >        * The correct use of this command would thus be: `delete 1`, replacing `INDEX` with a valid index.
 >
@@ -176,7 +176,7 @@ As you become more familiar with the app, use tags as you see fit to customise y
 >      * `example t/my tag p/my input t/my other tag` is also a valid use of the command.
 >
 > 7. Extraneous inputs for commands that do not take in parameters will be ignored.
->    * This specifically refers to the [`help`](#331-viewing-help--help), [`list`](#313-listing-all-persons--list), [`list -a`](#323-listing-all-articles--list--a), [`exit`](#332-exiting-pressplanner--exit) and [`clear`](#318-clearing-all-persons--clear) commands.
+>    * This specifically refers to the [`help`](#331-viewing-help-help), [`list`](#313-listing-all-persons-list), [`list -a`](#323-listing-all-articles-list-a), [`exit`](#332-exiting-pressplanner-exit) and [`clear`](#318-clearing-all-persons-clear) commands.
 >    * e.g. `help 123` will be interpreted as `help`.
 >
 > 8. Prefixes are case-insensitive.
@@ -188,7 +188,7 @@ As you become more familiar with the app, use tags as you see fit to customise y
 >      * `EXAMPLE p/my input` is not a valid use of the command.
 >
 > 9. Only correct prefixes will be recognised and accepted.
->    * Taking the [`add -a` command](#321-adding-an-article--add--a) for example:
+>    * Taking the [`add -a` command](#321-adding-an-article-add-a) for example:
 >      * The command: `add -a h/My Headline invalid/ignore d/01-01-2024 s/draft` will not recognise `invalid/ignore` as a valid prefix and parameter pair.
 >        * As a result, the command will interpret `My Headline invalid/ignore` as the headline and add a new article with the headline `My Headline invalid/ignore`.
 >      * The command: `add -a h/My Headline d/01-01-2024 s/draft t/my tag invalid/ignore` will not recognise `invalid/ignore` as a valid prefix and parameter pair.
@@ -227,7 +227,7 @@ Examples:
 * `delete 2` deletes the 2nd person in the current address book view.
 
 > [!IMPORTANT]
-> Commands such as [`find`](#315-searching-for-a-person-by-name--find) can alter the current view of the address book. The `INDEX` refers to the index number shown in the current view.
+> Commands such as [`find`](#315-searching-for-a-person-by-name-find) can alter the current view of the address book. The `INDEX` refers to the index number shown in the current view.
 
 ### [3.1.3. Listing All Persons](#31-managing-contacts) : `list`
 
@@ -295,7 +295,7 @@ Sorts persons in ascending order by the lexicographical (alphabetical) ordering 
 Format: `sort n/`
 
 * Executing the `sort n/` command sorts all persons in PressPlanner permanently.
-  * This works differently from commands which change the current view temporarily (e.g. [find](#315-searching-for-a-person-by-name--find)).
+  * This works differently from commands which change the current view temporarily (e.g. [find](#315-searching-for-a-person-by-name-find)).
   * Closing and reopening the app in future will result in contacts remaining sorted by name.
 * Sorting is only done when the command is executed and not automatically maintained afterwards:
     * A person added using `add` after a `sort n/` command will be added to the end of the address book, regardless of their name.
@@ -336,7 +336,7 @@ PressPlanner's article management system is designed to help you keep track of y
 > [!IMPORTANT]
 > Here are some important terms that will be used in this section:
 > 1. `DATE`
->    * All articles have a mandatory `DATE` field. This field is also used in commands like [`filter`](#326-filtering-articles--filter--a)
+>    * All articles have a mandatory `DATE` field. This field is also used in commands like [`filter`](#326-filtering-articles-filter-a)
 >    * `DATE` must be in the format `dd-mm-yyyy [HH:mm]`.
 >      * `HH:mm` is optional and defaults to `00:00` if not provided.
 >      * `HH:mm` must be in 24-hour format.
@@ -371,14 +371,14 @@ Format: `add -a h/HEADLINE  d/DATE s/STATUS [c/CONTRIBUTOR]... [i/INTERVIEWEE]..
 
 * A `CONTRIBUTOR` is a co-author or information source that was not directly interviewed for an article.
 * An `INTERVIEWEE` is a person directly interviewed for an article.
-  * If a `CONTRIBUTOR` or `INTERVIEWEE` has the same name as a contact in PressPlanner's address book, [`lookup`](#316-lookup-associated-articles--lookup) and [`lookup -a`](#328-lookup-associated-persons--lookup--a) commands can be used to find articles and persons associated with each other.
+  * If a `CONTRIBUTOR` or `INTERVIEWEE` has the same name as a contact in PressPlanner's address book, [`lookup`](#316-lookup-associated-articles-lookup) and [`lookup -a`](#328-lookup-associated-persons-lookup-a) commands can be used to find articles and persons associated with each other.
 * An `OUTLET` is the publication or platform the article was published on.
 * A `TAG` is any keyword or phrase that helps categorise the article.
 * A `LINK` is a URL to the article.
 
 > [!IMPORTANT]
-> * Adding an article will return to displaying all articles if a [find](#325-searching-for-an-article-by-headline--find--a) command was executed before.
->   * This does not apply to [filters](#326-filtering-articles--filter--a).
+> * Adding an article will return to displaying all articles if a [find](#325-searching-for-an-article-by-headline-find-a) command was executed before.
+>   * This does not apply to [filters](#326-filtering-articles-filter-a).
 
 Examples:
 * `add -a h/iPhone 13 Review d/20-03-2024 s/draft c/John Doe i/Michael Lee t/New Releases`
@@ -416,7 +416,7 @@ Format: `edit -a INDEX [h/HEADLINE] [d/DATE] [s/STATUS] [c/CONTRIBUTOR]... [i/IN
 
 * Edits the article at the specified `INDEX`.
 * **At least one** of the optional fields must be provided.
-* Refer to the [`add -a` command](#321-adding-an-article--add--a) for the format of each field.
+* Refer to the [`add -a` command](#321-adding-an-article-add-a) for the format of each field.
   * Note that `edit -a` will also behave the same as `add -a` in terms of returning to the full list of articles if used after a `find` command.
 
 > [!WARNING]
@@ -462,9 +462,9 @@ Format: `filter -a s/STATUS t/TAG ST/START_DATE EN/END_DATE`
   * `find` can be used to then search the filtered list.
     * Using `filter` after a `find` command will overwrite the previous `find` command.
 * Filters are not stored between sessions, so make sure to finish your search before closing the app!
-* Filters will apply until you [remove](#327-removing-a-filter--rmfilter--a) it or apply a new filter, so make sure you [remove](#327-removing-a-filter--rmfilter--a) it after you are done!
-* Refer to the [add article](#321-adding-an-article--add--a) command for the format of each field.
-  * Note that `START_DATE` and `END_DATE` must be in the same format as `DATE` in the [add article](#321-adding-an-article--add--a) command.
+* Filters will apply until you [remove](#327-removing-a-filter-rmfilter-a) it or apply a new filter, so make sure you [remove](#327-removing-a-filter-rmfilter-a) it after you are done!
+* Refer to the [add article](#321-adding-an-article-add-a) command for the format of each field.
+  * Note that `START_DATE` and `END_DATE` must be in the same format as `DATE` in the [add article](#321-adding-an-article-add-a) command.
   * The `START_DATE` should come **before** the `END_DATE`. If not, you will receive an error!
   * The date of the article you are looking for should not be equal to the `START_DATE` or `END_DATE`.
 * Only one filter command can be active at once, using another filter will override the last one.
@@ -516,7 +516,7 @@ Sort articles in PressPlanner's database in descending order by their date and t
 Format: `sort -a d/`
 
 * Executing the `sort -a d/` command sorts all articles in PressPlanner permanently.
-    * This works differently from commands which change the current view (e.g. [find](#325-searching-for-an-article-by-headline--find--a), [lookup](#328-lookup-associated-persons--lookup--a) or [filter](#326-filtering-articles--filter--a)).
+    * This works differently from commands which change the current view (e.g. [find](#325-searching-for-an-article-by-headline-find-a), [lookup](#328-lookup-associated-persons-lookup-a) or [filter](#326-filtering-articles-filter-a)).
     * Closing and reopening the app in future will result in articles remaining sorted by date.
 * Sorting is only done when the command is executed and not automatically maintained afterwards:
   * An article added using `add -a` after a `sort -a d/` command will be added to the end of the list, regardless of its date.
