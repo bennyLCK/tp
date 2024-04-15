@@ -602,7 +602,20 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 **Use case: UC08 - Filter people**
 
+**MSS**
+1. User requests to filter people by tag.
+1. PressPlanner returns a filtered list of people,
+ all of whom have the matching tag.
 
+    Use case ends.
+
+**Extensions**
+
+* 1a. User enters a non-alphanumeric tag.
+
+    * 1a1. PressPlanner shows an error message.
+
+      Use case resumes at step 1.
 
 **Use case: UC09 - List all articles**
 
@@ -705,6 +718,29 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 **Use case: UC14 - Filter articles**
 
+**MSS**
+
+1. User requests to filter articles by status, date of publication or tag.
+1. PressPlanner displays a filtered list of articles,
+ all of which fits the user's criteria.
+
+    Use case ends
+
+**Extensions**
+
+* 1a. User gives an invalid status, tag or date.
+
+    * 1a1. PressPlanner shows an error message
+        
+      Use case resumes at step 1.
+
+
+* 1b. User omits any prefix.
+    
+    * 1b1.PressPlanner shows an error message
+    
+       Use case resumes at step 1.
+     
 
 
 **Use case: UC15 - Lookup associated people for an article**
@@ -813,21 +849,50 @@ testers are expected to do more *exploratory* testing.
 
 1. _{ more test cases …​ }_
 
+### Filtering through articles
+1. Filtering through articles.
+    1. Prerequisites: Populate PressPlanner with sufficient articles. You may use the following add commands:<br>
+     
+    1. Use these commands to populate PressPlanner.<br>
+       `add -a h/Test-1 c/Author1 i/Interviewee1 t/Science d/01-01-2019 s/PUBLISHED`<br>
+       `add -a h/Test-2 c/Author2 i/Interviewee2 d/01-01-2021 s/PUBLISHED`<br>
+       `add -a h/Test-3 c/Author3  d/01-01-2019 s/DRAFT`<br>
+
+    1. Test case: `filter -a s/ st/ en/ t/`<br>
+        Expected:There will be no change in displayed articles.
+     
+    1. Test case: `filter -a s/DRAFT st/ en/ t/`<br>
+        Expected: Only articles with draft status will be displayed.
+   
+    1. Test case: `filter -a s/ st/01-01-2020 en/12-12-2022 t/`<br>
+        Expected: Only articles published between 01-01-2020 and 12-12-2022 will be displayed.
+    
+    1. Test case: `filter -a s/ st/ en/ t/Science`<br>
+       Expected: Only articles with the tag `Science` will be displayed.
+   
+    1. Test case: `filter -a s/ st/`<br>
+        Expected: An error informing the user that the command format is incorrect will be shown.
+     
+    1. Test case: `filter -a s/ st/ en/ t/non-alphanumeric`<br>
+        Expected: An error informing the user that tags only consisting of alpha numeric characters will be shown.
+   
+    1. Test case: `filter -a s/ st/01-01-2020 en/01-01-2001 t/`<br>
+    Expected: An error informing the user that start dates must come before end dates will be shown.
 
 ### Opening Links
 
 1. Opening a link to an article
 
-   1. Create articles using `add -a h/Article1 d/20-03-2024 s/draft l/https://www.google.com`, `add -a h/Article2 d/20-03-2024 s/draft l/https://www.facebook.com/` and `add -a h/Article3 d/20-03-2024 s/draft l/` commands.
+    1. Create articles using `add -a h/Article1 d/20-03-2024 s/draft l/https://www.google.com`, `add -a h/Article2 d/20-03-2024 s/draft l/https://www.facebook.com/` and `add -a h/Article3 d/20-03-2024 s/draft l/` commands.
 
-   1. Test case: `add -a h/Article1 d/20-03-2024 s/draft l/https://www.google.com`, followed by click on the link button of the first article.<br>
-      Expected: The link to google is opened in the default web browser.
+    1. Test case: `add -a h/Article1 d/20-03-2024 s/draft l/https://www.google.com`, followed by click on the link button of the first article.<br>
+       Expected: The link to google is opened in the default web browser.
 
-   1. Test case: `add -a h/Article2 d/20-03-2024 s/draft l/https://www.facebook.com/`, followed by click on the link button of the last article.<br>
-      Expected: The link to facebook is opened in the default web browser.
+    1. Test case: `add -a h/Article2 d/20-03-2024 s/draft l/https://www.facebook.com/`, followed by click on the link button of the last article.<br>
+       Expected: The link to facebook is opened in the default web browser.
 
-   1. Test case: `add -a h/Article3 d/20-03-2024 s/draft l/`, followed by click on the link button of an article that does not have a link.<br>
-      Expected: Nothing happens.
+    1. Test case: `add -a h/Article3 d/20-03-2024 s/draft l/`, followed by click on the link button of an article that does not have a link.<br>
+       Expected: Nothing happens.
 
 ### Saving data
 
@@ -835,7 +900,6 @@ testers are expected to do more *exploratory* testing.
 
    1. _{explain how to simulate a missing/corrupted file, and the expected behavior}_
 
-1. _{ more test cases …​ }_
 
 
 --------------------------------------------------------------------------------------------------------------------
