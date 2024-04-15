@@ -1,6 +1,7 @@
 @startuml
 !include style.puml
 skinparam ArrowFontStyle plain
+scale 1.5
 
 box Logic LOGIC_COLOR_T1
 participant ":LogicManager" as LogicManager LOGIC_COLOR
@@ -34,7 +35,7 @@ create DeleteCommand
 DeleteCommandParser -> DeleteCommand
 activate DeleteCommand
 
-DeleteCommand --> DeleteCommandParser :
+DeleteCommand --> DeleteCommandParser
 deactivate DeleteCommand
 
 DeleteCommandParser --> AddressBookParser : d
@@ -64,6 +65,8 @@ deactivate CommandResult
 
 DeleteCommand --> LogicManager : r
 deactivate DeleteCommand
+DeleteCommand -[hidden]-> DeleteCommandParser
+destroy DeleteCommand
 
 [<--LogicManager
 deactivate LogicManager
