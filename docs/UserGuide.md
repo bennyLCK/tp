@@ -371,7 +371,7 @@ Examples:
 
 * Before lookup:
 
-  ![Before lookup](images/beforeFindLookup.png)
+  ![Before lookup](images/beforeFindLookupArticle.png)
 
 * After lookup using `lookup 2`:
   * (The articles associated with the second person in the list of contacts are shown)
@@ -634,12 +634,12 @@ Examples:
 
 * Before lookup:
   
-  ![Before lookup](images/beforeFindLookup.png)
+  ![Before lookup](images/beforeFindLookupPerson.png)
 
 * After lookup using `lookup -a 2`:
   * (Bob who was the contributor for the second article is shown in the list of persons associated with the article
    
-  ![After lookup](images/lookupArticle.png)
+    ![After lookup](images/lookupArticle.png)
 
 ### [3.2.9. Sorting Articles by Date](#3-2-managing-articles) : `sort -a d/`
 
