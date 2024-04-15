@@ -297,18 +297,18 @@ Format: `sort n/`
 Example:
 * `sort n/` sorts all persons in PressPlanner in ascending order by the lexicographical (alphabetical) ordering of their names.
 
-Before sorting:
-(Aaron Tan and Barry Allen are recent additions to the template data and are currently at the end of the list)
+* Before sorting:
+  * (Aaron Tan and Barry Allen are recent additions to the template data and are currently at the end of the list)
 
-![before sorting people](images/beforeSortingPeople.png)
+    ![before sorting people](images/beforeSortingPeople.png)
 
-After sorting:
-(Both Aaron Tan and Barry Allen moved up the list and are now in order with respect to ascending alphabetical ordering of their names)
+* After sorting:
+  * (Both Aaron Tan and Barry Allen moved up the list and are now in order with respect to ascending alphabetical ordering of their names)
 
-![after sorting people](images/afterSortingPeople.png)
+    ![after sorting people](images/afterSortingPeople.png)
 
-Success message shown:
-`sorted all persons by name`
+* Success message shown:
+  * `sorted all persons by name`
 
 
 ### [3.1.8. Clearing All Persons : `clear`](#31-managing-contacts)
