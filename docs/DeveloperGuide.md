@@ -59,7 +59,7 @@ The *Sequence Diagram* below shows how the components interact with each other f
 Each of the four main components (also shown in the diagram above),
 
 * defines its *API* in an `interface` with the same name as the Component.
-* implements its functionality using a concrete `{Component Name}Manager` class (which follows the corresponding API `interface` mentioned in the previous point.
+* implements its functionality using a concrete `{Component Name}Manager` class which follows the corresponding API `interface` mentioned in the previous point.
 
 For example, the `Logic` component defines its API in the `Logic.java` interface and implements its functionality using the `LogicManager.java` class which follows the `Logic` interface. Other components interact with a given component through its interface rather than the concrete class (reason: to prevent outside component's being coupled to the implementation of a component), as illustrated in the (partial) class diagram below.
 
@@ -209,7 +209,7 @@ Given below is an example usage scenario:
 
 Step 1. The user launches the application. The `ModelManager` will be initialized, along with the Filter objects it contains. `finalPredicate` will be set to display all articles for now.  
 
-Step 2. The user executes `set -a S/DRAFT ST/ EN/` to look for articles he is currently working on.  The set command gets the `ArticleFilter` object using `getFilter()`. Than it updates the filter object by calling the `updateFilter()` method, changing the `finalPredicate`.
+Step 2. The user executes `set -a S/DRAFT ST/ EN/` to look for articles he is currently working on.  The set command gets the `ArticleFilter` object using `getFilter()`. Then it updates the filter object by calling the `updateFilter()` method, changing the `finalPredicate`.
 
 <puml src="diagrams/FilterSequenceDiagram.puml" width="250" />
 
@@ -217,7 +217,7 @@ Step 3. Now that the filter has been updated. The user now looks through Press P
 
 Step 4. The user has found his article and wishes to remove the filter. He does this by executing `set -a S/ ST/ EN/`. With no instructions, the predicate allows all articles to pass through the filter.  
 
-Note: If start date is later than the end date, Press Planner will refuse to execute the command, double check the dates to avoid this scenario.  
+Note: If start date is later than the end date, Press Planner will refuse to execute the command, double-check the dates to avoid this scenario.  
 
 Note: Filters are **NOT** stored by the program. If you close the app, your filters will be reset. 
 
@@ -350,16 +350,50 @@ The following activity diagram summarizes what happens when a user executes a ne
 
 _{more aspects and alternatives to be added}_
 
-### \[Proposed\] Lookup Article
+### \[Implemented\] Lookup Commands
 
 #### Proposed Implementation
 
-The proposed lookup feature is enabled by altering `Article` such that whenever one is created, it stores a list of `Person` objects that are the Authors or Sources involved in the article. The `LookUpCommand` feature will then retrieve this list and display it to the user, enabling the user to see Persons involved in the article.
+The proposed lookup feature is enabled by altering `Person` and `Article` classes to store a list of `Article` and `Person` objects respectively. The `Person` class will have a `List<Article>` attribute that stores the articles that the person is involved in. The `Article` class will have a `List<Person>` attribute that stores the persons involved in the article.
+
+When a `Person` object is added/edited, the `Model` component will check if the name of the person `Person` matches the name of the contributors/interviewees in any `Article` in the `ArticleBook`. If it does, the `Person` object will be updated with new `Article` objects in the list of articles it contains. Editing the name will also change the name of the corresponding contributor/interviewee in the `Article` objects. Adding a `Article` object work similarly, but in reverse. However, editing the name of contributors/interviewees in the `Article` objects will not update the corresponding names `Person` objects.
+
+The following diagram shows how the LookupCommand is executed:
+
+<puml src="diagrams/LookupSequenceDiagram-Logic.puml" alt="Implemented Sequence Diagram for LookupCommand" />
+
+<puml src="diagrams/LookupSequenceDiagram-Model.puml" alt="Implemented Sequence Diagram for LookupCommand" />
+
+The ArticlesInPersonPredicate tests the articles by checking whether the list of articles within the `Person` object contains the article being tested. The PersonsInArticlePredicate tests the persons by checking whether the list of persons within the `Article` object contains the article being tested.
 
 #### Design considerations:
 
-* Make sure Edits and Deletes of Persons and Articles are handled correctly.
-* Consider including a UI alternative to access the list: Pressing a button in the Article's display will show the list of Persons involved.
+Aspect: How to store associations between `Person` and `Article` objects:
+
+* **Alternative 1 (current choice):** Do not store any associations between `Person` and `Article` objects. Instead, since everytime the app is opened it reads all the persons and articles and adds them to the `Model`, the `Model` will always recreate the associations between `Person` and `Article` objects.
+    * Pros: Easier to implement. Uses less storage.
+    * Cons: Could slow down lookup time.
+* **Alternative 2:** Store associations between `Person` and `Article` objects in a separate `AssociationStorage` object in the `Storage` component.
+    * Pros: Faster lookup time.
+    * Cons: More complex to implement and maintain. Uses more storage.
+
+Aspect: What criteria to use to create associations between `Person` and `Article` objects:
+
+* **Alternative 1 (current choice):** Use the name of the `Person` object to match with the name of the contributors/interviewees in the `Article` objects.
+    * Pros: Easier to implement.
+    * Cons: Does not allow for multiple persons with the same name to be associated with different articles, making the user work around this limitation by altering the names slightly.
+* **Alternative 2:** Use a unique identifier like an id for each `Person` object to match with the contributors/interviewees in the `Article` objects.
+    * Pros: Allows for multiple persons with the same name to be associated with different articles.
+    * Cons: More complex to implement.
+
+Aspect: How editing the names affects the associated objects:
+
+* **Alternative 1a (current choice):** Editing the name of a `Person` object will also change the name of the corresponding contributor/interviewee in the `Article` objects.
+    * Pros: Changes in name is automatically reflected in the `Article` objects.
+    * Cons: Could lead to unintended changes in the `Article` objects.
+* **Alternative 1b:** Editing the name of a `Person` object will not change the name of the corresponding contributor/interviewee in the `Article` objects.
+    * Pros: Prevents unintended changes in the `Article` objects.
+    * Cons: Could lead to inconsistencies between the `Person` and `Article` objects.
 
 ### \[Proposed\] Templating of Articles
 
@@ -463,13 +497,11 @@ The class diagram below shows how the `Article` will look and interact after imp
 
 * freelance journalists
 * has a need to manage a significant number of contacts for different facets of business
-* prefer using text-based commands than multi-step GUI
+* prefer using text-based commands than multistep GUI
 * can type fast
 * value speed and efficiency
 
 **Value proposition**: An app for freelance journalists that can streamline their workflow by organizing sources, tracking outlets interested in their stories, and managing collaborations with peers/editors. With features like tagging and grouping contacts, it facilitates efficient research, ensuring reporters can quickly reach out and report on breaking stories.
-
-
 
 ### User stories
 
@@ -511,10 +543,23 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
    Use case ends.
 
-
-
 **Use case: UC02 - Add a person**
 
+**MSS**
+
+1. User requests to add a person.
+2. PressPlanner adds the person.
+3. PressPlanner shows the added person to user.
+
+   Use case ends.
+
+**Extensions**
+
+* 1a. Command was invalid.
+  
+  * 1a1. PressPlanner shows an error message.
+
+    Use case resumes at step 1.
 
 
 **Use case: UC03 - Delete a person**
@@ -534,18 +579,31 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
   Use case ends.
 
-
 * 3a. The given index is invalid.
 
     * 3a1. AddressBook shows an error message.
 
       Use case resumes at step 2.
 
-
-
 **Use case: UC04 - Edit a person**
 
+**MSS**
 
+1. User requests to ***list all persons (UC01)***.
+1. User requests to edit a specific person in the list
+   by providing at least one change to an attribute of the article.
+1. PressPlanner updates the article with the changes requested.
+1. PressPlanner shows the updated article to user.
+
+   Use case ends.
+
+**Extensions**
+
+* 2a. The given index is invalid.
+
+    * 2a1. PressPlanner shows an error message.
+
+      Use case resumes at step 2.
 
 **Use case: UC05 - Find people**
 
@@ -569,7 +627,25 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 **Use case: UC06 - Lookup associated articles for a person**
 
+**MSS**
 
+1. User requests to ***list all people (UC01)***.
+2. User requests to lookup associated articles for a specific person in the list.
+3. PressPlanner displays a filtered list of articles found,
+   each having the person as a contributor or interviewee.
+
+   Use case ends.
+
+**Extensions**
+
+* 2a. The given index is invalid.
+
+    * 2a1. PressPlanner shows an error message.
+
+      Use case resumes at step 2.
+* 3a. The list is empty as there are no articles associated with the person.
+
+  Use case ends.
 
 **Use case: UC07 - Sort people by their names**
 
@@ -625,8 +701,6 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
    Use case ends.
 
-
-
 **Use case: UC10 - Add an article**
 
 **MSS**
@@ -643,8 +717,6 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
   * 1a1. PressPlanner shows an error message.
 
     Use case resumes at step 1.
-
-
 
 **Use case: UC11 - Delete an article**
 
@@ -664,8 +736,6 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
     * 2a1. PressPlanner shows an error message.
 
       Use case resumes at step 2.
-
-    
 
 **Use case: UC12 - Edit an article**
 
@@ -694,14 +764,12 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
       Use case resumes at step 2.
 
-
-
 **Use case: UC13 - Find articles**
 
 **MSS**
 
 1. User requests to find articles with headlines containing given keywords.
-1. PressPlanner displays a filtered list of articles found,
+2. PressPlanner displays a filtered list of articles found,
  each having a headline containing at least one of the given keywords.
 
    Use case ends.
@@ -745,15 +813,34 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 **Use case: UC15 - Lookup associated people for an article**
 
+**MSS**
 
+1. User requests to ***list all articles (UC09)***.
+2. User requests to lookup associated persons for a specific article in the list.
+3. PressPlanner displays a filtered list of persons found,
+   each featuring in the article as a contributor or interviewee.
+
+   Use case ends.
+
+**Extensions**
+
+* 2a. The given index is invalid.
+
+    * 2a1. PressPlanner shows an error message.
+
+      Use case resumes at step 2.
+  
+* 3a. The list is empty as there are no persons associated with the article.
+
+  Use case ends.
 
 **Use case: UC16 - Sort articles by their date**
 
 **MSS**
 
 1. User requests to ***list all articles (UC09)***.
-1. User requests to sort articles by their dates.
-1. PressPlanner sorts the articles by their dates in descending chronological order and displays the sorted list of articles.
+2. User requests to sort articles by their dates.
+3. PressPlanner sorts the articles by their dates in descending chronological order and displays the sorted list of articles.
 
    Use case ends.
 
@@ -762,7 +849,6 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 * 1a. The list is empty.
 
   Use case ends.
-
 
 * 1b. The list is already sorted before and no ***edits to an article (UC12)*** modifies an article's date and changes that article's relative chronological ordering in the list or ***adding of an article (UC10)*** which results in that article not being ordered with respect to the rest of the list were performed afterwards.
 
@@ -788,12 +874,9 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 ### Non-Functional Requirements
 
 1. Should work on any _mainstream OS_ as long as it has Java `11` or above installed.
-1. Should be able to hold up to 1000 persons without a noticeable sluggishness in performance for typical usage.
-1. Should be able to hold up to 1000 articles without a noticeable sluggishness in performance for typical usage.
-1. A user with above average typing speed for regular English text (i.e. not code, not system admin commands) should be able to accomplish most of the tasks faster using commands than using the mouse.
-
-
-
+2. Should be able to hold up to 1000 persons without a noticeable sluggishness in performance for typical usage.
+3. Should be able to hold up to 1000 articles without a noticeable sluggishness in performance for typical usage.
+4. A user with above average typing speed for regular English text (i.e. not code, not system admin commands) should be able to accomplish most of the tasks faster using commands than using the mouse.
 
 ### Glossary
 
@@ -847,7 +930,42 @@ testers are expected to do more *exploratory* testing.
    1. Other incorrect delete commands to try: `delete`, `delete x`, `...` (where x is larger than the list size)<br>
       Expected: Similar to previous.
 
-1. _{ more test cases …​ }_
+### Lookup a person & article
+
+1. Lookup person/article after adding a person/article
+
+   1. Prerequisites: Assume non-empty list of persons and articles. Change index numbers as needed.
+
+   1. Test case: `add n/Alice1 p/12345678 e/alice@email.com a/Blk 424 #11-0536 Yishun Ring Road`<br> `lookup 1`<br>
+      Expected: Alice1 is added to the list. An empty list of articles associated with Alice1 is shown. 
+
+   1. Testcase: `add -a h/Article1 c/Alice1 d/11-09-2021 s/DRAFT`<br> `lookup -a 1`<br>
+      Expected: Article1 is added to the list. Alice1 is shown as a list of persons associated with Article1.
+   
+   2. Lookup person: `lookup 1`<br>
+         Expected: Article1 is shown as a list of articles associated with Alice1.
+
+   1. Test case: `lookup 0`<br>
+      Expected: Error message is shown.
+
+   1. Test case: `lookup -a 0`<br>
+      Expected: Error message is shown.
+
+   1. Delete the person and article added in the prerequisites. Then repeat the above testcases by altering the orders such that the article is added first and then person. The commands should differ accordingly.
+
+3. Lookup after editing person and article
+
+    1. Test case: `edit 1 n/Alice2`<br>
+       Expected: Alice is edited to Alice2. This is reflected in the article Article0 contributor tag as well.
+    
+    1. Test case: `edit -a 1 h/Article1`<br>
+       Expected: Article0 is edited to Article1.
+    
+    1. Test case: `lookup 1`<br>
+       Expected: Article1 is shown as a list of articles associated with Alice2.
+    
+    1. Test case: `lookup -a 1`<br>
+       Expected: Alice2 is shown as a list of persons associated with Article1.
 
 ### Filtering through articles
 1. Filtering through articles.
@@ -906,6 +1024,7 @@ testers are expected to do more *exploratory* testing.
 ## **Planned Enhancements**
 
 1. **Make URL failure more explicit**: Currently when a URL cannot be opened the app shows that by not opening anything. This can be improved by showing an error message.
-1. **The filter command can work for individual prefixes**: Currently the filter command only works for all prefixes. It can be improved by allowing the user to filter by individual prefixes.
-1. **Automatically sort persons by their names in ascending alphabetical ordering**: Currently whenever the user makes an edit to a person's name or adds new person entries which may result in a violation of the previous ordering, the user would have to execute the `sort n/` command to re-sort the person entries. It can be improved by automatically sorting people whenever new entries, or certain edits to them are made to reduce such inconveniences to the user.
-1. **Automatically sort articles by their publication dates in descending order**: Currently whenever the user makes an edit to an article's publication date or adds new article entries which may result in a violation of the previous ordering, the user would have to execute the `sort -a d/` command to re-sort the articles. It can be improved by automatically sorting articles whenever new entries, or certain edits to them are made to reduce such inconveniences to the user.
+2. **The filter command can work for individual prefixes**: Currently the filter command only works for all prefixes. It can be improved by allowing the user to filter by individual prefixes.
+3. **Automatically sort persons by their names in ascending alphabetical ordering**: Currently whenever the user makes an edit to a person's name or adds new person entries which may result in a violation of the previous ordering, the user would have to execute the `sort n/` command to re-sort the person entries. It can be improved by automatically sorting people whenever new entries, or certain edits to them are made to reduce such inconveniences to the user.
+4. **Automatically sort articles by their publication dates in descending order**: Currently whenever the user makes an edit to an article's publication date or adds new article entries which may result in a violation of the previous ordering, the user would have to execute the `sort -a d/` command to re-sort the articles. It can be improved by automatically sorting articles whenever new entries, or certain edits to them are made to reduce such inconveniences to the user.
+5. **Provide alternative methods to create associations between persons and articles**: Currently the user can only create associations between persons and articles when adding/editing the persons or articles. It might not always be desirable to create associations when adding/editing persons or articles. This can be improved by providing an alternative method to create associations between persons and articles by using IDs unique to each person and article. Instead of using names to create associations, the user can use the IDs to create associations between persons and articles.
