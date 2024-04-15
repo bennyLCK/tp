@@ -371,7 +371,7 @@ Examples:
 
 * Before lookup:
 
-  ![Before lookup](images/beforeFindLookup.png)
+  ![Before lookup](images/beforeFindLookupArticle.png)
 
 * After lookup using `lookup 2`:
   * (The articles associated with the second person in the list of contacts are shown)
@@ -634,7 +634,7 @@ Examples:
 
 * Before lookup:
   
-  ![Before lookup](images/beforeFindLookup.png)
+  ![Before lookup](images/beforeFindLookupPerson.png)
 
 * After lookup using `lookup -a 2`:
   * (Bob who was the contributor for the second article is shown in the list of persons associated with the article
