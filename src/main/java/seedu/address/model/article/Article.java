@@ -122,7 +122,30 @@ public class Article {
     }
 
     /**
-     * Sets the persons list of a edited article.
+     * Returns a list of persons that match the authors and sources of the article.
+     *
+     * @param persons a list of persons to compare against the article's authors and sources.
+     * @return a list of persons that match the authors and sources of the article.
+     */
+    public List<Person> getMatchingPersonsList(List<Person> persons) {
+        List<Person> matchingPersons = new ArrayList<>();
+        for (Person person : persons) {
+            for (Author author : authors) {
+                if (author.authorName.equals(person.getNameString())) {
+                    matchingPersons.add(person);
+                }
+            }
+            for (Source source : sources) {
+                if (source.sourceName.equals(person.getNameString())) {
+                    matchingPersons.add(person);
+                }
+            }
+        }
+        return matchingPersons;
+    }
+
+    /**
+     * Sets the persons list of an edited article.
      *
      * @param persons
      */

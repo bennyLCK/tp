@@ -46,7 +46,7 @@ public class ArticleCommandTestUtil {
     public static final String SECOND_VALID_OUTLET_NVIDIA = "The Economic Times";
     public static final String FIRST_VALID_OUTLET_INTEL = "CNBC News";
     public static final String SECOND_VALID_OUTLET_INTEL = "The New York Times";
-    public static final String FIRST_VALID_TAG_NVIDIA = "Research";
+    public static final String FIRST_VALID_TAG_NVIDIA = "RND";
     public static final String SECOND_VALID_TAG_NVIDIA = "Tech";
     public static final String FIRST_VALID_TAG_INTEL = "Gaming";
     public static final String SECOND_VALID_TAG_INTEL = "Tech";

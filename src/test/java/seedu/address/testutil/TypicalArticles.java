@@ -71,7 +71,7 @@ public class TypicalArticles {
             .withPublicationDate("07-05-2021")
             .withSources("Earny Dragto", "Midi Dragto")
             .withOutlets("Okto News Outlet")
-            .withTags("Non Fiction")
+            .withTags("NonFiction")
             .withStatus("DRAFT")
             .withLink("https://www.google.com/").build();
     public static final Article SIX = new ArticleBuilder().withTitle("Six upon a time")
@@ -102,6 +102,14 @@ public class TypicalArticles {
             .withStatus(VALID_STATUS_INTEL)
             .withLink(VALID_LINK_INTEL).build();
 
+    public static final Article OLD = new ArticleBuilder().withTitle("Oldest Man")
+            .withAuthors("Author")
+            .withPublicationDate("01-01-1967")
+            .withSources("Source")
+            .withOutlets("New Yorker")
+            .withTags("Old")
+            .withStatus("ARCHIVED")
+            .withLink(VALID_LINK_INTEL).build();
     private TypicalArticles() {} // prevents instantiation
 
     /**
