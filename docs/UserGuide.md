@@ -42,10 +42,13 @@
 ## [1. Introduction](#table-of-contents)
 ### [1.1. Using this Guide](#1-introduction)
 This guide is intended to help you get started with PressPlanner. It will guide you through the installation process, provide a brief overview of the app's features, and give you a quick reference to the commands you can use. All sections headers will link you back to the start of their parent section, so you can easily navigate the guide.
+
 ### [1.2. Why Use PressPlanner?](#1-introduction)
 PressPlanner was built with **freelance journalists in mind**. It acts as your contact list linked together with a collection of articles, helping you keep track of your contacts and articles.
 
 Unlike major firms, freelancers often lack the same wealth of contacts and resources. PressPlanner helps you maximise the value you can get from your contacts, by providing a platform to store and manage them and keeping track of which contacts you've worked with for different articles.
+
+<div style="page-break-after: always;"></div>
 
 PressPlanner's main features are its ability to help you:
 1. Develop deeper story angles and reconnect with past interviewees or collaborators.
@@ -53,7 +56,7 @@ PressPlanner's main features are its ability to help you:
    - [Lookup](#3-2-8-lookup-associated-persons-lookup-a) persons of interest related to those past articles.
    - Contact these persons for interviews or collaboration.
 
-2. Follow up on breaking stories
+1. Follow up on breaking stories
    - [Filter](#3-2-6-filtering-articles-filter-a) by status and tags to find published articles related to breaking news.
    - Make changes to your article as the story develops.
 
@@ -66,8 +69,8 @@ PressPlanner's tagging system for [persons](#3-1-managing-contacts) and [article
 1. Ensure that you have Java `11` or above installed on your computer.
     - Download Java 11 from [the official Oracle website](https://www.oracle.com/java/technologies/downloads/#java11).
     - If you are unsure what version of java you have, use [this guide](https://www.java.com/en/download/help/version_manual.html) to check.
-2. Download the jar file from [our latest release](https://github.com/AY2324S2-CS2103T-F12-2/tp/releases).
-3. Move it to an **Empty** folder.
+1. Download the jar file from [our latest release](https://github.com/AY2324S2-CS2103T-F12-2/tp/releases).
+1. Move it to an **Empty** folder.
 
 <div markdown="block" class="alert alert-warning">
 
@@ -79,8 +82,10 @@ App data will be stored in sub-folders from where it is launched. While you coul
 ### [2.2. Launching the App](#2-getting-started)
 1. Open a command terminal, change directories into the folder you put the jar file in, and use the `java -jar pressplanner.jar` command to run the application.
    * For Windows users, you can use the [`cd` command](https://learn.microsoft.com/en-us/windows-server/administration/windows-commands/cd) to change directories and the `dir`command to list files in the current directory.
-   * For MacOS and Linux users, you can use the [`cd` command](https://help.ubuntu.com/community/UsingTheTerminal) to change directories and the `ls` command to list files in the current directory.
-2. A window similar to the one below should appear in a few seconds. Note how the app contains some sample data. The information on what each data field represents is shown in the picture below.
+   * For macOS and Linux users, you can use the [`cd` command](https://help.ubuntu.com/community/UsingTheTerminal) to change directories and the `ls` command to list files in the current directory.
+1. A window similar to the one below should appear in a few seconds. Note how the app contains some sample data. The information on what each data field represents is shown in the picture below.
+
+<div style="page-break-after: always;"></div>
 
 <img src="images/UiDescription.png" alt="UI">
 
@@ -111,7 +116,7 @@ Let's go over the basic PressPlanner workflow. Say you've just finished intervie
        * Note that the `-a` suffix is used for all commands pertaining to articles.<br>
      </div>
   
-2. Next let's add that article you just wrote.
+1. Next let's add that article you just wrote.
    - To `add -a` an article we need the following information:
        - Headline (`h/`)
        - Date (`d/`)
@@ -129,16 +134,16 @@ Let's go over the basic PressPlanner workflow. Say you've just finished intervie
         * eg. `add -a h/My Article d/01-01-2024 s/draft d/02-02-2024` will add an article with the date `02-02-2024`.<br>
    </div>
 
-3. Now that that's done, let's say you need to find Gill Bate's number to arrange another interview.
+1. Now that that's done, let's say you need to find Gill Bate's number to arrange another interview.
     - Typing the command `find Gill Bates` will pull up his contact.
 
-4. If you made a mistake or want to see all your contacts again:
+1. If you made a mistake or want to see all your contacts again:
     - Typing the command `list` will bring up all your contacts.
 
-5. If you want to look up your article:
+1. If you want to look up your article:
     - Typing the command `find -a Example Article` will pull up the article.
 
-6. If you want to see all your articles again:
+1. If you want to see all your articles again:
     - Typing the command `list -a` will bring them all up.
 
 Now that you know the basic workflow, go ahead and try it out for yourself. If you want to learn more commands, use the `help` command in-app or refer to the [features](#3-features) section of this guide.
@@ -150,6 +155,7 @@ As you become more familiar with the app, use tags as you see fit to customise y
   - Using tags to mark articles with potential for follow-up development.
 
 ## [3. Features](#table-of-contents)
+
 <div markdown="block" class="alert alert-info">
 
 **:information_source: Important**<br>
@@ -162,14 +168,14 @@ Here are some important terms that will be used in this section:
      * `p/` is the prefix.
      * `PARAMETER` is the parameter to be supplied by you.
 
-2. `INDEX` is a parameter you may come across frequently. It refers to the index number shown in the current list view.
+1. `INDEX` is a parameter you may come across frequently. It refers to the index number shown in the current list view.
    * `INDEX` must be a positive integer.
    * An `INDEX` not present in the current list view is invalid.
    * For example using the sample data shown below, indexes 1 - 6 are valid for persons, and index 1 is valid for articles: 
 
       ![sample data](images/sampleData.png)
 
-3. Words in `UPPER_CASE` are the parameters to be supplied by you.
+1. Words in `UPPER_CASE` are the parameters to be supplied by you.
    * Refer to point 1 for the breakdown of the command structure.
    * For the example command `example p/PARAMETER`:
       * `PARAMETER` is the parameter to be supplied by you.
@@ -178,28 +184,28 @@ Here are some important terms that will be used in this section:
      * `INDEX` is the parameter to be supplied by you.
        * The correct use of this command would thus be: `delete 1`, replacing `INDEX` with a valid index.
 
-4. Items in square brackets are optional.
+1. Items in square brackets are optional.
    * For the example command `example p/PARAMETER [t/TAG]`:
      * `example p/my input` is a valid use of the command.
      * `example p/my input t/my tag` is also a valid use of the command.
 
-5. Items with `...` after them can be used multiple times. If the item is also in square brackets, it can even be used zero times.
+1. Items with `...` after them can be used multiple times. If the item is also in square brackets, it can even be used zero times.
    * For the example command `example p/PARAMETER [t/TAG]...`:
      * `example p/my input` is a valid use of the command.
      * `example p/my input t/my tag` is also a valid use of the command.
      * `example p/my input t/my tag t/my other tag` is also a valid use of the command.
 
-6. Parameters can be in any order.
+1. Parameters can be in any order.
    * For the example command `example p/PARAMETER [t/TAG]...`:
      * `example p/my input t/my tag` is a valid use of the command.
      * `example t/my tag p/my input` is also a valid use of the command.
      * `example t/my tag p/my input t/my other tag` is also a valid use of the command.
      
-7. Extraneous inputs for commands that do not take in parameters will be ignored.
+1. Extraneous inputs for commands that do not take in parameters will be ignored.
    * This specifically refers to the [`help`](#3-3-1-viewing-help-help), [`list`](#3-1-3-listing-all-persons-list), [`list -a`](#3-2-3-listing-all-articles-list-a), [`exit`](#3-3-2-exiting-pressplanner-exit) and [`clear`](#3-1-8-clearing-all-persons-clear) commands.
    * e.g. `help 123` will be interpreted as `help`.
    
-8. Prefixes are case-insensitive.
+1. Prefixes are case-insensitive.
    * Only **prefixes** are always case-insensitive, **command words** are case-sensitive.
      * Refer to point 1 if you are unsure of the terminology and command structure.
    * For the example command `example p/PARAMETER`:
@@ -207,7 +213,7 @@ Here are some important terms that will be used in this section:
      * `example P/my input` is also a valid use of the command.
      * `EXAMPLE p/my input` is not a valid use of the command.
      
-9. Only correct prefixes will be recognised and accepted.
+1. Only correct prefixes will be recognised and accepted.
    * Taking the [`add -a` command](#3-2-1-adding-an-article-add-a) for example:
      * The command: `add -a h/My Headline invalid/ignore d/01-01-2024 s/draft` will not recognise `invalid/ignore` as a valid prefix and parameter pair.
        * As a result, the command will interpret `My Headline invalid/ignore` as the headline and add a new article with the headline `My Headline invalid/ignore`.
@@ -222,6 +228,8 @@ Here are some important terms that will be used in this section:
 
 If you are using a PDF version of this document, be careful when copying and pasting commands with line breaks as they may not paste correctly.
 </div>
+
+<div style="page-break-after: always;"></div>
 
 ## [3.1. Managing Contacts](#3-features)
 <div markdown="block" class="alert alert-info">
@@ -287,6 +295,8 @@ Format: `delete INDEX`
 Examples:
 * `delete 2` deletes the 2nd person in the current address book view.
 
+<div style="page-break-after: always;"></div>
+
 <div markdown="block" class="alert alert-info">
 
 **:information_source: Important**<br>
@@ -347,6 +357,8 @@ Examples:
 * `find John` returns `john` and `John Doe`
 * `find alex david` returns `Alex Yeoh`, `David Li`
 
+<div style="page-break-after: always;"></div>
+
 * Before finding:
 
   ![Before finding](images/beforeFindLookupPerson.png)
@@ -354,6 +366,8 @@ Examples:
 * After finding using `find chester`:
   
   ![After finding](images/findPerson.png)
+
+<div style="page-break-after: always;"></div>
 
 ### [3.1.6. Lookup Associated Articles](#3-1-managing-contacts) : `lookup`
 
@@ -364,7 +378,7 @@ Format: `lookup INDEX`
 * Display articles related to the person at the specified `INDEX`
 * The matching of persons to articles is based on the person's name.
     * It is case-sensitive (e.g. Looking up `John` in the address book will not match articles with `john` as an interviewee or contributor).
-    * It is a exact match of the person's full name (e.g. Looking up `John` in the address book will not match articles with `Johnny` or `John Doe` as interviewees or contributors).
+    * It is an exact match of the person's full name (e.g. Looking up `John` in the address book will not match articles with `Johnny` or `John Doe` as interviewees or contributors).
 
 Examples:
 * `lookup 1` returns all articles associated with the first person in the list of contacts.
@@ -400,7 +414,7 @@ Example:
     ![before sorting people](images/beforeSortingPeople.png)
 
 * After sorting:
-  * (Both Aaron Tan and Barry Allen moved up the list and are now in order with respect to ascending alphabetical ordering of their names)
+  * (Both Aaron Tan and Barry Allen moved up the list and are now in ascending order with respect to alphabetical ordering of their names)
 
     ![after sorting people](images/afterSortingPeople.png)
 
@@ -420,6 +434,8 @@ Format: `clear`
 
 This action is irreversible. All persons will be deleted from the address book. The app will not prompt you to confirm this action.
 </div>
+
+<div style="page-break-after: always;"></div>
 
 ## [3.2. Managing Articles](#3-features)
 PressPlanner's article management system is designed to help you keep track of your articles and the people involved in them. As a freelancer, you lack the same resources a major firm has. PressPlanner helps you maximise the value you can get from your contacts by helping you keep track of which contacts you've worked with for different articles.
@@ -627,7 +643,7 @@ Format: `lookup -a INDEX`
 * Display list of persons related to the article at the specified `INDEX`.
 * The matching of articles to persons is based on the person's name.
     * It is case-sensitive (e.g. Looking up an article with `john` as an interviewee or contributor will not match `John` in the address book).
-    * It is a exact match of the person's full name (e.g. Looking up an article with `John` as an interviewee or contributor will not match `Johnny` or `John Doe` in the address book).
+    * It is an exact match of the person's full name (e.g. Looking up an article with `John` as an interviewee or contributor will not match `Johnny` or `John Doe` in the address book).
   
 Examples:
 * `lookup -a 1` returns all persons associated with the first article in the list of articles.
@@ -702,6 +718,8 @@ Exits the program.
 
 Format: `exit`
 
+<div style="page-break-after: always;"></div>
+
 ## [4. Commands Quick Reference](#table-of-contents)
 | Action                     | Command Format                                                                                                           | Example                                                                                                                        |
 |----------------------------|--------------------------------------------------------------------------------------------------------------------------|--------------------------------------------------------------------------------------------------------------------------------|
@@ -725,6 +743,8 @@ Format: `exit`
 | Help                       | `help`                                                                                                                   | `help`                                                                                                                         |
 | Exit                       | `exit`                                                                                                                   | `exit`                                                                                                                         | 
 
+<div style="page-break-after: always;"></div>
+
 ## [5. Upcoming Features](#table-of-contents)
 ### [5.1. Clearing all Articles](#5-upcoming-features)
 In PressPlanner's current version, we have provided a command to clear all persons from the address book using the `clear` command. This is intended to help you clear all contacts in the case of personal data privacy and security concerns.
@@ -747,12 +767,14 @@ Users have requested a similar command to clear all articles from the article bo
   * Now, if you open PressPlanner again, you will see that your articles will have changed back to the sample data:
   
     ![after clearing](images/afterDeletingJsonFile.png)
-  * Now all you have to do is to delete the sample article and you are set!
+  * Now all you have to do is to delete the sample article, and you are set!
 
 ### [5.2. Filtering People](#5-upcoming-features)
 In PressPlanner's current version, filtering is available for articles and intended to help you find articles that you may have forgotten the name of by other attributes such as date, status, tags, etc.
 
 Users have requested a similar feature for persons. We are working on implementing this feature in the near future.
+
+<div style="page-break-after: always;"></div>
 
 ## [6. FAQs](#table-of-contents)
 ### [6.1. Why am I unable to run PressPlanner on my desktop?](#6-faqs)
