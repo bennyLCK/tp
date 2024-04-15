@@ -15,9 +15,9 @@ public class Link {
     public final String link;
 
     /**
-     * Constructs a {@code Title}.
+     * Constructs a {@code Link}.
      *
-     * @param link A valid title.
+     * @param link A valid link.
      */
     public Link(String link) {
         if (link == null) {
