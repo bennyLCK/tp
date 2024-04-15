@@ -222,8 +222,10 @@ Format: `delete INDEX`
 * Deletes the person at the specified `INDEX`.
 
 Examples:
-* `list` followed by `delete 2` deletes the 2nd person in the address book.
-* `find Betsy` followed by `delete 1` deletes the 1st person in the results of the `find` command.
+* `delete 2` deletes the 2nd person in the current address book view.
+
+> [!IMPORTANT]
+> Commands such as [`find`](#315-searching-for-a-person-by-name--find) can alter the current view of the address book. The `INDEX` refers to the index number shown in the current view.
 
 ### [3.1.3. Listing All Persons](#31-managing-contacts) : `list`
 
@@ -241,10 +243,13 @@ Format: `edit INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [t/TAG]...`
 * Edits the person at the specified `INDEX`.
 * At least one of the optional fields must be provided.
 * Existing values will be updated to the input values.
-* When editing tags, the existing tags of the person will be removed i.e. adding of tags is not cumulative.
-* You can remove all the person’s tags by typing `t/` without.
-  specifying any tags after it.
-* Editing the name of a person will change the name of contributors or interviewees in articles associated with the person (sharing the same name).
+
+> [!WARNING]
+> * When editing tags, the existing tags of the person will be removed i.e. adding of tags is not cumulative.
+> * You can remove all the person’s tags by typing `t/` without specifying any tags after it.
+
+> [!IMPORTANT]
+> * Editing the name of a person will automatically update their names in articles referencing them as contributors or interviewees.
 
 Examples:
 *  `edit 1 p/91234567 e/johndoe@example.com` Edits the phone number and email address of the 1st person to be `91234567` and `johndoe@example.com` respectively.
