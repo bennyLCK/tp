@@ -356,18 +356,18 @@ Format: `add -a h/HEADLINE  d/DATE s/STATUS [c/CONTRIBUTOR]... [i/INTERVIEWEE]..
 
 > [!WARNING]
 > 1. Only `HEADLINE`, `DATE`, and `STATUS` are mandatory fields.
->   * Refer to [Managing Articles](#32-managing-articles) for the valid formats of `DATE` and `STATUS`.
->   * An article's `HEADLINE` must be unique **unless it is a `draft`**
->     * `HEADLINE` accepts any characters, but spaces at the start will be automatically removed.
->     * `HEADLINE` can also be left blank. This is not recommended, but allowed for flexibility.
->       * e.g. `add -a h/ d/20-10-2023 s/draft` is a valid command and will add an article with a blank headline.
->       * Some users may find this useful for adding drafts quickly and filling in the headline later.
->   * An article's `DATE` can represent what you choose to be relevant to your workflow, we recommend using it to represent:
->     * Time of creation for drafts.
->     * Time of publication for published articles.
+>     * Refer to [Managing Articles](#32-managing-articles) for the valid formats of `DATE` and `STATUS`.
+>     * An article's `HEADLINE` must be unique **unless it is a `draft`**
+>       * `HEADLINE` accepts any characters, but spaces at the start will be automatically removed.
+>       * `HEADLINE` can also be left blank. This is not recommended, but allowed for flexibility.
+>         * e.g. `add -a h/ d/20-10-2023 s/draft` is a valid command and will add an article with a blank headline.
+>         * Some users may find this useful for adding drafts quickly and filling in the headline later.
+>     * An article's `DATE` can represent what you choose to be relevant to your workflow, we recommend using it to represent:
+>       * Time of creation for drafts.
+>       * Time of publication for published articles.
 > 2. Entering multiple prefixes for any of these fields will overwrite the previous values.
->   * e.g. `add -a h/My Article d/20-10-2023 s/draft h/My Second Article` will add an article titled `My Second Article`.
->   * e.g. `add -a h/My Article d/01-01-2024 s/draft d/02-02-2024` will add an article with the date `02-02-2024`.
+>     * e.g. `add -a h/My Article d/20-10-2023 s/draft h/My Second Article` will add an article titled `My Second Article`.
+>     * e.g. `add -a h/My Article d/01-01-2024 s/draft d/02-02-2024` will add an article with the date `02-02-2024`.
 
 * A `CONTRIBUTOR` is a co-author or information source that was not directly interviewed for an article.
 * An `INTERVIEWEE` is a person directly interviewed for an article.
