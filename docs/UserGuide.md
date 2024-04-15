@@ -159,7 +159,7 @@ As you become more familiar with the app, use tags as you see fit to customise y
 > 4. Items in square brackets are optional.
 >    * For the example command `example p/PARAMETER [t/TAG]`:
 >      * `example p/my input t/my tag` is a valid use of the command
->      * `example p/my other input` is also a valid use of the command
+>      * `example p/my input` is also a valid use of the command
 > 
 > 5. Items with `...` after them can be used multiple times. If the item is also in square brackets, it can even be used zero times.
 >    * For the example command `example p/PARAMETER [t/TAG]...`:
@@ -174,7 +174,7 @@ As you become more familiar with the app, use tags as you see fit to customise y
 >      * `example t/my tag p/my input t/my other tag` is also a valid use of the command
 >
 > 7. Extraneous inputs for commands that do not take in parameters will be ignored.
->    * This specifically refers to the [`help` command](#331-viewing-help--help), [`list` command](#313-listing-all-persons--list), [`list -a` command](#323-listing-all-articles--list--a), [`exit` command](#332-exiting-pressplanner--exit) and [`clear` command](#318-clearing-all-persons--clear).
+>    * This specifically refers to the [`help`](#331-viewing-help--help), [`list`](#313-listing-all-persons--list), [`list -a`](#323-listing-all-articles--list--a), [`exit`](#332-exiting-pressplanner--exit) and [`clear`](#318-clearing-all-persons--clear) commands.
 >    * e.g. `help 123` will be interpreted as `help`.
 >
 > 8. Parameter prefixes are case-insensitive.
