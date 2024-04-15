@@ -213,7 +213,7 @@ Step 2. The user executes `set -a S/DRAFT ST/ EN/` to look for articles he is cu
 
 <puml src="diagrams/FilterSequenceDiagram.puml" width="250" />
 
-Step 3. Now that the filter has been updated. The user now looks through Press Planner to search for the article. He decides to search by title to make it faster. He executes `find -a AI`. Beyond matches with the name, Press Planner is still filtering to show only DRAFTs, allowing the user to search a smaller set.  
+Step 3. Now that the filter has been updated. The user now looks through Press Planner to search for the article. He decides to search by title to make it faster. He executes `find -a AI`. Beyond matches with the name, Press Planner is still filtering to show only DRAFTs, allowing the user to search a smaller set.
 
 Step 4. The user has found his article and wishes to remove the filter. He does this by executing `set -a S/ ST/ EN/`. With no instructions, the predicate allows all articles to pass through the filter.  
 
