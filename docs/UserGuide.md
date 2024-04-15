@@ -355,8 +355,6 @@ Format: `find KEYWORD [MORE_KEYWORDS]`
 * Persons matching at least one keyword will be returned (i.e. `OR` search).
   e.g. `Hans Bo` will return `Hans Gruber`, `Bo Yang`
 
-<div markdown="block" class="alert alert-info">
-
 Examples:
 * `find John` returns `john` and `John Doe`
 * `find alex david` returns `Alex Yeoh`, `David Li`
@@ -492,6 +490,8 @@ Format: `add -a h/HEADLINE  d/DATE s/STATUS [c/CONTRIBUTOR]... [i/INTERVIEWEE]..
     * e.g. `add -a h/My Article d/20-10-2023 s/draft h/My Second Article` will add an article titled `My Second Article`.
     * e.g. `add -a h/My Article d/01-01-2024 s/draft d/02-02-2024` will add an article with the date `02-02-2024`.
 </div>
+
+<div style="page-break-after: always;"></div>
 
 * A `CONTRIBUTOR` is a co-author or information source that was not directly interviewed for an article.
 * An `INTERVIEWEE` is a person directly interviewed for an article.
