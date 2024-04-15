@@ -639,7 +639,7 @@ Examples:
 * After lookup using `lookup -a 2`:
   * (Bob who was the contributor for the second article is shown in the list of persons associated with the article
    
-  ![After lookup](images/lookupArticle.png)
+    ![After lookup](images/lookupArticle.png)
 
 ### [3.2.9. Sorting Articles by Date](#3-2-managing-articles) : `sort -a d/`
 
