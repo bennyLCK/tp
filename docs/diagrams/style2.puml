@@ -41,7 +41,7 @@ skinparam Package {
 
 skinparam Class {
     FontColor #FFFFFF
-    FontSize 15
+    FontSize 35
     BorderThickness 1
     BorderColor #FFFFFF
     StereotypeFontColor #FFFFFF
