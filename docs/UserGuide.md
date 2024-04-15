@@ -69,7 +69,7 @@ PressPlanner's tagging system for [persons](#31-managing-contacts) and [articles
 2. Download the jar file from [our latest release](https://github.com/AY2324S2-CS2103T-F12-2/tp/releases).
 3. Move it to an **Empty** folder.
 
-> :warning: 
+> [!WARNING] 
 > App data will be stored in sub-folders from where it is launched. While you could run the app from any location, we recommend making a dedicated folder for our app to avoid confusion.
 
 ### [2.2. Launching the App](#2-getting-started)
@@ -80,7 +80,7 @@ PressPlanner's tagging system for [persons](#31-managing-contacts) and [articles
 
 ### [2.3. The Beginner's Guide to PressPlanner](#2-getting-started)
 
-> :bulb:
+> [!TIP]
 > This section covers commands first-time users might need. For the full commands list, refer to the [Features](#3-features) section.
 
 Let's go over the basic PressPlanner workflow. Say you've just finished interviewing a certain Gill Bates. You want to save his contact for later and keep track of your article.
@@ -93,7 +93,7 @@ Let's go over the basic PressPlanner workflow. Say you've just finished intervie
     - Address (`a/`)
   - For example: `add n/Gill Bates p/12345678 e/gillbates@sicromoft.com a/Sicromoft HQ`
 
-> :bulb:
+> [!NOTE]
 > Adding an article uses the `add -a` command, the `-a` standing for article. The `-a` suffix is used for all commands pertaining to articles.
 
 1. Next let's add that article you just wrote.
@@ -105,7 +105,7 @@ Let's go over the basic PressPlanner workflow. Say you've just finished intervie
          - An article can be a `draft`, `published`, or `archived`.
      - For example: `add -a h/Example Article d/20-10-2023 s/draft`
 
-> :warning:
+> [!WARNING]
 > You should only use each prefix once, except the `t/` prefix for Tags. If you use multiple prefixes in one command, eg. `add -a h/My Article d/20-10-2023 s/draft h/My Second Article` only the value that comes after the last duplicate prefix will be added, which means that in this case, the header of the article will be `My Second Article`.
 
 2. Now that that's done, let's say you need to find Gill Bate's number to arrange another interview.
@@ -161,7 +161,7 @@ Notes about the command format:
   e.g. `t/tag k/invalid` will treat the input as the invalid attempt to add the tag `tag k/invalid`
 </div>
 
-> :warning:
+> [!WARNING]
 > If you are using a PDF version of this document, be careful when copying and pasting commands with line breaks as they may not paste correctly.
 
 ## [3.1. Managing Contacts](#3-features)
@@ -172,7 +172,7 @@ Adds a person to PressPlanner's address book.
 
 Format: `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]...`
 
-> :bulb:
+> [!NOTE]
 > A person can have any number of tags (including 0).
 
 Examples:
@@ -303,17 +303,17 @@ Format: `add -a h/HEADLINE  d/DATE s/STATUS [c/CONTRIBUTOR]... [i/INTERVIEWEE]..
   * This does not apply to [filters](#326-filtering-articles--filter--a).
   * If the name of a contributor or interviewee matches a person in the address book, the person's name will be linked to the article which will be accessible via the `lookup` and `lookup -a` commands.
 
-> :warning:
-> * `HEADLINE` accepts any characters, but must not start with a whitespace.
+> [!WARNING]
+> * `HEADLINE` accepts any characters, but spaces at the start will be automatically removed.
 > * `HEADLINE` can also be left blank. This is not recommended, but allowed for flexibility.
-    >   * e.g. `add -a h/ d/20-10-2023 s/draft` is a valid command and will add an article with a blank headline.
+>   * e.g. `add -a h/ d/20-10-2023 s/draft` is a valid command and will add an article with a blank headline.
 >   * Some users may find this useful for adding drafts quickly and filling in the headline later.
 
 Examples:
 * `add -a h/iPhone 13 Review d/20-03-2024 s/draft c/John Doe i/Michael Lee t/New Releases`
 * `add -a h/AI Inc. Acquired by Google d/30-08-2024 08:45 s/published c/Alex Johnson i/Emily Brown t/AI o/CNA l/www.example.com`
 
-> :warning:
+> [!WARNING]
 > You should only use each prefixes once, except the `t/` prefix for Tags. If you use multiple prefixes in one command, eg. `add -a h/My Article d/20-10-2023 s/draft h/My Second Article` only the value that comes after the last duplicate prefix to be added, which means that in this case, the header of the article will be "My Second Article".
 
 
@@ -360,7 +360,7 @@ Examples:
 *  `edit -a 1 h/iPhone Review` Edits the headline of the 1st article to be `iPhone Review`.
 *  `edit -a 2 h/iPhone Review i/` Edits the headline of the 2nd article to be `iPhone Review` and clears all existing interviewees.
 
-> :warning:
+> [!WARNING]
 > You should only use each prefixes once, except the `t/` prefix for Tags. If you use multiple prefixes in one command, eg. `add -a h/My Article d/20-10-2023 s/draft h/My Second Article` only the value that comes after the last duplicate prefix to be added, which means that in this case, the header of the article will be "My Second Article".
 
 
