@@ -231,10 +231,10 @@ This feature closely follows the logic and model design of the sort persons feat
 The differences include:
 
 1. `SortArticleCommand` class inherits from the `ArticleCommand` class which in turn inherits from the `Command` class instead of the `SortCommand` class.
-2. `SortArticleCommandParser` instead of `SortCommandParser` class.
-3. `AddressBookParser` passes command flow to the `ArticleBookParser` class.
-4. Sorting will be done on the `ArticleBook` object instead of the `AddressBook` object.
-5. The execution of the `sort -a d/` command will invoke the `Model#sortArticleBook("d/")` method instead of the `Model#sortAddressBook("d/")` method.
+1. `SortArticleCommandParser` instead of `SortCommandParser` class.
+1. `AddressBookParser` passes command flow to the `ArticleBookParser` class.
+1. Sorting will be done on the `ArticleBook` object instead of the `AddressBook` object.
+1. The execution of the `sort -a d/` command will invoke the `Model#sortArticleBook("d/")` method instead of the `Model#sortAddressBook("d/")` method.
 
 The following sequence diagram shows how a sort articles operation goes through the Logic component:
 
@@ -549,8 +549,8 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 **MSS**
 
 1. User requests to add a person.
-2. PressPlanner adds the person.
-3. PressPlanner shows the added person to user.
+1. PressPlanner adds the person.
+1. PressPlanner shows the added person to user.
 
    Use case ends.
 
@@ -631,8 +631,8 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 **MSS**
 
 1. User requests to ***list all people (UC01)***.
-2. User requests to lookup associated articles for a specific person in the list.
-3. PressPlanner displays a filtered list of articles found,
+1. User requests to lookup associated articles for a specific person in the list.
+1. PressPlanner displays a filtered list of articles found,
    each having the person as a contributor or interviewee.
 
    Use case ends.
@@ -770,7 +770,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 **MSS**
 
 1. User requests to find articles with headlines containing given keywords.
-2. PressPlanner displays a filtered list of articles found,
+1. PressPlanner displays a filtered list of articles found,
  each having a headline containing at least one of the given keywords.
 
    Use case ends.
@@ -817,8 +817,8 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 **MSS**
 
 1. User requests to ***list all articles (UC09)***.
-2. User requests to lookup associated persons for a specific article in the list.
-3. PressPlanner displays a filtered list of persons found,
+1. User requests to lookup associated persons for a specific article in the list.
+1. PressPlanner displays a filtered list of persons found,
    each featuring in the article as a contributor or interviewee.
 
    Use case ends.
@@ -840,8 +840,8 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 **MSS**
 
 1. User requests to ***list all articles (UC09)***.
-2. User requests to sort articles by their dates.
-3. PressPlanner sorts the articles by their dates in descending chronological order and displays the sorted list of articles.
+1. User requests to sort articles by their dates.
+1. PressPlanner sorts the articles by their dates in descending chronological order and displays the sorted list of articles.
 
    Use case ends.
 
@@ -869,15 +869,15 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 **MSS**
 
 1. User requests to ***list all articles (UC09)***.
-2. User requests to open webpage of a certain article.
-3. PressPlanner opens a browser with the URL of the article.
+1. User requests to open webpage of a certain article.
+1. PressPlanner opens a browser with the URL of the article.
 
 ### Non-Functional Requirements
 
 1. Should work on any _mainstream OS_ as long as it has Java `11` or above installed.
-2. Should be able to hold up to 1000 persons without a noticeable sluggishness in performance for typical usage.
-3. Should be able to hold up to 1000 articles without a noticeable sluggishness in performance for typical usage.
-4. A user with above average typing speed for regular English text (i.e. not code, not system admin commands) should be able to accomplish most of the tasks faster using commands than using the mouse.
+1. Should be able to hold up to 1000 persons without a noticeable sluggishness in performance for typical usage.
+1. Should be able to hold up to 1000 articles without a noticeable sluggishness in performance for typical usage.
+1. A user with above average typing speed for regular English text (i.e. not code, not system admin commands) should be able to accomplish most of the tasks faster using commands than using the mouse.
 
 ### Glossary
 
@@ -931,6 +931,21 @@ testers are expected to do more *exploratory* testing.
    1. Other incorrect delete commands to try: `delete`, `delete x`, `...` (where x is larger than the list size)<br>
       Expected: Similar to previous.
 
+### Editing a article
+
+1. Edit an article while all articles are being shown
+
+   1. Prerequisites: List all articles using the `list` command. Multiple articles in the list.
+
+   1. Test case: `edit 1 h/Article1`<br>
+      Expected: First article is edited to Article1. Details of the edited article shown in the status message.
+
+   1. Test case: `edit 0 h/Article1`<br>
+      Expected: No article is edited. Error details shown in the status message.
+
+   1. Other incorrect edit commands to try: `edit`, `edit x`, `...` (where x is larger than the list size)<br>
+      Expected: Similar to previous.
+
 ### Lookup a person & article
 
 1. Lookup person/article after adding a person/article
@@ -943,7 +958,7 @@ testers are expected to do more *exploratory* testing.
    1. Testcase: `add -a h/Article1 c/Alice1 d/11-09-2021 s/DRAFT`<br> `lookup -a 1`<br>
       Expected: Article1 is added to the list. Alice1 is shown as a list of persons associated with Article1.
    
-   2. Lookup person: `lookup 1`<br>
+   1. Lookup person: `lookup 1`<br>
          Expected: Article1 is shown as a list of articles associated with Alice1.
 
    1. Test case: `lookup 0`<br>
@@ -954,7 +969,7 @@ testers are expected to do more *exploratory* testing.
 
    1. Delete the person and article added in the prerequisites. Then repeat the above testcases by altering the orders such that the article is added first and then person. The commands should differ accordingly.
 
-3. Lookup after editing person and article
+1. Lookup after editing person and article
 
     1. Test case: `edit 1 n/Alice2`<br>
        Expected: Alice is edited to Alice2. This is reflected in the article Article0 contributor tag as well.
@@ -979,22 +994,22 @@ testers are expected to do more *exploratory* testing.
 
     1. Test case: `filter -a s/ st/ en/ t/`<br>
         Expected:There will be no change in displayed articles.
-     
+
     1. Test case: `filter -a s/DRAFT st/ en/ t/`<br>
         Expected: Only articles with draft status will be displayed.
-   
+
     1. Test case: `filter -a s/ st/01-01-2020 en/12-12-2022 t/`<br>
         Expected: Only articles published between 01-01-2020 and 12-12-2022 will be displayed.
     
     1. Test case: `filter -a s/ st/ en/ t/Science`<br>
        Expected: Only articles with the tag `Science` will be displayed.
-   
+
     1. Test case: `filter -a s/ st/`<br>
         Expected: An error informing the user that the command format is incorrect will be shown.
-     
+
     1. Test case: `filter -a s/ st/ en/ t/non-alphanumeric`<br>
         Expected: An error informing the user that tags only consisting of alpha numeric characters will be shown.
-   
+
     1. Test case: `filter -a s/ st/01-01-2020 en/01-01-2001 t/`<br>
     Expected: An error informing the user that start dates must come before end dates will be shown.
 
@@ -1027,7 +1042,7 @@ testers are expected to do more *exploratory* testing.
 
    1. Test case: `add n/aaa p/82927320 e/a@gmail.com a/ Blk 123 Jurong Ring Road, #01-123` followed by `sort z/`<br>
       Expected: No reordering of people is done. Error details shown in the status message. Status bar remains the same.
-   
+
    1. Other incorrect sort person commands to try: `sort`, `sort x`, `...` (where x is anything that is not `n/` or `N/`)<br>
       Expected: Similar to previous.
 
@@ -1074,13 +1089,11 @@ testers are expected to do more *exploratory* testing.
 
    1. _{explain how to simulate a missing/corrupted file, and the expected behavior}_
 
-
-
 --------------------------------------------------------------------------------------------------------------------
 ## **Planned Enhancements**
 
 1. **Make URL failure more explicit**: Currently when a URL cannot be opened the app shows that by not opening anything. This can be improved by showing an error message.
-2. **The filter command can work for individual prefixes**: Currently the filter command only works for all prefixes. It can be improved by allowing the user to filter by individual prefixes.
-3. **Automatically sort persons by their names in ascending alphabetical ordering**: Currently whenever the user makes an edit to a person's name or adds new person entries which may result in a violation of the previous ordering, the user would have to execute the `sort n/` command to re-sort the person entries. It can be improved by automatically sorting people whenever new entries, or certain edits to them are made to reduce such inconveniences to the user.
-4. **Automatically sort articles by their publication dates in descending order**: Currently whenever the user makes an edit to an article's publication date or adds new article entries which may result in a violation of the previous ordering, the user would have to execute the `sort -a d/` command to re-sort the articles. It can be improved by automatically sorting articles whenever new entries, or certain edits to them are made to reduce such inconveniences to the user.
-5. **Provide alternative methods to create associations between persons and articles**: Currently the user can only create associations between persons and articles when adding/editing the persons or articles. It might not always be desirable to create associations when adding/editing persons or articles. This can be improved by providing an alternative method to create associations between persons and articles by using IDs unique to each person and article. Instead of using names to create associations, the user can use the IDs to create associations between persons and articles.
+1. **The filter command can work for individual prefixes**: Currently the filter command only works for all prefixes. It can be improved by allowing the user to filter by individual prefixes.
+1. **Automatically sort persons by their names in ascending alphabetical ordering**: Currently whenever the user makes an edit to a person's name or adds new person entries which may result in a violation of the previous ordering, the user would have to execute the `sort n/` command to re-sort the person entries. It can be improved by automatically sorting people whenever new entries, or certain edits to them are made to reduce such inconveniences to the user.
+1. **Automatically sort articles by their publication dates in descending order**: Currently whenever the user makes an edit to an article's publication date or adds new article entries which may result in a violation of the previous ordering, the user would have to execute the `sort -a d/` command to re-sort the articles. It can be improved by automatically sorting articles whenever new entries, or certain edits to them are made to reduce such inconveniences to the user.
+1. **Provide alternative methods to create associations between persons and articles**: Currently the user can only create associations between persons and articles when adding/editing the persons or articles. It might not always be desirable to create associations when adding/editing persons or articles. This can be improved by providing an alternative method to create associations between persons and articles by using IDs unique to each person and article. Instead of using names to create associations, the user can use the IDs to create associations between persons and articles.
