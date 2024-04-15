@@ -73,7 +73,9 @@ PressPlanner's tagging system for [persons](#31-managing-contacts) and [articles
 > App data will be stored in sub-folders from where it is launched. While you could run the app from any location, we recommend making a dedicated folder for our app to avoid confusion.
 
 ### [2.2. Launching the App](#2-getting-started)
-1. Open a command terminal, `cd` into the folder you put the jar file in, and use the `java -jar pressplanner.jar` command to run the application.
+1. Open a command terminal, change directories into the folder you put the jar file in, and use the `java -jar pressplanner.jar` command to run the application.
+   * For Windows users, you can use the [`cd` command](https://learn.microsoft.com/en-us/windows-server/administration/windows-commands/cd) to change directories and the `dir`command to list files in the current directory.
+   * For MacOS and Linux users, you can use the [`cd` command](https://help.ubuntu.com/community/UsingTheTerminal) to change directories and the `ls` command to list files in the current directory.
 2. A window similar to the one below should appear in a few seconds. Note how the app contains some sample data. The information on what each data field represents is shown in the picture below.
 
 <img src="images/UiDescription.png" alt="UI">
