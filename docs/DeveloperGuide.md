@@ -213,7 +213,7 @@ Step 2. The user executes `set -a S/DRAFT ST/ EN/` to look for articles he is cu
 
 <puml src="diagrams/FilterSequenceDiagram.puml" width="250" />
 
-Step 3. Now that the filter has been updated. The user now looks through Press Planner to search for the article. He decides to search by title to make it faster. He executes `find -a AI`. Beyond matches with the name, Press Planner is still filtering to show only DRAFTs, allowing the user to search a smaller set.  
+Step 3. Now that the filter has been updated. The user now looks through Press Planner to search for the article. He decides to search by title to make it faster. He executes `find -a AI`. Beyond matches with the name, Press Planner is still filtering to show only DRAFTs, allowing the user to search a smaller set.
 
 Step 4. The user has found his article and wishes to remove the filter. He does this by executing `set -a S/ ST/ EN/`. With no instructions, the predicate allows all articles to pass through the filter.  
 
@@ -405,17 +405,38 @@ The following sequence diagram shows how the `MakeTemplateCommand` is executed:
 _{Explain here how the data archiving feature will be implemented}_
 
 
-### \[Proposed\] Link Webpage to Articles
+### \[Implemented\] Link Webpage to Articles
 
-#### Proposed Implementation
+#### Implementation
 
-The proposed link feature is enabled by filling up `link` attribute of `Article` class when adding an article. This feature creates a link button on the UI of each `Article` that opens up a web browser and directs the user to the webpage of where the actual article is uploaded.
+The link feature is implemented in the `ArticleCard` class, so that when the user clicks on the link button, the link of the article on the article card will be opened.
+The link feature is enabled by filling up `link` attribute of `Article` class when adding an article. This feature creates a link button on the UI of each `Article` that opens up a web browser and directs the user to the webpage of where the actual article is uploaded.
 Since the `Articlebook` does not store the whole content of the articles, users will be able to read the articles using this feature.
 
-#### Design Considerables
+Given below is an example usage scenario:
 
-* Make sure the link button on UI correctly directs the user the exact webpage of the `Article`.
-* Make sure the `link` saved on `Article` objects are saved without parsing errors.
+Step 1. The user launches the application for the first time. The `ArticleBook` will be initialized with the initial article book state.
+
+Step 2. The user executes `add -a h/Article1 d/20-03-2024 s/draft l/https://www.article1.com` command to add a new article. The `add` command calls `Logic#addArticleCommand("Article1", 20-03-2024, draft "https://www.article1.com")` which adds the article to the `ArticleBook`.
+
+Step 3. Notice that the `link` attribute of the `Article` object is filled with the link provided by the user.
+
+Step 4. The user clicks on the link button on the UI of the `Article` object. The link button will open up a web browser and direct the user to the webpage of where the actual article is uploaded.
+
+<puml src="diagrams/LinkSequenceDiagram.puml" alt="LinkSequenceDiagram" />
+
+
+#### Design Considerations
+
+**Aspect: How the link feature is implemented:**
+
+* **Alternative 1 (current choice):** The link feature is implemented in the `ArticleCard` class.
+    * Pros: Easy to implement.
+    * Cons: The link feature is not reusable for other classes.
+
+* **Alternative 2:** The link feature is implemented in a separate class.
+    * Pros: The link feature is reusable for other classes.
+    * Cons: More complex to implement.
 
 The class diagram below shows how the `Article` will look and interact after implementation of the link feature.
 
@@ -754,6 +775,16 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
       Use case resumes at step 2.
 
+
+
+**Use case: UC17 - Open Webpage of Articles**
+
+**MSS**
+
+1. User requests to ***list all articles (UC09)***.
+2. User requests to open webpage of a certain article.
+3. PressPlanner opens a browser with the URL of the article.
+
 ### Non-Functional Requirements
 
 1. Should work on any _mainstream OS_ as long as it has Java `11` or above installed.
@@ -818,7 +849,6 @@ testers are expected to do more *exploratory* testing.
 
 1. _{ more test cases …​ }_
 
-
 ### Filtering through articles
 1. Filtering through articles.
     1. Prerequisites: Populate PressPlanner with sufficient articles. You may use the following add commands:<br>
@@ -849,14 +879,27 @@ testers are expected to do more *exploratory* testing.
     1. Test case: `filter -a s/ st/01-01-2020 en/01-01-2001 t/`<br>
     Expected: An error informing the user that start dates must come before end dates will be shown.
 
-1. _{ more test cases …​ }_
+### Opening Links
+
+1. Opening a link to an article
+
+    1. Create articles using `add -a h/Article1 d/20-03-2024 s/draft l/https://www.google.com`, `add -a h/Article2 d/20-03-2024 s/draft l/https://www.facebook.com/` and `add -a h/Article3 d/20-03-2024 s/draft l/` commands.
+
+    1. Test case: `add -a h/Article1 d/20-03-2024 s/draft l/https://www.google.com`, followed by click on the link button of the first article.<br>
+       Expected: The link to google is opened in the default web browser.
+
+    1. Test case: `add -a h/Article2 d/20-03-2024 s/draft l/https://www.facebook.com/`, followed by click on the link button of the last article.<br>
+       Expected: The link to facebook is opened in the default web browser.
+
+    1. Test case: `add -a h/Article3 d/20-03-2024 s/draft l/`, followed by click on the link button of an article that does not have a link.<br>
+       Expected: Nothing happens.
+
 ### Saving data
 
 1. Dealing with missing/corrupted data files
 
    1. _{explain how to simulate a missing/corrupted file, and the expected behavior}_
 
-1. _{ more test cases …​ }_
 
 
 --------------------------------------------------------------------------------------------------------------------
