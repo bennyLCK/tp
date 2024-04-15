@@ -134,70 +134,72 @@ As you become more familiar with the app, use tags as you see fit to customise y
   - Using tags to mark articles with potential for follow-up development.
 
 ## [3. Features](#table-of-contents)
-> [!IMPORTANT]
-> Here are some important terms that will be used in this section:
-> 1. Commands are composed of a **command word** potentially followed by a few **prefixes** and their corresponding **parameters**.
->    * For the example command `example p/PARAMETER`:
->      * `example` is the command word.
->      * `p/` is the prefix.
->      * `PARAMETER` is the parameter to be supplied by you.
-> 
-> 2. `INDEX` is a parameter you may come across frequently. It refers to the index number shown in the current list view.
->    * `INDEX` must be a positive integer.
->    * An `INDEX` not present in the current list view is invalid.
->    * For example using the sample data shown below, indexes 1 - 6 are valid for persons, and index 1 is valid for articles: 
->   
->     ![sample data](images/sampleData.png)
->
-> 3. Words in `UPPER_CASE` are the parameters to be supplied by you.
->    * Refer to point 1 for the breakdown of the command structure.
->    * For the example command `example p/PARAMETER`:
->       * `PARAMETER` is the parameter to be supplied by you.
->         * The correct use of this command would thus be: `example p/my input`, replacing `PARAMETER` with your own input.
->    * For the real command [`delete INDEX`](#3-1-2-deleting-a-person-delete):
->      * `INDEX` is the parameter to be supplied by you.
->        * The correct use of this command would thus be: `delete 1`, replacing `INDEX` with a valid index.
->
-> 4. Items in square brackets are optional.
->    * For the example command `example p/PARAMETER [t/TAG]`:
->      * `example p/my input` is a valid use of the command.
->      * `example p/my input t/my tag` is also a valid use of the command.
-> 
-> 5. Items with `...` after them can be used multiple times. If the item is also in square brackets, it can even be used zero times.
->    * For the example command `example p/PARAMETER [t/TAG]...`:
->      * `example p/my input` is a valid use of the command.
->      * `example p/my input t/my tag` is also a valid use of the command.
->      * `example p/my input t/my tag t/my other tag` is also a valid use of the command.
->
-> 6. Parameters can be in any order.
->    * For the example command `example p/PARAMETER [t/TAG]...`:
->      * `example p/my input t/my tag` is a valid use of the command.
->      * `example t/my tag p/my input` is also a valid use of the command.
->      * `example t/my tag p/my input t/my other tag` is also a valid use of the command.
->
-> 7. Extraneous inputs for commands that do not take in parameters will be ignored.
->    * This specifically refers to the [`help`](#3-3-1-viewing-help-help), [`list`](#3-1-3-listing-all-persons-list), [`list -a`](#3-2-3-listing-all-articles-list-a), [`exit`](#3-3-2-exiting-pressplanner-exit) and [`clear`](#3-1-8-clearing-all-persons-clear) commands.
->    * e.g. `help 123` will be interpreted as `help`.
->
-> 8. Prefixes are case-insensitive.
->    * Only **prefixes** are always case-insensitive, **command words** are case-sensitive.
->      * Refer to point 1 if you are unsure of the terminology and command structure.
->    * For the example command `example p/PARAMETER`:
->      * `example p/my input` is a valid use of the command.
->      * `example P/my input` is also a valid use of the command.
->      * `EXAMPLE p/my input` is not a valid use of the command.
->
-> 9. Only correct prefixes will be recognised and accepted.
->    * Taking the [`add -a` command](#3-2-1-adding-an-article-add-a) for example:
->      * The command: `add -a h/My Headline invalid/ignore d/01-01-2024 s/draft` will not recognise `invalid/ignore` as a valid prefix and parameter pair.
->        * As a result, the command will interpret `My Headline invalid/ignore` as the headline and add a new article with the headline `My Headline invalid/ignore`.
->      * The command: `add -a h/My Headline d/01-01-2024 s/draft t/my tag invalid/ignore` will not recognise `invalid/ignore` as a valid prefix and parameter pair.
->        * As a result, the command will interpret `my tag invalid/ignore` as the attempted tag.
->        * This will display an error message prompting you to only use alphanumeric characters for tags.
+<div markdown="block" class="alert alert-info">
+Here are some important terms that will be used in this section:
 
+1. Commands are composed of a **command word** potentially followed by a few **prefixes** and their corresponding **parameters**.
+   * For the example command `example p/PARAMETER`:
+     * `example` is the command word.
+     * `p/` is the prefix.
+     * `PARAMETER` is the parameter to be supplied by you.
 
-> [!WARNING]
-> If you are using a PDF version of this document, be careful when copying and pasting commands with line breaks as they may not paste correctly.
+2. `INDEX` is a parameter you may come across frequently. It refers to the index number shown in the current list view.
+   * `INDEX` must be a positive integer.
+   * An `INDEX` not present in the current list view is invalid.
+   * For example using the sample data shown below, indexes 1 - 6 are valid for persons, and index 1 is valid for articles: 
+
+      ![sample data](images/sampleData.png)
+
+3. Words in `UPPER_CASE` are the parameters to be supplied by you.
+   * Refer to point 1 for the breakdown of the command structure.
+   * For the example command `example p/PARAMETER`:
+      * `PARAMETER` is the parameter to be supplied by you.
+        * The correct use of this command would thus be: `example p/my input`, replacing `PARAMETER` with your own input.
+   * For the real command [`delete INDEX`](#3-1-2-deleting-a-person-delete):
+     * `INDEX` is the parameter to be supplied by you.
+       * The correct use of this command would thus be: `delete 1`, replacing `INDEX` with a valid index.
+
+4. Items in square brackets are optional.
+   * For the example command `example p/PARAMETER [t/TAG]`:
+     * `example p/my input` is a valid use of the command.
+     * `example p/my input t/my tag` is also a valid use of the command.
+
+5. Items with `...` after them can be used multiple times. If the item is also in square brackets, it can even be used zero times.
+   * For the example command `example p/PARAMETER [t/TAG]...`:
+     * `example p/my input` is a valid use of the command.
+     * `example p/my input t/my tag` is also a valid use of the command.
+     * `example p/my input t/my tag t/my other tag` is also a valid use of the command.
+
+6. Parameters can be in any order.
+   * For the example command `example p/PARAMETER [t/TAG]...`:
+     * `example p/my input t/my tag` is a valid use of the command.
+     * `example t/my tag p/my input` is also a valid use of the command.
+     * `example t/my tag p/my input t/my other tag` is also a valid use of the command.
+     
+7. Extraneous inputs for commands that do not take in parameters will be ignored.
+   * This specifically refers to the [`help`](#3-3-1-viewing-help-help), [`list`](#3-1-3-listing-all-persons-list), [`list -a`](#3-2-3-listing-all-articles-list-a), [`exit`](#3-3-2-exiting-pressplanner-exit) and [`clear`](#3-1-8-clearing-all-persons-clear) commands.
+   * e.g. `help 123` will be interpreted as `help`.
+   
+8. Prefixes are case-insensitive.
+   * Only **prefixes** are always case-insensitive, **command words** are case-sensitive.
+     * Refer to point 1 if you are unsure of the terminology and command structure.
+   * For the example command `example p/PARAMETER`:
+     * `example p/my input` is a valid use of the command.
+     * `example P/my input` is also a valid use of the command.
+     * `EXAMPLE p/my input` is not a valid use of the command.
+     
+9. Only correct prefixes will be recognised and accepted.
+   * Taking the [`add -a` command](#3-2-1-adding-an-article-add-a) for example:
+     * The command: `add -a h/My Headline invalid/ignore d/01-01-2024 s/draft` will not recognise `invalid/ignore` as a valid prefix and parameter pair.
+       * As a result, the command will interpret `My Headline invalid/ignore` as the headline and add a new article with the headline `My Headline invalid/ignore`.
+     * The command: `add -a h/My Headline d/01-01-2024 s/draft t/my tag invalid/ignore` will not recognise `invalid/ignore` as a valid prefix and parameter pair.
+       * As a result, the command will interpret `my tag invalid/ignore` as the attempted tag.
+       * This will display an error message prompting you to only use alphanumeric characters for tags.
+</div>
+
+<div markdown="block" class="alert alert-warning">
+If you are using a PDF version of this document, be careful when copying and pasting commands with line breaks as they may not paste correctly.
+</div>
 
 ## [3.1. Managing Contacts](#3-features)
 
@@ -303,7 +305,7 @@ Examples:
 * After lookup using `lookup 2`:
   * (The articles associated with the second person in the list of contacts are shown)
 
-  ![After lookup](images/lookupPerson.png)
+    ![After lookup](images/lookupPerson.png)
 
 ### [3.1.7. Sorting Persons by Name](#3-1-managing-contacts) : `sort n/`
 
