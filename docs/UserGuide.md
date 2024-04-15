@@ -69,7 +69,9 @@ PressPlanner's tagging system for [persons](#3-1-managing-contacts) and [article
 2. Download the jar file from [our latest release](https://github.com/AY2324S2-CS2103T-F12-2/tp/releases).
 3. Move it to an **Empty** folder.
 
-<div markdown="block" class="alert alert-warning">:warning: **Warning**
+<div markdown="block" class="alert alert-warning">
+**:warning: Warning**<br>
+
 App data will be stored in sub-folders from where it is launched. While you could run the app from any location, we recommend making a dedicated folder for our app to avoid confusion.
 </div>
 
@@ -83,7 +85,9 @@ App data will be stored in sub-folders from where it is launched. While you coul
 
 ### [2.3. The Beginner's Guide to PressPlanner](#2-getting-started)
 
-<div markdown="block" class="alert alert-primary">:bulb: **Tip**
+<div markdown="block" class="alert alert-primary">
+**:bulb: Tip**<br>
+
 This section covers commands first-time users might need. For the full commands list, refer to the [Features](#3-features) section.
 </div>
 
@@ -97,9 +101,11 @@ Let's go over the basic PressPlanner workflow. Say you've just finished intervie
        - Address (`a/`)
      - For example: `add n/Gill Bates p/12345678 e/gillbates@sicromoft.com a/Sicromoft HQ`
 
-     <div markdown="block" class="alert alert-info">:information_source: **Important**
-     Adding an article uses the [`add -a` command](#3-2-1-adding-an-article-add-a), the `-a` standing for article.
-       * Note that the `-a` suffix is used for all commands pertaining to articles.
+     <div markdown="block" class="alert alert-info">
+     **:information_source: Important**<br>
+     
+     Adding an article uses the [`add -a` command](#3-2-1-adding-an-article-add-a), the `-a` standing for article.<br>
+       * Note that the `-a` suffix is used for all commands pertaining to articles.<br>
      </div>
   
 2. Next let's add that article you just wrote.
@@ -111,11 +117,13 @@ Let's go over the basic PressPlanner workflow. Say you've just finished intervie
          - An article can be a `draft`, `published`, or `archived`.
      - For example: `add -a h/Example Article d/20-10-2023 s/draft`
 
-    <div markdown="block" class="alert alert-warning">:warning: **Warning**
-    You should only use headline (`h/`), date (`d/`) and status (`s/`) prefixes once each. If you use multiple prefixes only the last prefix's value will be used:
-      * eg. `add -a h/My Article d/20-10-2023 s/draft h/My Second Article` will add an article titled `My Second Article`.
-      * eg. `add -a h/My Article d/01-01-2024 s/draft d/02-02-2024` will add an article with the date `02-02-2024`.
-    </div>
+   <div markdown="block" class="alert alert-warning">
+   **:warning: Warning**<br>
+   
+    You should only use headline (`h/`), date (`d/`) and status (`s/`) prefixes once each. If you use multiple prefixes only the last prefix's value will be used:<br>
+        * eg. `add -a h/My Article d/20-10-2023 s/draft h/My Second Article` will add an article titled `My Second Article`.<br>
+        * eg. `add -a h/My Article d/01-01-2024 s/draft d/02-02-2024` will add an article with the date `02-02-2024`.<br>
+   </div>
 
 3. Now that that's done, let's say you need to find Gill Bate's number to arrange another interview.
     - Typing the command `find Gill Bates` will pull up his contact.
@@ -138,7 +146,9 @@ As you become more familiar with the app, use tags as you see fit to customise y
   - Using tags to mark articles with potential for follow-up development.
 
 ## [3. Features](#table-of-contents)
-<div markdown="block" class="alert alert-info">:information_source: **Important**
+<div markdown="block" class="alert alert-info">
+**:information_source: Important**<br>
+
 Here are some important terms that will be used in this section:
 
 1. Commands are composed of a **command word** potentially followed by a few **prefixes** and their corresponding **parameters**.
@@ -201,7 +211,9 @@ Here are some important terms that will be used in this section:
        * This will display an error message prompting you to only use alphanumeric characters for tags.
 </div>
 
-<div markdown="block" class="alert alert-warning">:warning: **Warning**
+<div markdown="block" class="alert alert-warning">
+**:warning: Warning**<br>
+
 If you are using a PDF version of this document, be careful when copying and pasting commands with line breaks as they may not paste correctly.
 </div>
 
@@ -213,7 +225,9 @@ Adds a person to PressPlanner's address book.
 
 Format: `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]...`
 
-<div markdown="block" class="alert alert-primary">:bulb: **Tip**
+<div markdown="block" class="alert alert-primary">
+**:bulb: Tip**<br>
+
 A person can have any number of tags (including 0).
 </div>
 
@@ -233,7 +247,9 @@ Format: `delete INDEX`
 Examples:
 * `delete 2` deletes the 2nd person in the current address book view.
 
-<div markdown="block" class="alert alert-info">:information_source: **Important**
+<div markdown="block" class="alert alert-info">
+**:information_source: Important**<br>
+
 Commands such as [`find`](#3-1-5-searching-for-a-person-by-name-find) can alter the current view of the address book. The `INDEX` refers to the index number shown in the current view.
 </div>
 
@@ -254,12 +270,16 @@ Format: `edit INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [t/TAG]...`
 * At least one of the optional fields must be provided.
 * Existing values will be updated to the input values.
 
-<div markdown="block" class="alert alert-warning">:warning: **Warning**
+<div markdown="block" class="alert alert-warning">
+**:warning: Warning**<br>
+
 When editing tags, the existing tags of the person will be removed i.e. adding of tags is not cumulative.
 * You can remove all the person’s tags by typing `t/` without specifying any tags after it.
 </div>
 
-<div markdown="block" class="alert alert-info">:information_source: **Important**
+<div markdown="block" class="alert alert-info">
+**:information_source: Important**<br>
+
 Editing the name of a person will automatically update their names in articles referencing them as contributors or interviewees.
 </div>
 
@@ -351,18 +371,24 @@ Clears all entries from the address book.
 
 Format: `clear`
 
-<div markdown="block" class="alert alert-warning">:warning: **Warning**
+<div markdown="block" class="alert alert-warning">
+**:warning: Warning**<br>
+
 This action is irreversible. All persons will be deleted from the address book. The app will not prompt you to confirm this action.
 </div>
 
 ## [3.2. Managing Articles](#3-features)
 PressPlanner's article management system is designed to help you keep track of your articles and the people involved in them. As a freelancer, you lack the same resources a major firm has. PressPlanner helps you maximise the value you can get from your contacts by helping you keep track of which contacts you've worked with for different articles.
 
-<div markdown="block" class="alert alert-primary">:bulb: **Tip**
+<div markdown="block" class="alert alert-primary">
+**:bulb: Tip**<br>
+
 Refer to [Why Use PressPlanner?](#1-2-why-use-pressplanner) for some of our recommended workflows and how PressPlanner can help you.
 </div>
 
-<div markdown="block" class="alert alert-info">:information_source: **Important**
+<div markdown="block" class="alert alert-info">
+**:information_source: Important**<br>
+
 Here are some important terms that will be used in this section:
 1. `DATE`
    * All articles have a mandatory `DATE` field. This field is also used in commands like [`filter`](#3-2-6-filtering-articles-filter-a)
@@ -384,7 +410,9 @@ Adds a new article to PressPlanner's database.
 
 Format: `add -a h/HEADLINE  d/DATE s/STATUS [c/CONTRIBUTOR]... [i/INTERVIEWEE]... [t/TAG]...[o/OUTLET]... [l/LINK]`
 
-<div markdown="block" class="alert alert-warning">:warning: **Warning**
+<div markdown="block" class="alert alert-warning">
+**:warning: Warning**<br>
+
 1. Only `HEADLINE`, `DATE`, and `STATUS` are mandatory fields.
     * Refer to [Managing Articles](#3-2-managing-articles) for the valid formats of `DATE` and `STATUS`.
     * An article's `HEADLINE` must be unique **unless it is a `draft`**
@@ -407,7 +435,9 @@ Format: `add -a h/HEADLINE  d/DATE s/STATUS [c/CONTRIBUTOR]... [i/INTERVIEWEE]..
 * A `TAG` is any keyword or phrase that helps categorise the article.
 * A `LINK` is a URL to the article.
 
-<div markdown="block" class="alert alert-info">:information_source: **Important**
+<div markdown="block" class="alert alert-info">
+**:information_source: Important**<br>
+
 Adding an article will return to displaying all articles if a [find](#3-2-5-searching-for-an-article-by-headline-find-a) command was executed before.
   * This does not apply to [filters](#3-2-6-filtering-articles-filter-a).
 </div>
@@ -451,7 +481,9 @@ Format: `edit -a INDEX [h/HEADLINE] [d/DATE] [s/STATUS] [c/CONTRIBUTOR]... [i/IN
 * Refer to the [`add -a` command](#3-2-1-adding-an-article-add-a) for the format of each field.
   * Note that `edit -a` will also behave the same as `add -a` in terms of returning to the full list of articles if used after a `find` command.
 
-<div markdown="block" class="alert alert-warning">:warning: **Warning**
+<div markdown="block" class="alert alert-warning">
+**:warning: Warning**<br>
+
 * Editing an article will be updated any included field to the new input.
   * i.e. The original values will be overwritten by the new values.
     * `c/`, `i/`, `t/`, `o/` and `l/` without any value after it will clear all existing values.
@@ -595,7 +627,9 @@ Example:
 
   ![opening link](images/LinkFeatureSample.png)
 
-<div markdown="block" class="alert alert-warning">:warning: **Warning**
+<div markdown="block" class="alert alert-warning">
+**:warning: Warning**<br>
+
 PressPlanner does not check the validity of links. If the webpage does not open when clicked, it likely means that the `link` of the article is invalid.
 </div>
 
