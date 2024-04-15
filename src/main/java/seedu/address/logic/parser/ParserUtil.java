@@ -5,21 +5,26 @@ import static seedu.address.model.article.Article.Status.ARCHIVED;
 import static seedu.address.model.article.Article.Status.DRAFT;
 import static seedu.address.model.article.Article.Status.PUBLISHED;
 
-import java.text.SimpleDateFormat;
 import java.time.LocalDateTime;
-import java.time.ZoneId;
+import java.time.format.DateTimeFormatter;
+import java.time.format.DateTimeFormatterBuilder;
+import java.time.format.DateTimeParseException;
+import java.time.format.ResolverStyle;
+import java.time.temporal.ChronoField;
 import java.util.Collection;
-import java.util.Date;
 import java.util.HashSet;
 import java.util.Set;
 
 import seedu.address.commons.core.index.Index;
 import seedu.address.commons.util.StringUtil;
 import seedu.address.logic.parser.exceptions.ParseException;
-import seedu.address.model.article.Article;
+import seedu.address.model.article.Article.Status;
 import seedu.address.model.article.Author;
+import seedu.address.model.article.Link;
 import seedu.address.model.article.Outlet;
+import seedu.address.model.article.PublicationDate;
 import seedu.address.model.article.Source;
+import seedu.address.model.article.Title;
 import seedu.address.model.person.Address;
 import seedu.address.model.person.Email;
 import seedu.address.model.person.Name;
@@ -136,11 +141,13 @@ public class ParserUtil {
     /**
      * Parses a {@code String title} into a {@code Title}.
      */
-    public static String parseTitle(String title) throws ParseException {
+    public static Title parseTitle(String title) throws ParseException {
         requireNonNull(title);
         String trimmedTitle = title.trim();
-        //removed the check for title validity
-        return trimmedTitle;
+        if (!Title.isValidTitle(trimmedTitle)) {
+            throw new ParseException(Title.MESSAGE_CONSTRAINTS);
+        }
+        return new Title(trimmedTitle);
     }
 
     /**
@@ -168,22 +175,35 @@ public class ParserUtil {
     }
 
     /**
-     * Parses a {@code String publicationDate} into a {@code LocalDateTime}.
+     * Parses a {@code String publicationDate} into a {@code PublicationDate}.
      */
-    public static LocalDateTime parsePublicationDate(String publicationDate) throws ParseException {
+    public static PublicationDate parsePublicationDate(String publicationDate) throws ParseException {
         requireNonNull(publicationDate);
-        try {
-            SimpleDateFormat dateFormat = new SimpleDateFormat("dd-MM-yyyy HH:mm");
-            String trimmedPublicationDate = publicationDate.trim();
-            Date tempDate = dateFormat.parse(trimmedPublicationDate);
-            LocalDateTime parsedDate = tempDate.toInstant().atZone(ZoneId.systemDefault()).toLocalDateTime();
-            parsedDate.withSecond(0);
-            //removed the check for publication date validity
-            return parsedDate;
-        } catch (java.text.ParseException e) {
-            throw new ParseException("Invalid publication date");
-        }
 
+        DateTimeFormatter formatter = new DateTimeFormatterBuilder()
+                .appendPattern("dd-MM-uuuu[ HH:mm]")
+                .parseDefaulting(ChronoField.HOUR_OF_DAY, 0)
+                .parseDefaulting(ChronoField.MINUTE_OF_HOUR, 0)
+                .toFormatter();
+        DateTimeFormatter formatterStrict = formatter.withResolverStyle(ResolverStyle.STRICT);
+
+        String trimmedPublicationDate = publicationDate.trim();
+        try {
+            LocalDateTime tempDate = LocalDateTime.parse(trimmedPublicationDate, formatterStrict);
+            return new PublicationDate(tempDate);
+        } catch (DateTimeParseException e) {
+            throw new ParseException("Invalid date");
+        }
+    }
+
+    /**
+     * Parses a {@code LocalDateTime date} into a {@code String}.
+     * @param date The date to be parsed.
+     * @return The date in the format of [dd-MM-uuuu HH:mm].
+     */
+    public static String parseDateToString(LocalDateTime date) {
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MM-uuuu HH:mm");
+        return date.format(formatter);
     }
 
     /**
@@ -237,10 +257,10 @@ public class ParserUtil {
     /**
      * Parses a {@code String status} into a {@code Status}.
      */
-    public static Enum<Article.Status> parseStatus(String status) throws ParseException {
+    public static Status parseStatus(String status) throws ParseException {
         requireNonNull(status);
         String trimmedStatus = status.trim();
-        switch (trimmedStatus) {
+        switch (trimmedStatus.toUpperCase()) {
         case "DRAFT":
             return DRAFT;
         case "PUBLISHED":
@@ -248,7 +268,19 @@ public class ParserUtil {
         case "ARCHIVED":
             return ARCHIVED;
         default:
-            throw new ParseException("Invalid status");
+            throw new ParseException("Invalid status provided. Please provide either draft, published or archived.");
         }
+    }
+
+    /**
+     * Parses a {@code String link} into a {@code Link}.
+     */
+    public static Link parseLink(String link) throws ParseException {
+        requireNonNull(link);
+        String trimmedLink = link.trim();
+        if (!Link.isValidLink(trimmedLink)) {
+            throw new ParseException(Link.MESSAGE_CONSTRAINTS);
+        }
+        return new Link(trimmedLink);
     }
 }

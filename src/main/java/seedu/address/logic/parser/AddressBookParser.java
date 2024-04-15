@@ -17,6 +17,7 @@ import seedu.address.logic.commands.ExitCommand;
 import seedu.address.logic.commands.FindCommand;
 import seedu.address.logic.commands.HelpCommand;
 import seedu.address.logic.commands.ListCommand;
+import seedu.address.logic.commands.LookupCommand;
 import seedu.address.logic.commands.SortCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 
@@ -48,7 +49,7 @@ public class AddressBookParser {
         final String arguments = matcher.group("arguments");
 
         if (arguments.trim().endsWith("-a") || arguments.trim().startsWith("-a ")) {
-            return ArticleBookParser.parseCommand(commandWord + arguments.substring(3));
+            return ArticleBookParser.parseCommand(commandWord + arguments.trim().substring(2));
         }
 
         // Note to developers: Change the log level in config.json to enable lower level (i.e., FINE, FINER and lower)
@@ -84,6 +85,9 @@ public class AddressBookParser {
 
         case HelpCommand.COMMAND_WORD:
             return new HelpCommand();
+
+        case LookupCommand.COMMAND_WORD:
+            return new LookupCommandParser().parse(arguments);
 
         default:
             logger.finer("This user input caused a ParseException: " + userInput);

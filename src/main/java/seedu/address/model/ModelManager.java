@@ -12,6 +12,8 @@ import javafx.collections.transformation.FilteredList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.LogsCenter;
 import seedu.address.model.article.Article;
+import seedu.address.model.article.ArticleWithinPersonPredicate;
+import seedu.address.model.person.NameWithinArticlePredicate;
 import seedu.address.model.person.Person;
 
 /**
@@ -25,6 +27,7 @@ public class ModelManager implements Model {
     private final UserPrefs userPrefs;
     private final FilteredList<Person> filteredPersons;
     private final FilteredList<Article> filteredArticles;
+    private final ArticleFilter filter;
 
     /**
      * Initializes a ModelManager with the given addressBook and userPrefs.
@@ -39,6 +42,9 @@ public class ModelManager implements Model {
         this.userPrefs = new UserPrefs(userPrefs);
         filteredPersons = new FilteredList<>(this.addressBook.getPersonList());
         filteredArticles = new FilteredList<>(this.articleBook.getArticleList());
+        filter = new ArticleFilter();
+
+        this.articleBook.makeLinks(this.addressBook);
     }
 
     public ModelManager() {
@@ -79,11 +85,11 @@ public class ModelManager implements Model {
         requireNonNull(addressBookFilePath);
         userPrefs.setAddressBookFilePath(addressBookFilePath);
     }
-
     //=========== AddressBook ================================================================================
 
     @Override
     public void setAddressBook(ReadOnlyAddressBook addressBook) {
+        requireNonNull(addressBook);
         this.addressBook.resetData(addressBook);
     }
 
@@ -100,12 +106,15 @@ public class ModelManager implements Model {
 
     @Override
     public void deletePerson(Person target) {
+        requireNonNull(target);
         addressBook.removePerson(target);
     }
 
     @Override
     public void addPerson(Person person) {
+        requireNonNull(person);
         addressBook.addPerson(person);
+        articleBook.makeLinkPerson(person);
         updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
     }
 
@@ -114,6 +123,7 @@ public class ModelManager implements Model {
         requireAllNonNull(target, editedPerson);
 
         addressBook.setPerson(target, editedPerson);
+        articleBook.setEditedPerson(target, editedPerson);
     }
 
     @Override
@@ -142,6 +152,7 @@ public class ModelManager implements Model {
 
     @Override
     public void setArticleBook(ReadOnlyArticleBook articleBook) {
+        requireNonNull(articleBook);
         this.articleBook.resetData(articleBook);
     }
 
@@ -158,12 +169,15 @@ public class ModelManager implements Model {
 
     @Override
     public void deleteArticle(Article target) {
+        requireNonNull(target);
         articleBook.removeArticle(target);
     }
 
     @Override
     public void addArticle(Article article) {
+        requireNonNull(article);
         articleBook.addArticle(article);
+        article.makeLinks(addressBook.getPersonList());
         updateFilteredArticleList(PREDICATE_SHOW_ALL_ARTICLES);
     }
 
@@ -171,6 +185,7 @@ public class ModelManager implements Model {
     public void setArticle(Article target, Article editedArticle) {
         requireAllNonNull(target, editedArticle);
 
+        editedArticle.setPersons(editedArticle.getMatchingPersonsList(addressBook.getPersonList()));
         articleBook.setArticle(target, editedArticle);
     }
 
@@ -193,6 +208,7 @@ public class ModelManager implements Model {
     @Override
     public void updateFilteredArticleList(Predicate<Article> predicate) {
         requireNonNull(predicate);
+        predicate = predicate.and(filter.getFinalPredicate());
         filteredArticles.setPredicate(predicate);
     }
 
@@ -215,4 +231,21 @@ public class ModelManager implements Model {
                 && filteredArticles.equals(otherModelManager.filteredArticles);
     }
 
+    public ArticleFilter getFilter() {
+        return filter;
+    }
+
+    @Override
+    public void lookupArticle(Article article) {
+        requireNonNull(article);
+        NameWithinArticlePredicate predicate = new NameWithinArticlePredicate(article);
+        updateFilteredPersonList(predicate);
+    }
+
+    @Override
+    public void lookupPerson(Person personToLookup) {
+        requireNonNull(personToLookup);
+        ArticleWithinPersonPredicate predicate = new ArticleWithinPersonPredicate(personToLookup);
+        updateFilteredArticleList(predicate);
+    }
 }

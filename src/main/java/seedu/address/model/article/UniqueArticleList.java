@@ -2,7 +2,7 @@ package seedu.address.model.article;
 
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_PUBLICATION_DATE;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_DATE;
 
 import java.util.Comparator;
 import java.util.Iterator;
@@ -10,6 +10,7 @@ import java.util.List;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import seedu.address.model.person.Person;
 
 /**
  * A list of articles that are unique
@@ -107,7 +108,7 @@ public class UniqueArticleList implements Iterable<Article> {
      */
     public void sortArticles(String prefix) {
         requireNonNull(prefix);
-        if (PREFIX_PUBLICATION_DATE.getPrefix().equals(prefix)) {
+        if (PREFIX_DATE.getPrefix().equalsIgnoreCase(prefix)) {
             // Sort by publication date and display most recent articles first.
             internalList.sort(Comparator.comparing(Article::getPublicationDate, Comparator.reverseOrder()));
         } else {
@@ -164,5 +165,32 @@ public class UniqueArticleList implements Iterable<Article> {
             }
         }
         return true;
+    }
+
+    /**
+     * Makes links between articles and persons in the address book.
+     */
+    public void makeLinks(List<Person> uniquePersonList) {
+        for (Article article : internalList) {
+            article.makeLinks(uniquePersonList);
+        }
+    }
+
+    /**
+     * Makes links between articles and the given person.
+     */
+    public void makeLinkPerson(Person person) {
+        for (Article article : internalList) {
+            article.makeLink(person);
+        }
+    }
+
+    /**
+     * Reestablishes links between articles and the edited person.
+     */
+    public void setEditedPerson(Person target, Person editedPerson) {
+        for (Article article : internalList) {
+            article.updateNamesInArticle(target, editedPerson);
+        }
     }
 }

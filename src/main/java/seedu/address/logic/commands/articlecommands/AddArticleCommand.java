@@ -1,6 +1,14 @@
 package seedu.address.logic.commands.articlecommands;
 
 import static java.util.Objects.requireNonNull;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_CONTRIBUTOR;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_DATE;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_HEADLINE;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_INTERVIEWEE;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_LINK;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_OUTLET;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_STATUS;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 
 import seedu.address.commons.util.ToStringBuilder;
 import seedu.address.logic.Messages;
@@ -20,7 +28,25 @@ public class AddArticleCommand extends ArticleCommand {
 
     // To be edited for use in test cases later on.
     public static final String MESSAGE_USAGE = COMMAND_WORD + " " + COMMAND_PREFIX
-            + ": Adds an article to the article book. ";
+            + ": Adds an article to the article book.\n"
+            + "Parameters: "
+            + PREFIX_HEADLINE + "HEADLINE "
+            + "[" + PREFIX_CONTRIBUTOR + "CONTRIBUTOR]... "
+            + "[" + PREFIX_INTERVIEWEE + "INTERVIEWEE]... "
+            + "[" + PREFIX_TAG + "TAG]... "
+            + "[" + PREFIX_OUTLET + "OUTLET]... "
+            + PREFIX_DATE + "DATE "
+            + PREFIX_STATUS + "STATUS "
+            + "[" + PREFIX_LINK + "LINK]\n"
+            + "Example: " + COMMAND_WORD + " " + COMMAND_PREFIX + " "
+            + PREFIX_HEADLINE + "The Great Article "
+            + PREFIX_CONTRIBUTOR + "John Doe "
+            + PREFIX_INTERVIEWEE + "Jane Doe "
+            + PREFIX_TAG + "friends "
+            + PREFIX_OUTLET + "The Great Outlet "
+            + PREFIX_DATE + "10-10-2024 "
+            + PREFIX_STATUS + "DRAFT "
+            + PREFIX_LINK + "https://www.example.com";
 
     public static final String MESSAGE_SUCCESS = "New article added: %1$s";
     public static final String MESSAGE_DUPLICATE_ARTICLE = "This article already exists in the article book";

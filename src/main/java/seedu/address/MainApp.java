@@ -41,7 +41,7 @@ import seedu.address.ui.UiManager;
  */
 public class MainApp extends Application {
 
-    public static final Version VERSION = new Version(0, 2, 2, true);
+    public static final Version VERSION = new Version(1, 3, 1, true);
 
     private static final Logger logger = LogsCenter.getLogger(MainApp.class);
 
@@ -67,7 +67,8 @@ public class MainApp extends Application {
         storage = new StorageManager(addressBookStorage, userPrefsStorage, articleBookStorage);
 
         model = initModelManager(storage, userPrefs);
-
+        storage.saveAddressBook(model.getAddressBook());
+        storage.saveArticleBook(model.getArticleBook());
         logic = new LogicManager(model, storage);
 
         ui = new UiManager(logic);

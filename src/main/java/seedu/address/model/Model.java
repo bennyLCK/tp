@@ -142,4 +142,15 @@ public interface Model {
      * @throws NullPointerException if {@code predicate} is null.
      */
     void updateFilteredArticleList(Predicate<Article> predicate);
+    ArticleFilter getFilter();
+
+    /**
+     * Updates the filter of the filtered article list to filter for persons within the article.
+     */
+    void lookupArticle(Article articleToLookup);
+
+    /**
+     * Updates the filter of the filtered article list to filter for persons within the article.
+     */
+    void lookupPerson(Person personToLookup);
 }
