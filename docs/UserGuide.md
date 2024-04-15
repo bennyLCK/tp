@@ -520,6 +520,9 @@ Example:
 
 Shows a message explaining how to access the help page.
 
+* Can also be accessed via the button at the top of the app
+* Can also be accessed via pressing the `F1` key on your keyboard
+
   ![help message](images/helpMessage.png)
 
 Format: `help`
