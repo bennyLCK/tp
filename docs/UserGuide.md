@@ -95,8 +95,7 @@ Let's go over the basic PressPlanner workflow. Say you've just finished intervie
 
 > [!NOTE]
 > Adding an article uses the `add -a` command, the `-a` standing for article. The `-a` suffix is used for all commands pertaining to articles.
-
-1. Next let's add that article you just wrote.
+2. Next let's add that article you just wrote.
    - To `add -a` an article we need the following information:
        - Headline (`h/`)
        - Date (`d/`)
@@ -110,16 +109,16 @@ Let's go over the basic PressPlanner workflow. Say you've just finished intervie
 > * eg. `add -a h/My Article d/20-10-2023 s/draft h/My Second Article` will add an article titled `My Second Article`.
 > * eg. `add -a h/My Article d/01-01-2024 s/draft d/02-02-2024` will add an article with the date `02-02-2024`.
 
-2. Now that that's done, let's say you need to find Gill Bate's number to arrange another interview.
+3. Now that that's done, let's say you need to find Gill Bate's number to arrange another interview.
     - Typing the command `find Gill Bates` will pull up his contact.
 
-3. If you made a mistake or want to see all your contacts again:
+4. If you made a mistake or want to see all your contacts again:
     - Typing the command `list` will bring up all your contacts.
 
-4. If you want to look up your article:
+5. If you want to look up your article:
     - Typing the command `find -a Example Article` will pull up the article.
 
-5. If you want to see all your articles again:
+6. If you want to see all your articles again:
     - Typing the command `list -a` will bring them all up.
 
 Now that you know the basic workflow, go ahead and try it out for yourself. If you want to learn more commands, use the `help` command in-app or refer to the [features](#3-features) section of this guide.
