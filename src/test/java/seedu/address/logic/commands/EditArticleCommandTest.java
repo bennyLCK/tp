@@ -4,6 +4,7 @@ import static seedu.address.logic.commands.articlecommands.ArticleCommandTestUti
 import static seedu.address.logic.commands.articlecommands.ArticleCommandTestUtil.showArticleAtIndex;
 import static seedu.address.testutil.TypicalArticles.getTypicalArticleBook;
 import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_ARTICLE;
+import static seedu.address.testutil.TypicalIndexes.INDEX_SIXTH_ARTICLE;
 import static seedu.address.testutil.TypicalPersons.getTypicalAddressBook;
 
 import org.junit.jupiter.api.Test;
@@ -50,13 +51,10 @@ public class EditArticleCommandTest {
         Article lastArticle = model.getFilteredArticleList().get(model.getFilteredArticleList().size() - 1);
 
         ArticleBuilder articleInList = new ArticleBuilder(lastArticle);
-        Article editedArticle = articleInList.withTitle("New Title").withAuthors("New Author")
-                .withPublicationDate("01-01-2021").withSources("New Source").withTags("New Tag").build();
+        Article editedArticle = articleInList.withTitle("Seven upon a time").build();
 
-        EditArticleDescriptor descriptor = new EditArticleDescriptorBuilder().withTitle("New Title")
-                .withAuthors("New Author").withPublicationDate("01-01-2021").withSources("New Source")
-                .withTags("New Tag").build();
-        EditArticleCommand editArticleCommand = new EditArticleCommand(INDEX_FIRST_ARTICLE, descriptor);
+        EditArticleDescriptor descriptor = new EditArticleDescriptorBuilder().withTitle("Seven upon a time").build();
+        EditArticleCommand editArticleCommand = new EditArticleCommand(INDEX_SIXTH_ARTICLE, descriptor);
 
         String expectedMessage = String.format(EditArticleCommand.MESSAGE_EDIT_ARTICLE_SUCCESS,
                 Messages.format(editedArticle));
@@ -108,7 +106,8 @@ public class EditArticleCommandTest {
         EditArticleDescriptor descriptor = new EditArticleDescriptorBuilder().withTitle("New Title").build();
         EditArticleCommand editArticleCommand = new EditArticleCommand(Index.fromOneBased(outOfBoundIndex), descriptor);
 
-        ArticleCommandTestUtil.assertCommandFailure(editArticleCommand, model, Messages.MESSAGE_INVALID_ARTICLE_DISPLAYED_INDEX);
+        ArticleCommandTestUtil.assertCommandFailure(editArticleCommand, model,
+                Messages.MESSAGE_INVALID_ARTICLE_DISPLAYED_INDEX);
     }
 
     @Test
@@ -119,7 +118,36 @@ public class EditArticleCommandTest {
         EditArticleDescriptor descriptor = new EditArticleDescriptorBuilder().withTitle("New Title").build();
         EditArticleCommand editArticleCommand = new EditArticleCommand(outOfBoundIndex, descriptor);
 
-        ArticleCommandTestUtil.assertCommandFailure(editArticleCommand, model, Messages.MESSAGE_INVALID_ARTICLE_DISPLAYED_INDEX);
+        ArticleCommandTestUtil.assertCommandFailure(editArticleCommand, model,
+                Messages.MESSAGE_INVALID_ARTICLE_DISPLAYED_INDEX);
+    }
+
+    @Test
+    public void equals() {
+        final EditArticleCommand standardCommand = new EditArticleCommand(INDEX_FIRST_ARTICLE,
+                ArticleCommandTestUtil.DESC_NVIDIA);
+
+        // same values -> returns true
+        EditArticleDescriptor copyDescriptor = new EditArticleDescriptor(ArticleCommandTestUtil.DESC_NVIDIA);
+        EditArticleCommand commandWithSameValues = new EditArticleCommand(INDEX_FIRST_ARTICLE, copyDescriptor);
+        assert (standardCommand.equals(commandWithSameValues));
+
+        // same object -> returns true
+        assert (standardCommand.equals(standardCommand));
+
+        // null -> returns false
+        assert (!standardCommand.equals(null));
+
+        // different types -> returns false
+        assert (!standardCommand.equals(new ClearCommand()));
+
+        // different index -> returns false
+        assert (!standardCommand.equals(new EditArticleCommand(INDEX_SIXTH_ARTICLE,
+                ArticleCommandTestUtil.DESC_NVIDIA)));
+
+        // different descriptor -> returns false
+        assert (!standardCommand.equals(new EditArticleCommand(INDEX_FIRST_ARTICLE,
+                ArticleCommandTestUtil.DESC_INTEL)));
     }
 
 }
