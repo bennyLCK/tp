@@ -560,7 +560,7 @@ Format: `exit`
 ### [5.1. Clearing all Articles](#5-upcoming-features)
 In PressPlanner's current version, we have provided a command to clear all persons from the address book using the `clear` command. This is intended to help you clear all contacts in the case of personal data privacy and security concerns.
 
-Users have requested a similar command to clear all articles from the article book. We are working on implementing this feature in the near future.
+Users have requested a similar command to clear all articles from the article book to improve their personal workflows. We are working on implementing this feature in the near future.
 
 * In the meantime, you can manually delete the `articlebook.json` file in the `data` folder to clear all articles.
   * For example, your articlebook may look something like this:
