@@ -736,7 +736,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
     * 2a1. PressPlanner shows an error message.
 
-      Use case resumes at step 1.
+      Use case resumes at step 2.
 
 **Use case: UC12 - Edit an article**
 
@@ -763,7 +763,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
     * 2b1. PressPlanner shows an error message.
 
-      Use case resumes at step 1.
+      Use case resumes at step 2.
 
 **Use case: UC13 - Find articles**
 
@@ -829,7 +829,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
     * 2a1. PressPlanner shows an error message.
 
-      Use case resumes at step 1.
+      Use case resumes at step 2.
   
 * 3a. The list is empty as there are no persons associated with the article.
 
@@ -860,7 +860,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
     * 2a1. PressPlanner shows an error message.
 
-      Use case resumes at step 1.
+      Use case resumes at step 2.
 
 
 
