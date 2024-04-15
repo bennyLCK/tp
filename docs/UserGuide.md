@@ -322,40 +322,65 @@ Clears all entries from the address book.
 
 Format: `clear`
 
+> [!WARNING]
+> This action is irreversible. All persons will be deleted from the address book. The app will not prompt you to confirm this action.
+
 ## [3.2. Managing Articles](#3-features)
+PressPlanner's article management system is designed to help you keep track of your articles and the people involved in them. As a freelancer, you lack the same resources a major firm has. PressPlanner helps you maximise the value you can get from your contacts by helping you keep track of which contacts you've worked with for different articles.
+
+> [!TIP]
+> Refer to [Why Use PressPlanner?](#12-why-use-pressplanner) for some of our recommended workflows and how PressPlanner can help you.
+
+> [!IMPORTANT]
+> Here are some important terms that will be used in this section:
+> 1. `DATE`
+>    * All articles have a mandatory `DATE` field. This field is also used in commands like [`filter`](#326-filtering-articles--filter--a)
+>    * `DATE` must be in the format `dd-mm-yyyy [HH:mm]`.
+>      * `HH:mm` is optional and defaults to `00:00` if not provided.
+>      * `HH:mm` must be in 24-hour format.
+>    * Examples of valid dates: `01-01-2023`, `01-01-2023 22:30`
+> 2. `STATUS`
+>    * All articles have a mandatory `STATUS` field.
+>    * `STATUS` can be:
+>      1. `draft`
+>      2. `published`
+>      3. `archived`.
+>    * The `STATUS` parameter is not case-sensitive (e.g. `draft` and `DRAFT` are both valid inputs).
 
 ### [3.2.1. Adding an Article](#32-managing-articles) : `add -a`
 Adds a new article to PressPlanner's database.
 
 Format: `add -a h/HEADLINE  d/DATE s/STATUS [c/CONTRIBUTOR]... [i/INTERVIEWEE]... [t/TAG]...[o/OUTLET]... [l/LINK]`
-* Only `HEADLINE`, `DATE`, and `STATUS` are mandatory fields.
-  * An article's `DATE` can represent what you choose to be relevant to your workflow, we recommend using it to represent:
-    * Time of creation for drafts.
-    * Time of publication for published articles.
-  * `DATE` must be in the format `dd-mm-yyyy [HH:mm]`.
-    * `HH:mm` is optional and defaults to `00:00` if not provided.
-    * `HH:mm` must be in 24-hour format.
-    * Examples of valid dates: `01-01-2023`, `01-01-2023 22:30`
-  * `STATUS` can be `draft`, `published`, or `archived`.
-    * To allow you to add different versions of `draft`, PressPlanner allows duplicates of articles as long as their `STATUS` are `draft`.
-  * If you do not have a valid webpage of the link, do not include `l/` in your add command for `LINK`. PressPlanner does not check for validity of links, so you might end up the link not opening upon clicking the `Link` button.
-* Adding an article will return to displaying all articles if a [find](#325-searching-for-an-article-by-headline--find--a) command was executed before.
-  * This does not apply to [filters](#326-filtering-articles--filter--a).
-  * If the name of a contributor or interviewee matches a person in the address book, the person's name will be linked to the article which will be accessible via the `lookup` and `lookup -a` commands.
 
 > [!WARNING]
-> * `HEADLINE` accepts any characters, but spaces at the start will be automatically removed.
-> * `HEADLINE` can also be left blank. This is not recommended, but allowed for flexibility.
->   * e.g. `add -a h/ d/20-10-2023 s/draft` is a valid command and will add an article with a blank headline.
->   * Some users may find this useful for adding drafts quickly and filling in the headline later.
+> 1. Only `HEADLINE`, `DATE`, and `STATUS` are mandatory fields.
+>   * Refer to [Managing Articles](#32-managing-articles) for the valid formats of `DATE` and `STATUS`.
+>   * An article's `HEADLINE` must be unique **unless it is a `draft`**
+>     * `HEADLINE` accepts any characters, but spaces at the start will be automatically removed.
+>     * `HEADLINE` can also be left blank. This is not recommended, but allowed for flexibility.
+>       * e.g. `add -a h/ d/20-10-2023 s/draft` is a valid command and will add an article with a blank headline.
+>       * Some users may find this useful for adding drafts quickly and filling in the headline later.
+>   * An article's `DATE` can represent what you choose to be relevant to your workflow, we recommend using it to represent:
+>     * Time of creation for drafts.
+>     * Time of publication for published articles.
+> 2. Entering multiple prefixes for any of these fields will overwrite the previous values.
+>   * e.g. `add -a h/My Article d/20-10-2023 s/draft h/My Second Article` will add an article titled `My Second Article`.
+>   * e.g. `add -a h/My Article d/01-01-2024 s/draft d/02-02-2024` will add an article with the date `02-02-2024`.
+
+* A `CONTRIBUTOR` is a co-author or information source that was not directly interviewed for an article.
+* An `INTERVIEWEE` is a person directly interviewed for an article.
+  * If a `CONTRIBUTOR` or `INTERVIEWEE` has the same name as a contact in PressPlanner's address book, [`lookup`](#316-lookup-associated-articles--lookup) and [`lookup -a`](#328-lookup-associated-persons--lookup--a) commands can be used to find articles and persons associated with each other.
+* An `OUTLET` is the publication or platform the article was published on.
+* A `TAG` is any keyword or phrase that helps categorise the article.
+* A `LINK` is a URL to the article.
+
+> [!IMPORTANT]
+> * Adding an article will return to displaying all articles if a [find](#325-searching-for-an-article-by-headline--find--a) command was executed before.
+>   * This does not apply to [filters](#326-filtering-articles--filter--a).
 
 Examples:
 * `add -a h/iPhone 13 Review d/20-03-2024 s/draft c/John Doe i/Michael Lee t/New Releases`
 * `add -a h/AI Inc. Acquired by Google d/30-08-2024 08:45 s/published c/Alex Johnson i/Emily Brown t/AI o/CNA l/www.example.com`
-
-> [!WARNING]
-> You should only use each prefixes once, except the `t/` prefix for Tags. If you use multiple prefixes in one command, eg. `add -a h/My Article d/20-10-2023 s/draft h/My Second Article` only the value that comes after the last duplicate prefix to be added, which means that in this case, the header of the article will be "My Second Article".
-
 
 ### [3.2.2. Deleting an Article](#32-managing-articles) : `delete -a`
 
@@ -377,8 +402,9 @@ List out all articles in PressPlanner's database.
 Format: `list -a`
 
 * No parameters necessary.
-* Extra alphanumeric characters in the command (e.g. `list -ab`, `list -a1`) will be ignored and treated as `list` for persons instead.
-* Extra whitespace characters in the command (e.g. `list -a `, `list -a  `) are acceptable.
+  * Extra characters in the command (e.g. `list -ab`, `list -a1`) will be ignored and treated as `list` for persons instead.
+  * Extra whitespace characters in the command (e.g. `list -a `, `list -a  `) are acceptable.
+  * Extra characters after a whitespace will be ignored (e.g. `list -a 123` will be interpreted as `list -a`).
 
 ### [3.2.4. Editing an Article](#32-managing-articles) : `edit -a`
 
@@ -387,22 +413,20 @@ Edits an existing article in PressPlanner's database.
 Format: `edit -a INDEX [h/HEADLINE] [d/DATE] [s/STATUS] [c/CONTRIBUTOR]... [i/INTERVIEWEE]... [t/TAG]... [o/OUTLET]... [l/LINK]`
 
 * Edits the article at the specified `INDEX`.
-* At least one of the optional fields must be provided.
-* Existing values will be updated to the input values.
-  * When editing a field, the original values will be overwritten by the new values.
-    * `c/`, `i/`, `t/`, `o/` and `l/` without any value after it will clear all existing values.
-    * e.g. `c/new contributor` will replace all existing contributors with `new contributor`.
-* Refer to the [add article](#321-adding-an-article--add--a) command for the format of each field.
-* Editing an article will return to displaying all articles if a [find](#325-searching-for-an-article-by-headline--find--a)) command was executed before.
-  * This does not apply to [filters](#326-filtering-articles--filter--a).
+* **At least one** of the optional fields must be provided.
+* Refer to the [`add -a` command](#321-adding-an-article--add--a) for the format of each field.
+  * Note that `edit -a` will also behave the same as `add -a` in terms of returning to the full list of articles if used after a `find` command.
+
+> [!WARNING]
+> * Editing an article will be updated any included field to the new input.
+>   * i.e. The original values will be overwritten by the new values.
+>     * `c/`, `i/`, `t/`, `o/` and `l/` without any value after it will clear all existing values.
+>     * e.g. `c/new contributor` will replace all existing contributors with `new contributor`.
+> * Editing is irreversible, so make sure you have the correct information before executing the command.
 
 Examples:
 *  `edit -a 1 h/iPhone Review` Edits the headline of the 1st article to be `iPhone Review`.
 *  `edit -a 2 h/iPhone Review i/` Edits the headline of the 2nd article to be `iPhone Review` and clears all existing interviewees.
-
-> [!WARNING]
-> You should only use each prefixes once, except the `t/` prefix for Tags. If you use multiple prefixes in one command, eg. `add -a h/My Article d/20-10-2023 s/draft h/My Second Article` only the value that comes after the last duplicate prefix to be added, which means that in this case, the header of the article will be "My Second Article".
-
 
 ### [3.2.5. Searching for an Article by Headline](#32-managing-articles) : `find -a`
 
@@ -442,6 +466,7 @@ Format: `filter -a s/STATUS t/TAG ST/START_DATE EN/END_DATE`
   * The `START_DATE` should come **before** the `END_DATE`. If not, you will receive an error!
   * The date of the article you are looking for should not be equal to the `START_DATE` or `END_DATE`.
 * Only one filter command can be active at once, using another filter will override the last one.
+
 Examples:
 * `filter -a s/DRAFT t/ st/ en/` will restrict the display to showing only articles with draft status.
 * Using the command:
@@ -513,17 +538,18 @@ Example:
 
 ### [3.2.10. Opening a Webpage for an Article](#32-managing-articles)
 
-* By clicking the `Link` button of your article that is highlighted in yellow box in the picture below, you can open up the webpage for your article that is added when you added the article.
-* If the webpage does not open when clicked, it means that the `link` of the article is invalid.
+* By clicking the `Link` button of your article that is highlighted in yellow box in the picture below, you can open up the webpage for your article that was included in the article.
 
   ![opening link](images/LinkFeatureSample.png)
 
+> [!WARNING]
+> PressPlanner does not check the validity of links. If the webpage does not open when clicked, it likely means that the `link` of the article is invalid.
 
 ## [3.3. Other Commands](#3-features)
 
 ### [3.3.1. Viewing Help](#33-other-commands) : `help`
 
-Shows a message explaining how to access the help page.
+Shows a message with the URL to access this User Guide.
 
 * Can also be accessed via the button at the top of the app
 * Can also be accessed via pressing the `F1` key on your keyboard
