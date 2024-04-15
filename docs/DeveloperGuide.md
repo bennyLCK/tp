@@ -215,11 +215,11 @@ Step 2. The user executes `filter -a s/ st/ en/ t/DRAFT` to look for articles he
 
 <puml src="diagrams/FilterSequenceDiagram.puml" alt="FilterSequenceDiagram" />
 
-Step 3. Now that the filter has been updated. The user now looks through Press Planner to search for the article. He decides to search by title to make it faster. He executes `find -a AI`. Beyond matches with the name, Press Planner is still filtering to show only DRAFT articles, allowing the user to search a smaller set.
+Step 3. Now that the filter has been updated. The user now looks through PressPlanner to search for the article. He decides to search by title to make it faster. He executes `find -a AI`. Beyond matches with the name, PressPlanner is still filtering to show only DRAFT articles, allowing the user to search a smaller set.
 
 Step 4. The user has found his article and wishes to remove the filter. He does this by executing `set -a S/ ST/ EN/`. With no instructions, the predicate allows all articles to pass through the filter.  
 
-Note: If start date is later than the end date, Press Planner will refuse to execute the command, double-check the dates to avoid this scenario.  
+Note: If start date is later than the end date, PressPlanner will refuse to execute the command, double-check the dates to avoid this scenario.  
 
 Note: Filters are **NOT** stored by the program. If you close the app, your filters will be reset. 
 
