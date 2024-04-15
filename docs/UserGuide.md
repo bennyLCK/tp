@@ -268,10 +268,12 @@ Example:
 
 Before sorting:
 (Aaron Tan and Barry Allen are recent additions to the template data and are currently at the end of the list)
+
 ![before sorting people](images/beforeSortingPeople.png)
 
 After sorting:
 (Both Aaron Tan and Barry Allen moved up the list and are now in order with respect to ascending alphabetical ordering of their names)
+
 ![after sorting people](images/afterSortingPeople.png)
 
 Success message shown:
