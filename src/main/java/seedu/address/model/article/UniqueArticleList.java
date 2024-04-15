@@ -35,14 +35,6 @@ public class UniqueArticleList implements Iterable<Article> {
      */
     public void add(Article toAdd) {
         requireNonNull(toAdd);
-
-        /*
-        if (contains(toAdd)) {
-            throw new DuplicatePersonException();
-        }
-
-         */
-
         internalList.add(toAdd);
     }
 
@@ -55,16 +47,6 @@ public class UniqueArticleList implements Iterable<Article> {
 
         int index = internalList.indexOf(target);
 
-        /*
-        if (index == -1) {
-            throw new PersonNotFoundException();
-        }
-
-        if (!target.isSameArticle(editedArticle) && contains(editedArticle)) {
-            throw new DuplicatePersonException();
-        }
-        */
-
         internalList.set(index, editedArticle);
     }
 
@@ -74,12 +56,6 @@ public class UniqueArticleList implements Iterable<Article> {
     public void remove(Article toRemove) {
         requireNonNull(toRemove);
         internalList.remove(toRemove);
-
-        /*
-        if (!internalList.remove(toRemove)) {
-            throw new PersonNotFoundException();
-        }
-        */
     }
 
     public void setArticles(UniqueArticleList replacement) {
@@ -93,13 +69,6 @@ public class UniqueArticleList implements Iterable<Article> {
      */
     public void setArticles(List<Article> articles) {
         requireAllNonNull(articles);
-
-        /*
-        if (!personsAreUnique(persons)) {
-            throw new DuplicatePersonException();
-        }
-        */
-
         internalList.setAll(articles);
     }
 

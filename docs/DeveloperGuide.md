@@ -91,7 +91,7 @@ The `UI` component,
 
 Here's a (partial) class diagram of the `Logic` component:
 
-<puml src="diagrams/LogicClassDiagram.puml" width="550"/>
+<puml src="diagrams/LogicClassDiagram.puml" width="1500"/>
 
 The sequence diagram below illustrates the interactions within the `Logic` component, taking `execute("delete 1")` API call as an example.
 
@@ -121,7 +121,7 @@ How the parsing works:
 ### Model component
 **API** : [`Model.java`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/model/Model.java)
 
-<puml src="diagrams/ModelClassDiagram.puml" width="800" />
+<puml src="diagrams/ModelClassDiagram.puml" width="1500" />
 
 
 The `Model` component,
@@ -144,7 +144,7 @@ The `Model` component,
 
 **API** : [`Storage.java`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/storage/Storage.java)
 
-<puml src="diagrams/StorageClassDiagram.puml" width="550" />
+<puml src="diagrams/StorageClassDiagram.puml" width="1000" />
 
 The `Storage` component,
 * can save address book data, article book data and user preference data in JSON format, and read them back into corresponding objects.
@@ -1044,17 +1044,17 @@ testers are expected to do more *exploratory* testing.
 
 ### Sorting people by their names
 
-1. Sorting people after inserting a person whose name is `"a"` x number of times
+1. Sorting people after inserting a person
 
    1. Prerequisites: There are 6 person entries in PressPlanner on first time launch, already in ascending alphabetical order, perform the following testcases in order.
 
-   1. Test case: `add n/a p/82927320 e/a@gmail.com a/ Blk 123 Jurong Ring Road, #01-123` followed by `sort n/`<br>
-      Expected: The person entries are sorted by their names in ascending alphabetical order. The person named `"a"` should be the first entry. Timestamp in the status bar is updated.
+   1. Test case: `add n/Aaron Tan p/82927320 e/a@gmail.com a/ Blk 123 Jurong Ring Road, #01-123` followed by `sort n/`<br>
+      Expected: The person entries are sorted by their names in ascending alphabetical order. The person named `"Aaron Tan"` should be the first entry. Timestamp in the status bar is updated.
 
-   1. Test case: `add n/aa p/82927320 e/a@gmail.com a/ Blk 123 Jurong Ring Road, #01-123` followed by `sort N/`<br>
-      Expected: The person entries are sorted by their names in ascending alphabetical order. The person named `"aa"` should now be the second entry, after the person named `"a"`. Timestamp in the status bar is updated.
+   1. Test case: `add n/Annie Lee p/82927320 e/a@gmail.com a/ Blk 123 Jurong Ring Road, #01-123` followed by `sort N/`<br>
+      Expected: The person entries are sorted by their names in ascending alphabetical order. The person named `"Annie Lee"` should now be the third entry, after the person named `"Alex Yeoh"`. Timestamp in the status bar is updated.
 
-   1. Test case: `add n/aaa p/82927320 e/a@gmail.com a/ Blk 123 Jurong Ring Road, #01-123` followed by `sort z/`<br>
+   1. Test case: `add n/Zachery Tan p/82927320 e/a@gmail.com a/ Blk 123 Jurong Ring Road, #01-123` followed by `sort z/`<br>
       Expected: No reordering of people is done. Error details shown in the status message. Status bar remains the same.
 
    1. Other incorrect sort person commands to try: `sort`, `sort x`, `...` (where x is anything that is not `n/` or `N/`)<br>
