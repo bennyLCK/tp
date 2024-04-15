@@ -15,7 +15,8 @@
 
 ## **Acknowledgements**
 
-_{ list here sources of all reused/adapted ideas, code, documentation, and third-party libraries -- include links to the original source as well }_
+_{ GitHub CoPilot was used to help speed up tasks like writing documentation, writing JavaDocs, creating TestUtil Classes, 
+and write repetitive method calls }_
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -120,7 +121,7 @@ How the parsing works:
 ### Model component
 **API** : [`Model.java`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/model/Model.java)
 
-<puml src="diagrams/ModelClassDiagram.puml" width="450" />
+<puml src="diagrams/ModelClassDiagram.puml" width="800" />
 
 
 The `Model` component,
@@ -209,16 +210,16 @@ Given below is an example usage scenario:
 
 Step 1. The user launches the application. The `ModelManager` will be initialized, along with the Filter objects it contains. `finalPredicate` will be set to display all articles for now.  
 
-Step 2. The user executes `filter -a s/ st/ en/ t/DRAFT` to look for articles he is currently working on.  The filter article command gets the `ArticleFilter` object using `getFilter()`. Than it updates the filter object by calling the `updateFilter()` method, changing the `finalPredicate`.
+Step 2. The user executes `filter -a s/ st/ en/ t/DRAFT` to look for articles he is currently working on.  The filter article command gets the `ArticleFilter` object using `getFilter()`. Then it updates the filter object by calling the `updateFilter()` method, changing the `finalPredicate`.
 
 
 <puml src="diagrams/FilterSequenceDiagram.puml" alt="FilterSequenceDiagram" />
 
-Step 3. Now that the filter has been updated. The user now looks through Press Planner to search for the article. He decides to search by title to make it faster. He executes `find -a AI`. Beyond matches with the name, Press Planner is still filtering to show only DRAFTs, allowing the user to search a smaller set.
+Step 3. Now that the filter has been updated. The user now looks through PressPlanner to search for the article. He decides to search by title to make it faster. He executes `find -a AI`. Beyond matches with the name, PressPlanner is still filtering to show only DRAFT articles, allowing the user to search a smaller set.
 
 Step 4. The user has found his article and wishes to remove the filter. He does this by executing `set -a S/ ST/ EN/`. With no instructions, the predicate allows all articles to pass through the filter.  
 
-Note: If start date is later than the end date, Press Planner will refuse to execute the command, double-check the dates to avoid this scenario.  
+Note: If start date is later than the end date, PressPlanner will refuse to execute the command, double-check the dates to avoid this scenario.  
 
 Note: Filters are **NOT** stored by the program. If you close the app, your filters will be reset. 
 
@@ -916,22 +917,35 @@ testers are expected to do more *exploratory* testing.
 
 1. _{ more test cases …​ }_
 
-### Deleting a person
+### Adding an article
 
-1. Deleting a person while all persons are being shown
+1. Adding an article 
+    
+    1. Test case: `add -a h/Article1 c/Author1 i/Interviewee1 t/Science d/01-01-2019 s/PUBLISHED`<br>
+       Expected: Article1 is added to the list. Details of the added article shown in the status message.
 
-   1. Prerequisites: List all persons using the `list` command. Multiple persons in the list.
+    1. Test case: `add -a h/Article2 d/01-01-2021 s/PUBLISHED`<br>
+       Expected: Article2 is added to the list. Details of the added article shown in the status message.
 
-   1. Test case: `delete 1`<br>
-      Expected: First contact is deleted from the list. Details of the deleted contact shown in the status message. Timestamp in the status bar is updated.
+    1. Test case: `add -a h/Article3 c/Author3 s/DRAFT`<br>
+       Expected: Error message is shown. Article3 is not added to the list.
 
-   1. Test case: `delete 0`<br>
-      Expected: No person is deleted. Error details shown in the status message. Status bar remains the same.
+### Deleting an article
 
-   1. Other incorrect delete commands to try: `delete`, `delete x`, `...` (where x is larger than the list size)<br>
+1. Deleting an article while all article are being shown
+
+   1. Prerequisites: List all articles using the `list -a` command. Multiple articles in the list.
+
+   1. Test case: `delete -a 1`<br>
+      Expected: First article is deleted from the list. Details of the deleted article shown in the status message.
+   
+   1. Test case: `delete -a 0`<br>
+      Expected: No article is deleted. Error details shown in the status message. Status bar remains the same.
+
+   1. Other incorrect delete commands to try: `delete -a`, `delete -a x`, `...` (where x is larger than the list size)<br>
       Expected: Similar to previous.
 
-### Editing a article
+### Editing an article
 
 1. Edit an article while all articles are being shown
 
@@ -1008,7 +1022,7 @@ testers are expected to do more *exploratory* testing.
         Expected: An error informing the user that the command format is incorrect will be shown.
 
     1. Test case: `filter -a s/ st/ en/ t/non-alphanumeric`<br>
-        Expected: An error informing the user that tags only consisting of alpha numeric characters will be shown.
+        Expected: An error informing the user that tags only consisting of alphanumeric characters will be shown.
 
     1. Test case: `filter -a s/ st/01-01-2020 en/01-01-2001 t/`<br>
     Expected: An error informing the user that start dates must come before end dates will be shown.
@@ -1083,6 +1097,38 @@ testers are expected to do more *exploratory* testing.
       Expected: Similar to previous.
    
 
+
+### Filtering through articles
+1. Filtering through articles.
+    1. Prerequisites: Populate PressPlanner with sufficient articles. You may use the following add commands:<br>
+     
+    1. Use these commands to populate PressPlanner.<br>
+       `add -a h/Test-1 c/Author1 i/Interviewee1 t/Science d/01-01-2019 s/PUBLISHED`<br>
+       `add -a h/Test-2 c/Author2 i/Interviewee2 d/01-01-2021 s/PUBLISHED`<br>
+       `add -a h/Test-3 c/Author3  d/01-01-2019 s/DRAFT`<br>
+
+    1. Test case: `filter -a s/ st/ en/ t/`<br>
+        Expected:There will be no change in displayed articles.
+     
+    1. Test case: `filter -a s/DRAFT st/ en/ t/`<br>
+        Expected: Only articles with draft status will be displayed.
+   
+    1. Test case: `filter -a s/ st/01-01-2020 en/12-12-2022 t/`<br>
+        Expected: Only articles published between 01-01-2020 and 12-12-2022 will be displayed.
+    
+    1. Test case: `filter -a s/ st/ en/ t/Science`<br>
+       Expected: Only articles with the tag `Science` will be displayed.
+   
+    1. Test case: `filter -a s/ st/`<br>
+        Expected: An error informing the user that the command format is incorrect will be shown.
+     
+    1. Test case: `filter -a s/ st/ en/ t/non-alphanumeric`<br>
+        Expected: An error informing the user that tags only consisting of alpha numeric characters will be shown.
+   
+    1. Test case: `filter -a s/ st/01-01-2020 en/01-01-2001 t/`<br>
+    Expected: An error informing the user that start dates must come before end dates will be shown.
+
+1. _{ more test cases …​ }_
 ### Saving data
 
 1. Dealing with missing/corrupted data files
