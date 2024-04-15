@@ -813,6 +813,22 @@ testers are expected to do more *exploratory* testing.
 
 1. _{ more test cases …​ }_
 
+
+### Opening Links
+
+1. Opening a link to an article
+
+   1. Create articles using `add -a h/Article1 d/20-03-2024 s/draft l/https://www.google.com`, `add -a h/Article2 d/20-03-2024 s/draft l/https://www.facebook.com/` and `add -a h/Article3 d/20-03-2024 s/draft l/` commands.
+
+   1. Test case: `add -a h/Article1 d/20-03-2024 s/draft l/https://www.google.com`, followed by click on the link button of the first article.<br>
+      Expected: The link to google is opened in the default web browser.
+
+   1. Test case: `add -a h/Article2 d/20-03-2024 s/draft l/https://www.facebook.com/`, followed by click on the link button of the last article.<br>
+      Expected: The link to facebook is opened in the default web browser.
+
+   1. Test case: `add -a h/Article3 d/20-03-2024 s/draft l/`, followed by click on the link button of an article that does not have a link.<br>
+      Expected: Nothing happens.
+
 ### Saving data
 
 1. Dealing with missing/corrupted data files
